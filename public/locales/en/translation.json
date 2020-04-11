@@ -1,0 +1,46 @@
+{
+  "brand": "Bookphilia",
+  "email": "Email",
+  "logout": "Logout",
+  "password": "Password",
+  "repeatPassword": "Repeat password",
+  "id": "Id",
+  "title": "Title",
+  "description": "Description",
+  "submit": "Save",
+  "servererror": "Server error",
+  "loading": "Loading...",
+  "noElementsFound": "No results found",
+  "validations": {
+    "default": "Invalid field",
+    "required": "Field required",
+    "email": "Incorrect email",
+    "passwordMatch": "Passwords don't match"
+  },
+  "home": {
+    "page": "Home",
+    "title": "Welcome {{name}}",
+    "stranger": "stranger",
+    "appDescription": "",
+    "unauthenticatedMonit": "Register or login first, no email verification needed!",
+    "authenticatedMonit": ""
+  },
+  "login": {
+    "page": "Login",
+    "title": "Please login",
+    "submit": "Login"
+  },
+  "register": {
+    "page": "Register",
+    "title": "Register",
+    "submit": "Register"
+  },
+  "profile": {
+    "page": "Profile",
+    "title": "My profile"
+  },
+  "notification": {
+    "registered": "Account created",
+    "profileUpdated": "Profile updated"
+  }
+}

@@ -1,0 +1,147 @@
+$primary: #17a2b8;
+$primary-shadow: #128293;
+
+.app {
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  background-color: #e6e6e6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .btn-primary {
+    background-color: $primary;
+    border-color: $primary;
+  }
+
+  .btn-primary:hover {
+    background-color: $primary-shadow;
+    border-color: $primary-shadow;
+  }
+
+  .btn-primary:active:focus {
+    background-color: $primary-shadow;
+    border-color: $primary-shadow;
+    box-shadow: none;
+  }
+
+  .page-item.active .page-link {
+    background-color: $primary;
+    border-color: $primary;
+  }
+
+  .page-link {
+    color: $primary;
+  }
+
+  .progress-bar {
+    background-color: $primary;
+  }
+
+  .quick-action-btns {
+    button {
+      margin: 0 0.3rem
+    }
+  }
+}
+
+.app-description {
+  text-align: left;
+  padding-bottom: 1rem;
+}
+
+.app-card {
+  min-height: 10rem;
+  display: block;
+  width: 95%;
+  max-width: 60rem;
+  background: #f5f5f5;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 1rem;
+}
+
+.title-header {
+  padding: 0.5rem;
+}
+
+.app-content {
+  display: block;
+  margin: auto;
+  width: 100%;
+  max-width: 50rem;
+
+  input {
+    max-width: 15rem;
+    margin: auto;
+  }
+
+  textarea {
+    resize: none;
+    max-width: 25rem;
+    margin: auto;
+  }
+}
+
+.table-action-buttons {
+  width: 10%;
+
+  button {
+    margin-left: 0.2rem;
+    margin-right: 0.2rem;
+    margin-bottom: 0.2rem;
+  }
+}
+
+.pagination {
+  justify-content: center;
+}
+
+.list-group {
+  margin-bottom: 1rem;
+}
+
+.app-logo {
+  height: 40vmin;
+}
+
+.pending-requests-spinner {
+  position: fixed;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  color: $primary;
+}
+
+.error-container {
+  position: fixed;
+  width: 100%;
+  top: 0.2rem;
+  z-index: 4;
+
+  .error-message {
+    color: red;
+    margin: auto;
+    display: inline-block;
+    max-width: 80%;
+  }
+}
+
+.notification-container {
+  position: fixed;
+  width: 100%;
+  bottom: 0.2rem;
+  margin: 0;
+  z-index: 4;
+
+  .notification-message {
+    color: red;
+    margin: auto;
+    display: inline-block;
+    max-width: 80%;
+  }
+}
+
+.top-menu {
+  width: 100%;
+}
+

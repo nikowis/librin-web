@@ -1,0 +1,46 @@
+{
+  "brand": "Książkofilia",
+  "email": "Email",
+  "logout": "Wylogowanie",
+  "password": "Hasło",
+  "repeatPassword": "Powtórz hasło",
+  "id": "Id",
+  "title": "Tytuł",
+  "description": "Opis",
+  "submit": "Zapisz",
+  "servererror": "Błąd serwera",
+  "loading": "Ładowanie...",
+  "noElementsFound": "Brak wyników",
+  "validations": {
+    "default": "Niepoprawne dane",
+    "required": "Pole wymagane",
+    "email": "Niepoprawny adres email",
+    "passwordMatch": "Hasła nie pasują"
+  },
+  "home": {
+    "page": "Start",
+    "title": "Witaj {{name}}",
+    "stranger": "nieznajomy",
+    "appDescription": "",
+    "unauthenticatedMonit": "Zarejestruj się lub zaloguj!",
+    "authenticatedMonit": ""
+  },
+  "login": {
+    "page": "Logowanie",
+    "title": "Zaloguj się",
+    "submit": "Zaloguj"
+  },
+  "register": {
+    "page": "Rejestracja",
+    "title": "Utwórz konto",
+    "submit": "Zarejestruj się"
+  },
+  "profile": {
+    "page": "Profil",
+    "title": "Mój profil"
+  },
+  "notification": {
+    "registered": "Konto utworzone",
+    "profileUpdated": "Profil zaktualizowany"
+  }
+}
