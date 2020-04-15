@@ -7,6 +7,7 @@
   "id": "Id",
   "title": "Title",
   "description": "Description",
+  "author": "Author",
   "submit": "Save",
   "servererror": "Server error",
   "loading": "Loading...",
@@ -39,8 +40,13 @@
     "page": "Profile",
     "title": "My profile"
   },
+  "myoffers": {
+    "page": "My offers",
+    "title": "My offers"
+  },
   "notification": {
     "registered": "Account created",
-    "profileUpdated": "Profile updated"
+    "profileUpdated": "Profile updated",
+    "offerDeleted": "Offer deleted"
   }
 }

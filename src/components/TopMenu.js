@@ -1,7 +1,7 @@
 import React from 'react';
 import '../App.scss';
 import {connect} from "react-redux";
-import {HOME, LOGIN, LOGOUT, PROFILE, REGISTER, ROOT} from "../common/paths";
+import {HOME, LOGIN, LOGOUT, MY_OFFERS, PROFILE, REGISTER, ROOT} from "../common/paths";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import {LinkContainer} from "react-router-bootstrap"
@@ -31,7 +31,7 @@ function TopMenu(props) {
 
     return (
         <div className="top-menu">
-            <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
+            <Navbar collapseOnSelect expand="md" variant="light">
                 <Navbar.Brand href={ROOT}>{t('brand')}</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
                 <Navbar.Collapse id="responsive-navbar-nav">
@@ -42,6 +42,9 @@ function TopMenu(props) {
                             </LinkContainer>
                             <LinkContainer to={PROFILE}>
                                 <Nav.Link>{t('profile.page')}</Nav.Link>
+                            </LinkContainer>
+                            <LinkContainer to={MY_OFFERS}>
+                                <Nav.Link>{t('myoffers.page')}</Nav.Link>
                             </LinkContainer>
                             <LinkContainer to={LOGOUT}>
                                 <Nav.Link>{t('logout')}</Nav.Link>

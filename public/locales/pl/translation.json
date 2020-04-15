@@ -7,6 +7,7 @@
   "id": "Id",
   "title": "Tytuł",
   "description": "Opis",
+  "author": "Autor",
   "submit": "Zapisz",
   "servererror": "Błąd serwera",
   "loading": "Ładowanie...",
@@ -39,8 +40,13 @@
     "page": "Profil",
     "title": "Mój profil"
   },
+  "myoffers": {
+    "page": "Moje oferty",
+    "title": "Moje oferty"
+  },
   "notification": {
     "registered": "Konto utworzone",
-    "profileUpdated": "Profil zaktualizowany"
+    "profileUpdated": "Profil zaktualizowany",
+    "offerDeleted": "Oferta usunięta"
   }
 }
