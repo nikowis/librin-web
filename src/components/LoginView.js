@@ -4,9 +4,8 @@ import {Redirect} from "react-router-dom";
 import Api from "../common/api-communication";
 import {connect} from "react-redux";
 import {HOME} from "../common/paths";
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 import {Formik} from 'formik';
+import {Button, TextField} from '@material-ui/core';
 import {loginSchema} from "../common/validation-schemas";
 import {useTranslation} from "react-i18next";
 import PropTypes from "prop-types";
@@ -15,9 +14,11 @@ function LoginView(props) {
 
     const {t} = useTranslation();
 
-    const handleSubmit = (data) => {
+    const handleSubmit = (data, actions) => {
         const {dispatch} = props;
-        dispatch(Api.postLogin(data.login, data.password));
+        actions.setSubmitting(true);
+        dispatch(Api.postLogin(data.login, data.password))
+            .finally(() => actions.setSubmitting(false));
     };
 
     if (props.authenticated) {
@@ -25,41 +26,51 @@ function LoginView(props) {
     }
 
     return (
-        <Formik validationSchema={loginSchema} onSubmit={handleSubmit}
+        <Formik validationSchema={loginSchema}
+                onSubmit={handleSubmit}
                 initialValues={{
                     login: '',
                     password: ''
                 }}
         >
-            {({touched, errors, handleSubmit, handleChange, values}) => (
-                <Form noValidate onSubmit={handleSubmit}>
-                    <Form.Group controlId="login">
-                        <Form.Label>
-                            {t('email')}
-                        </Form.Label>
-                        <Form.Control name="login" value={values.login} onChange={handleChange} type="email"
-                                      isInvalid={touched.login && !!errors.login}
-                                      placeholder={t('email')}/>
-                        <Form.Control.Feedback type="invalid">
-                            {t(errors.login)}
-                        </Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group controlId="password">
-                        <Form.Label>
-                            {t('password')}
-                        </Form.Label>
-                        <Form.Control name="password" value={values.password} onChange={handleChange}
-                                      type="password"
-                                      isInvalid={touched.password && !!errors.password}
-                                      placeholder={t('password')}/>
-                        <Form.Control.Feedback type="invalid">
-                            {t(errors.password)}
-                        </Form.Control.Feedback>
-                    </Form.Group>
-                    <Button variant="primary" type="submit">
+            {({
+                  values,
+                  errors,
+                  touched,
+                  handleChange,
+                  handleSubmit,
+                  isSubmitting
+              }) => (
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <TextField
+                            error={errors.login && touched.login}
+                            label={t('email')}
+                            name="login"
+                            variant="outlined"
+                            value={values.login}
+                            onChange={handleChange}
+                            helperText={(errors.login && touched.login) && t(errors.login)}
+                            margin="normal"
+                        />
+                    </div>
+                    <div>
+                        <TextField
+                            error={errors.password && touched.password}
+                            label={t('password')}
+                            name="password"
+                            type="password"
+                            variant="outlined"
+                            value={values.password}
+                            onChange={handleChange}
+                            helperText={(errors.password && touched.password) && t(errors.password)}
+                            margin="normal"
+                        />
+                    </div>
+                    <Button variant="contained" color="primary" type="submit" disabled={isSubmitting}>
                         {t('login.submit')}
                     </Button>
-                </Form>
+                </form>
             )}
         </Formik>
     );

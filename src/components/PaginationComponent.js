@@ -1,24 +1,23 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import Pagination from "react-bootstrap/Pagination";
-import {LinkContainer} from 'react-router-bootstrap'
+import Pagination from '@material-ui/lab/Pagination';
+import PaginationItem from '@material-ui/lab/PaginationItem';
+import {Link} from "react-router-dom";
 
 function PaginationComponent({currentPage, currentPathname, totalPages}) {
 
-    let items = [];
-    for (let number = 1; number <= totalPages; number++) {
-        const href = currentPathname + '?' + new URLSearchParams({page: number}).toString();
-        items.push(
-            <LinkContainer key={number} to={href}>
-                <Pagination.Item active={number === currentPage}>
-                    {number}
-                </Pagination.Item>
-            </LinkContainer>
-        );
-    }
-
     return (
-        <Pagination>{items}</Pagination>
+        <Pagination
+            page={currentPage}
+            count={totalPages}
+            renderItem={(item) => (
+                <PaginationItem
+                    component={Link}
+                    to={currentPathname + '?' + new URLSearchParams({page: item.page}).toString()}
+                    {...item}
+                />
+            )}
+        />
     );
 }
 

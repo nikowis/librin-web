@@ -2,15 +2,15 @@ import React from 'react';
 import '../../App.scss';
 import Api from "./../../common/api-communication"
 import {withRouter} from 'react-router-dom';
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import {useTranslation} from "react-i18next";
 import {Formik} from 'formik';
 import {createOfferSchema} from "../../common/validation-schemas";
 import {connect} from "react-redux";
-import {CREATE_HABIT, HIDE_NOTIFICATION, SHOW_NOTIFICATION} from "../../redux/actions";
-import {HABITS} from "../../common/paths";
+import {CREATE_OFFER, HIDE_NOTIFICATION, SHOW_NOTIFICATION} from "../../redux/actions";
+import {MY_OFFERS} from "../../common/paths";
 import {NOTIFICATION_DURATION} from "../../common/app-constants";
+import {TextField} from "@material-ui/core";
+import Button from "@material-ui/core/Button";
 
 function CreateOfferView(props) {
 
@@ -18,20 +18,21 @@ function CreateOfferView(props) {
     const {dispatch, history} = props;
 
     const handleSubmit = (data, actions) => {
+        actions.setSubmitting(true);
         Api.createOffer(data).payload.then((response) => {
             if (!response.status) {
-                dispatch({type: CREATE_HABIT});
+                dispatch({type: CREATE_OFFER});
                 dispatch({type: SHOW_NOTIFICATION, payload: t('notification.habitCreated')});
                 setTimeout(() => {
                     dispatch({type: HIDE_NOTIFICATION})
                 }, NOTIFICATION_DURATION);
-                history.push(HABITS);
+                history.push(MY_OFFERS);
             } else if (response.status && response.status === 400) {
                 response.errors.forEach(err => {
                     actions.setFieldError(err.field, err.defaultMessage);
                 });
             }
-        });
+        }).finally(() => actions.setSubmitting(false));
     };
 
     return (
@@ -41,34 +42,41 @@ function CreateOfferView(props) {
                     description: ''
                 }}
         >
-            {({touched, errors, handleSubmit, handleChange, values}) => (
-                <Form noValidate onSubmit={handleSubmit}>
-                    <Form.Group controlId="title">
-                        <Form.Label>
-                            {t('title')}
-                        </Form.Label>
-                        <Form.Control name="title" value={values.title} onChange={handleChange} type="text"
-                                      placeholder={t('title')}
-                                      isInvalid={touched.title && !!errors.title}/>
-                        <Form.Control.Feedback type="invalid">
-                            {t(errors.title)}
-                        </Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group controlId="description">
-                        <Form.Label>
-                            {t('description')}
-                        </Form.Label>
-                        <Form.Control name="description" value={values.description} onChange={handleChange}
-                                      as="textarea" rows="3" placeholder={t('description')}
-                                      isInvalid={touched.description && !!errors.description}/>
-                        <Form.Control.Feedback type="invalid">
-                            {t(errors.description)}
-                        </Form.Control.Feedback>
-                    </Form.Group>
-                    <Button variant="primary" type="submit">
-                        {t('offers.create.submit')}
+            {({
+                  values,
+                  errors,
+                  touched,
+                  handleChange,
+                  handleSubmit,
+                  isSubmitting
+              }) => (
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <TextField
+                            error={errors.title && touched.title}
+                            label={t('title')}
+                            name="title"
+                            value={values.title}
+                            onChange={handleChange}
+                            helperText={(errors.title && touched.title) && t(errors.title)}
+                            margin="normal"
+                        />
+                    </div>
+                    <div>
+                        <TextField
+                            error={errors.author && touched.author}
+                            label={t('author')}
+                            name="author"
+                            value={values.author}
+                            onChange={handleChange}
+                            helperText={(errors.author && touched.author) && t(errors.author)}
+                            margin="normal"
+                        />
+                    </div>
+                    <Button variant="contained" color="primary" type="submit" disabled={isSubmitting}>
+                        {t('submit')}
                     </Button>
-                </Form>
+                </form>
             )}
         </Formik>
     );

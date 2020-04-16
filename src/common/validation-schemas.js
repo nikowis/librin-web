@@ -41,3 +41,12 @@ export const profileSchema = Yup.object().shape({
         })
         .oneOf([Yup.ref('password')], 'validations.passwordMatch')
 });
+
+export const createOfferSchema = Yup.object().shape({
+    title: Yup.string()
+        .min(2)
+        .required(),
+    author: Yup.string()
+        .min(2)
+        .required()
+});

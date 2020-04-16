@@ -18,7 +18,7 @@ i18n
         backend: {
             loadPath: () => {
                 const prefix = process.env.NODE_ENV === "production" ? process.env.REACT_APP_BASENAME : '';
-                return  prefix + '/locales/{{lng}}/{{ns}}.json';
+                return prefix + '/locales/{{lng}}/{{ns}}.json';
             },
         }
 

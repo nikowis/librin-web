@@ -9,7 +9,6 @@ import {Provider} from "react-redux";
 import configureStore from './redux/store/configureStore.js';
 import {BrowserRouter as Router} from "react-router-dom";
 import {PersistGate} from 'redux-persist/integration/react'
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './i18n';
 import './common/validation-schemas'
 import App from "./App";

@@ -1,20 +1,45 @@
 import React from 'react';
 import '../App.scss';
 import {connect} from "react-redux";
-import {HOME, LOGIN, LOGOUT, MY_OFFERS, PROFILE, REGISTER, ROOT} from "../common/paths";
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
-import {LinkContainer} from "react-router-bootstrap"
+import {HOME, LOGIN, LOGOUT, MY_OFFERS, PROFILE, REGISTER} from "../common/paths";
 import {useTranslation} from 'react-i18next';
-import {Button} from "react-bootstrap";
+import MenuIcon from '@material-ui/icons/Menu';
+
 import {CHANGE_LANG} from '../redux/actions'
 import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
+import Button from "@material-ui/core/Button";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
+import Drawer from "@material-ui/core/Drawer";
+import Divider from "@material-ui/core/Divider";
+
+import ListItem from "@material-ui/core/ListItem";
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ListItemText from '@material-ui/core/ListItemText';
+import HomeIcon from '@material-ui/icons/Home';
+import List from "@material-ui/core/List";
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
+import PersonIcon from '@material-ui/icons/Person';
+import ListItemIcon from "@material-ui/core/ListItemIcon";
 
 function TopMenu(props) {
 
-    const { t, i18n } = useTranslation();
+    const {t, i18n} = useTranslation();
 
+    const [open, setOpen] = React.useState(false);
+
+    const handleDrawerOpen = () => {
+        setOpen(true);
+    };
+
+    const handleDrawerClose = () => {
+        setOpen(false);
+    };
     const changeLang = (lang) => {
         const {dispatch} = props;
         i18n.changeLanguage(lang);
@@ -23,49 +48,83 @@ function TopMenu(props) {
 
     const languageButton =
         <>
-            {props.lang !== 'pl' ? <Button className="lang-button" variant="outline-info" onClick={() => changeLang('pl')}>PL</Button> : null}
-            {props.lang !== 'en' ? <Button className="lang-button" variant="outline-info" onClick={() => changeLang('en')}>EN</Button> : null}
+            {props.lang !== 'pl' ? <Button onClick={() => changeLang('pl')}>PL</Button> : null}
+            {props.lang !== 'en' ? <Button onClick={() => changeLang('en')}>EN</Button> : null}
         </>;
 
-    const currentPathname = props.history.location.pathname
+    const redirect = (to) => {
+        handleDrawerClose();
+        props.history.push(to);
+    };
+
+    function authenticatedMenu() {
+        return (<List>
+            <ListItem button key={'home'} onClick={() => redirect(HOME)}>
+                <ListItemIcon><HomeIcon/></ListItemIcon>
+                <ListItemText primary={t('home.page')}/>
+            </ListItem>
+            <ListItem button key={'myoffers'} onClick={() => redirect(MY_OFFERS)}>
+                <ListItemIcon><PlaylistAddIcon/></ListItemIcon>
+                <ListItemText primary={t('myoffers.page')}/>
+            </ListItem>
+            <ListItem button key={'profile'} onClick={() => redirect(PROFILE)}>
+                <ListItemIcon><PersonIcon/></ListItemIcon>
+                <ListItemText primary={t('profile.page')}/>
+            </ListItem>
+            <ListItem button key={'logout'} onClick={() => redirect(LOGOUT)}>
+                <ListItemIcon><ExitToAppIcon/></ListItemIcon>
+                <ListItemText primary={t('logout')}/>
+            </ListItem>
+        </List>);
+    }
+
+    function unauthenticatedMenu() {
+        return (<List>
+            <ListItem button key={'home'} onClick={() => redirect(HOME)}>
+                <ListItemIcon><HomeIcon/></ListItemIcon>
+                <ListItemText primary={t('home.page')}/>
+            </ListItem>
+            <ListItem button key={'register'} onClick={() => redirect(REGISTER)}>
+                <ListItemIcon><VpnKeyIcon/></ListItemIcon>
+                <ListItemText primary={t('register.page')}/>
+            </ListItem>
+            <ListItem button key={'login'} onClick={() => redirect(LOGIN)}>
+                <ListItemIcon><VpnKeyIcon/></ListItemIcon>
+                <ListItemText primary={t('login.page')}/>
+            </ListItem>
+        </List>);
+    }
 
     return (
         <div className="top-menu">
-            <Navbar collapseOnSelect expand="md" variant="light">
-                <Navbar.Brand href={ROOT}>{t('brand')}</Navbar.Brand>
-                <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
-                <Navbar.Collapse id="responsive-navbar-nav">
-                    {props.authenticated ?
-                        <Nav className="mr-auto" activeKey={currentPathname}>
-                            <LinkContainer to={HOME}>
-                                <Nav.Link>{t('home.page')}</Nav.Link>
-                            </LinkContainer>
-                            <LinkContainer to={PROFILE}>
-                                <Nav.Link>{t('profile.page')}</Nav.Link>
-                            </LinkContainer>
-                            <LinkContainer to={MY_OFFERS}>
-                                <Nav.Link>{t('myoffers.page')}</Nav.Link>
-                            </LinkContainer>
-                            <LinkContainer to={LOGOUT}>
-                                <Nav.Link>{t('logout')}</Nav.Link>
-                            </LinkContainer>
-                            {languageButton}
-                        </Nav>
-                        : <Nav className="mr-auto" activeKey={currentPathname}>
-                            <LinkContainer to={HOME}>
-                                <Nav.Link>{t('home.page')}</Nav.Link>
-                            </LinkContainer>
-                            <LinkContainer to={LOGIN}>
-                                <Nav.Link>{t('login.page')}</Nav.Link>
-                            </LinkContainer>
-                            <LinkContainer to={REGISTER}>
-                                <Nav.Link>{t('register.page')}</Nav.Link>
-                            </LinkContainer>
-                            {languageButton}
-                        </Nav>
-                    }
-                </Navbar.Collapse>
-            </Navbar>
+            <AppBar position="static">
+                <Toolbar>
+                    <IconButton onClick={handleDrawerOpen} edge="start" className='top-menu-button' color="inherit"
+                                aria-label="menu">
+                        <MenuIcon/>
+                    </IconButton>
+                    <Typography variant="h6" className='top-menu-title'>
+                        Książkofilia
+                    </Typography>
+                    {languageButton}
+                </Toolbar>
+            </AppBar>
+            <Drawer
+                className="top-menu-drawer"
+                variant="persistent"
+                anchor="left"
+                open={open}
+            >
+                <div className="top-menu-drawer-header">
+                    <IconButton onClick={handleDrawerClose}>
+                        <ChevronLeftIcon/>
+                    </IconButton>
+                </div>
+                <Divider/>
+                <List>
+                    {props.authenticated ? authenticatedMenu() : unauthenticatedMenu()}
+                </List>
+            </Drawer>
         </div>
     );
 

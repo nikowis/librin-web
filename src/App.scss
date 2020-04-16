@@ -112,37 +112,14 @@ $primary-shadow: #453163;
   color: $primary;
 }
 
-.error-container {
-  position: fixed;
-  width: 100%;
-  top: 0.2rem;
-  z-index: 4;
-
-  .error-message {
-    color: red;
-    margin: auto;
-    display: inline-block;
-    max-width: 80%;
-  }
-}
-
-.notification-container {
-  position: fixed;
-  width: 100%;
-  bottom: 0.2rem;
-  margin: 0;
-  z-index: 4;
-
-  .notification-message {
-    color: red;
-    margin: auto;
-    display: inline-block;
-    max-width: 80%;
-  }
-}
-
 .top-menu {
   width: 100%;
   background: $primary;
+
+  .top-menu-title {
+    flex-grow: 1;
+  }
+
 }
+
 

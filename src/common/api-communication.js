@@ -23,7 +23,7 @@ class Api {
 
     getURLParam(searchQuery, name) {
         const params = new URLSearchParams(searchQuery);
-        return  params.get(name);
+        return params.get(name);
     }
 
     postLogin(login, password) {

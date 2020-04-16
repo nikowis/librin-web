@@ -1,26 +1,40 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import '../App.scss';
-import Alert from "react-bootstrap/Alert";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
+import Alert from '@material-ui/lab/Alert';
+import Snackbar from "@material-ui/core/Snackbar";
+import {store} from "../index";
+import {CLEAR_API_ERROR, CLEAR_AUTH_ERROR} from "../redux/actions";
 
 function ErrorContainer(props) {
 
-    const alertContainer = (message) => {
-        return (
-            <Alert variant='danger'>
-                {message}
-            </Alert>
-        );
+    const [open, setOpen] = React.useState(false);
+
+    const {authError, apiError} = props;
+
+    useEffect(() => {
+        setOpen(authError || apiError);
+    }, [authError, apiError]);
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        if (apiError) {
+            store.dispatch({type: CLEAR_API_ERROR});
+        }
+        if (authError) {
+            store.dispatch({type: CLEAR_AUTH_ERROR});
+        }
     };
 
     return (
-        <div className='error-container'>
-            <div className='error-message'>
-                {props.authError ? alertContainer(props.errorMessage) : null}
-                {props.apiError ? alertContainer(props.errorMessage) : null}
-            </div>
-        </div>
+        <Snackbar open={open} onClose={handleClose}>
+            <Alert onClose={handleClose} elevation={6} variant="filled" severity="error">
+                {props.errorMessage}
+            </Alert>
+        </Snackbar>
     );
 
 }

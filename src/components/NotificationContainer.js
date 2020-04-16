@@ -1,25 +1,39 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import '../App.scss';
-import Alert from "react-bootstrap/Alert";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
+import Snackbar from "@material-ui/core/Snackbar/Snackbar";
+import {store} from "../index";
+import {HIDE_NOTIFICATION} from "../redux/actions";
+import Alert from "@material-ui/lab/Alert/Alert";
 
 function NotificationContainer(props) {
 
-    const alertContainer = (message) => {
-        return (
-            <Alert variant='primary'>
-                {message}
-            </Alert>
-        );
+    const [open, setOpen] = React.useState(false);
+
+    const {showNotification} = props;
+
+    useEffect(() => {
+        setOpen(showNotification);
+    }, [showNotification]);
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        if (showNotification) {
+            store.dispatch({type: HIDE_NOTIFICATION});
+        }
     };
 
+
     return (
-        <div className='notification-container'>
-            <div className='notification-message'>
-                {props.showNotification ? alertContainer(props.notificationMessage) : null}
-            </div>
-        </div>
+        <Snackbar open={open} onClose={handleClose}>
+            <Alert onClose={handleClose} elevation={6} variant="filled" severity="success">
+                {props.notificationMessage}
+            </Alert>
+        </Snackbar>
     );
 }
 

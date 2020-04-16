@@ -7,7 +7,6 @@ import Api from "./common/api-communication";
 import ViewRoutes from "./components/ViewRoutes";
 import PropTypes from "prop-types";
 import {useTranslation} from "react-i18next";
-import {Spinner} from "react-bootstrap";
 import ErrorContainer from "./components/ErrorContainer";
 import NotificationContainer from "./components/NotificationContainer";
 
@@ -41,7 +40,7 @@ function App(props) {
                     <ViewRoutes/>
                 </div>
             </div>
-            {props.pendingRequests > 0 ? <Spinner className="pending-requests-spinner" animation="border"/> : null}
+
         </div>
     );
 
