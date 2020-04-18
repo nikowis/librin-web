@@ -44,9 +44,17 @@
     "page": "My offers",
     "title": "My offers"
   },
+  "offers": {
+    "create": {
+      "page": "Create offer",
+      "title": "Create offer",
+      "submit": "Create"
+    }
+  },
   "notification": {
     "registered": "Account created",
     "profileUpdated": "Profile updated",
-    "offerDeleted": "Offer deleted"
+    "offerDeleted": "Offer deleted",
+    "offerCreated": "Offer created"
   }
 }

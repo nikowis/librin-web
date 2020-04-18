@@ -22,7 +22,7 @@ function CreateOfferView(props) {
         Api.createOffer(data).payload.then((response) => {
             if (!response.status) {
                 dispatch({type: CREATE_OFFER});
-                dispatch({type: SHOW_NOTIFICATION, payload: t('notification.habitCreated')});
+                dispatch({type: SHOW_NOTIFICATION, payload: t('notification.offerDeleted')});
                 setTimeout(() => {
                     dispatch({type: HIDE_NOTIFICATION})
                 }, NOTIFICATION_DURATION);
@@ -74,7 +74,7 @@ function CreateOfferView(props) {
                         />
                     </div>
                     <Button variant="contained" color="primary" type="submit" disabled={isSubmitting}>
-                        {t('submit')}
+                        {t('offers.create.submit')}
                     </Button>
                 </form>
             )}

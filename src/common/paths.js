@@ -5,3 +5,5 @@ export const LOGOUT = '/logout';
 export const REGISTER = '/register';
 export const PROFILE = '/profile';
 export const MY_OFFERS = '/myoffers';
+export const OFFERS = '/offers';
+export const CREATE_OFFER = OFFERS + '/create';

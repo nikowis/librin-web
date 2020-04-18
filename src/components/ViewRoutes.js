@@ -8,8 +8,9 @@ import AuthenticatedRoute from "./AuthenticatedRoute";
 import Register from "./user/RegisterView";
 import Profile from "./user/ProfileView";
 import NoMatchingView from "./NoMatchingView";
-import {HOME, LOGIN, LOGOUT, MY_OFFERS, PROFILE, REGISTER, ROOT} from "../common/paths";
+import {HOME, LOGIN, LOGOUT, MY_OFFERS, CREATE_OFFER, PROFILE, REGISTER, ROOT} from "../common/paths";
 import MyOffersListView from "./offer/MyOffersListView";
+import CreateOfferView from "./offer/CreateOfferView";
 
 function ViewRoutes() {
     return (
@@ -34,6 +35,9 @@ function ViewRoutes() {
             </AuthenticatedRoute>
             <AuthenticatedRoute path={MY_OFFERS}>
                 <MyOffersListView/>
+            </AuthenticatedRoute>
+            <AuthenticatedRoute path={CREATE_OFFER}>
+                <CreateOfferView/>
             </AuthenticatedRoute>
             <Route component={NoMatchingView}/>
 

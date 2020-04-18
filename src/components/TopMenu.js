@@ -1,7 +1,7 @@
 import React from 'react';
 import '../App.scss';
 import {connect} from "react-redux";
-import {HOME, LOGIN, LOGOUT, MY_OFFERS, PROFILE, REGISTER} from "../common/paths";
+import {HOME, LOGIN, LOGOUT, MY_OFFERS, CREATE_OFFER, PROFILE, REGISTER, ROOT} from "../common/paths";
 import {useTranslation} from 'react-i18next';
 import MenuIcon from '@material-ui/icons/Menu';
 
@@ -25,6 +25,7 @@ import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
 import PersonIcon from '@material-ui/icons/Person';
+import AddIcon from '@material-ui/icons/Add';
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 
 function TopMenu(props) {
@@ -57,21 +58,27 @@ function TopMenu(props) {
         props.history.push(to);
     };
 
+    const currentPathname = props.history.location.pathname;
+    console.log(currentPathname);
     function authenticatedMenu() {
         return (<List>
-            <ListItem button key={'home'} onClick={() => redirect(HOME)}>
+            <ListItem selected={currentPathname === HOME || currentPathname === ROOT} button key={'home'} onClick={() => redirect(HOME)}>
                 <ListItemIcon><HomeIcon/></ListItemIcon>
                 <ListItemText primary={t('home.page')}/>
             </ListItem>
-            <ListItem button key={'myoffers'} onClick={() => redirect(MY_OFFERS)}>
+            <ListItem selected={currentPathname === CREATE_OFFER} button key={'create'} onClick={() => redirect(CREATE_OFFER)}>
+                <ListItemIcon><AddIcon/></ListItemIcon>
+                <ListItemText primary={t('offers.create.page')}/>
+            </ListItem>
+            <ListItem selected={currentPathname === MY_OFFERS} button key={'myoffers'} onClick={() => redirect(MY_OFFERS)}>
                 <ListItemIcon><PlaylistAddIcon/></ListItemIcon>
                 <ListItemText primary={t('myoffers.page')}/>
             </ListItem>
-            <ListItem button key={'profile'} onClick={() => redirect(PROFILE)}>
+            <ListItem selected={currentPathname === PROFILE} button key={'profile'} onClick={() => redirect(PROFILE)}>
                 <ListItemIcon><PersonIcon/></ListItemIcon>
                 <ListItemText primary={t('profile.page')}/>
             </ListItem>
-            <ListItem button key={'logout'} onClick={() => redirect(LOGOUT)}>
+            <ListItem selected={currentPathname === LOGOUT} button key={'logout'} onClick={() => redirect(LOGOUT)}>
                 <ListItemIcon><ExitToAppIcon/></ListItemIcon>
                 <ListItemText primary={t('logout')}/>
             </ListItem>
@@ -80,15 +87,15 @@ function TopMenu(props) {
 
     function unauthenticatedMenu() {
         return (<List>
-            <ListItem button key={'home'} onClick={() => redirect(HOME)}>
+            <ListItem selected={currentPathname === HOME || currentPathname === ROOT} button key={'home'} onClick={() => redirect(HOME)}>
                 <ListItemIcon><HomeIcon/></ListItemIcon>
                 <ListItemText primary={t('home.page')}/>
             </ListItem>
-            <ListItem button key={'register'} onClick={() => redirect(REGISTER)}>
+            <ListItem selected={currentPathname === REGISTER} button key={'register'} onClick={() => redirect(REGISTER)}>
                 <ListItemIcon><VpnKeyIcon/></ListItemIcon>
                 <ListItemText primary={t('register.page')}/>
             </ListItem>
-            <ListItem button key={'login'} onClick={() => redirect(LOGIN)}>
+            <ListItem selected={currentPathname === LOGIN} button key={'login'} onClick={() => redirect(LOGIN)}>
                 <ListItemIcon><VpnKeyIcon/></ListItemIcon>
                 <ListItemText primary={t('login.page')}/>
             </ListItem>

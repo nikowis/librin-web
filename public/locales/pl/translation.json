@@ -44,9 +44,17 @@
     "page": "Moje oferty",
     "title": "Moje oferty"
   },
+  "offers": {
+    "create": {
+      "page": "Utwórz ofertę",
+      "title": "Utwórz ofertę",
+      "submit": "Utwórz"
+    }
+  },
   "notification": {
     "registered": "Konto utworzone",
     "profileUpdated": "Profil zaktualizowany",
-    "offerDeleted": "Oferta usunięta"
+    "offerDeleted": "Oferta usunięta",
+    "offerCreated": "Oferat stworzona"
   }
 }
