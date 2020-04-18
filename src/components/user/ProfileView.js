@@ -116,45 +116,6 @@ function ProfileView(props) {
 
 }
 
-
-// <Form noValidate onSubmit={handleSubmit}>
-//     <Form.Group controlId="id">
-//         <Form.Label>
-//             {t('id')}
-//         </Form.Label>
-//         <Form.Control name="id" value={values.id} disabled={true}/>
-//     </Form.Group>
-//     <Form.Group controlId="login">
-//         <Form.Label>
-//             {t('email')}
-//         </Form.Label>
-//         <Form.Control name="login" value={values.login} disabled={true}/>
-//     </Form.Group>
-//     <Form.Group controlId="password">
-//         <Form.Label>
-//             {t('password')}
-//         </Form.Label>
-//         <Form.Control name="password" value={values.password} onChange={handleChange}
-//                       type="password"
-//                       isInvalid={touched.password && !!errors.password}
-//                       placeholder={t('password')}/>
-//         <Form.Control.Feedback type="invalid">
-//             {t(errors.password)}
-//         </Form.Control.Feedback>
-//     </Form.Group>
-//     <Form.Group controlId="repeatPassword">
-//         <Form.Label>
-//             {t('repeatPassword')}
-//         </Form.Label>
-//         <Form.Control name="repeatPassword" value={values.repeatPassword} onChange={handleChange}
-//                       type="password"
-//                       isInvalid={touched.repeatPassword && !!errors.repeatPassword}
-//                       placeholder={t('repeatPassword')}/>
-//         <Form.Control.Feedback type="invalid">
-//             {t(errors.repeatPassword)}
-//         </Form.Control.Feedback>
-//     </Form.Group>
-
 ProfileView.propTypes = {
     id: PropTypes.number,
     login: PropTypes.string,

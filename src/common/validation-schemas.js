@@ -1,14 +1,17 @@
 import * as Yup from "yup";
 import {setLocale} from "yup";
 
+const money = new RegExp('^\\d+([\\.|,]\\d{1,2})?$');
+
 setLocale({
     mixed: {
         default: 'validations.default',
         required: 'validations.required',
     },
     string: {
-        min: ({min}) => ({key: 'validations.min', values: {min}}),
-        email: 'validations.email'
+        min: ({min}) => ({key: 'validations.min', value: min}),
+        email: 'validations.email',
+        matches: 'validations.regexp'
     }
 });
 
@@ -48,5 +51,8 @@ export const createOfferSchema = Yup.object().shape({
         .required(),
     author: Yup.string()
         .min(2)
+        .required(),
+    price: Yup.string()
         .required()
+        .matches(money)
 });

@@ -11,6 +11,8 @@ import {MY_OFFERS} from "../../common/paths";
 import {NOTIFICATION_DURATION} from "../../common/app-constants";
 import {TextField} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
+import CurrencyTextField from '@unicef/material-ui-currency-textfield'
+import {translate} from "../../common/i18n-helper";
 
 function CreateOfferView(props) {
 
@@ -22,7 +24,7 @@ function CreateOfferView(props) {
         Api.createOffer(data).payload.then((response) => {
             if (!response.status) {
                 dispatch({type: CREATE_OFFER});
-                dispatch({type: SHOW_NOTIFICATION, payload: t('notification.offerDeleted')});
+                dispatch({type: SHOW_NOTIFICATION, payload: t('notification.offerCreated')});
                 setTimeout(() => {
                     dispatch({type: HIDE_NOTIFICATION})
                 }, NOTIFICATION_DURATION);
@@ -39,7 +41,8 @@ function CreateOfferView(props) {
         <Formik validationSchema={createOfferSchema} onSubmit={handleSubmit}
                 initialValues={{
                     title: '',
-                    description: ''
+                    author: '',
+                    price: '0'
                 }}
         >
             {({
@@ -48,7 +51,9 @@ function CreateOfferView(props) {
                   touched,
                   handleChange,
                   handleSubmit,
-                  isSubmitting
+                  handleBlur,
+                  isSubmitting,
+                  setFieldValue
               }) => (
                 <form onSubmit={handleSubmit}>
                     <div>
@@ -57,8 +62,10 @@ function CreateOfferView(props) {
                             label={t('title')}
                             name="title"
                             value={values.title}
+                            variant={'outlined'}
                             onChange={handleChange}
-                            helperText={(errors.title && touched.title) && t(errors.title)}
+                            onBlur={handleBlur}
+                            helperText={(errors.title && touched.title) ? translate(errors.title): ''}
                             margin="normal"
                         />
                     </div>
@@ -68,8 +75,31 @@ function CreateOfferView(props) {
                             label={t('author')}
                             name="author"
                             value={values.author}
+                            variant={'outlined'}
                             onChange={handleChange}
-                            helperText={(errors.author && touched.author) && t(errors.author)}
+                            onBlur={handleBlur}
+                            helperText={(errors.author && touched.author) ? translate(errors.author): ''}
+                            margin="normal"
+                        />
+                    </div>
+                    <div>
+                        <CurrencyTextField
+                            error={errors.price && touched.price}
+                            label={t('price')}
+                            name="price"
+                            minimumValue={"0"}
+                            variant={'outlined'}
+                            value={values.price}
+                            currencySymbol="PLN"
+                            outputFormat="string"
+                            decimalCharacter="."
+                            decimalCharacterAlternative=","
+                            decimalPlacesShownOnBlur={2}
+                            digitGroupSeparator={""}
+                            decimalPlaces={2}
+                            onChange={(event, value) => setFieldValue('price', value)}
+                            onBlur={handleBlur}
+                            helperText={(errors.price && touched.price) ? translate(errors.price): ''}
                             margin="normal"
                         />
                     </div>

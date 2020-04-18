@@ -65,20 +65,13 @@ function MyOffersListView(props) {
                     {offer.title}
                 </TableCell>
                 <TableCell align="right">{offer.author}</TableCell>
+                <TableCell align="right">{offer.price}</TableCell>
                 <TableCell align="right">
                     <Button size={'small'} variant="outlined" color="secondary"
                             onClick={() => handleDelete(offer.id)}><Delete/>
                     </Button>
                 </TableCell>
             </TableRow>
-            // return (<tr key={offer.id}>
-            //     <td>{offer.title}</td>
-            //     <td>{offer.author}</td>
-            //     <td className={'table-action-buttons'}>
-            //         <Button size={'sm'} variant="outline-danger"
-            //                 onClick={() => handleDelete(offer.id)}><Delete/></Button>
-            //     </td>
-            // </tr>);
         });
     };
 
@@ -90,6 +83,7 @@ function MyOffersListView(props) {
                         <TableRow>
                             <TableCell align="right">{t('title')}</TableCell>
                             <TableCell align="right">{t('author')}</TableCell>
+                            <TableCell align="right">{t('price')}</TableCell>
                             <TableCell align="right"></TableCell>
                         </TableRow>
                     </TableHead>

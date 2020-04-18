@@ -8,6 +8,7 @@
   "title": "Tytuł",
   "description": "Opis",
   "author": "Autor",
+  "price": "Cena",
   "submit": "Zapisz",
   "servererror": "Błąd serwera",
   "loading": "Ładowanie...",
@@ -16,7 +17,9 @@
     "default": "Niepoprawne dane",
     "required": "Pole wymagane",
     "email": "Niepoprawny adres email",
-    "passwordMatch": "Hasła nie pasują"
+    "passwordMatch": "Hasła nie pasują",
+    "min" : "Wartość za krótka",
+    "regexp": "Niepoprawny format"
   },
   "home": {
     "page": "Start",

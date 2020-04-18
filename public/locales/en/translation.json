@@ -8,6 +8,7 @@
   "title": "Title",
   "description": "Description",
   "author": "Author",
+  "price": "Price",
   "submit": "Save",
   "servererror": "Server error",
   "loading": "Loading...",
@@ -16,7 +17,9 @@
     "default": "Invalid field",
     "required": "Field required",
     "email": "Incorrect email",
-    "passwordMatch": "Passwords don't match"
+    "passwordMatch": "Passwords don't match",
+    "min" : "Value is too short",
+    "regexp": "Incorrect format"
   },
   "home": {
     "page": "Home",
