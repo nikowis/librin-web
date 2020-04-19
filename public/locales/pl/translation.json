@@ -52,12 +52,18 @@
       "page": "Utwórz ofertę",
       "title": "Utwórz ofertę",
       "submit": "Utwórz"
+    },
+    "edit": {
+      "page": "Edytuj ofertę",
+      "title": "Edytuj ofertę",
+      "submit": "Zapisz"
     }
   },
   "notification": {
     "registered": "Konto utworzone",
     "profileUpdated": "Profil zaktualizowany",
     "offerDeleted": "Oferta usunięta",
-    "offerCreated": "Oferat stworzona"
+    "offerCreated": "Oferat stworzona",
+    "offerUpdated": "Oferat zaktualizowana"
   }
 }

@@ -6,6 +6,7 @@ import {useTranslation} from "react-i18next";
 import LoaderView from "../../components/LoaderView";
 import PropTypes from "prop-types";
 import {Delete} from '@material-ui/icons';
+import {Edit} from '@material-ui/icons';
 import {HIDE_NOTIFICATION, SHOW_NOTIFICATION} from "../../redux/actions";
 import {store} from "../../index";
 import {NOTIFICATION_DURATION} from "../../common/app-constants";
@@ -19,6 +20,7 @@ import TableBody from "@material-ui/core/TableBody";
 import Table from "@material-ui/core/Table";
 import Button from "@material-ui/core/Button";
 import PaginationComponent from "../PaginationComponent";
+import {MY_OFFERS} from "../../common/paths";
 
 function MyOffersListView(props) {
 
@@ -67,6 +69,9 @@ function MyOffersListView(props) {
                 <TableCell align="right">{offer.author}</TableCell>
                 <TableCell align="right">{offer.price}</TableCell>
                 <TableCell align="right">
+                    <Button size={'small'} variant="outlined" color="secondary"
+                            onClick={() => props.history.push( MY_OFFERS + '/' + offer.id)}><Edit/>
+                    </Button>
                     <Button size={'small'} variant="outlined" color="secondary"
                             onClick={() => handleDelete(offer.id)}><Delete/>
                     </Button>

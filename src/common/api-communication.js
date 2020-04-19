@@ -1,7 +1,7 @@
 import {API_LOGIN, API_LOGOUT, API_OFFERS, API_REGISTER, API_USER} from './endpoints'
 import HttpUtility from './http-utility'
 import {
-    DELETE_OFFER,
+    DELETE_OFFER, FETCH_OFFER,
     FETCH_OFFERS,
     FETCH_USER,
     LOGIN_ACTION,
@@ -97,6 +97,14 @@ class Api {
         });
     };
 
+    getOffer(id) {
+        const url = new URL(this.API_URL + API_OFFERS + '/' + id);
+        return HttpUtility.get({
+            url: url,
+            action: FETCH_OFFER
+        });
+    };
+
     createOffer(offer) {
         const url = this.API_URL + API_OFFERS;
 
@@ -106,6 +114,14 @@ class Api {
         });
     };
 
+    updateOffer(offer) {
+        const url = this.API_URL + API_OFFERS + '/' + offer.id;
+
+        return HttpUtility.put({
+            url: url,
+            payload: offer,
+        });
+    };
 
     removeOffer(id) {
         const url = this.API_URL + API_OFFERS + '/' + id;

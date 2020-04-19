@@ -56,3 +56,16 @@ export const createOfferSchema = Yup.object().shape({
         .required()
         .matches(money)
 });
+
+
+export const editOfferSchema = Yup.object().shape({
+    title: Yup.string()
+        .min(2)
+        .required(),
+    author: Yup.string()
+        .min(2)
+        .required(),
+    price: Yup.string()
+        .required()
+        .matches(money)
+});

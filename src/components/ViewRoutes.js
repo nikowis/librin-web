@@ -8,9 +8,10 @@ import AuthenticatedRoute from "./AuthenticatedRoute";
 import Register from "./user/RegisterView";
 import Profile from "./user/ProfileView";
 import NoMatchingView from "./NoMatchingView";
-import {HOME, LOGIN, LOGOUT, MY_OFFERS, CREATE_OFFER, PROFILE, REGISTER, ROOT} from "../common/paths";
+import {HOME, LOGIN, LOGOUT, MY_OFFERS, CREATE_OFFER, PROFILE, REGISTER, ROOT, EDIT_OFFER} from "../common/paths";
 import MyOffersListView from "./offer/MyOffersListView";
 import CreateOfferView from "./offer/CreateOfferView";
+import EditOfferView from "./offer/EditOfferView";
 
 function ViewRoutes() {
     return (
@@ -33,14 +34,16 @@ function ViewRoutes() {
             <AuthenticatedRoute path={PROFILE}>
                 <Profile/>
             </AuthenticatedRoute>
-            <AuthenticatedRoute path={MY_OFFERS}>
+            <AuthenticatedRoute path={MY_OFFERS} exact>
                 <MyOffersListView/>
             </AuthenticatedRoute>
             <AuthenticatedRoute path={CREATE_OFFER}>
                 <CreateOfferView/>
             </AuthenticatedRoute>
+            <AuthenticatedRoute path={EDIT_OFFER}>
+                <EditOfferView/>
+            </AuthenticatedRoute>
             <Route component={NoMatchingView}/>
-
         </Switch>
     );
 }
