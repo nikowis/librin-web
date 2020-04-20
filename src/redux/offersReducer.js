@@ -1,4 +1,13 @@
-import {OFFER_CREATED, DELETE_OFFER, FETCH_OFFER, FETCH_OFFERS, FULFILLED, LOGOUT_ACTION, PENDING} from "./actions";
+import {
+    OFFER_CREATED,
+    DELETE_OFFER,
+    FETCH_OFFER,
+    FETCH_OFFERS,
+    FULFILLED,
+    LOGOUT_ACTION,
+    PENDING,
+    EDIT_OFFER
+} from "./actions";
 
 const initialState = {
     content: null,
@@ -32,6 +41,7 @@ const offersReducer = (state = initialState, action) => {
                 totalPages: payload.totalPages,
                 totalElements: payload.totalElements,
             };
+        case EDIT_OFFER:
         case FETCH_OFFER + FULFILLED:
             return {
                 ...state,

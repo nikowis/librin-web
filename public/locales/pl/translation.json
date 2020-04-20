@@ -23,7 +23,6 @@
   },
   "home": {
     "page": "Start",
-    "title": "Witaj {{name}}",
     "stranger": "nieznajomy",
     "appDescription": "",
     "unauthenticatedMonit": "Zarejestruj się lub zaloguj!",
@@ -31,31 +30,25 @@
   },
   "login": {
     "page": "Logowanie",
-    "title": "Zaloguj się",
     "submit": "Zaloguj"
   },
   "register": {
     "page": "Rejestracja",
-    "title": "Utwórz konto",
     "submit": "Zarejestruj się"
   },
   "profile": {
     "page": "Profil",
-    "title": "Mój profil"
   },
   "myoffers": {
-    "page": "Moje oferty",
-    "title": "Moje oferty"
+    "page": "Moje oferty"
   },
   "offers": {
     "create": {
       "page": "Utwórz ofertę",
-      "title": "Utwórz ofertę",
       "submit": "Utwórz"
     },
     "edit": {
       "page": "Edytuj ofertę",
-      "title": "Edytuj ofertę",
       "submit": "Zapisz"
     }
   },

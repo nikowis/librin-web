@@ -23,7 +23,6 @@
   },
   "home": {
     "page": "Home",
-    "title": "Welcome {{name}}",
     "stranger": "stranger",
     "appDescription": "",
     "unauthenticatedMonit": "Register or login first, no email verification needed!",
@@ -31,31 +30,25 @@
   },
   "login": {
     "page": "Login",
-    "title": "Please login",
     "submit": "Login"
   },
   "register": {
     "page": "Register",
-    "title": "Register",
     "submit": "Register"
   },
   "profile": {
-    "page": "Profile",
-    "title": "My profile"
+    "page": "Profile"
   },
   "myoffers": {
-    "page": "My offers",
-    "title": "My offers"
+    "page": "My offers"
   },
   "offers": {
     "create": {
       "page": "Create offer",
-      "title": "Create offer",
       "submit": "Create"
     },
     "edit": {
       "page": "Edit offer",
-      "title": "Edit offer",
       "submit": "Save"
     }
   },

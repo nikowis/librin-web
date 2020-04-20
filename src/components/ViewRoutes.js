@@ -16,9 +16,7 @@ import EditOfferView from "./offer/EditOfferView";
 function ViewRoutes() {
     return (
         <Switch>
-            <Route path={ROOT} exact={true}>
-                <Home/>
-            </Route>
+
             <Route path={HOME}>
                 <Home/>
             </Route>
@@ -34,15 +32,18 @@ function ViewRoutes() {
             <AuthenticatedRoute path={PROFILE}>
                 <Profile/>
             </AuthenticatedRoute>
-            <AuthenticatedRoute path={MY_OFFERS} exact>
-                <MyOffersListView/>
-            </AuthenticatedRoute>
             <AuthenticatedRoute path={CREATE_OFFER}>
                 <CreateOfferView/>
             </AuthenticatedRoute>
             <AuthenticatedRoute path={EDIT_OFFER}>
                 <EditOfferView/>
             </AuthenticatedRoute>
+            <AuthenticatedRoute path={MY_OFFERS}>
+                <MyOffersListView/>
+            </AuthenticatedRoute>
+            <Route path={ROOT}>
+                <Home/>
+            </Route>
             <Route component={NoMatchingView}/>
         </Switch>
     );

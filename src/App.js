@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 import './App.scss';
 import TopMenu from "./components/TopMenu";
 import {connect} from "react-redux";
-import ViewTitle from "./components/ViewTitle";
 import Api from "./common/api-communication";
 import ViewRoutes from "./components/ViewRoutes";
 import PropTypes from "prop-types";
@@ -34,7 +33,6 @@ function App(props) {
             <TopMenu/>
             <ErrorContainer/>
             <NotificationContainer/>
-            <ViewTitle/>
             <div className="app-card">
                 <div className="app-content">
                     <ViewRoutes/>
