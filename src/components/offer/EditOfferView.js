@@ -21,12 +21,13 @@ function EditOfferView(props) {
     const {t} = useTranslation();
     const {dispatch, history} = props;
     let {id} = useParams();
+    const propId = props.id;
 
     useEffect(() => {
-        if(props.id === null || props.id.toString() !== id) {
-            dispatch(Api.getOffer(id));
+        if(propId === null || propId.toString() !== id) {
+            dispatch(Api.getMyOffer(id));
         }
-    }, [dispatch, id]);
+    }, [dispatch, id, propId]);
 
     const handleSubmit = (data, actions) => {
         actions.setSubmitting(true);
@@ -147,8 +148,8 @@ EditOfferView.propTypes = {
 };
 
 export default connect(state => ({
-    id: state.offers.currentOffer.id,
-    title: state.offers.currentOffer.title,
-    author: state.offers.currentOffer.author,
-    price: state.offers.currentOffer.price
+    id: state.myoffers.currentOffer.id,
+    title: state.myoffers.currentOffer.title,
+    author: state.myoffers.currentOffer.author,
+    price: state.myoffers.currentOffer.price
 }))(withRouter(EditOfferView));

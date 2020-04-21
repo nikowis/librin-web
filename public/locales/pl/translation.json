@@ -22,11 +22,7 @@
     "regexp": "Niepoprawny format"
   },
   "home": {
-    "page": "Start",
-    "stranger": "nieznajomy",
-    "appDescription": "",
-    "unauthenticatedMonit": "Zarejestruj się lub zaloguj!",
-    "authenticatedMonit": ""
+    "page": "Oferty"
   },
   "login": {
     "page": "Logowanie",

@@ -1,7 +1,8 @@
-import {API_LOGIN, API_LOGOUT, API_OFFERS, API_REGISTER, API_USER} from './endpoints'
+import {API_LOGIN, API_LOGOUT, API_MY_OFFERS, API_OFFERS, API_REGISTER, API_USER} from './endpoints'
 import HttpUtility from './http-utility'
 import {
-    DELETE_OFFER, FETCH_OFFER,
+    DELETE_OFFER, FETCH_MY_OFFER, FETCH_MY_OFFERS,
+    FETCH_OFFER,
     FETCH_OFFERS,
     FETCH_USER,
     LOGIN_ACTION,
@@ -78,22 +79,45 @@ class Api {
         });
     }
 
-    getOffers(page) {
-        if (!page || page < 0) {
-            page = 0;
-        }
-        const url = new URL(this.API_URL + API_OFFERS);
-
+    getOffers(page, owner) {
         const params = {
             size: DEFAULT_PAGE_SIZE,
-            page: page,
-            sort: DEFAULT_SORT
+            sort: DEFAULT_SORT,
+            page
         };
-        url.search = new URLSearchParams(params).toString();
 
+        if (!page || page < 0) {
+            params.page = 0;
+        }
+
+        if (owner) {
+            params.owner = owner;
+        }
+
+        const url = new URL(this.API_URL + API_OFFERS);
+        url.search = new URLSearchParams(params).toString();
         return HttpUtility.get({
             url: url,
             action: FETCH_OFFERS
+        });
+    };
+
+    getMyOffers(page) {
+        const params = {
+            size: DEFAULT_PAGE_SIZE,
+            sort: DEFAULT_SORT,
+            page
+        };
+
+        if (!page || page < 0) {
+            params.page = 0;
+        }
+
+        const url = new URL(this.API_URL + API_MY_OFFERS);
+        url.search = new URLSearchParams(params).toString();
+        return HttpUtility.get({
+            url: url,
+            action: FETCH_MY_OFFERS
         });
     };
 
@@ -105,8 +129,16 @@ class Api {
         });
     };
 
+    getMyOffer(id) {
+        const url = new URL(this.API_URL + API_MY_OFFERS + '/' + id);
+        return HttpUtility.get({
+            url: url,
+            action: FETCH_MY_OFFER
+        });
+    };
+
     createOffer(offer) {
-        const url = this.API_URL + API_OFFERS;
+        const url = this.API_URL + API_MY_OFFERS;
 
         return HttpUtility.post({
             url: url,
@@ -115,7 +147,7 @@ class Api {
     };
 
     updateOffer(offer) {
-        const url = this.API_URL + API_OFFERS + '/' + offer.id;
+        const url = this.API_URL + API_MY_OFFERS + '/' + offer.id;
 
         return HttpUtility.put({
             url: url,
@@ -124,7 +156,7 @@ class Api {
     };
 
     removeOffer(id) {
-        const url = this.API_URL + API_OFFERS + '/' + id;
+        const url = this.API_URL + API_MY_OFFERS + '/' + id;
 
         return HttpUtility.delete({
             url: url,

@@ -59,7 +59,7 @@ function TopMenu(props) {
     };
 
     const currentPathname = props.history.location.pathname;
-    console.log(currentPathname);
+
     function authenticatedMenu() {
         return (<List>
             <ListItem selected={currentPathname === HOME || currentPathname === ROOT} button key={'home'} onClick={() => redirect(HOME)}>

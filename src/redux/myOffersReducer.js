@@ -1,4 +1,13 @@
-import {FETCH_OFFER, FETCH_OFFERS, FULFILLED, PENDING} from "./actions";
+import {
+    DELETE_OFFER,
+    EDIT_OFFER,
+    FETCH_MY_OFFER,
+    FETCH_MY_OFFERS,
+    FULFILLED,
+    LOGOUT_ACTION,
+    OFFER_CREATED,
+    PENDING
+} from "./actions";
 
 const initialState = {
     content: null,
@@ -14,16 +23,16 @@ const initialState = {
     }
 };
 
-const offersReducer = (state = initialState, action) => {
+const myOffersReducer = (state = initialState, action) => {
     const payload = action.payload;
     switch (action.type) {
-        case FETCH_OFFER + PENDING:
-        case FETCH_OFFERS + PENDING:
+        case FETCH_MY_OFFER + PENDING:
+        case FETCH_MY_OFFERS + PENDING:
             return {
                 ...state,
                 loading: true
             };
-        case FETCH_OFFERS + FULFILLED:
+        case FETCH_MY_OFFERS + FULFILLED:
             return {
                 ...state,
                 content: payload.content,
@@ -32,17 +41,22 @@ const offersReducer = (state = initialState, action) => {
                 totalPages: payload.totalPages,
                 totalElements: payload.totalElements,
             };
-        case FETCH_OFFER + FULFILLED:
+        case EDIT_OFFER:
+        case FETCH_MY_OFFER + FULFILLED:
             return {
                 ...state,
                 currentOffer: {
                     ...payload
                 }
             };
+        case LOGOUT_ACTION + PENDING:
+        case OFFER_CREATED:
+        case DELETE_OFFER + FULFILLED:
+            return initialState;
         default:
             return state
     }
 };
 
-export default offersReducer;
+export default myOffersReducer;
 

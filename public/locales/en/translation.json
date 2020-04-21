@@ -22,11 +22,7 @@
     "regexp": "Incorrect format"
   },
   "home": {
-    "page": "Home",
-    "stranger": "stranger",
-    "appDescription": "",
-    "unauthenticatedMonit": "Register or login first, no email verification needed!",
-    "authenticatedMonit": ""
+    "page": "Offers"
   },
   "login": {
     "page": "Login",

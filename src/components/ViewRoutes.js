@@ -9,7 +9,7 @@ import Register from "./user/RegisterView";
 import Profile from "./user/ProfileView";
 import NoMatchingView from "./NoMatchingView";
 import {HOME, LOGIN, LOGOUT, MY_OFFERS, CREATE_OFFER, PROFILE, REGISTER, ROOT, EDIT_OFFER} from "../common/paths";
-import MyOffersListView from "./offer/MyOffersListView";
+import MyOffersTableView from "./offer/MyOffersTableView";
 import CreateOfferView from "./offer/CreateOfferView";
 import EditOfferView from "./offer/EditOfferView";
 
@@ -39,7 +39,7 @@ function ViewRoutes() {
                 <EditOfferView/>
             </AuthenticatedRoute>
             <AuthenticatedRoute path={MY_OFFERS}>
-                <MyOffersListView/>
+                <MyOffersTableView/>
             </AuthenticatedRoute>
             <Route path={ROOT}>
                 <Home/>
