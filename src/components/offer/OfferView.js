@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
 import LoaderView from "../LoaderView";
 import {TextField} from "@material-ui/core";
 import CurrencyTextField from "@unicef/material-ui-currency-textfield";
+import Card from "@material-ui/core/Card/Card";
 
 function EditOfferView(props) {
 
@@ -49,7 +50,6 @@ function EditOfferView(props) {
                         name="author"
                         value={props.author}
                         disabled={true}
-                        variant={'outlined'}
                     />
                 </div>
                 <div>
@@ -57,7 +57,6 @@ function EditOfferView(props) {
                         label={t('price')}
                         name="price"
                         minimumValue={"0"}
-                        variant={'outlined'}
                         value={props.price}
                         currencySymbol="PLN"
                         outputFormat="string"
@@ -74,9 +73,9 @@ function EditOfferView(props) {
     };
 
     return (
-        <React.Fragment>
+        <Card>
             {props.title === null || props.id.toString() !== id ? <LoaderView/> : getView()}
-        </React.Fragment>
+        </Card>
     );
 }
 

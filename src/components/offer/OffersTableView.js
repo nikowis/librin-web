@@ -1,17 +1,16 @@
 import React, {useEffect} from 'react';
-import '../App.scss';
 import {connect} from "react-redux";
 import {useTranslation} from "react-i18next";
-import Api from "../common/api-communication";
-import LoaderView from "./LoaderView";
+import Api from "../../common/api-communication";
+import LoaderView from "./../LoaderView";
 import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
-import OffersTable from "./offer/OffersTable";
-import {EDIT_OFFER} from "../redux/actions";
-import {OFFERS} from "../common/paths";
+import OffersTable from "./OffersTable";
+import {EDIT_OFFER} from "../../redux/actions";
+import {OFFERS} from "../../common/paths";
 import Card from "@material-ui/core/Card";
 
-function OffersView(props) {
+function OffersTableView(props) {
 
     const {t} = useTranslation();
     const {dispatch, offers, location, history, currentPage, totalPages} = props;
@@ -57,7 +56,7 @@ function OffersView(props) {
 
 }
 
-OffersView.propTypes = {
+OffersTableView.propTypes = {
     offers: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.number.isRequired,
@@ -73,4 +72,4 @@ export default connect(state => ({
     offers: state.offers.content,
     currentPage: state.offers.currentPage,
     totalPages: state.offers.totalPages,
-}))(withRouter(OffersView));
+}))(withRouter(OffersTableView));

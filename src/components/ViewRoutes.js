@@ -2,7 +2,7 @@ import React from 'react';
 import './../App.scss';
 import Login from "./LoginView";
 import {Route, Switch} from "react-router-dom";
-import OffersView from "./OffersView";
+import OffersTableView from "./offer/OffersTableView";
 import Logout from "./Logout";
 import AuthenticatedRoute from "./AuthenticatedRoute";
 import Register from "./user/RegisterView";
@@ -53,10 +53,10 @@ function ViewRoutes() {
                 <OfferView/>
             </Route>
             <Route path={OFFERS}>
-                <OffersView/>
+                <OffersTableView/>
             </Route>
             <Route path={ROOT}>
-                <OffersView/>
+                <OffersTableView/>
             </Route>
             <Route component={NoMatchingView}/>
         </Switch>
