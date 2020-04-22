@@ -28,6 +28,7 @@ function OffersTable(props) {
                 <TableCell align="right">{offer.author}</TableCell>
                 <TableCell align="right">{offer.price}</TableCell>
                 <TableCell align="right">
+                    <div className="quick-action-btns">
                     {
                         handleView ?
                             <Button size={'small'} variant="outlined"
@@ -49,7 +50,7 @@ function OffersTable(props) {
                                 <Delete/>
                             </Button> : null
                     }
-
+                    </div>
                 </TableCell>
             </TableRow>
         });

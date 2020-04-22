@@ -12,6 +12,7 @@ import {HIDE_NOTIFICATION, SHOW_NOTIFICATION} from "../../redux/actions";
 import {NOTIFICATION_DURATION} from "../../common/app-constants";
 import {TextField} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
+import Card from "@material-ui/core/Card";
 
 
 function RegisterView(props) {
@@ -40,66 +41,68 @@ function RegisterView(props) {
     }
 
     return (
-        <Formik validationSchema={registerSchema} onSubmit={handleSubmit}
-                initialValues={{
-                    login: '',
-                    password: '',
-                    repeatPassword: ''
-                }}
-        >
-            {({
-                  values,
-                  errors,
-                  touched,
-                  handleChange,
-                  handleSubmit,
-                  isSubmitting
-              }) => (
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <TextField
-                            error={errors.login && touched.login}
-                            label={t('email')}
-                            name="login"
-                            variant="outlined"
-                            value={values.login}
-                            onChange={handleChange}
-                            helperText={(errors.login && touched.login) && t(errors.login)}
-                            margin="normal"
-                        />
-                    </div>
-                    <div>
-                        <TextField
-                            error={errors.password && touched.password}
-                            label={t('password')}
-                            name="password"
-                            type="password"
-                            variant="outlined"
-                            value={values.password}
-                            onChange={handleChange}
-                            helperText={(errors.password && touched.password) && t(errors.password)}
-                            margin="normal"
-                        />
-                    </div>
-                    <div>
-                        <TextField
-                            error={errors.repeatPassword && touched.repeatPassword}
-                            label={t('repeatPassword')}
-                            name="repeatPassword"
-                            type="password"
-                            variant="outlined"
-                            value={values.repeatPassword}
-                            onChange={handleChange}
-                            helperText={(errors.repeatPassword && touched.repeatPassword) && t(errors.repeatPassword)}
-                            margin="normal"
-                        />
-                    </div>
-                    <Button variant="contained" color="primary" type="submit" disabled={isSubmitting}>
-                        {t('register.submit')}
-                    </Button>
-                </form>
-            )}
-        </Formik>
+        <Card>
+            <Formik validationSchema={registerSchema} onSubmit={handleSubmit}
+                    initialValues={{
+                        login: '',
+                        password: '',
+                        repeatPassword: ''
+                    }}
+            >
+                {({
+                      values,
+                      errors,
+                      touched,
+                      handleChange,
+                      handleSubmit,
+                      isSubmitting
+                  }) => (
+                    <form onSubmit={handleSubmit}>
+                        <div>
+                            <TextField
+                                error={errors.login && touched.login}
+                                label={t('email')}
+                                name="login"
+                                variant="outlined"
+                                value={values.login}
+                                onChange={handleChange}
+                                helperText={(errors.login && touched.login) && t(errors.login)}
+                                margin="normal"
+                            />
+                        </div>
+                        <div>
+                            <TextField
+                                error={errors.password && touched.password}
+                                label={t('password')}
+                                name="password"
+                                type="password"
+                                variant="outlined"
+                                value={values.password}
+                                onChange={handleChange}
+                                helperText={(errors.password && touched.password) && t(errors.password)}
+                                margin="normal"
+                            />
+                        </div>
+                        <div>
+                            <TextField
+                                error={errors.repeatPassword && touched.repeatPassword}
+                                label={t('repeatPassword')}
+                                name="repeatPassword"
+                                type="password"
+                                variant="outlined"
+                                value={values.repeatPassword}
+                                onChange={handleChange}
+                                helperText={(errors.repeatPassword && touched.repeatPassword) && t(errors.repeatPassword)}
+                                margin="normal"
+                            />
+                        </div>
+                        <Button variant="contained" color="primary" type="submit" disabled={isSubmitting}>
+                            {t('register.submit')}
+                        </Button>
+                    </form>
+                )}
+            </Formik>
+        </Card>
     );
 }
 

@@ -9,6 +9,7 @@ import {Button, TextField} from '@material-ui/core';
 import {loginSchema} from "../common/validation-schemas";
 import {useTranslation} from "react-i18next";
 import PropTypes from "prop-types";
+import Card from "@material-ui/core/Card";
 
 function LoginView(props) {
 
@@ -26,53 +27,55 @@ function LoginView(props) {
     }
 
     return (
-        <Formik validationSchema={loginSchema}
-                onSubmit={handleSubmit}
-                initialValues={{
-                    login: '',
-                    password: ''
-                }}
-        >
-            {({
-                  values,
-                  errors,
-                  touched,
-                  handleChange,
-                  handleSubmit,
-                  isSubmitting
-              }) => (
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <TextField
-                            error={errors.login && touched.login}
-                            label={t('email')}
-                            name="login"
-                            variant="outlined"
-                            value={values.login}
-                            onChange={handleChange}
-                            helperText={(errors.login && touched.login) && t(errors.login)}
-                            margin="normal"
-                        />
-                    </div>
-                    <div>
-                        <TextField
-                            error={errors.password && touched.password}
-                            label={t('password')}
-                            name="password"
-                            type="password"
-                            variant="outlined"
-                            value={values.password}
-                            onChange={handleChange}
-                            helperText={(errors.password && touched.password) && t(errors.password)}
-                            margin="normal"
-                        />
-                    </div>
-                    <Button variant="contained" color="primary" type="submit" disabled={isSubmitting}>
-                        {t('login.submit')}
-                    </Button>
-                </form>
-            )}
-        </Formik>
+        <Card>
+            <Formik validationSchema={loginSchema}
+                    onSubmit={handleSubmit}
+                    initialValues={{
+                        login: '',
+                        password: ''
+                    }}
+            >
+                {({
+                      values,
+                      errors,
+                      touched,
+                      handleChange,
+                      handleSubmit,
+                      isSubmitting
+                  }) => (
+                    <form onSubmit={handleSubmit}>
+                        <div>
+                            <TextField
+                                error={errors.login && touched.login}
+                                label={t('email')}
+                                name="login"
+                                variant="outlined"
+                                value={values.login}
+                                onChange={handleChange}
+                                helperText={(errors.login && touched.login) && t(errors.login)}
+                                margin="normal"
+                            />
+                        </div>
+                        <div>
+                            <TextField
+                                error={errors.password && touched.password}
+                                label={t('password')}
+                                name="password"
+                                type="password"
+                                variant="outlined"
+                                value={values.password}
+                                onChange={handleChange}
+                                helperText={(errors.password && touched.password) && t(errors.password)}
+                                margin="normal"
+                            />
+                        </div>
+                        <Button variant="contained" color="primary" type="submit" disabled={isSubmitting}>
+                            {t('login.submit')}
+                        </Button>
+                    </form>
+                )}
+            </Formik>
+        </Card>
     );
 
 }

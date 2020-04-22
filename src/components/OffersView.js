@@ -9,6 +9,7 @@ import {withRouter} from "react-router-dom";
 import OffersTable from "./offer/OffersTable";
 import {EDIT_OFFER} from "../redux/actions";
 import {OFFERS} from "../common/paths";
+import Card from "@material-ui/core/Card";
 
 function OffersView(props) {
 
@@ -49,9 +50,9 @@ function OffersView(props) {
     };
 
     return (
-        <>
+        <Card>
             {offers === null ? <LoaderView/> : getView()}
-        </>
+        </Card>
     );
 
 }

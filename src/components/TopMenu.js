@@ -106,7 +106,7 @@ function TopMenu(props) {
         <div className="top-menu">
             <AppBar position="static">
                 <Toolbar>
-                    <IconButton onClick={handleDrawerOpen} edge="start" className='top-menu-button' color="inherit"
+                    <IconButton onClick={handleDrawerOpen} edge="start" color="inherit"
                                 aria-label="menu">
                         <MenuIcon/>
                     </IconButton>
@@ -117,12 +117,11 @@ function TopMenu(props) {
                 </Toolbar>
             </AppBar>
             <Drawer
-                className="top-menu-drawer"
                 variant="persistent"
                 anchor="left"
                 open={open}
             >
-                <div className="top-menu-drawer-header">
+                <div>
                     <IconButton onClick={handleDrawerClose}>
                         <ChevronLeftIcon/>
                     </IconButton>

@@ -6,120 +6,23 @@ $primary-shadow: #453163;
   text-align: center;
   background-color: #ebedee;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  .btn-primary {
-    background-color: $primary;
-    border-color: $primary;
-  }
-
-  .btn-primary:hover {
-    background-color: $primary-shadow;
-    border-color: $primary-shadow;
-  }
-
-  .btn-primary:active:focus {
-    background-color: $primary-shadow;
-    border-color: $primary-shadow;
-    box-shadow: none;
-  }
-
-  .page-item.active .page-link {
-    background-color: $primary;
-    border-color: $primary;
-  }
-
-  .page-link {
-    color: $primary;
-  }
-
-  .progress-bar {
-    background-color: $primary;
-  }
-
-  .quick-action-btns {
-    button {
-      margin: 0 0.3rem
-    }
-  }
-}
-
-.app-description {
-  text-align: left;
-  padding-bottom: 1rem;
-}
-
-.app-card {
-  min-height: 10rem;
-  display: block;
-  width: 95%;
-  max-width: 60rem;
-  background: #FFFFFF;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  padding: 1rem;
-}
-
-.title-header {
-  padding: 0.5rem;
-}
-
-.app-content {
-  display: block;
-  margin: auto;
-  width: 100%;
-  max-width: 50rem;
-
-  input {
-    max-width: 15rem;
-    margin: auto;
-  }
-
-  textarea {
-    resize: none;
-    max-width: 25rem;
-    margin: auto;
-  }
-}
-
-.table-action-buttons {
-  width: 10%;
-
-  button {
-    margin-left: 0.2rem;
-    margin-right: 0.2rem;
-    margin-bottom: 0.2rem;
-  }
-}
-
-.pagination {
-  justify-content: center;
-}
-
-.list-group {
-  margin-bottom: 1rem;
-}
-
-.app-logo {
-  height: 40vmin;
-}
-
-.pending-requests-spinner {
-  position: fixed;
-  right: 0.5rem;
-  bottom: 0.5rem;
-  color: $primary;
 }
 
 .top-menu {
-  width: 100%;
-  background: $primary;
-
+  width: 80%;
+  margin: auto;
   .top-menu-title {
     flex-grow: 1;
   }
-
 }
 
+.MuiCard-root {
+  padding-bottom: 1rem;
+}
+
+.quick-action-btns {
+  button {
+    margin: 0.1rem
+  }
+}
 

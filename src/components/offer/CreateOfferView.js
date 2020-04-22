@@ -6,13 +6,14 @@ import {useTranslation} from "react-i18next";
 import {Formik} from 'formik';
 import {createOfferSchema} from "../../common/validation-schemas";
 import {connect} from "react-redux";
-import {OFFER_CREATED, HIDE_NOTIFICATION, SHOW_NOTIFICATION} from "../../redux/actions";
+import {HIDE_NOTIFICATION, OFFER_CREATED, SHOW_NOTIFICATION} from "../../redux/actions";
 import {MY_OFFERS} from "../../common/paths";
 import {NOTIFICATION_DURATION} from "../../common/app-constants";
 import {TextField} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import CurrencyTextField from '@unicef/material-ui-currency-textfield'
 import {translate} from "../../common/i18n-helper";
+import Card from "@material-ui/core/Card";
 
 function CreateOfferView(props) {
 
@@ -38,77 +39,79 @@ function CreateOfferView(props) {
     };
 
     return (
-        <Formik validationSchema={createOfferSchema} onSubmit={handleSubmit}
-                initialValues={{
-                    title: '',
-                    author: '',
-                    price: '0'
-                }}
-        >
-            {({
-                  values,
-                  errors,
-                  touched,
-                  handleChange,
-                  handleSubmit,
-                  handleBlur,
-                  isSubmitting,
-                  setFieldValue
-              }) => (
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <TextField
-                            error={errors.title && touched.title}
-                            label={t('title')}
-                            name="title"
-                            value={values.title}
-                            variant={'outlined'}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            helperText={(errors.title && touched.title) ? translate(errors.title): ''}
-                            margin="normal"
-                        />
-                    </div>
-                    <div>
-                        <TextField
-                            error={errors.author && touched.author}
-                            label={t('author')}
-                            name="author"
-                            value={values.author}
-                            variant={'outlined'}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            helperText={(errors.author && touched.author) ? translate(errors.author): ''}
-                            margin="normal"
-                        />
-                    </div>
-                    <div>
-                        <CurrencyTextField
-                            error={errors.price && touched.price}
-                            label={t('price')}
-                            name="price"
-                            minimumValue={"0"}
-                            variant={'outlined'}
-                            value={values.price}
-                            currencySymbol="PLN"
-                            outputFormat="string"
-                            decimalCharacter="."
-                            decimalCharacterAlternative=","
-                            decimalPlacesShownOnBlur={2}
-                            digitGroupSeparator={""}
-                            decimalPlaces={2}
-                            onChange={(event, value) => setFieldValue('price', value)}
-                            onBlur={handleBlur}
-                            helperText={(errors.price && touched.price) ? translate(errors.price): ''}
-                            margin="normal"
-                        />
-                    </div>
-                    <Button variant="contained" color="primary" type="submit" disabled={isSubmitting}>
-                        {t('offers.create.submit')}
-                    </Button>
-                </form>
-            )}
-        </Formik>
+        <Card>
+            <Formik validationSchema={createOfferSchema} onSubmit={handleSubmit}
+                    initialValues={{
+                        title: '',
+                        author: '',
+                        price: '0'
+                    }}
+            >
+                {({
+                      values,
+                      errors,
+                      touched,
+                      handleChange,
+                      handleSubmit,
+                      handleBlur,
+                      isSubmitting,
+                      setFieldValue
+                  }) => (
+                    <form onSubmit={handleSubmit}>
+                        <div>
+                            <TextField
+                                error={errors.title && touched.title}
+                                label={t('title')}
+                                name="title"
+                                value={values.title}
+                                variant={'outlined'}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                helperText={(errors.title && touched.title) ? translate(errors.title) : ''}
+                                margin="normal"
+                            />
+                        </div>
+                        <div>
+                            <TextField
+                                error={errors.author && touched.author}
+                                label={t('author')}
+                                name="author"
+                                value={values.author}
+                                variant={'outlined'}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                helperText={(errors.author && touched.author) ? translate(errors.author) : ''}
+                                margin="normal"
+                            />
+                        </div>
+                        <div>
+                            <CurrencyTextField
+                                error={errors.price && touched.price}
+                                label={t('price')}
+                                name="price"
+                                minimumValue={"0"}
+                                variant={'outlined'}
+                                value={values.price}
+                                currencySymbol="PLN"
+                                outputFormat="string"
+                                decimalCharacter="."
+                                decimalCharacterAlternative=","
+                                decimalPlacesShownOnBlur={2}
+                                digitGroupSeparator={""}
+                                decimalPlaces={2}
+                                onChange={(event, value) => setFieldValue('price', value)}
+                                onBlur={handleBlur}
+                                helperText={(errors.price && touched.price) ? translate(errors.price) : ''}
+                                margin="normal"
+                            />
+                        </div>
+                        <Button variant="contained" color="primary" type="submit" disabled={isSubmitting}>
+                            {t('offers.create.submit')}
+                        </Button>
+                    </form>
+                )}
+            </Formik>
+        </Card>
     );
 }
 

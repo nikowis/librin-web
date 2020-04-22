@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
 import {useTranslation} from "react-i18next";
 import ErrorContainer from "./components/ErrorContainer";
 import NotificationContainer from "./components/NotificationContainer";
+import Container from "@material-ui/core/Container";
 
 function App(props) {
 
@@ -28,17 +29,12 @@ function App(props) {
 
     return (
         <div className="app">
-            <header className="app-header">
-            </header>
             <TopMenu/>
             <ErrorContainer/>
             <NotificationContainer/>
-            <div className="app-card">
-                <div className="app-content">
-                    <ViewRoutes/>
-                </div>
-            </div>
-
+            <Container maxWidth="lg">
+                <ViewRoutes/>
+            </Container>
         </div>
     );
 

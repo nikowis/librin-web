@@ -12,7 +12,7 @@ import CurrencyTextField from "@unicef/material-ui-currency-textfield";
 function EditOfferView(props) {
 
     const {t} = useTranslation();
-    const {dispatch, history} = props;
+    const {dispatch} = props;
     let {id} = useParams();
     const propId = props.id;
 

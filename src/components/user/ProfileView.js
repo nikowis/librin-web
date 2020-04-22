@@ -12,6 +12,7 @@ import PropTypes from "prop-types";
 import {NOTIFICATION_DURATION} from "../../common/app-constants";
 import {TextField} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
+import Card from "@material-ui/core/Card";
 
 function ProfileView(props) {
 
@@ -42,76 +43,78 @@ function ProfileView(props) {
     };
 
     return (
-        <Formik validationSchema={profileSchema} onSubmit={handleSubmit} enableReinitialize={true}
-                initialValues={{
-                    id: props.id,
-                    login: props.login,
-                    password: '',
-                    repeatPassword: ''
-                }}
-        >
-            {({
-                  values,
-                  errors,
-                  touched,
-                  handleChange,
-                  handleSubmit,
-                  isSubmitting
-              }) => (
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <TextField
-                            label={t('id')}
-                            name="id"
-                            value={values.id}
-                            disabled={true}
-                            margin="normal"
-                        />
-                    </div>
-                    <div>
-                        <TextField
-                            error={errors.login && touched.login}
-                            label={t('email')}
-                            name="login"
-                            value={values.login}
-                            onChange={handleChange}
-                            helperText={(errors.login && touched.login) && t(errors.login)}
-                            margin="normal"
-                            disabled={true}
-                        />
-                    </div>
-                    <div>
-                        <TextField
-                            error={errors.password && touched.password}
-                            label={t('password')}
-                            name="password"
-                            type="password"
-                            variant="outlined"
-                            value={values.password}
-                            onChange={handleChange}
-                            helperText={(errors.password && touched.password) && t(errors.password)}
-                            margin="normal"
-                        />
-                    </div>
-                    <div>
-                        <TextField
-                            error={errors.repeatPassword && touched.repeatPassword}
-                            label={t('repeatPassword')}
-                            name="repeatPassword"
-                            type="password"
-                            variant="outlined"
-                            value={values.repeatPassword}
-                            onChange={handleChange}
-                            helperText={(errors.repeatPassword && touched.repeatPassword) && t(errors.repeatPassword)}
-                            margin="normal"
-                        />
-                    </div>
-                    <Button variant="contained" color="primary" type="submit" disabled={isSubmitting}>
-                        {t('submit')}
-                    </Button>
-                </form>
-            )}
-        </Formik>
+        <Card>
+            <Formik validationSchema={profileSchema} onSubmit={handleSubmit} enableReinitialize={true}
+                    initialValues={{
+                        id: props.id,
+                        login: props.login,
+                        password: '',
+                        repeatPassword: ''
+                    }}
+            >
+                {({
+                      values,
+                      errors,
+                      touched,
+                      handleChange,
+                      handleSubmit,
+                      isSubmitting
+                  }) => (
+                    <form onSubmit={handleSubmit}>
+                        <div>
+                            <TextField
+                                label={t('id')}
+                                name="id"
+                                value={values.id}
+                                disabled={true}
+                                margin="normal"
+                            />
+                        </div>
+                        <div>
+                            <TextField
+                                error={errors.login && touched.login}
+                                label={t('email')}
+                                name="login"
+                                value={values.login}
+                                onChange={handleChange}
+                                helperText={(errors.login && touched.login) && t(errors.login)}
+                                margin="normal"
+                                disabled={true}
+                            />
+                        </div>
+                        <div>
+                            <TextField
+                                error={errors.password && touched.password}
+                                label={t('password')}
+                                name="password"
+                                type="password"
+                                variant="outlined"
+                                value={values.password}
+                                onChange={handleChange}
+                                helperText={(errors.password && touched.password) && t(errors.password)}
+                                margin="normal"
+                            />
+                        </div>
+                        <div>
+                            <TextField
+                                error={errors.repeatPassword && touched.repeatPassword}
+                                label={t('repeatPassword')}
+                                name="repeatPassword"
+                                type="password"
+                                variant="outlined"
+                                value={values.repeatPassword}
+                                onChange={handleChange}
+                                helperText={(errors.repeatPassword && touched.repeatPassword) && t(errors.repeatPassword)}
+                                margin="normal"
+                            />
+                        </div>
+                        <Button variant="contained" color="primary" type="submit" disabled={isSubmitting}>
+                            {t('submit')}
+                        </Button>
+                    </form>
+                )}
+            </Formik>
+        </Card>
     );
 
 }
