@@ -2,24 +2,32 @@ import React from 'react';
 import './../App.scss';
 import Login from "./LoginView";
 import {Route, Switch} from "react-router-dom";
-import Home from "./HomeView";
+import OffersView from "./OffersView";
 import Logout from "./Logout";
 import AuthenticatedRoute from "./AuthenticatedRoute";
 import Register from "./user/RegisterView";
 import Profile from "./user/ProfileView";
 import NoMatchingView from "./NoMatchingView";
-import {HOME, LOGIN, LOGOUT, MY_OFFERS, CREATE_OFFER, PROFILE, REGISTER, ROOT, EDIT_OFFER} from "../common/paths";
+import {
+    OFFERS,
+    LOGIN,
+    LOGOUT,
+    MY_OFFERS,
+    CREATE_OFFER,
+    PROFILE,
+    REGISTER,
+    ROOT,
+    EDIT_OFFER,
+    VIEW_OFFER
+} from "../common/paths";
 import MyOffersTableView from "./offer/MyOffersTableView";
 import CreateOfferView from "./offer/CreateOfferView";
 import EditOfferView from "./offer/EditOfferView";
+import OfferView from "./offer/OfferView";
 
 function ViewRoutes() {
     return (
         <Switch>
-
-            <Route path={HOME}>
-                <Home/>
-            </Route>
             <Route path={LOGIN}>
                 <Login/>
             </Route>
@@ -41,8 +49,14 @@ function ViewRoutes() {
             <AuthenticatedRoute path={MY_OFFERS}>
                 <MyOffersTableView/>
             </AuthenticatedRoute>
+            <Route path={VIEW_OFFER}>
+                <OfferView/>
+            </Route>
+            <Route path={OFFERS}>
+                <OffersView/>
+            </Route>
             <Route path={ROOT}>
-                <Home/>
+                <OffersView/>
             </Route>
             <Route component={NoMatchingView}/>
         </Switch>

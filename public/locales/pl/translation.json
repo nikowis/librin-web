@@ -21,9 +21,6 @@
     "min" : "Wartość za krótka",
     "regexp": "Niepoprawny format"
   },
-  "home": {
-    "page": "Oferty"
-  },
   "login": {
     "page": "Logowanie",
     "submit": "Zaloguj"
@@ -33,12 +30,13 @@
     "submit": "Zarejestruj się"
   },
   "profile": {
-    "page": "Profil",
+    "page": "Profil"
   },
   "myoffers": {
     "page": "Moje oferty"
   },
   "offers": {
+    "page": "Oferty",
     "create": {
       "page": "Utwórz ofertę",
       "submit": "Utwórz"

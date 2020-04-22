@@ -21,9 +21,6 @@
     "min" : "Value is too short",
     "regexp": "Incorrect format"
   },
-  "home": {
-    "page": "Offers"
-  },
   "login": {
     "page": "Login",
     "submit": "Login"
@@ -39,6 +36,7 @@
     "page": "My offers"
   },
   "offers": {
+    "page": "Offers",
     "create": {
       "page": "Create offer",
       "submit": "Create"

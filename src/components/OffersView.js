@@ -6,10 +6,11 @@ import Api from "../common/api-communication";
 import LoaderView from "./LoaderView";
 import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
-import PaginationComponent from "./PaginationComponent";
 import OffersTable from "./offer/OffersTable";
+import {EDIT_OFFER} from "../redux/actions";
+import {OFFERS} from "../common/paths";
 
-function HomeView(props) {
+function OffersView(props) {
 
     const {t} = useTranslation();
     const {dispatch, offers, location, history, currentPage, totalPages} = props;
@@ -36,9 +37,14 @@ function HomeView(props) {
         }
     }, [dispatch, offers, currentPage, pageQuery]);
 
+    const handleView = (offer) => {
+        dispatch({type: EDIT_OFFER, payload: offer});
+        props.history.push(OFFERS + '/' + offer.id);
+    };
+
     const getView = () => {
         return <>
-            {pageQuery <= totalPages ? <OffersTable offers={offers} currentPathname={pathname} currentPage={currentPage} totalPages={totalPages}/> : t('noElementsFound')}
+            {pageQuery <= totalPages ? <OffersTable offers={offers} handleView={handleView} currentPathname={pathname} currentPage={currentPage} totalPages={totalPages}/> : t('noElementsFound')}
         </>;
     };
 
@@ -50,7 +56,7 @@ function HomeView(props) {
 
 }
 
-HomeView.propTypes = {
+OffersView.propTypes = {
     offers: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.number.isRequired,
@@ -66,4 +72,4 @@ export default connect(state => ({
     offers: state.offers.content,
     currentPage: state.offers.currentPage,
     totalPages: state.offers.totalPages,
-}))(withRouter(HomeView));
+}))(withRouter(OffersView));

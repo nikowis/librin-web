@@ -12,11 +12,12 @@ import TableBody from "@material-ui/core/TableBody";
 import Table from "@material-ui/core/Table";
 import Button from "@material-ui/core/Button";
 import PaginationComponent from "../PaginationComponent";
+import VisibilityIcon from '@material-ui/icons/Visibility';
 
 function OffersTable(props) {
 
     const {t} = useTranslation();
-    const {offers, handleEdit, handleDelete, currentPathname, currentPage, totalPages} = props;
+    const {offers, handleView, handleEdit, handleDelete, currentPathname, currentPage, totalPages} = props;
 
     const offerRows = () => {
         return offers.map((offer) => {
@@ -27,6 +28,13 @@ function OffersTable(props) {
                 <TableCell align="right">{offer.author}</TableCell>
                 <TableCell align="right">{offer.price}</TableCell>
                 <TableCell align="right">
+                    {
+                        handleView ?
+                            <Button size={'small'} variant="outlined"
+                                    onClick={() => handleView(offer)}>
+                                <VisibilityIcon/>
+                            </Button> : null
+                    }
                     {
                         handleEdit ?
                             <Button size={'small'} variant="outlined"
@@ -77,11 +85,12 @@ OffersTable.propTypes = {
             author: PropTypes.string.isRequired
         }),
     ).isRequired,
-    handleDelete: PropTypes.func,
-    handleEdit: PropTypes.func,
     currentPathname: PropTypes.string.isRequired,
     currentPage: PropTypes.number.isRequired,
-    totalPages: PropTypes.number.isRequired
+    totalPages: PropTypes.number.isRequired,
+    handleDelete: PropTypes.func,
+    handleEdit: PropTypes.func,
+    handleView: PropTypes.func
 };
 
 export default OffersTable;

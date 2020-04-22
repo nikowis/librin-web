@@ -3,7 +3,7 @@ import '../App.scss';
 import {Redirect} from "react-router-dom";
 import Api from "../common/api-communication";
 import {connect} from "react-redux";
-import {HOME} from "../common/paths";
+import {OFFERS} from "../common/paths";
 import {Formik} from 'formik';
 import {Button, TextField} from '@material-ui/core';
 import {loginSchema} from "../common/validation-schemas";
@@ -22,7 +22,7 @@ function LoginView(props) {
     };
 
     if (props.authenticated) {
-        return <Redirect to={HOME} push={true}/>
+        return <Redirect to={OFFERS} push={true}/>
     }
 
     return (

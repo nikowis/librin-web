@@ -6,7 +6,7 @@ import Api from "../../common/api-communication";
 import {registerSchema} from "../../common/validation-schemas";
 import {useTranslation} from 'react-i18next';
 import {Formik} from 'formik';
-import {HOME, LOGIN} from "../../common/paths";
+import {LOGIN, OFFERS} from "../../common/paths";
 import PropTypes from "prop-types";
 import {HIDE_NOTIFICATION, SHOW_NOTIFICATION} from "../../redux/actions";
 import {NOTIFICATION_DURATION} from "../../common/app-constants";
@@ -36,7 +36,7 @@ function RegisterView(props) {
         }).finally(() => actions.setSubmitting(false));
     };
     if (props.authenticated) {
-        return <Redirect to={HOME} push={true}/>
+        return <Redirect to={OFFERS} push={true}/>
     }
 
     return (

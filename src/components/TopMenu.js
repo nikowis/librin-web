@@ -1,7 +1,7 @@
 import React from 'react';
 import '../App.scss';
 import {connect} from "react-redux";
-import {HOME, LOGIN, LOGOUT, MY_OFFERS, CREATE_OFFER, PROFILE, REGISTER, ROOT} from "../common/paths";
+import {LOGIN, LOGOUT, MY_OFFERS, CREATE_OFFER, PROFILE, REGISTER, ROOT, OFFERS} from "../common/paths";
 import {useTranslation} from 'react-i18next';
 import MenuIcon from '@material-ui/icons/Menu';
 
@@ -32,7 +32,7 @@ function TopMenu(props) {
 
     const {t, i18n} = useTranslation();
 
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(true);
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -54,7 +54,7 @@ function TopMenu(props) {
         </>;
 
     const redirect = (to) => {
-        handleDrawerClose();
+        // handleDrawerClose();
         props.history.push(to);
     };
 
@@ -62,9 +62,9 @@ function TopMenu(props) {
 
     function authenticatedMenu() {
         return (<List>
-            <ListItem selected={currentPathname === HOME || currentPathname === ROOT} button key={'home'} onClick={() => redirect(HOME)}>
+            <ListItem selected={currentPathname === OFFERS || currentPathname === ROOT} button key={'offers'} onClick={() => redirect(OFFERS)}>
                 <ListItemIcon><HomeIcon/></ListItemIcon>
-                <ListItemText primary={t('home.page')}/>
+                <ListItemText primary={t('offers.page')}/>
             </ListItem>
             <ListItem selected={currentPathname === CREATE_OFFER} button key={'create'} onClick={() => redirect(CREATE_OFFER)}>
                 <ListItemIcon><AddIcon/></ListItemIcon>
@@ -87,9 +87,9 @@ function TopMenu(props) {
 
     function unauthenticatedMenu() {
         return (<List>
-            <ListItem selected={currentPathname === HOME || currentPathname === ROOT} button key={'home'} onClick={() => redirect(HOME)}>
+            <ListItem selected={currentPathname === OFFERS || currentPathname === ROOT} button key={'offers'} onClick={() => redirect(OFFERS)}>
                 <ListItemIcon><HomeIcon/></ListItemIcon>
-                <ListItemText primary={t('home.page')}/>
+                <ListItemText primary={t('offers.page')}/>
             </ListItem>
             <ListItem selected={currentPathname === REGISTER} button key={'register'} onClick={() => redirect(REGISTER)}>
                 <ListItemIcon><VpnKeyIcon/></ListItemIcon>
