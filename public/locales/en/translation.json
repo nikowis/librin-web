@@ -9,6 +9,9 @@
   "description": "Description",
   "author": "Author",
   "price": "Price",
+  "status": "Status",
+  "createdAt": "Created at",
+  "owner": "Owner",
   "submit": "Save",
   "servererror": "Server error",
   "loading": "Loading...",
@@ -44,6 +47,12 @@
     "edit": {
       "page": "Edit offer",
       "submit": "Save"
+    },
+    "view": {
+      "message": "Send message",
+      "sold": "Mark as sold",
+      "edit": "Edit offer",
+      "delete": "Delete offer"
     }
   },
   "notification": {

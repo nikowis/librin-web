@@ -1,7 +1,9 @@
-import {API_LOGIN, API_LOGOUT, API_MY_OFFERS, API_OFFERS, API_REGISTER, API_USER} from './endpoints'
+import {API_LOGIN, API_LOGOUT, API_MY_OFFERS, API_OFFERS, API_REGISTER, API_USER, SOLD_SUFFIX} from './endpoints'
 import HttpUtility from './http-utility'
 import {
-    DELETE_OFFER, FETCH_MY_OFFER, FETCH_MY_OFFERS,
+    DELETE_OFFER,
+    FETCH_MY_OFFER,
+    FETCH_MY_OFFERS,
     FETCH_OFFER,
     FETCH_OFFERS,
     FETCH_USER,
@@ -164,7 +166,17 @@ class Api {
         });
     }
 
+    offerSold(id) {
+        const url = this.API_URL + API_MY_OFFERS + '/' + id + '/' + SOLD_SUFFIX;
 
+        return HttpUtility.put({
+            url: url
+        });
+    }
+
+    createConversation(offerId) {
+        return undefined;
+    }
 }
 
 export default Api = new Api();

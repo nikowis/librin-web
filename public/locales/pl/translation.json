@@ -9,6 +9,9 @@
   "description": "Opis",
   "author": "Autor",
   "price": "Cena",
+  "status": "Status",
+  "createdAt": "Data utworzenia",
+  "owner": "Właściciel",
   "submit": "Zapisz",
   "servererror": "Błąd serwera",
   "loading": "Ładowanie...",
@@ -44,6 +47,12 @@
     "edit": {
       "page": "Edytuj ofertę",
       "submit": "Zapisz"
+    },
+    "view": {
+      "message": "Wyślij wiadomość",
+      "sold": "Oznacz jako sprzedane",
+      "edit": "Edytuj ofertę",
+      "delete": "Usuń ofertę"
     }
   },
   "notification": {

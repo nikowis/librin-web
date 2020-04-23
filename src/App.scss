@@ -9,8 +9,8 @@ $primary-shadow: #453163;
 }
 
 .top-menu {
-  width: 80%;
-  margin: auto;
+  width: 100%;
+
   .top-menu-title {
     flex-grow: 1;
   }
@@ -18,11 +18,10 @@ $primary-shadow: #453163;
 
 .MuiCard-root {
   padding-bottom: 1rem;
-}
 
-.quick-action-btns {
   button {
-    margin: 0.1rem
+    margin: 0.2rem
   }
 }
+
 

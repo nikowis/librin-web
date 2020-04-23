@@ -13,6 +13,7 @@ import Table from "@material-ui/core/Table";
 import Button from "@material-ui/core/Button";
 import PaginationComponent from "../PaginationComponent";
 import VisibilityIcon from '@material-ui/icons/Visibility';
+import {OfferStatus} from "../../common/app-constants";
 
 function OffersTable(props) {
 
@@ -27,6 +28,9 @@ function OffersTable(props) {
                 </TableCell>
                 <TableCell align="right">{offer.author}</TableCell>
                 <TableCell align="right">{offer.price}</TableCell>
+                <TableCell align="right">{offer.status}</TableCell>
+                <TableCell align="right">{offer.createdAt}</TableCell>
+                <TableCell align="right">{offer.ownerId}</TableCell>
                 <TableCell align="right">
                     <div className="quick-action-btns">
                     {
@@ -37,14 +41,14 @@ function OffersTable(props) {
                             </Button> : null
                     }
                     {
-                        handleEdit ?
+                        handleEdit && OfferStatus.ACTIVE === offer.status ?
                             <Button size={'small'} variant="outlined"
                                     onClick={() => handleEdit(offer)}>
                                 <Edit/>
                             </Button> : null
                     }
                     {
-                        handleDelete ?
+                        handleDelete && OfferStatus.ACTIVE === offer.status ?
                             <Button size={'small'} variant="outlined" color="secondary"
                                     onClick={() => handleDelete(offer)}>
                                 <Delete/>
@@ -65,6 +69,9 @@ function OffersTable(props) {
                             <TableCell align="right">{t('title')}</TableCell>
                             <TableCell align="right">{t('author')}</TableCell>
                             <TableCell align="right">{t('price')}</TableCell>
+                            <TableCell align="right">{t('status')}</TableCell>
+                            <TableCell align="right">{t('createdAt')}</TableCell>
+                            <TableCell align="right">{t('owner')}</TableCell>
                             <TableCell align="right"></TableCell>
                         </TableRow>
                     </TableHead>
@@ -83,7 +90,10 @@ OffersTable.propTypes = {
         PropTypes.shape({
             id: PropTypes.number.isRequired,
             title: PropTypes.string.isRequired,
-            author: PropTypes.string.isRequired
+            author: PropTypes.string.isRequired,
+            createdAt: PropTypes.string.isRequired,
+            status: PropTypes.string.isRequired,
+            ownerId: PropTypes.number.isRequired,
         }),
     ).isRequired,
     currentPathname: PropTypes.string.isRequired,
