@@ -23,7 +23,7 @@ function CreateOfferView(props) {
     const handleSubmit = (data, actions) => {
         actions.setSubmitting(true);
         Api.createOffer(data).payload.then((response) => {
-            if (!response.status) {
+            if (!response.error) {
                 dispatch({type: OFFER_CREATED});
                 dispatch({type: SHOW_NOTIFICATION, payload: t('notification.offerCreated')});
                 setTimeout(() => {

@@ -1,4 +1,13 @@
-import {API_LOGIN, API_LOGOUT, API_MY_OFFERS, API_OFFERS, API_REGISTER, API_USER, SOLD_SUFFIX} from './endpoints'
+import {
+    API_LOGIN,
+    API_LOGOUT,
+    API_MESSAGES,
+    API_MY_OFFERS,
+    API_OFFERS,
+    API_REGISTER,
+    API_USER,
+    SOLD_SUFFIX
+} from './endpoints'
 import HttpUtility from './http-utility'
 import {
     DELETE_OFFER,
@@ -175,7 +184,38 @@ class Api {
     }
 
     createConversation(offerId) {
-        return undefined;
+        const url = this.API_URL + API_MESSAGES;
+
+        return HttpUtility.post({
+            url: url,
+            payload: offerId,
+        });
+    }
+
+    getAllConversations() {
+        const url = this.API_URL + API_MESSAGES;
+
+        return HttpUtility.get({
+            url: url
+        });
+    }
+
+    getConversation(conversationId) {
+        const url = this.API_URL + API_MESSAGES + '/' + conversationId;
+
+        return HttpUtility.get({
+            url: url,
+            payload: conversationId
+        });
+    }
+
+    sendMessage(conversationId, content) {
+        const url = this.API_URL + API_MESSAGES + '/' + conversationId;
+
+        return HttpUtility.post({
+            url: url,
+            payload: content,
+        });
     }
 }
 

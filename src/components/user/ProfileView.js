@@ -28,7 +28,7 @@ function ProfileView(props) {
     const handleSubmit = (data, actions) => {
         actions.setSubmitting(true);
         Api.updateUser(data.password).payload.then((response) => {
-            if (!response.status) {
+            if (!response.error) {
                 props.dispatch({type: UPDATE_USER, payload: response})
                 props.dispatch({type: SHOW_NOTIFICATION, payload: t('notification.profileUpdated')});
                 setTimeout(() => {
