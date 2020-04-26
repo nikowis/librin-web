@@ -13,7 +13,7 @@ import Button from "@material-ui/core/Button";
 import {EDIT_OFFER, HIDE_NOTIFICATION, OFFER_UPDATED, SHOW_NOTIFICATION} from "../../redux/actions";
 import {store} from "../../index";
 import {NOTIFICATION_DURATION, OfferStatus} from "../../common/app-constants";
-import {MY_OFFERS, OFFERS} from "../../common/paths";
+import {MESSAGES, MY_OFFERS, OFFERS} from "../../common/paths";
 
 function OfferView(props) {
 
@@ -44,11 +44,9 @@ function OfferView(props) {
     };
 
     const handleSendMessage = () => {
-        // dispatch(Api.createConversation(id)).then(res => {
-        //     if (res.action.payload && !res.action.payload.status) {
-        //
-        //     }
-        // });
+        dispatch(Api.createConversation(id)).then(res => {
+            history.push(MESSAGES + '/' + res.value.id);
+        });
     };
 
     const handleSold = () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import '../App.scss';
 import {connect} from "react-redux";
-import {LOGIN, LOGOUT, MY_OFFERS, CREATE_OFFER, PROFILE, REGISTER, ROOT, OFFERS} from "../common/paths";
+import {LOGIN, LOGOUT, MY_OFFERS, CREATE_OFFER, PROFILE, REGISTER, ROOT, OFFERS, MESSAGES} from "../common/paths";
 import {useTranslation} from 'react-i18next';
 import MenuIcon from '@material-ui/icons/Menu';
 
@@ -27,7 +27,7 @@ import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
 import PersonIcon from '@material-ui/icons/Person';
 import AddIcon from '@material-ui/icons/Add';
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-
+import MailOutlineIcon from '@material-ui/icons/MailOutline';
 function TopMenu(props) {
 
     const {t, i18n} = useTranslation();
@@ -61,10 +61,15 @@ function TopMenu(props) {
     const currentPathname = props.history.location.pathname;
 
     function authenticatedMenu() {
+        let urlIdSuffixRegex = /\/\d+/g;
         return (<List>
             <ListItem selected={currentPathname === OFFERS || currentPathname === ROOT} button key={'offers'} onClick={() => redirect(OFFERS)}>
                 <ListItemIcon><HomeIcon/></ListItemIcon>
                 <ListItemText primary={t('offers.page')}/>
+            </ListItem>
+            <ListItem selected={currentPathname === MESSAGES || currentPathname.replace(urlIdSuffixRegex, "") === MESSAGES} button key={'messages'} onClick={() => redirect(MESSAGES)}>
+                <ListItemIcon><MailOutlineIcon/></ListItemIcon>
+                <ListItemText primary={t('messages.page')}/>
             </ListItem>
             <ListItem selected={currentPathname === CREATE_OFFER} button key={'create'} onClick={() => redirect(CREATE_OFFER)}>
                 <ListItemIcon><AddIcon/></ListItemIcon>

@@ -16,9 +16,12 @@ import {
     FETCH_OFFER,
     FETCH_OFFERS,
     FETCH_USER,
+    GET_ALL_CONVERSATIONS,
+    GET_CONVERSATION,
     LOGIN_ACTION,
     LOGOUT_ACTION,
     REGISTER_ACTION,
+    SEND_MESSAGE,
     UPDATE_USER
 } from "../redux/actions";
 import {DEFAULT_PAGE_SIZE, DEFAULT_SORT} from './app-constants'
@@ -188,7 +191,8 @@ class Api {
 
         return HttpUtility.post({
             url: url,
-            payload: offerId,
+            payload: {offerId: offerId},
+            action: GET_CONVERSATION
         });
     }
 
@@ -196,7 +200,8 @@ class Api {
         const url = this.API_URL + API_MESSAGES;
 
         return HttpUtility.get({
-            url: url
+            url: url,
+            action: GET_ALL_CONVERSATIONS
         });
     }
 
@@ -205,7 +210,7 @@ class Api {
 
         return HttpUtility.get({
             url: url,
-            payload: conversationId
+            action: GET_CONVERSATION
         });
     }
 
@@ -214,7 +219,8 @@ class Api {
 
         return HttpUtility.post({
             url: url,
-            payload: content,
+            payload: {content: content},
+            action: SEND_MESSAGE
         });
     }
 }
