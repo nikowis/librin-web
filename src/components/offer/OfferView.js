@@ -158,7 +158,7 @@ OfferView.propTypes = {
             id: PropTypes.number,
             title: PropTypes.string,
             author: PropTypes.string,
-            price: PropTypes.string,
+            price: PropTypes.number,
             status: PropTypes.string,
             ownerId: PropTypes.number,
         }),

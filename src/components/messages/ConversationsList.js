@@ -46,5 +46,7 @@ ConversationsList.propTypes = {
 };
 
 export default connect(state => ({
-
+    offers: state.messages.content,
+    currentPage: state.messages.currentPage,
+    totalPages: state.messages.totalPages,
 }))(withRouter(ConversationsList));
