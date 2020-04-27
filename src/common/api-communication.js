@@ -10,6 +10,7 @@ import {
 } from './endpoints'
 import HttpUtility from './http-utility'
 import {
+    CREATE_CONVERSATION,
     DELETE_OFFER,
     FETCH_MY_OFFER,
     FETCH_MY_OFFERS,
@@ -192,7 +193,7 @@ class Api {
         return HttpUtility.post({
             url: url,
             payload: {offerId: offerId},
-            action: GET_CONVERSATION
+            action: CREATE_CONVERSATION
         });
     }
 

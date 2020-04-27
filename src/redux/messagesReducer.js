@@ -1,8 +1,9 @@
 import {
+    CREATE_CONVERSATION,
     FULFILLED,
     GET_ALL_CONVERSATIONS,
     GET_CONVERSATION,
-    PENDING,
+    PENDING, SELECT_CONVERSATION,
     SEND_MESSAGE
 } from "./actions";
 
@@ -46,6 +47,16 @@ const messagesReducer = (state = initialState, action) => {
                     ...payload
                 }
             };
+        case SELECT_CONVERSATION:
+            const selectedConv = state.content ? state.content.find(conv => conv.id === payload) : initialState.currentConversation;
+            return {
+                ...state,
+                currentConversation: {
+                    ...selectedConv
+                }
+            };
+        case CREATE_CONVERSATION + FULFILLED:
+            return initialState;
         default:
             return state
     }

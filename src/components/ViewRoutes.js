@@ -18,7 +18,7 @@ import {
     REGISTER,
     ROOT,
     EDIT_OFFER,
-    VIEW_OFFER, MESSAGES
+    VIEW_OFFER, MESSAGES, MESSAGES_CONVERSATION
 } from "../common/paths";
 import MyOffersTableView from "./offer/MyOffersTableView";
 import CreateOfferView from "./offer/CreateOfferView";
@@ -49,6 +49,9 @@ function ViewRoutes() {
             </AuthenticatedRoute>
             <AuthenticatedRoute path={MY_OFFERS}>
                 <MyOffersTableView/>
+            </AuthenticatedRoute>
+            <AuthenticatedRoute path={MESSAGES_CONVERSATION}>
+                <MessagesView/>
             </AuthenticatedRoute>
             <AuthenticatedRoute path={MESSAGES}>
                 <MessagesView/>

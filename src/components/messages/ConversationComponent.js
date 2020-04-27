@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import '../../App.scss';
-import {withRouter} from 'react-router-dom';
+import {useParams, withRouter} from 'react-router-dom';
 import {useTranslation} from "react-i18next";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
@@ -12,15 +12,22 @@ import {Formik} from "formik";
 import Api from "../../common/api-communication";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import ListItemText from "@material-ui/core/ListItemText";
 
 function ConversationComponent(props) {
 
     const {t} = useTranslation();
     const {dispatch, currentConversation} = props;
+    const {messages, offer} = currentConversation;
+    const propId = currentConversation.id;
 
-    const {id, messages, offer} = currentConversation;
+    let {msgId} = useParams();
+
+    useEffect(() => {
+        if (!propId || propId.toString() !== msgId) {
+            dispatch(Api.getConversation(msgId));
+        }
+    }, [dispatch, msgId, propId]);
 
     const handleSendMessage = (data, actions) => {
         const {dispatch} = props;
@@ -30,20 +37,26 @@ function ConversationComponent(props) {
     };
 
     const messageRows = () => {
-        return messages.map((msg) => { return (
-            <ListItem>
-                <ListItemText primary={msg.content} secondary={msg.createdAt} />
-            </ListItem>
-        )});
+        return messages.map((msg) => {
+            return (
+                <ListItem key={msg.id}>
+                    <ListItemText primary={msg.content} secondary={msg.createdAt}/>
+                </ListItem>
+            )
+        });
     };
 
     return (
         <Card>
-            CONVERSATION FOR OFFER {currentConversation.offer.id}
+            CONVERSATION FOR OFFER {currentConversation.offer ? currentConversation.offer.id : null}
 
-            <List>
-                {messageRows()}
-            </List>
+            {
+                currentConversation.id ?
+                <List>
+                    {messageRows()}
+                </List>
+                : null
+            }
 
             <Formik validationSchema={messageSchema}
                     onSubmit={handleSendMessage}
@@ -96,8 +109,10 @@ ConversationComponent.propTypes = {
             }),
             createdAt: PropTypes.string
         }),
+    conversations: PropTypes.array
 };
 
 export default connect(state => ({
-    currentConversation: state.messages.currentConversation
+    currentConversation: state.messages.currentConversation,
+    conversations: state.messages.content
 }))(withRouter(ConversationComponent));

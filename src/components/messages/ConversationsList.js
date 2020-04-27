@@ -5,48 +5,79 @@ import {useParams, withRouter} from 'react-router-dom';
 import {useTranslation} from "react-i18next";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import LoaderView from "../LoaderView";
-import {TextField} from "@material-ui/core";
-import CurrencyTextField from "@unicef/material-ui-currency-textfield";
 import Card from "@material-ui/core/Card/Card";
-import Button from "@material-ui/core/Button";
-import {EDIT_OFFER, HIDE_NOTIFICATION, OFFER_UPDATED, SHOW_NOTIFICATION} from "../../redux/actions";
-import {store} from "../../index";
-import {NOTIFICATION_DURATION, OfferStatus} from "../../common/app-constants";
-import {MESSAGES, MY_OFFERS, OFFERS} from "../../common/paths";
-import Grid from "@material-ui/core/Grid";
-import ConversationComponent from "./ConversationComponent";
+import {SELECT_CONVERSATION} from "../../redux/actions";
+import {MESSAGES} from "../../common/paths";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText/ListItemText";
 
 function ConversationsList(props) {
 
     const {t} = useTranslation();
-    const {dispatch} = props;
-    let {id} = useParams();
-    const propId = props.id;
+    const {conversations} = props;
+    let {msgId} = useParams();
+    const {dispatch, history} = props;
 
-    const {history} = props;
+    useEffect(() => {
+        if (conversations === null) {
+            dispatch(Api.getAllConversations());
+        }
+    }, [dispatch, conversations]);
 
-    const getView = () => {
-        return (
-            <>
-                </>
-        );
+    useEffect(() => {
+        if (conversations !== null && conversations.length && !msgId) {
+            redirect(conversations[0].id);
+        }
+    }, [dispatch, conversations, msgId]);
+
+    const redirect = (conversationId) => {
+        dispatch({type: SELECT_CONVERSATION, payload: conversationId});
+        history.push(MESSAGES + '/' + conversationId);
+    };
+
+    const conversationRows = () => {
+        return conversations.map((conv) => { return (
+            <ListItem key={conv.id} selected={conv.id === msgId} onClick={() => redirect(conv.id)}>
+                <ListItemText primary={'Conversation ' + conv.id} secondary={conv.updatedAt} />
+            </ListItem>
+        )});
     };
 
     return (
         <Card>
             CONVERSATIONNZ LIIIZT
-            {/*{!title || id.toString() !== id ? <LoaderView/> : getView()}*/}
+            { conversations ?
+            <List>
+                {conversationRows()}
+            </List> : null
+            }
         </Card>
     );
 }
 
 ConversationsList.propTypes = {
-
+    conversations: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number,
+            messages: PropTypes.array,
+            offer: PropTypes.shape({
+                id: PropTypes.number,
+                title: PropTypes.string,
+                author: PropTypes.string,
+                price: PropTypes.string,
+                status: PropTypes.string,
+                ownerId: PropTypes.number,
+            }),
+            createdAt: PropTypes.string
+        }),
+    ),
+    currentPage: PropTypes.number,
+    totalPages: PropTypes.number,
 };
 
 export default connect(state => ({
-    offers: state.messages.content,
+    conversations: state.messages.content,
     currentPage: state.messages.currentPage,
-    totalPages: state.messages.totalPages,
+    totalPages: state.messages.totalPages
 }))(withRouter(ConversationsList));
