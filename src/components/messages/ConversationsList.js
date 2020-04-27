@@ -16,7 +16,7 @@ function ConversationsList(props) {
 
     const {t} = useTranslation();
     const {conversations} = props;
-    let {msgId} = useParams();
+    let {convId} = useParams();
     const {dispatch, history} = props;
 
     useEffect(() => {
@@ -25,20 +25,20 @@ function ConversationsList(props) {
         }
     }, [dispatch, conversations]);
 
-    useEffect(() => {
-        if (conversations !== null && conversations.length && !msgId) {
-            redirect(conversations[0].id);
-        }
-    }, [dispatch, conversations, msgId]);
-
     const redirect = (conversationId) => {
         dispatch({type: SELECT_CONVERSATION, payload: conversationId});
         history.push(MESSAGES + '/' + conversationId);
     };
 
+    useEffect(() => {
+        if (conversations !== null && conversations.length && !convId) {
+            redirect(conversations[0].id);
+        }
+    }, [dispatch, conversations, convId]);
+
     const conversationRows = () => {
         return conversations.map((conv) => { return (
-            <ListItem key={conv.id} selected={conv.id === msgId} onClick={() => redirect(conv.id)}>
+            <ListItem selected={conv.id.toString() === convId} button key={conv.id} onClick={() => redirect(conv.id)}>
                 <ListItemText primary={'Conversation ' + conv.id} secondary={conv.updatedAt} />
             </ListItem>
         )});
@@ -46,7 +46,7 @@ function ConversationsList(props) {
 
     return (
         <Card>
-            CONVERSATIONNZ LIIIZT
+            {t('messages.conversationsList')}
             { conversations ?
             <List>
                 {conversationRows()}

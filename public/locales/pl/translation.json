@@ -55,6 +55,11 @@
       "delete": "Usuń ofertę"
     }
   },
+  "messages" : {
+    "page": "Wiadomości",
+    "conversationsList": "Wiadomości",
+    "conversation": "Oferta "
+  },
   "notification": {
     "registered": "Konto utworzone",
     "profileUpdated": "Profil zaktualizowany",

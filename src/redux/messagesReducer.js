@@ -3,7 +3,7 @@ import {
     FULFILLED,
     GET_ALL_CONVERSATIONS,
     GET_CONVERSATION,
-    PENDING, SELECT_CONVERSATION,
+    SELECT_CONVERSATION,
     SEND_MESSAGE
 } from "./actions";
 
@@ -20,6 +20,19 @@ const initialState = {
         createdAt: null
     }
 };
+
+function insertItem(array, action) {
+    return [
+        ...array.slice(0, action.index),
+        action.item,
+        ...array.slice(action.index)
+    ]
+}
+
+function removeItem(array, index) {
+    return [...array.slice(0, index), ...array.slice(index + 1)]
+}
+
 
 const messagesReducer = (state = initialState, action) => {
     const payload = action.payload;
@@ -41,8 +54,17 @@ const messagesReducer = (state = initialState, action) => {
                 totalElements: payload.totalElements,
             };
         case SEND_MESSAGE + FULFILLED:
+            let conversationList = state.content;
+            const updatedConvIndex = conversationList ? conversationList.findIndex(conv => conv.id === payload.id) : null;
+
+            if(updatedConvIndex >= 0) {
+                conversationList =  removeItem(conversationList, updatedConvIndex);
+                conversationList = insertItem(conversationList, {index: 0, item: payload});
+            }
+
             return {
                 ...state,
+                content: conversationList,
                 currentConversation: {
                     ...payload
                 }

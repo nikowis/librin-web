@@ -17,29 +17,33 @@ import ListItemText from "@material-ui/core/ListItemText";
 function ConversationComponent(props) {
 
     const {t} = useTranslation();
-    const {dispatch, currentConversation} = props;
-    const {messages, offer} = currentConversation;
+    const {dispatch, currentConversation, userId} = props;
+    const {messages} = currentConversation;
     const propId = currentConversation.id;
 
-    let {msgId} = useParams();
+    let {convId} = useParams();
 
     useEffect(() => {
-        if (!propId || propId.toString() !== msgId) {
-            dispatch(Api.getConversation(msgId));
+        if (!propId || propId.toString() !== convId) {
+            dispatch(Api.getConversation(convId));
         }
-    }, [dispatch, msgId, propId]);
+    }, [dispatch, convId, propId]);
 
     const handleSendMessage = (data, actions) => {
         const {dispatch} = props;
         actions.setSubmitting(true);
         dispatch(Api.sendMessage(currentConversation.id, data.content))
-            .finally(() => actions.setSubmitting(false));
+            .finally(() => {
+                actions.setSubmitting(false)
+                actions.resetForm()
+            });
     };
 
     const messageRows = () => {
         return messages.map((msg) => {
+            const myMsg = msg.createdBy.toString() === userId.toString();
             return (
-                <ListItem key={msg.id}>
+                <ListItem key={msg.id} selected={myMsg}>
                     <ListItemText primary={msg.content} secondary={msg.createdAt}/>
                 </ListItem>
             )
@@ -48,14 +52,14 @@ function ConversationComponent(props) {
 
     return (
         <Card>
-            CONVERSATION FOR OFFER {currentConversation.offer ? currentConversation.offer.id : null}
+            {t('messages.conversation')} {currentConversation.offer ? currentConversation.offer.id : null}
 
             {
                 currentConversation.id ?
-                <List>
-                    {messageRows()}
-                </List>
-                : null
+                    <List>
+                        {messageRows()}
+                    </List>
+                    : null
             }
 
             <Formik validationSchema={messageSchema}
@@ -73,17 +77,18 @@ function ConversationComponent(props) {
                       isSubmitting
                   }) => (
                     <form onSubmit={handleSubmit}>
-                        <TextField
-                            error={errors.content && touched.content}
-                            label={t('content')}
-                            name="content"
-                            variant="outlined"
-                            value={values.content}
-                            onChange={handleChange}
-                            helperText={(errors.content && touched.content) && t(errors.content)}
-                            margin="normal"
-                        />
-
+                        <div>
+                            <TextField
+                                error={errors.content && touched.content}
+                                label={t('content')}
+                                name="content"
+                                variant="outlined"
+                                value={values.content}
+                                onChange={handleChange}
+                                helperText={(errors.content && touched.content) && t(errors.content)}
+                                margin="normal"
+                            />
+                        </div>
                         <Button variant="contained" color="primary" type="submit" disabled={isSubmitting}>
                             {t('messages.submit')}
                         </Button>
@@ -95,6 +100,7 @@ function ConversationComponent(props) {
 }
 
 ConversationComponent.propTypes = {
+    userId: PropTypes.number,
     currentConversation:
         PropTypes.shape({
             id: PropTypes.number,
@@ -113,6 +119,7 @@ ConversationComponent.propTypes = {
 };
 
 export default connect(state => ({
+    userId: state.user.id,
     currentConversation: state.messages.currentConversation,
     conversations: state.messages.content
 }))(withRouter(ConversationComponent));

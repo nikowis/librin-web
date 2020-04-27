@@ -25,7 +25,7 @@ import {
     SEND_MESSAGE,
     UPDATE_USER
 } from "../redux/actions";
-import {DEFAULT_PAGE_SIZE, DEFAULT_SORT} from './app-constants'
+import {DEFAULT_PAGE_SIZE, DEFAULT_SORT, DESC_SORT, UPDATED_AT_SORT} from './app-constants'
 
 class Api {
 
@@ -197,8 +197,19 @@ class Api {
         });
     }
 
-    getAllConversations() {
-        const url = this.API_URL + API_MESSAGES;
+    getAllConversations(page) {
+        const params = {
+            size: DEFAULT_PAGE_SIZE,
+            sort: UPDATED_AT_SORT + ',' + DESC_SORT,
+            page
+        };
+
+        if (!page || page < 0) {
+            params.page = 0;
+        }
+
+        const url = new URL(this.API_URL + API_MESSAGES);
+        url.search = new URLSearchParams(params).toString();
 
         return HttpUtility.get({
             url: url,
