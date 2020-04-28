@@ -60,7 +60,8 @@
     "page": "Wiadomości",
     "conversationsList": "Wiadomości",
     "message": "Nowa wiadomość",
-    "submit": "Wyślij"
+    "submit": "Wyślij",
+    "nomessages": "Brak wiadomości"
   },
   "notification": {
     "registered": "Konto utworzone",

@@ -96,13 +96,13 @@ function TopMenu(props) {
                 <ListItemIcon><HomeIcon/></ListItemIcon>
                 <ListItemText primary={t('offers.page')}/>
             </ListItem>
-            <ListItem selected={currentPathname === REGISTER} button key={'register'} onClick={() => redirect(REGISTER)}>
-                <ListItemIcon><VpnKeyIcon/></ListItemIcon>
-                <ListItemText primary={t('register.page')}/>
-            </ListItem>
             <ListItem selected={currentPathname === LOGIN} button key={'login'} onClick={() => redirect(LOGIN)}>
                 <ListItemIcon><VpnKeyIcon/></ListItemIcon>
                 <ListItemText primary={t('login.page')}/>
+            </ListItem>
+            <ListItem selected={currentPathname === REGISTER} button key={'register'} onClick={() => redirect(REGISTER)}>
+                <ListItemIcon><VpnKeyIcon/></ListItemIcon>
+                <ListItemText primary={t('register.page')}/>
             </ListItem>
         </List>);
     }

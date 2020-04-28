@@ -6,6 +6,7 @@ import {
     SELECT_CONVERSATION,
     SEND_MESSAGE
 } from "./actions";
+import {insertItem, removeItem} from "../common/array-helper";
 
 const initialState = {
     content: null,
@@ -20,19 +21,6 @@ const initialState = {
         createdAt: null
     }
 };
-
-function insertItem(array, action) {
-    return [
-        ...array.slice(0, action.index),
-        action.item,
-        ...array.slice(action.index)
-    ]
-}
-
-function removeItem(array, index) {
-    return [...array.slice(0, index), ...array.slice(index + 1)]
-}
-
 
 const messagesReducer = (state = initialState, action) => {
     const payload = action.payload;

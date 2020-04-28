@@ -34,7 +34,7 @@ function EditOfferView(props) {
         actions.setSubmitting(true);
         Api.updateOffer(data).payload.then((response) => {
             if (!response.error) {
-                dispatch({type: OFFER_UPDATED});
+                dispatch({type: OFFER_UPDATED, payload: response});
                 dispatch({type: SHOW_NOTIFICATION, payload: t('notification.offerUpdated')});
                 setTimeout(() => {
                     dispatch({type: HIDE_NOTIFICATION})

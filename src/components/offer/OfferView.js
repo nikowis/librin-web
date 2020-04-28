@@ -52,7 +52,7 @@ function OfferView(props) {
     const handleSold = () => {
         dispatch(Api.offerSold(id)).then(res => {
             if (!res.status) {
-                dispatch({type: OFFER_UPDATED});
+                dispatch({type: OFFER_UPDATED, payload: res});
                 dispatch({type: SHOW_NOTIFICATION, payload: t('notification.offerUpdated')});
                 setTimeout(() => {
                     dispatch({type: HIDE_NOTIFICATION})

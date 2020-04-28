@@ -15,12 +15,14 @@ import LoaderView from "../LoaderView";
 import {SELECT_CONVERSATION} from "../../redux/actions";
 import {MESSAGES} from "../../common/paths";
 import Divider from "@material-ui/core/Divider";
+import {useTranslation} from "react-i18next";
 
 function MessagesView(props) {
 
-    const {dispatch, history, currentConversation, conversations, userId} = props;
+    const {dispatch, history, currentConversation, conversations, userId, totalPages} = props;
     const propId = currentConversation.id;
     let {convId} = useParams();
+    const {t} = useTranslation();
 
     const redirect = (conversationId) => {
         dispatch({type: SELECT_CONVERSATION, payload: conversationId});
@@ -29,9 +31,10 @@ function MessagesView(props) {
 
     useEffect(() => {
         if (conversations !== null && conversations.length && !convId) {
-            redirect(conversations[0].id);
+            dispatch({type: SELECT_CONVERSATION, payload: conversations[0].id});
+            history.push(MESSAGES + '/' + conversations[0].id);
         }
-    }, [dispatch, conversations, convId]);
+    }, [dispatch, history, conversations, convId]);
 
     useEffect(() => {
         if (conversations === null) {
@@ -40,7 +43,7 @@ function MessagesView(props) {
     }, [dispatch, conversations]);
 
     useEffect(() => {
-        if (!propId || propId.toString() !== convId) {
+        if (convId && (!propId || propId.toString() !== convId)) {
             dispatch(Api.getConversation(convId));
         }
     }, [dispatch, convId, propId]);
@@ -61,21 +64,22 @@ function MessagesView(props) {
                 <Card>
                     {
                         conversations ?
-                            <ConversationsList onConversationClick={redirect} conversations={conversations}/>
+                            <ConversationsList userId={userId} onConversationClick={redirect} conversations={conversations}/>
                             : <LoaderView/>
                     }
                 </Card>
             </Grid>
             <Grid item xs={12} md={8}>
                 <Card>
-                    {currentConversation.id ?
-                        <List>
-                            <ConversationOfferPreviewComponent conversation={currentConversation}/>
-                            <Divider variant="middle"/>
-                            <ConversationComponent userId={userId} currentConversation={currentConversation}/>
-                            <SendMessageFormComponent onSendMessage={handleSendMessage}/>
-                        </List> :
-                        <LoaderView/>
+                    {totalPages !== null && totalPages === 0 ? t('messages.nomessages') :
+                        currentConversation.id ?
+                            <List>
+                                <ConversationOfferPreviewComponent conversation={currentConversation}/>
+                                <Divider variant="middle"/>
+                                <ConversationComponent userId={userId} currentConversation={currentConversation}/>
+                                <SendMessageFormComponent onSendMessage={handleSendMessage}/>
+                            </List> :
+                            <LoaderView/>
                     }
                 </Card>
             </Grid>

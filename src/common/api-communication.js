@@ -183,7 +183,7 @@ class Api {
         const url = this.API_URL + API_MY_OFFERS + '/' + id + '/' + SOLD_SUFFIX;
 
         return HttpUtility.put({
-            url: url
+            url: url,
         });
     }
 
