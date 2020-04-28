@@ -29,8 +29,8 @@ function OffersTable(props) {
                 <TableCell align="right">{offer.author}</TableCell>
                 <TableCell align="right">{offer.price}</TableCell>
                 <TableCell align="right">{offer.status}</TableCell>
-                <TableCell align="right">{offer.createdAt}</TableCell>
-                <TableCell align="right">{offer.ownerId}</TableCell>
+                <TableCell align="right">{new Date(offer.createdAt).toLocaleString()}</TableCell>
+                <TableCell align="right">{offer.owner.login}</TableCell>
                 <TableCell align="right">
                     <div className="quick-action-btns">
                     {

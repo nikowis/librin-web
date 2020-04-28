@@ -23,7 +23,7 @@ function RegisterView(props) {
     const handleSubmit = (data, actions) => {
         actions.setSubmitting(true);
         Api.postRegister(data.login, data.password).payload.then((response) => {
-            if (!response.status) {
+            if (!response.error) {
                 dispatch({type: SHOW_NOTIFICATION, payload: t('notification.registered')});
                 setTimeout(() => {
                     dispatch({type: HIDE_NOTIFICATION})

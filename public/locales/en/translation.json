@@ -9,6 +9,7 @@
   "description": "Description",
   "author": "Author",
   "price": "Price",
+  "currencySymbol": "PLN",
   "status": "Status",
   "createdAt": "Created at",
   "owner": "Owner",
@@ -54,6 +55,15 @@
       "edit": "Edit offer",
       "delete": "Delete offer"
     }
+  },
+  "messages" : {
+    "page": "Messages",
+    "conversationsList": "Messages",
+    "message": "New message",
+    "submit": "Send",
+    "nomessages": "No messages",
+    "newer" : "Newer",
+    "older" : "Older"
   },
   "notification": {
     "registered": "Account created",

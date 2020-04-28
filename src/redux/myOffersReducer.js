@@ -5,9 +5,10 @@ import {
     FETCH_MY_OFFERS,
     FULFILLED,
     LOGOUT_ACTION,
-    OFFER_CREATED,
+    OFFER_CREATED, OFFER_UPDATED,
     PENDING
 } from "./actions";
+import {insertItem, removeItem} from "../common/array-helper";
 
 const initialState = {
     content: null,
@@ -48,6 +49,18 @@ const myOffersReducer = (state = initialState, action) => {
                 currentOffer: {
                     ...payload
                 }
+            };
+        case OFFER_UPDATED:
+            let updatedOffer = payload;
+            let allOffers = state.content;
+            const updatedOfferIndex = allOffers ? allOffers.findIndex(offer => offer.id === updatedOffer.id) : null;
+            if (allOffers && updatedOfferIndex >= 0) {
+                allOffers = removeItem(allOffers, updatedOfferIndex);
+                allOffers = insertItem(allOffers, {index: updatedOfferIndex, item: updatedOffer});
+            }
+            return {
+                ...state,
+                content: allOffers
             };
         case LOGOUT_ACTION + PENDING:
         case OFFER_CREATED:

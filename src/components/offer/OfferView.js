@@ -13,7 +13,7 @@ import Button from "@material-ui/core/Button";
 import {EDIT_OFFER, HIDE_NOTIFICATION, OFFER_UPDATED, SHOW_NOTIFICATION} from "../../redux/actions";
 import {store} from "../../index";
 import {NOTIFICATION_DURATION, OfferStatus} from "../../common/app-constants";
-import {MY_OFFERS, OFFERS} from "../../common/paths";
+import {MESSAGES, MY_OFFERS, OFFERS} from "../../common/paths";
 
 function OfferView(props) {
 
@@ -44,17 +44,15 @@ function OfferView(props) {
     };
 
     const handleSendMessage = () => {
-        // dispatch(Api.createConversation(id)).then(res => {
-        //     if (res.action.payload && !res.action.payload.status) {
-        //
-        //     }
-        // });
+        dispatch(Api.createConversation(id)).then(res => {
+            history.push(MESSAGES + '/' + res.value.id);
+        });
     };
 
     const handleSold = () => {
         dispatch(Api.offerSold(id)).then(res => {
             if (!res.status) {
-                dispatch({type: OFFER_UPDATED});
+                dispatch({type: OFFER_UPDATED, payload: res});
                 dispatch({type: SHOW_NOTIFICATION, payload: t('notification.offerUpdated')});
                 setTimeout(() => {
                     dispatch({type: HIDE_NOTIFICATION})
@@ -104,7 +102,7 @@ function OfferView(props) {
                         name="price"
                         minimumValue={"0"}
                         value={price}
-                        currencySymbol="PLN"
+                        currencySymbol={t('currencySymbol')}
                         outputFormat="string"
                         decimalCharacter="."
                         decimalCharacterAlternative=","
@@ -160,7 +158,7 @@ OfferView.propTypes = {
             id: PropTypes.number,
             title: PropTypes.string,
             author: PropTypes.string,
-            price: PropTypes.string,
+            price: PropTypes.number,
             status: PropTypes.string,
             ownerId: PropTypes.number,
         }),

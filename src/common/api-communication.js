@@ -1,18 +1,31 @@
-import {API_LOGIN, API_LOGOUT, API_MY_OFFERS, API_OFFERS, API_REGISTER, API_USER, SOLD_SUFFIX} from './endpoints'
+import {
+    API_LOGIN,
+    API_LOGOUT,
+    API_MESSAGES,
+    API_MY_OFFERS,
+    API_OFFERS,
+    API_REGISTER,
+    API_USER,
+    SOLD_SUFFIX
+} from './endpoints'
 import HttpUtility from './http-utility'
 import {
+    CREATE_CONVERSATION,
     DELETE_OFFER,
     FETCH_MY_OFFER,
     FETCH_MY_OFFERS,
     FETCH_OFFER,
     FETCH_OFFERS,
     FETCH_USER,
+    GET_ALL_CONVERSATIONS,
+    GET_CONVERSATION,
     LOGIN_ACTION,
     LOGOUT_ACTION,
     REGISTER_ACTION,
+    SEND_MESSAGE,
     UPDATE_USER
 } from "../redux/actions";
-import {DEFAULT_PAGE_SIZE, DEFAULT_SORT} from './app-constants'
+import {DEFAULT_PAGE_SIZE, DEFAULT_SORT, DESC_SORT, UPDATED_AT_SORT} from './app-constants'
 
 class Api {
 
@@ -170,12 +183,57 @@ class Api {
         const url = this.API_URL + API_MY_OFFERS + '/' + id + '/' + SOLD_SUFFIX;
 
         return HttpUtility.put({
-            url: url
+            url: url,
         });
     }
 
     createConversation(offerId) {
-        return undefined;
+        const url = this.API_URL + API_MESSAGES;
+
+        return HttpUtility.post({
+            url: url,
+            payload: {offerId: offerId},
+            action: CREATE_CONVERSATION
+        });
+    }
+
+    getAllConversations(page) {
+        const params = {
+            size: DEFAULT_PAGE_SIZE,
+            sort: UPDATED_AT_SORT + ',' + DESC_SORT,
+            page
+        };
+
+        if (!page || page < 0) {
+            params.page = 0;
+        }
+
+        const url = new URL(this.API_URL + API_MESSAGES);
+        url.search = new URLSearchParams(params).toString();
+
+        return HttpUtility.get({
+            url: url,
+            action: GET_ALL_CONVERSATIONS
+        });
+    }
+
+    getConversation(conversationId) {
+        const url = this.API_URL + API_MESSAGES + '/' + conversationId;
+
+        return HttpUtility.get({
+            url: url,
+            action: GET_CONVERSATION
+        });
+    }
+
+    sendMessage(conversationId, content) {
+        const url = this.API_URL + API_MESSAGES + '/' + conversationId;
+
+        return HttpUtility.post({
+            url: url,
+            payload: {content: content},
+            action: SEND_MESSAGE
+        });
     }
 }
 

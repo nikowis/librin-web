@@ -9,6 +9,7 @@
   "description": "Opis",
   "author": "Autor",
   "price": "Cena",
+  "currencySymbol": "PLN",
   "status": "Status",
   "createdAt": "Data utworzenia",
   "owner": "Właściciel",
@@ -54,6 +55,15 @@
       "edit": "Edytuj ofertę",
       "delete": "Usuń ofertę"
     }
+  },
+  "messages" : {
+    "page": "Wiadomości",
+    "conversationsList": "Wiadomości",
+    "message": "Nowa wiadomość",
+    "submit": "Wyślij",
+    "nomessages": "Brak wiadomości",
+    "newer" : "Nowsze",
+    "older" : "Starsze"
   },
   "notification": {
     "registered": "Konto utworzone",

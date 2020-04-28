@@ -33,8 +33,8 @@ function EditOfferView(props) {
     const handleSubmit = (data, actions) => {
         actions.setSubmitting(true);
         Api.updateOffer(data).payload.then((response) => {
-            if (!response.status) {
-                dispatch({type: OFFER_UPDATED});
+            if (!response.error) {
+                dispatch({type: OFFER_UPDATED, payload: response});
                 dispatch({type: SHOW_NOTIFICATION, payload: t('notification.offerUpdated')});
                 setTimeout(() => {
                     dispatch({type: HIDE_NOTIFICATION})
@@ -113,7 +113,7 @@ function EditOfferView(props) {
                                     minimumValue={"0"}
                                     variant={'outlined'}
                                     value={values.price}
-                                    currencySymbol="PLN"
+                                    currencySymbol={t('currencySymbol')}
                                     outputFormat="string"
                                     decimalCharacter="."
                                     decimalCharacterAlternative=","
