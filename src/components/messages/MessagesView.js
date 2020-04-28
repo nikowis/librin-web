@@ -16,10 +16,14 @@ import {SELECT_CONVERSATION} from "../../redux/actions";
 import {MESSAGES} from "../../common/paths";
 import Divider from "@material-ui/core/Divider";
 import {useTranslation} from "react-i18next";
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import ListSubheader from "@material-ui/core/ListSubheader";
+import Fab from "@material-ui/core/Fab";
 
 function MessagesView(props) {
 
-    const {dispatch, history, currentConversation, conversations, userId, totalPages} = props;
+    const {dispatch, history, currentConversation, conversations, userId, totalPages, currentPage} = props;
     const propId = currentConversation.id;
     let {convId} = useParams();
     const {t} = useTranslation();
@@ -58,13 +62,40 @@ function MessagesView(props) {
             });
     };
 
+    const loadNextConversations = () => {
+        dispatch(Api.getAllConversations(currentPage));
+    };
+
+    const loadPrevConversations = () => {
+        dispatch(Api.getAllConversations(currentPage - 2));
+    };
+
+    let prevConversationLoader = currentPage > 1 ? (
+        <Fab variant="extended" onClick={() => loadPrevConversations()}>
+            <KeyboardArrowUpIcon/>
+            {t('messages.newer')}
+        </Fab>
+    ) : null;
+
+    let nextConversationLoader = currentPage >= totalPages ? null : (
+        <Fab variant="extended" onClick={() => loadNextConversations()}>
+            <KeyboardArrowDownIcon/>
+            {t('messages.older')}
+        </Fab>
+    );
+
     return (
         <Grid container spacing={3}>
             <Grid item xs={12} md={4}>
                 <Card>
                     {
                         conversations ?
-                            <ConversationsList userId={userId} onConversationClick={redirect} conversations={conversations}/>
+                            <List subheader={<ListSubheader>{t('messages.conversationsList')}</ListSubheader>}>
+                                {prevConversationLoader}
+                                <ConversationsList userId={userId} onConversationClick={redirect}
+                                                   conversations={conversations}/>
+                                {nextConversationLoader}
+                            </List>
                             : <LoaderView/>
                     }
                 </Card>

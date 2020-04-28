@@ -61,7 +61,9 @@
     "conversationsList": "Messages",
     "message": "New message",
     "submit": "Send",
-    "nomessages": "No messages"
+    "nomessages": "No messages",
+    "newer" : "Newer",
+    "older" : "Older"
   },
   "notification": {
     "registered": "Account created",

@@ -1,15 +1,11 @@
 import React from 'react';
 import '../../App.scss';
 import {useParams} from 'react-router-dom';
-import {useTranslation} from "react-i18next";
 import PropTypes from "prop-types";
-import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText/ListItemText";
-import ListSubheader from "@material-ui/core/ListSubheader";
 
 function ConversationsList(props) {
-    const {t} = useTranslation();
     let {convId} = useParams();
     const {onConversationClick, conversations, userId} = props;
 
@@ -27,9 +23,7 @@ function ConversationsList(props) {
 
     return (
         <>
-            <List subheader={<ListSubheader>{t('messages.conversationsList')}</ListSubheader>}>
-                {conversationRows()}
-            </List>
+            {conversationRows()}
         </>
     );
 }

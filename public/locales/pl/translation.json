@@ -61,7 +61,9 @@
     "conversationsList": "Wiadomości",
     "message": "Nowa wiadomość",
     "submit": "Wyślij",
-    "nomessages": "Brak wiadomości"
+    "nomessages": "Brak wiadomości",
+    "newer" : "Nowsze",
+    "older" : "Starsze"
   },
   "notification": {
     "registered": "Konto utworzone",
