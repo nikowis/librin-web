@@ -102,7 +102,7 @@ function OfferView(props) {
                         name="price"
                         minimumValue={"0"}
                         value={price}
-                        currencySymbol="PLN"
+                        currencySymbol={t('currencySymbol')}
                         outputFormat="string"
                         decimalCharacter="."
                         decimalCharacterAlternative=","

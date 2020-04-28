@@ -113,7 +113,7 @@ function EditOfferView(props) {
                                     minimumValue={"0"}
                                     variant={'outlined'}
                                     value={values.price}
-                                    currencySymbol="PLN"
+                                    currencySymbol={t('currencySymbol')}
                                     outputFormat="string"
                                     decimalCharacter="."
                                     decimalCharacterAlternative=","

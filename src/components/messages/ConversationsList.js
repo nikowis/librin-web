@@ -11,13 +11,14 @@ import {MESSAGES} from "../../common/paths";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText/ListItemText";
+import ListSubheader from "@material-ui/core/ListSubheader";
 
 function ConversationsList(props) {
 
     const {t} = useTranslation();
     const {conversations} = props;
     let {convId} = useParams();
-    const {dispatch, history} = props;
+    const {dispatch, history, userId} = props;
 
     useEffect(() => {
         if (conversations === null) {
@@ -37,26 +38,30 @@ function ConversationsList(props) {
     }, [dispatch, conversations, convId]);
 
     const conversationRows = () => {
-        return conversations.map((conv) => { return (
-            <ListItem selected={conv.id.toString() === convId} button key={conv.id} onClick={() => redirect(conv.id)}>
-                <ListItemText primary={'Conversation ' + conv.id} secondary={conv.updatedAt} />
-            </ListItem>
-        )});
+        return conversations.map((conv) => {
+            const recipientUsername = conv.customer.id === userId ? conv.offer.owner.login : conv.customer.login;
+            return (
+                <ListItem selected={conv.id.toString() === convId} button key={conv.id}
+                          onClick={() => redirect(conv.id)}>
+                    <ListItemText primary={recipientUsername} secondary={conv.offer.title+ ', ' + conv.offer.author}/>
+                </ListItem>
+            );
+        });
     };
 
     return (
         <Card>
-            {t('messages.conversationsList')}
-            { conversations ?
-            <List>
-                {conversationRows()}
-            </List> : null
+            {conversations ?
+                <List subheader={<ListSubheader>{t('messages.conversationsList')}</ListSubheader>}>
+                    {conversationRows()}
+                </List> : null
             }
         </Card>
     );
 }
 
 ConversationsList.propTypes = {
+    userId: PropTypes.number,
     conversations: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.number,
@@ -77,6 +82,7 @@ ConversationsList.propTypes = {
 };
 
 export default connect(state => ({
+    userId: state.user.id,
     conversations: state.messages.content,
     currentPage: state.messages.currentPage,
     totalPages: state.messages.totalPages

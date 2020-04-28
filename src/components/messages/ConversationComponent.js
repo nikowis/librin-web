@@ -13,6 +13,10 @@ import Api from "../../common/api-communication";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
+import LocalOfferIcon from '@material-ui/icons/LocalOffer';
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import Avatar from "@material-ui/core/Avatar";
+
 
 function ConversationComponent(props) {
 
@@ -42,9 +46,10 @@ function ConversationComponent(props) {
     const messageRows = () => {
         return messages.map((msg) => {
             const myMsg = msg.createdBy.toString() === userId.toString();
+            const styles  = myMsg ? {  textAlign: 'right'} : {};
             return (
                 <ListItem key={msg.id} selected={myMsg}>
-                    <ListItemText primary={msg.content} secondary={msg.createdAt}/>
+                    <ListItemText primary={msg.content} secondary={new Date(msg.createdAt).toLocaleString()} style={styles}/>
                 </ListItem>
             )
         });
@@ -52,11 +57,17 @@ function ConversationComponent(props) {
 
     return (
         <Card>
-            {t('messages.conversation')} {currentConversation.offer ? currentConversation.offer.id : null}
-
             {
                 currentConversation.id ?
                     <List>
+                        <ListItem>
+                            <ListItemAvatar>
+                                <Avatar>
+                                    <LocalOfferIcon />
+                                </Avatar>
+                            </ListItemAvatar>
+                            <ListItemText primary={currentConversation.offer.title + ', ' +currentConversation.offer.author} secondary={currentConversation.offer.price + t('currencySymbol')} />
+                        </ListItem>
                         {messageRows()}
                     </List>
                     : null
@@ -80,7 +91,7 @@ function ConversationComponent(props) {
                         <div>
                             <TextField
                                 error={errors.content && touched.content}
-                                label={t('content')}
+                                label={t('messages.message')}
                                 name="content"
                                 variant="outlined"
                                 value={values.content}
