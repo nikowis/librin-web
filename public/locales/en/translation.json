@@ -43,11 +43,13 @@
     "page": "Offers",
     "create": {
       "page": "Create offer",
-      "submit": "Create"
+      "submit": "Create",
+      "upload": "Photo"
     },
     "edit": {
       "page": "Edit offer",
-      "submit": "Save"
+      "submit": "Save",
+      "upload": "Photo"
     },
     "view": {
       "message": "Send message",

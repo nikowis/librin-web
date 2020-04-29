@@ -16,6 +16,10 @@ import PropTypes from "prop-types";
 import LoaderView from "../LoaderView";
 import {MY_OFFERS} from "../../common/paths";
 import Card from "@material-ui/core/Card";
+import PublishIcon from '@material-ui/icons/Publish';
+import IconButton from "@material-ui/core/IconButton";
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
+
 
 function EditOfferView(props) {
 
@@ -46,6 +50,25 @@ function EditOfferView(props) {
                 });
             }
         }).finally(() => actions.setSubmitting(false));
+    };
+
+    const loadFileToURI = (resolve, file) => {
+        let reader = new FileReader();
+        reader.onload = () => resolve({name: file.name, content: reader.result});
+        reader.readAsDataURL(file);
+    };
+
+    const handleUploadFile = (e, formikSetFieldValue) => {
+        const files = e.target.files;
+        Object.keys(files).forEach(i => {
+            const file = files[i];
+            new Promise( resolve => loadFileToURI(resolve, file))
+                // .then(file => this.compressFile(file))
+                // .then(file => this.validateFile(file))
+                .then(file => {
+                    formikSetFieldValue("attachment", file);
+                });
+        })
     };
 
     const getView = () => {
@@ -126,6 +149,27 @@ function EditOfferView(props) {
                                     margin="normal"
                                 />
                             </div>
+                            <div>
+                                <input
+                                    accept="image/*"
+                                    id="icon-button-photo"
+                                    style={{ display: 'none' }}
+                                    onChange={(event) => {
+                                        handleUploadFile(event, setFieldValue);
+                                    }}
+                                    type="file"
+                                />
+                                <label htmlFor="icon-button-photo">
+                                    <IconButton color="primary" component="span">
+                                        <PhotoCamera />
+                                        {values.attachment && values.attachment.name ? values.attachment.name : t('offers.edit.upload')}
+                                    </IconButton>
+                                </label>
+                                {/*<input id="file" name="file" type="file" onChange={(event) => {*/}
+                                {/*    setFieldValue("file", event.currentTarget.files[0]);*/}
+                                {/*}} />*/}
+
+                            </div>
                             <Button variant="contained" color="primary" type="submit" disabled={isSubmitting}>
                                 {t('offers.edit.submit')}
                             </Button>
@@ -146,8 +190,7 @@ function EditOfferView(props) {
 EditOfferView.propTypes = {
     id: PropTypes.number,
     title: PropTypes.string,
-    author: PropTypes.string,
-    price: PropTypes.string,
+    author: PropTypes.string
 };
 
 export default connect(state => ({

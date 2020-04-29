@@ -43,11 +43,13 @@
     "page": "Oferty",
     "create": {
       "page": "Utwórz ofertę",
-      "submit": "Utwórz"
+      "submit": "Utwórz",
+      "upload": "Zdjęcie"
     },
     "edit": {
       "page": "Edytuj ofertę",
-      "submit": "Zapisz"
+      "submit": "Zapisz",
+      "upload": "Zdjęcie"
     },
     "view": {
       "message": "Wyślij wiadomość",
