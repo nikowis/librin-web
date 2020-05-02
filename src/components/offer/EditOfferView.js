@@ -16,9 +16,9 @@ import PropTypes from "prop-types";
 import LoaderView from "../LoaderView";
 import {MY_OFFERS} from "../../common/paths";
 import Card from "@material-ui/core/Card";
-import PublishIcon from '@material-ui/icons/Publish';
-import IconButton from "@material-ui/core/IconButton";
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
+import Container from "@material-ui/core/Container";
+import Typography from "@material-ui/core/Typography";
 
 
 function EditOfferView(props) {
@@ -54,7 +54,7 @@ function EditOfferView(props) {
 
     const loadFileToURI = (resolve, file) => {
         let reader = new FileReader();
-        reader.onload = () => resolve({name: file.name, content: reader.result});
+        reader.onload = () => resolve({name: file.name, content: reader.result, url: URL.createObjectURL(file)});
         reader.readAsDataURL(file);
     };
 
@@ -62,14 +62,35 @@ function EditOfferView(props) {
         const files = e.target.files;
         Object.keys(files).forEach(i => {
             const file = files[i];
-            new Promise( resolve => loadFileToURI(resolve, file))
-                // .then(file => this.compressFile(file))
-                // .then(file => this.validateFile(file))
+            new Promise(resolve => loadFileToURI(resolve, file))
+            // .then(file => this.compressFile(file))
+            // .then(file => this.validateFile(file))
                 .then(file => {
                     formikSetFieldValue("attachment", file);
                 });
         })
     };
+
+    function base64ToFile(base64, filename) {
+        var arr = base64.split(','),
+            mime = arr[0].match(/:(.*?);/)[1],
+            bstr = atob(arr[1]),
+            n = bstr.length,
+            u8arr = new Uint8Array(n);
+
+        while (n--) {
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+
+        return new File([u8arr], filename, {type: mime});
+    }
+
+
+    const initializeAttachmentFromBase64 = (attachment) => {
+        const file = base64ToFile(attachment.content, attachment.name);
+        return {name: attachment.name, content: attachment.content, url: URL.createObjectURL(file)}
+    };
+
 
     const getView = () => {
         return (
@@ -79,7 +100,8 @@ function EditOfferView(props) {
                             id: props.id,
                             title: props.title,
                             author: props.author,
-                            price: props.price
+                            price: props.price,
+                            attachment: initializeAttachmentFromBase64(props.attachment)
                         }}
                 >
                     {({
@@ -152,23 +174,32 @@ function EditOfferView(props) {
                             <div>
                                 <input
                                     accept="image/*"
-                                    id="icon-button-photo"
-                                    style={{ display: 'none' }}
+                                    id="attachment"
+                                    style={{display: 'none'}}
                                     onChange={(event) => {
                                         handleUploadFile(event, setFieldValue);
                                     }}
                                     type="file"
                                 />
-                                <label htmlFor="icon-button-photo">
-                                    <IconButton color="primary" component="span">
-                                        <PhotoCamera />
-                                        {values.attachment && values.attachment.name ? values.attachment.name : t('offers.edit.upload')}
-                                    </IconButton>
-                                </label>
-                                {/*<input id="file" name="file" type="file" onChange={(event) => {*/}
-                                {/*    setFieldValue("file", event.currentTarget.files[0]);*/}
-                                {/*}} />*/}
+                                <label htmlFor="attachment">
 
+                                    <Container maxWidth="xs">
+                                        <Typography component="div"
+                                                    style={{backgroundColor: '#ebedee', height: '30vh'}}>
+                                            {values.attachment ?
+                                                <div style={{
+                                                    height: '100%', width: '100%',
+                                                    backgroundImage: 'url(' + values.attachment.url + ')',
+                                                    backgroundSize: '100% 100%',
+                                                    border: '1px black'
+                                                }}
+                                                /> :
+                                                <AddAPhotoIcon fontSize={'large'}/>
+                                            }
+                                        </Typography>
+                                    </Container>
+                                    {values.attachment && values.attachment.name ? values.attachment.name : t('offers.edit.upload')}
+                                </label>
                             </div>
                             <Button variant="contained" color="primary" type="submit" disabled={isSubmitting}>
                                 {t('offers.edit.submit')}
@@ -176,6 +207,8 @@ function EditOfferView(props) {
                         </form>
                     )}
                 </Formik>
+
+
             </Card>
         );
     };
@@ -197,5 +230,6 @@ export default connect(state => ({
     id: state.myoffers.currentOffer.id,
     title: state.myoffers.currentOffer.title,
     author: state.myoffers.currentOffer.author,
-    price: state.myoffers.currentOffer.price
+    price: state.myoffers.currentOffer.price,
+    attachment: state.myoffers.currentOffer.attachment,
 }))(withRouter(EditOfferView));
