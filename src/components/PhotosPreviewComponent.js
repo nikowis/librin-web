@@ -9,8 +9,7 @@ function PhotosPreviewComponent(props) {
 
     return (
         <>
-            <Typography component="div"
-                        style={{backgroundColor: '#f5f5f5', height: '30vh'}}>
+            <Typography component="div" className={'photoPreview centeredContainer'}>
                 {attachment && attachment.url ?
                     <div style={{
                         height: '100%', width: '100%',

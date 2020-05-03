@@ -13,6 +13,7 @@ import Grid from "@material-ui/core/Grid";
 import CardContent from "@material-ui/core/CardContent";
 import PhotosPreviewComponent from "../PhotosPreviewComponent";
 import Typography from "@material-ui/core/Typography";
+import CardActionArea from "@material-ui/core/CardActionArea";
 
 function OffersCardsView(props) {
 
@@ -51,6 +52,7 @@ function OffersCardsView(props) {
             return (
                 <Grid item xs={12} sm={6} md={4} key={offer.id} onClick={() => handleView(offer)}>
                     <Card elevation={3}>
+                        <CardActionArea>
                         <PhotosPreviewComponent attachment={offer.attachment}/>
                         <CardContent>
                             <Typography gutterBottom variant="h5" component="h2">
@@ -60,6 +62,7 @@ function OffersCardsView(props) {
                                 {offer.author}
                             </Typography>
                         </CardContent>
+                        </CardActionArea>
                     </Card>
                 </Grid>
             );
