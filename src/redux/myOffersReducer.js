@@ -5,10 +5,12 @@ import {
     FETCH_MY_OFFERS,
     FULFILLED,
     LOGOUT_ACTION,
-    OFFER_CREATED, OFFER_UPDATED,
+    OFFER_CREATED,
+    OFFER_UPDATED,
     PENDING
 } from "./actions";
 import {insertItem, removeItem} from "../common/array-helper";
+import {processOffer, processOffers} from "./offersReducer";
 
 const initialState = {
     content: null,
@@ -34,9 +36,11 @@ const myOffersReducer = (state = initialState, action) => {
                 loading: true
             };
         case FETCH_MY_OFFERS + FULFILLED:
+            let processedContent = processOffers(payload.content);
+
             return {
                 ...state,
-                content: payload.content,
+                content: processedContent,
                 loading: false,
                 currentPage: payload.number + 1,
                 totalPages: payload.totalPages,
@@ -44,10 +48,12 @@ const myOffersReducer = (state = initialState, action) => {
             };
         case EDIT_OFFER:
         case FETCH_MY_OFFER + FULFILLED:
+            let processedPayload = processOffer(payload);
+
             return {
                 ...state,
                 currentOffer: {
-                    ...payload
+                    ...processedPayload
                 }
             };
         case OFFER_UPDATED:

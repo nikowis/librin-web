@@ -14,6 +14,8 @@ import {EDIT_OFFER, HIDE_NOTIFICATION, OFFER_UPDATED, SHOW_NOTIFICATION} from ".
 import {store} from "../../index";
 import {NOTIFICATION_DURATION, OfferStatus} from "../../common/app-constants";
 import {MESSAGES, MY_OFFERS, OFFERS} from "../../common/paths";
+import PhotosPreviewComponent from "../PhotosPreviewComponent";
+import Container from "@material-ui/core/Container";
 
 function OfferView(props) {
 
@@ -23,7 +25,7 @@ function OfferView(props) {
     const propId = props.id;
 
     const {history} = props;
-    const {title, author, price, ownerId, status} = props.currentOffer;
+    const {title, author, price, ownerId, status, attachment} = props.currentOffer;
 
     useEffect(() => {
         if (!propId || propId.toString() !== id) {
@@ -113,6 +115,11 @@ function OfferView(props) {
                     />
                 </div>
                 <div>
+                    <Container maxWidth="xs">
+                        <PhotosPreviewComponent attachment={attachment}/>
+                    </Container>
+                </div>
+                <div>
                     {ownerId !== props.userId ?
                         <Button variant="contained" color="primary" type="submit" onClick={() => handleSendMessage()}>
                             {t('offers.view.message')}
@@ -158,9 +165,17 @@ OfferView.propTypes = {
             id: PropTypes.number,
             title: PropTypes.string,
             author: PropTypes.string,
-            price: PropTypes.number,
+            price: PropTypes.PropTypes.oneOfType([
+                PropTypes.string,
+                PropTypes.number
+            ]),
             status: PropTypes.string,
             ownerId: PropTypes.number,
+            attachment: PropTypes.shape({
+                name: PropTypes.number.isRequired,
+                content: PropTypes.string.isRequired,
+                url: PropTypes.string.isRequired
+            }),
         }),
 
 };

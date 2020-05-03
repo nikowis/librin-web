@@ -1,5 +1,6 @@
 import {DELETE_OFFER, FETCH_OFFER, FETCH_OFFERS, FULFILLED, OFFER_CREATED, OFFER_UPDATED, PENDING} from "./actions";
 import {insertItem, removeItem} from "../common/array-helper";
+import {initializeAttachmentFromBase64} from "../common/attachment-utility";
 
 const initialState = {
     content: null,
@@ -15,8 +16,23 @@ const initialState = {
     }
 };
 
+export function processOffer(offer) {
+    if(offer.attachment) {
+        offer.attachment = initializeAttachmentFromBase64(offer.attachment);
+    }
+    return offer;
+}
+
+export function processOffers(content) {
+    content.forEach(offer => {
+        processOffer(offer);
+    });
+    return content;
+}
+
 const offersReducer = (state = initialState, action) => {
     const payload = action.payload;
+
     switch (action.type) {
         case FETCH_OFFER + PENDING:
         case FETCH_OFFERS + PENDING:
@@ -25,19 +41,22 @@ const offersReducer = (state = initialState, action) => {
                 loading: true
             };
         case FETCH_OFFERS + FULFILLED:
+            let processedContent = processOffers(payload.content);
             return {
                 ...state,
-                content: payload.content,
+                content: processedContent,
                 loading: false,
                 currentPage: payload.number + 1,
                 totalPages: payload.totalPages,
                 totalElements: payload.totalElements,
             };
         case FETCH_OFFER + FULFILLED:
+            let processedPayload = processOffer(payload);
+
             return {
                 ...state,
                 currentOffer: {
-                    ...payload
+                    ...processedPayload
                 }
             };
         case OFFER_UPDATED:

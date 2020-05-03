@@ -17,13 +17,6 @@ import LoaderView from "../LoaderView";
 import {MY_OFFERS} from "../../common/paths";
 import Card from "@material-ui/core/Card";
 import PhotosInputComponent from "../PhotosInputComponent";
-import {
-    compressFile,
-    initializeAttachmentFromBase64,
-    loadFileToAttachmentObject,
-    validateFile
-} from "../../common/attachment-utility";
-
 
 function EditOfferView(props) {
 
@@ -65,7 +58,7 @@ function EditOfferView(props) {
                             title: props.title,
                             author: props.author,
                             price: props.price,
-                            attachment: initializeAttachmentFromBase64(props.attachment)
+                            attachment: (props.attachment)
                         }}
                 >
                     {({
@@ -158,7 +151,16 @@ function EditOfferView(props) {
 EditOfferView.propTypes = {
     id: PropTypes.number,
     title: PropTypes.string,
-    author: PropTypes.string
+    author: PropTypes.string,
+    price: PropTypes.PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ]),
+    attachment: PropTypes.shape({
+        name: PropTypes.number.isRequired,
+        content: PropTypes.string.isRequired,
+        url: PropTypes.string.isRequired
+    }),
 };
 
 export default connect(state => ({

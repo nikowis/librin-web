@@ -1,11 +1,10 @@
 import React from 'react';
 import '../App.scss';
 import Container from "@material-ui/core/Container";
-import Typography from "@material-ui/core/Typography";
-import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import {useTranslation} from "react-i18next";
 import PropTypes from "prop-types";
 import {compressFile, loadFileToAttachmentObject, validateFile} from "../common/attachment-utility";
+import PhotosPreviewComponent from "./PhotosPreviewComponent";
 
 function PhotosInputComponent(props) {
     const {setFieldValue, attachment} = props;
@@ -39,19 +38,7 @@ function PhotosInputComponent(props) {
 
             <Container maxWidth="xs">
                 <label htmlFor="attachment">
-                    <Typography component="div"
-                                style={{backgroundColor: '#ebedee', height: '30vh', border: '1px solid gray'}}>
-                        {attachment ?
-                            <div style={{
-                                height: '100%', width: '100%',
-                                backgroundImage: 'url(' + attachment.url + ')',
-                                backgroundSize: '100% 100%',
-                                border: '1px black'
-                            }}
-                            /> :
-                            <AddAPhotoIcon fontSize={'large'}/>
-                        }
-                    </Typography>
+                    <PhotosPreviewComponent attachment={attachment}/>
                 </label>
             </Container>
             {attachment && attachment.name ? attachment.name : t('offers.edit.upload')}

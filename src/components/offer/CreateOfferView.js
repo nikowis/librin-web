@@ -14,6 +14,7 @@ import Button from "@material-ui/core/Button";
 import CurrencyTextField from '@unicef/material-ui-currency-textfield'
 import {translate} from "../../common/i18n-helper";
 import Card from "@material-ui/core/Card";
+import PhotosInputComponent from "../PhotosInputComponent";
 
 function CreateOfferView(props) {
 
@@ -104,6 +105,9 @@ function CreateOfferView(props) {
                                 helperText={(errors.price && touched.price) ? translate(errors.price) : ''}
                                 margin="normal"
                             />
+                        </div>
+                        <div>
+                            <PhotosInputComponent setFieldValue={setFieldValue} attachment={values.attachment}/>
                         </div>
                         <Button variant="contained" color="primary" type="submit" disabled={isSubmitting}>
                             {t('offers.create.submit')}
