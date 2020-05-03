@@ -1,7 +1,7 @@
 import React from 'react';
 import '../App.scss';
 import Typography from "@material-ui/core/Typography";
-import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
+import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 import PropTypes from "prop-types";
 
 function PhotosPreviewComponent(props) {
@@ -10,16 +10,15 @@ function PhotosPreviewComponent(props) {
     return (
         <>
             <Typography component="div"
-                        style={{backgroundColor: '#ebedee', height: '30vh', border: '1px solid gray'}}>
+                        style={{backgroundColor: '#f5f5f5', height: '30vh'}}>
                 {attachment && attachment.url ?
                     <div style={{
                         height: '100%', width: '100%',
                         backgroundImage: 'url(' + attachment.url + ')',
-                        backgroundSize: '100% 100%',
-                        border: '1px black'
+                        backgroundSize: '100% 100%'
                     }}
                     /> :
-                    <AddAPhotoIcon fontSize={'large'}/>
+                    <PhotoCameraIcon fontSize={'large'}/>
                 }
             </Typography>
         </>
@@ -28,7 +27,7 @@ function PhotosPreviewComponent(props) {
 
 PhotosPreviewComponent.propTypes = {
     attachment: PropTypes.shape({
-        name: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
         content: PropTypes.string.isRequired,
         url: PropTypes.string.isRequired
     }),

@@ -5,12 +5,16 @@ import Api from "../../common/api-communication";
 import LoaderView from "./../LoaderView";
 import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
-import OffersTable from "./OffersTable";
 import {EDIT_OFFER} from "../../redux/actions";
 import {OFFERS} from "../../common/paths";
 import Card from "@material-ui/core/Card";
+import PaginationComponent from "../PaginationComponent";
+import Grid from "@material-ui/core/Grid";
+import CardContent from "@material-ui/core/CardContent";
+import PhotosPreviewComponent from "../PhotosPreviewComponent";
+import Typography from "@material-ui/core/Typography";
 
-function OffersTableView(props) {
+function OffersCardsView(props) {
 
     const {t} = useTranslation();
     const {dispatch, offers, location, history, currentPage, totalPages} = props;
@@ -42,21 +46,45 @@ function OffersTableView(props) {
         props.history.push(OFFERS + '/' + offer.id);
     };
 
+    const offerRows = () => {
+        return offers.map((offer) => {
+            return (
+                <Grid item xs={12} sm={6} md={4} key={offer.id} onClick={() => handleView(offer)}>
+                    <Card elevation={3}>
+                        <PhotosPreviewComponent attachment={offer.attachment}/>
+                        <CardContent>
+                            <Typography gutterBottom variant="h5" component="h2">
+                                {offer.title}
+                            </Typography>
+                            <Typography variant="body2" color="textSecondary" component="p">
+                                {offer.author}
+                            </Typography>
+                        </CardContent>
+                    </Card>
+                </Grid>
+            );
+        });
+    };
+
     const getView = () => {
         return <>
-            {pageQuery <= totalPages ? <OffersTable offers={offers} handleView={handleView} currentPathname={pathname} currentPage={currentPage} totalPages={totalPages}/> : t('noElementsFound')}
+            {pageQuery <= totalPages ? offerRows() : t('noElementsFound')}
         </>;
     };
 
     return (
-        <Card>
-            {offers === null ? <LoaderView/> : getView()}
-        </Card>
+        <>
+            <br/>
+            <Grid container spacing={3}>
+                {offers === null ? <LoaderView/> : getView()}
+            </Grid>
+            <PaginationComponent currentPathname={pathname} currentPage={currentPage} totalPages={totalPages}/>
+        </>
     );
 
 }
 
-OffersTableView.propTypes = {
+OffersCardsView.propTypes = {
     offers: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.number.isRequired,
@@ -83,4 +111,4 @@ export default connect(state => ({
     offers: state.offers.content,
     currentPage: state.offers.currentPage,
     totalPages: state.offers.totalPages,
-}))(withRouter(OffersTableView));
+}))(withRouter(OffersCardsView));

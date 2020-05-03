@@ -2,29 +2,31 @@ import React from 'react';
 import './../App.scss';
 import Login from "./LoginView";
 import {Route, Switch} from "react-router-dom";
-import OffersTableView from "./offer/OffersTableView";
 import Logout from "./Logout";
 import AuthenticatedRoute from "./AuthenticatedRoute";
 import Register from "./user/RegisterView";
 import Profile from "./user/ProfileView";
 import NoMatchingView from "./NoMatchingView";
 import {
-    OFFERS,
+    CREATE_OFFER,
+    EDIT_OFFER,
     LOGIN,
     LOGOUT,
+    MESSAGES,
+    MESSAGES_CONVERSATION,
     MY_OFFERS,
-    CREATE_OFFER,
+    OFFERS,
     PROFILE,
     REGISTER,
     ROOT,
-    EDIT_OFFER,
-    VIEW_OFFER, MESSAGES, MESSAGES_CONVERSATION
+    VIEW_OFFER
 } from "../common/paths";
 import MyOffersTableView from "./offer/MyOffersTableView";
 import CreateOfferView from "./offer/CreateOfferView";
 import EditOfferView from "./offer/EditOfferView";
 import OfferView from "./offer/OfferView";
 import MessagesView from "./messages/MessagesView";
+import OffersCardsView from "./offer/OffersCardsView";
 
 function ViewRoutes() {
     return (
@@ -60,10 +62,10 @@ function ViewRoutes() {
                 <OfferView/>
             </Route>
             <Route path={OFFERS}>
-                <OffersTableView/>
+                <OffersCardsView/>
             </Route>
             <Route path={ROOT}>
-                <OffersTableView/>
+                <OffersCardsView/>
             </Route>
             <Route component={NoMatchingView}/>
         </Switch>
