@@ -1,4 +1,5 @@
 import {
+    CLEAR_CURRENT_MYOFFER,
     DELETE_OFFER,
     EDIT_OFFER,
     FETCH_MY_OFFER,
@@ -67,6 +68,13 @@ const myOffersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 content: allOffers
+            };
+        case CLEAR_CURRENT_MYOFFER:
+            return {
+                ...state,
+                currentOffer: {
+                    ...initialState.currentOffer
+                }
             };
         case LOGOUT_ACTION + PENDING:
         case OFFER_CREATED:

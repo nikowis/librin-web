@@ -1,4 +1,13 @@
-import {DELETE_OFFER, FETCH_OFFER, FETCH_OFFERS, FULFILLED, OFFER_CREATED, OFFER_UPDATED, PENDING} from "./actions";
+import {
+    CLEAR_CURRENT_OFFER,
+    DELETE_OFFER,
+    FETCH_OFFER,
+    FETCH_OFFERS,
+    FULFILLED,
+    OFFER_CREATED,
+    OFFER_UPDATED,
+    PENDING
+} from "./actions";
 import {insertItem, removeItem} from "../common/array-helper";
 import {initializeAttachmentFromBase64} from "../common/attachment-utility";
 
@@ -70,6 +79,13 @@ const offersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 content: allOffers
+            };
+        case CLEAR_CURRENT_OFFER:
+            return {
+                ...state,
+                currentOffer: {
+                    ...initialState.currentOffer
+                }
             };
         case OFFER_CREATED:
         case DELETE_OFFER + FULFILLED:

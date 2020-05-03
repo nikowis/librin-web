@@ -10,7 +10,13 @@ import {TextField} from "@material-ui/core";
 import CurrencyTextField from "@unicef/material-ui-currency-textfield";
 import Card from "@material-ui/core/Card/Card";
 import Button from "@material-ui/core/Button";
-import {EDIT_OFFER, HIDE_NOTIFICATION, OFFER_UPDATED, SHOW_NOTIFICATION} from "../../redux/actions";
+import {
+    CLEAR_CURRENT_OFFER,
+    EDIT_OFFER,
+    HIDE_NOTIFICATION,
+    OFFER_UPDATED,
+    SHOW_NOTIFICATION
+} from "../../redux/actions";
 import {store} from "../../index";
 import {NOTIFICATION_DURATION, OfferStatus} from "../../common/app-constants";
 import {MESSAGES, MY_OFFERS, OFFERS} from "../../common/paths";
@@ -29,6 +35,7 @@ function OfferView(props) {
 
     useEffect(() => {
         if (!propId || propId.toString() !== id) {
+            dispatch({type: CLEAR_CURRENT_OFFER});
             dispatch(Api.getOffer(id));
         }
     }, [dispatch, id, propId]);

@@ -6,7 +6,7 @@ import {useTranslation} from "react-i18next";
 import {Formik} from 'formik';
 import {editOfferSchema} from "../../common/validation-schemas";
 import {connect} from "react-redux";
-import {HIDE_NOTIFICATION, OFFER_UPDATED, SHOW_NOTIFICATION} from "../../redux/actions";
+import {CLEAR_CURRENT_MYOFFER, HIDE_NOTIFICATION, OFFER_UPDATED, SHOW_NOTIFICATION} from "../../redux/actions";
 import {NOTIFICATION_DURATION} from "../../common/app-constants";
 import {TextField} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
@@ -27,6 +27,7 @@ function EditOfferView(props) {
 
     useEffect(() => {
         if (propId === null || propId.toString() !== id) {
+            dispatch({type: CLEAR_CURRENT_MYOFFER});
             dispatch(Api.getMyOffer(id));
         }
     }, [dispatch, id, propId]);
