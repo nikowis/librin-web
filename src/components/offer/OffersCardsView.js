@@ -7,19 +7,14 @@ import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
 import {EDIT_OFFER} from "../../redux/actions";
 import {MESSAGES, OFFERS} from "../../common/paths";
-import Card from "@material-ui/core/Card";
 import PaginationComponent from "../PaginationComponent";
 import Grid from "@material-ui/core/Grid";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardHeader from "@material-ui/core/CardHeader";
-import CardActions from "@material-ui/core/CardActions";
-import Button from "@material-ui/core/Button";
-import CardMedia from "@material-ui/core/CardMedia";
+import OfferCard from "./OfferCard";
 
 function OffersCardsView(props) {
 
     const {t} = useTranslation();
-    const {dispatch, offers, location, history, currentPage, totalPages} = props;
+    const {dispatch, offers, location, history, currentPage, totalPages, userId} = props;
     const {search, pathname} = location;
     const {replace} = history;
 
@@ -58,31 +53,7 @@ function OffersCardsView(props) {
         return offers.map((offer) => {
             return (
                 <Grid item sm={12} md={6} lg={4} key={offer.id} onClick={() => handleViewOffer(offer)}>
-                    <Card className={'offerCard'} elevation={3} style={{maxWidth: 360, margin: "auto"}}>
-                        <CardActionArea>
-                            <CardHeader
-                                title={offer.title}
-                                subheader={<>
-                                    <div>{offer.author}</div>
-                                    <div>{offer.price + ' ' + t('currencySymbol')}</div>
-                                </>}
-                            />
-                            <CardMedia
-                                style={{
-                                    paddingTop: '100%'
-                                }}
-                                image={offer.attachment ? offer.attachment.url : process.env.PUBLIC_URL + '/Placeholder.png'}
-                            />
-                        </CardActionArea>
-                        <CardActions>
-                            <Button size="small" color="primary" onClick={() => handleViewOffer(offer)}>
-                                {t('offers.view.page')}
-                            </Button>
-                            <Button size="small" color="primary" onClick={() => handleSendMessage(offer)}>
-                                {t('offers.view.message')}
-                            </Button>
-                        </CardActions>
-                    </Card>
+                    <OfferCard offer={offer} onView={handleViewOffer} onSendMessage={userId === offer.ownerId ? null : handleSendMessage}/>
                 </Grid>
             );
         });
@@ -90,23 +61,28 @@ function OffersCardsView(props) {
 
     const getView = () => {
         return <>
-            {pageQuery <= totalPages ? offerRows() : t('noElementsFound')}
-        </>;
+            {pageQuery <= totalPages ?
+                <>
+                    <br/>
+                    <Grid container spacing={3} alignItems="center" justify="center">
+                        {offerRows()}
+                    </Grid>
+                    <PaginationComponent currentPathname={pathname} currentPage={currentPage} totalPages={totalPages}/>
+                </>
+                : t('noElementsFound')}
+        </>
     };
 
     return (
         <>
-            <br/>
-            <Grid container spacing={3} alignItems="center" justify="center">
-                {offers === null ? <LoaderView/> : getView()}
-            </Grid>
-            <PaginationComponent currentPathname={pathname} currentPage={currentPage} totalPages={totalPages}/>
+            {offers === null ? <LoaderView/> : getView()}
         </>
     );
 
 }
 
 OffersCardsView.propTypes = {
+    userId: PropTypes.number,
     offers: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.number.isRequired,
@@ -119,7 +95,7 @@ OffersCardsView.propTypes = {
             status: PropTypes.string,
             ownerId: PropTypes.number,
             attachment: PropTypes.shape({
-                name: PropTypes.number.isRequired,
+                name: PropTypes.string.isRequired,
                 content: PropTypes.string.isRequired,
                 url: PropTypes.string.isRequired
             }),
@@ -130,6 +106,7 @@ OffersCardsView.propTypes = {
 };
 
 export default connect(state => ({
+    userId: state.user.id,
     offers: state.offers.content,
     currentPage: state.offers.currentPage,
     totalPages: state.offers.totalPages,
