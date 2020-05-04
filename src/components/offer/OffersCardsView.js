@@ -6,14 +6,15 @@ import LoaderView from "./../LoaderView";
 import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
 import {EDIT_OFFER} from "../../redux/actions";
-import {OFFERS} from "../../common/paths";
+import {MESSAGES, OFFERS} from "../../common/paths";
 import Card from "@material-ui/core/Card";
 import PaginationComponent from "../PaginationComponent";
 import Grid from "@material-ui/core/Grid";
-import CardContent from "@material-ui/core/CardContent";
 import PhotosPreviewComponent from "../PhotosPreviewComponent";
-import Typography from "@material-ui/core/Typography";
 import CardActionArea from "@material-ui/core/CardActionArea";
+import CardHeader from "@material-ui/core/CardHeader";
+import CardActions from "@material-ui/core/CardActions";
+import Button from "@material-ui/core/Button";
 
 function OffersCardsView(props) {
 
@@ -42,27 +43,40 @@ function OffersCardsView(props) {
         }
     }, [dispatch, offers, currentPage, pageQuery]);
 
-    const handleView = (offer) => {
+    const handleViewOffer = (offer) => {
         dispatch({type: EDIT_OFFER, payload: offer});
         props.history.push(OFFERS + '/' + offer.id);
+    };
+
+    const handleSendMessage = (offer) => {
+        dispatch(Api.createConversation(offer.id)).then(res => {
+            history.push(MESSAGES + '/' + res.value.id);
+        });
     };
 
     const offerRows = () => {
         return offers.map((offer) => {
             return (
-                <Grid item xs={12} sm={6} md={4} key={offer.id} onClick={() => handleView(offer)}>
-                    <Card elevation={3}>
+                <Grid item sm={12} md={6} lg={4} key={offer.id} onClick={() => handleViewOffer(offer)}>
+                    <Card className={'offerCard'} elevation={3} style={{maxWidth: 360, margin: "auto"}}>
                         <CardActionArea>
-                        <PhotosPreviewComponent attachment={offer.attachment}/>
-                        <CardContent>
-                            <Typography gutterBottom variant="h5" component="h2">
-                                {offer.title}
-                            </Typography>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                                {offer.author}
-                            </Typography>
-                        </CardContent>
+                            <CardHeader
+                                title={offer.title}
+                                subheader={<>
+                                    <div>{offer.author}</div>
+                                    <div>{offer.price + ' ' + t('currencySymbol')}</div>
+                                </>}
+                            />
+                            <PhotosPreviewComponent attachment={offer.attachment}/>
                         </CardActionArea>
+                        <CardActions>
+                            <Button size="small" color="primary" onClick={() => handleViewOffer(offer)}>
+                                {t('offers.view.page')}
+                            </Button>
+                            <Button size="small" color="primary" onClick={() => handleSendMessage(offer)}>
+                                {t('offers.view.message')}
+                            </Button>
+                        </CardActions>
                     </Card>
                 </Grid>
             );
@@ -78,7 +92,7 @@ function OffersCardsView(props) {
     return (
         <>
             <br/>
-            <Grid container spacing={3}>
+            <Grid container spacing={3} alignItems="center" justify="center">
                 {offers === null ? <LoaderView/> : getView()}
             </Grid>
             <PaginationComponent currentPathname={pathname} currentPage={currentPage} totalPages={totalPages}/>

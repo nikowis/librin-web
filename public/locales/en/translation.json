@@ -52,6 +52,7 @@
       "upload": "Photo"
     },
     "view": {
+      "page": "View",
       "message": "Send message",
       "sold": "Mark as sold",
       "edit": "Edit offer",

@@ -52,6 +52,7 @@
       "upload": "Zdjęcie"
     },
     "view": {
+      "page": "Wyświetl",
       "message": "Wyślij wiadomość",
       "sold": "Oznacz jako sprzedane",
       "edit": "Edytuj ofertę",
