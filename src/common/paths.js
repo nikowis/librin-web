@@ -8,5 +8,5 @@ export const EDIT_OFFER = MY_OFFERS + '/:id';
 export const MESSAGES = '/messages';
 export const MESSAGES_CONVERSATION = MESSAGES + '/:convId';
 export const OFFERS = '/offers';
-export const VIEW_OFFER = OFFERS + '/:id';
+export const OFFER_VIEW = OFFERS + '/:id';
 export const CREATE_OFFER = OFFERS + '/create';

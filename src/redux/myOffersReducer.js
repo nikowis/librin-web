@@ -58,7 +58,7 @@ const myOffersReducer = (state = initialState, action) => {
                 }
             };
         case OFFER_UPDATED:
-            let updatedOffer = payload;
+            let updatedOffer = processOffer(payload);
             let allOffers = state.content;
             const updatedOfferIndex = allOffers ? allOffers.findIndex(offer => offer.id === updatedOffer.id) : null;
             if (allOffers && updatedOfferIndex >= 0) {

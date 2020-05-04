@@ -6,7 +6,7 @@ import LoaderView from "./../LoaderView";
 import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
 import OffersTable from "./OffersTable";
-import {EDIT_OFFER} from "../../redux/actions";
+import {EDIT_OFFER, VIEW_OFFER} from "../../redux/actions";
 import {OFFERS} from "../../common/paths";
 import Card from "@material-ui/core/Card";
 
@@ -38,7 +38,7 @@ function OffersTableView(props) {
     }, [dispatch, offers, currentPage, pageQuery]);
 
     const handleView = (offer) => {
-        dispatch({type: EDIT_OFFER, payload: offer});
+        dispatch({type: VIEW_OFFER, payload: offer});
         props.history.push(OFFERS + '/' + offer.id);
     };
 

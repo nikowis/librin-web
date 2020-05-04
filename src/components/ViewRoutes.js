@@ -19,7 +19,7 @@ import {
     PROFILE,
     REGISTER,
     ROOT,
-    VIEW_OFFER
+    OFFER_VIEW
 } from "../common/paths";
 import MyOffersTableView from "./offer/MyOffersTableView";
 import CreateOfferView from "./offer/CreateOfferView";
@@ -58,7 +58,7 @@ function ViewRoutes() {
             <AuthenticatedRoute path={MESSAGES}>
                 <MessagesView/>
             </AuthenticatedRoute>
-            <Route path={VIEW_OFFER}>
+            <Route path={OFFER_VIEW}>
                 <OfferView/>
             </Route>
             <Route path={OFFERS}>

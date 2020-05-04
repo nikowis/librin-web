@@ -6,7 +6,8 @@ import {
     FULFILLED,
     OFFER_CREATED,
     OFFER_UPDATED,
-    PENDING
+    PENDING,
+    VIEW_OFFER
 } from "./actions";
 import {insertItem, removeItem} from "../common/array-helper";
 import {initializeAttachmentFromBase64} from "../common/attachment-utility";
@@ -59,6 +60,7 @@ const offersReducer = (state = initialState, action) => {
                 totalPages: payload.totalPages,
                 totalElements: payload.totalElements,
             };
+        case VIEW_OFFER:
         case FETCH_OFFER + FULFILLED:
             let processedPayload = processOffer(payload);
 
@@ -69,7 +71,7 @@ const offersReducer = (state = initialState, action) => {
                 }
             };
         case OFFER_UPDATED:
-            let updatedOffer = payload;
+            let updatedOffer = processOffer(payload);
             let allOffers = state.content;
             const updatedOfferIndex = allOffers ? allOffers.findIndex(offer => offer.id === updatedOffer.id) : null;
             if (allOffers && updatedOfferIndex >= 0) {

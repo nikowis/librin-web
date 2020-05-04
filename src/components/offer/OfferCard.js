@@ -15,7 +15,7 @@ function OfferCard(props) {
 
     return (
         <Card className={'offerCard'} elevation={3} style={{maxWidth: 360, margin: "auto"}}>
-            <CardActionArea>
+            <CardActionArea onClick={() => onView(offer)}>
                 <CardHeader
                     title={offer.title}
                     subheader={<>

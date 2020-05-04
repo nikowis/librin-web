@@ -5,7 +5,7 @@ import Api from "../../common/api-communication";
 import LoaderView from "./../LoaderView";
 import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
-import {EDIT_OFFER} from "../../redux/actions";
+import {VIEW_OFFER} from "../../redux/actions";
 import {MESSAGES, OFFERS} from "../../common/paths";
 import PaginationComponent from "../PaginationComponent";
 import Grid from "@material-ui/core/Grid";
@@ -39,7 +39,7 @@ function OffersCardsView(props) {
     }, [dispatch, offers, currentPage, pageQuery]);
 
     const handleViewOffer = (offer) => {
-        dispatch({type: EDIT_OFFER, payload: offer});
+        dispatch({type: VIEW_OFFER, payload: offer});
         props.history.push(OFFERS + '/' + offer.id);
     };
 
@@ -52,7 +52,7 @@ function OffersCardsView(props) {
     const offerRows = () => {
         return offers.map((offer) => {
             return (
-                <Grid item sm={12} md={6} lg={4} key={offer.id} onClick={() => handleViewOffer(offer)}>
+                <Grid item sm={12} md={6} lg={4} key={offer.id}>
                     <OfferCard offer={offer} onView={handleViewOffer} onSendMessage={userId === offer.ownerId ? null : handleSendMessage}/>
                 </Grid>
             );

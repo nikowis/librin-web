@@ -9,7 +9,7 @@ import {EDIT_OFFER, FETCH_MY_OFFERS, HIDE_NOTIFICATION, SHOW_NOTIFICATION} from 
 import {store} from "../../index";
 import {NOTIFICATION_DURATION} from "../../common/app-constants";
 import {withRouter} from 'react-router-dom';
-import {MY_OFFERS, OFFERS, VIEW_OFFER} from "../../common/paths";
+import {MY_OFFERS, OFFERS, OFFER_VIEW} from "../../common/paths";
 import OffersTable from "./OffersTable";
 import Card from "@material-ui/core/Card";
 
@@ -57,7 +57,7 @@ function MyOffersTableView(props) {
     };
 
     const handleView = (offer) => {
-        dispatch({type: VIEW_OFFER, payload: offer});
+        dispatch({type: OFFER_VIEW, payload: offer});
         props.history.push(OFFERS + '/' + offer.id);
     };
 
