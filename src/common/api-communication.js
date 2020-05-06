@@ -1,5 +1,5 @@
 import {
-    API_LOGIN,
+    API_GET_TOKEN,
     API_LOGOUT,
     API_MESSAGES,
     API_MY_OFFERS,
@@ -29,6 +29,8 @@ import {DEFAULT_PAGE_SIZE, DEFAULT_SORT, DESC_SORT, UPDATED_AT_SORT} from './app
 
 class Api {
 
+    API_CLIENT_BASIC_OAUTH_HEADER = 'Basic d2ViQ2xpZW50OndlYkNsaWVudFNlY3JldA==';
+
     constructor() {
         this.API_URL = process.env.REACT_APP_API_URL;
     }
@@ -42,15 +44,32 @@ class Api {
         return params.get(name);
     }
 
-    postLogin(login, password) {
-        const url = this.API_URL + API_LOGIN;
+    postGetToken(login, password) {
+
+        const details = {
+            username: login,
+            password: password,
+            "grant_type": "password"
+        };
+
+        let formBody = [];
+        for (const property in details) {
+            const encodedKey = encodeURIComponent(property);
+            const encodedValue = encodeURIComponent(details[property]);
+            formBody.push(encodedKey + "=" + encodedValue);
+        }
+        formBody = formBody.join("&");
+
+        const headers =  {Accept: 'application/json', Authorization: this.API_CLIENT_BASIC_OAUTH_HEADER,
+            'Content-Type': 'application/x-www-form-urlencoded'};
+
+        const url = this.API_URL + API_GET_TOKEN;
         return HttpUtility.post({
             url: url,
-            payload: {
-                login: login,
-                password: password
-            },
-            action: LOGIN_ACTION
+            payload: formBody,
+            headers: headers,
+            action: LOGIN_ACTION,
+            json: false
         });
     };
 
