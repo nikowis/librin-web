@@ -1,13 +1,4 @@
-import {
-    API_GET_TOKEN,
-    API_LOGOUT,
-    API_MESSAGES,
-    API_MY_OFFERS,
-    API_OFFERS,
-    API_REGISTER,
-    API_USER,
-    SOLD_SUFFIX
-} from './endpoints'
+import {API_GET_TOKEN, API_MESSAGES, API_MY_OFFERS, API_OFFERS, API_REGISTER, API_USER, SOLD_SUFFIX} from './endpoints'
 import HttpUtility from './http-utility'
 import {
     CREATE_CONVERSATION,
@@ -19,8 +10,7 @@ import {
     FETCH_USER,
     GET_ALL_CONVERSATIONS,
     GET_CONVERSATION,
-    LOGIN_ACTION,
-    LOGOUT_ACTION,
+    GET_TOKEN_ACTION,
     REGISTER_ACTION,
     SEND_MESSAGE,
     UPDATE_USER
@@ -68,17 +58,8 @@ class Api {
             url: url,
             payload: formBody,
             headers: headers,
-            action: LOGIN_ACTION,
+            action: GET_TOKEN_ACTION,
             json: false
-        });
-    };
-
-    logout() {
-        const url = this.API_URL + API_LOGOUT;
-
-        return HttpUtility.post({
-            url: url,
-            action: LOGOUT_ACTION
         });
     };
 

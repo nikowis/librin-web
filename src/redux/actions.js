@@ -1,4 +1,4 @@
-export const LOGIN_ACTION = 'LOGIN_ACTION';
+export const GET_TOKEN_ACTION = 'GET_TOKEN_ACTION';
 export const LOGOUT_ACTION = 'LOGOUT_ACTION';
 export const AUTH_ERROR = 'AUTH_ERROR';
 export const API_ERROR = 'API_ERROR';
