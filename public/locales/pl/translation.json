@@ -1,6 +1,9 @@
 {
   "brand": "Książkofilia",
   "email": "Email",
+  "firstName": "Imię",
+  "lastName": "Nazwisko",
+  "username": "Nazwa użytkownika",
   "logout": "Wylogowanie",
   "password": "Hasło",
   "repeatPassword": "Powtórz hasło",

@@ -63,13 +63,12 @@ class Api {
         });
     };
 
-    postRegister(email, password) {
+    postRegister(data) {
         const url = this.API_URL + API_REGISTER;
         return HttpUtility.post({
             url: url,
             payload: {
-                email: email,
-                password: password
+                ...data
             },
             action: REGISTER_ACTION
         });

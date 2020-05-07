@@ -3,6 +3,9 @@ import {AUTH_ERROR, CHANGE_LANG, FETCH_USER, FULFILLED, GET_TOKEN_ACTION, LOGOUT
 const initialState = {
     id: null,
     email: null,
+    firstName: null,
+    lastName: null,
+    username: null,
     authenticated: false,
     lang: 'pl',
     authToken: null
@@ -22,8 +25,7 @@ const userReducer = (state = initialState, action) => {
         case FETCH_USER + FULFILLED:
             return {
                 ...state,
-                id: payload.id,
-                email: payload.email
+                ...payload
             };
         case CHANGE_LANG:
             return {

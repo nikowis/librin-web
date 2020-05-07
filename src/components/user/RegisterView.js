@@ -22,7 +22,7 @@ function RegisterView(props) {
 
     const handleSubmit = (data, actions) => {
         actions.setSubmitting(true);
-        Api.postRegister(data.email, data.password).payload.then((response) => {
+        Api.postRegister(data).payload.then((response) => {
             if (!response.error) {
                 dispatch({type: SHOW_NOTIFICATION, payload: t('notification.registered')});
                 setTimeout(() => {
@@ -45,6 +45,9 @@ function RegisterView(props) {
             <Formik validationSchema={registerSchema} onSubmit={handleSubmit}
                     initialValues={{
                         email: '',
+                        firstName: '',
+                        lastName: '',
+                        username: '',
                         password: '',
                         repeatPassword: ''
                     }}
@@ -67,6 +70,42 @@ function RegisterView(props) {
                                 value={values.email}
                                 onChange={handleChange}
                                 helperText={(errors.email && touched.email) && t(errors.email)}
+                                margin="normal"
+                            />
+                        </div>
+                        <div>
+                            <TextField
+                                error={errors.firstName && touched.firstName}
+                                label={t('firstName')}
+                                name="firstName"
+                                variant="outlined"
+                                value={values.firstName}
+                                onChange={handleChange}
+                                helperText={(errors.firstName && touched.firstName) && t(errors.firstName)}
+                                margin="normal"
+                            />
+                        </div>
+                        <div>
+                            <TextField
+                                error={errors.lastName && touched.lastName}
+                                label={t('lastName')}
+                                name="lastName"
+                                variant="outlined"
+                                value={values.lastName}
+                                onChange={handleChange}
+                                helperText={(errors.lastName && touched.lastName) && t(errors.lastName)}
+                                margin="normal"
+                            />
+                        </div>
+                        <div>
+                            <TextField
+                                error={errors.username && touched.username}
+                                label={t('username')}
+                                name="username"
+                                variant="outlined"
+                                value={values.username}
+                                onChange={handleChange}
+                                helperText={(errors.username && touched.username) && t(errors.username)}
                                 margin="normal"
                             />
                         </div>

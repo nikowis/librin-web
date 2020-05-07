@@ -1,6 +1,9 @@
 {
   "brand": "Bookphilia",
   "email": "Email",
+  "firstName": "First name",
+  "lastName": "Last name",
+  "username": "Username",
   "logout": "Logout",
   "password": "Password",
   "repeatPassword": "Repeat password",

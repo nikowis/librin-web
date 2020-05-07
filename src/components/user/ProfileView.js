@@ -48,6 +48,9 @@ function ProfileView(props) {
                     initialValues={{
                         id: props.id,
                         email: props.email,
+                        firstName: props.firstName,
+                        lastName: props.lastName,
+                        username: props.username,
                         password: '',
                         repeatPassword: ''
                     }}
@@ -78,6 +81,42 @@ function ProfileView(props) {
                                 value={values.email}
                                 onChange={handleChange}
                                 helperText={(errors.email && touched.email) && t(errors.email)}
+                                margin="normal"
+                                disabled={true}
+                            />
+                        </div>
+                        <div>
+                            <TextField
+                                error={errors.firstName && touched.firstName}
+                                label={t('firstName')}
+                                name="firstName"
+                                value={values.firstName}
+                                onChange={handleChange}
+                                helperText={(errors.firstName && touched.firstName) && t(errors.firstName)}
+                                margin="normal"
+                                disabled={true}
+                            />
+                        </div>
+                        <div>
+                            <TextField
+                                error={errors.lastName && touched.lastName}
+                                label={t('lastName')}
+                                name="lastName"
+                                value={values.lastName}
+                                onChange={handleChange}
+                                helperText={(errors.lastName && touched.lastName) && t(errors.lastName)}
+                                margin="normal"
+                                disabled={true}
+                            />
+                        </div>
+                        <div>
+                            <TextField
+                                error={errors.username && touched.username}
+                                label={t('username')}
+                                name="username"
+                                value={values.username}
+                                onChange={handleChange}
+                                helperText={(errors.username && touched.username) && t(errors.username)}
                                 margin="normal"
                                 disabled={true}
                             />
@@ -122,9 +161,15 @@ function ProfileView(props) {
 ProfileView.propTypes = {
     id: PropTypes.number,
     email: PropTypes.string,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    username: PropTypes.string,
 };
 
 export default connect(state => ({
     id: state.user.id,
     email: state.user.email,
+    firstName: state.user.firstName,
+    lastName: state.user.lastName,
+    username: state.user.username,
 }))(withRouter(ProfileView));
