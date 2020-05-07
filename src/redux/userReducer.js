@@ -1,29 +1,22 @@
-import {
-    AUTH_ERROR,
-    CHANGE_LANG,
-    FETCH_USER,
-    FULFILLED,
-    LOGIN_ACTION,
-    LOGOUT_ACTION,
-    PENDING,
-    UPDATE_USER
-} from "./actions";
+import {AUTH_ERROR, CHANGE_LANG, FETCH_USER, FULFILLED, GET_TOKEN_ACTION, LOGOUT_ACTION, UPDATE_USER} from "./actions";
 
 const initialState = {
     id: null,
     login: null,
     authenticated: false,
-    lang: 'en'
+    lang: 'pl',
+    authToken: null
 };
 
 const userReducer = (state = initialState, action) => {
     const payload = action.payload;
 
     switch (action.type) {
-        case LOGIN_ACTION + FULFILLED:
+        case GET_TOKEN_ACTION + FULFILLED:
             return {
                 ...state,
-                authenticated: true
+                authenticated: true,
+                authToken: payload.access_token
             };
         case UPDATE_USER:
         case FETCH_USER + FULFILLED:
@@ -39,7 +32,7 @@ const userReducer = (state = initialState, action) => {
                 lang: action.payload
             };
         case AUTH_ERROR + FULFILLED:
-        case LOGOUT_ACTION + PENDING:
+        case LOGOUT_ACTION:
             return {
                 ...initialState,
                 lang: state.lang

@@ -1,13 +1,4 @@
-import {
-    API_LOGIN,
-    API_LOGOUT,
-    API_MESSAGES,
-    API_MY_OFFERS,
-    API_OFFERS,
-    API_REGISTER,
-    API_USER,
-    SOLD_SUFFIX
-} from './endpoints'
+import {API_GET_TOKEN, API_MESSAGES, API_MY_OFFERS, API_OFFERS, API_REGISTER, API_USER, SOLD_SUFFIX} from './endpoints'
 import HttpUtility from './http-utility'
 import {
     CREATE_CONVERSATION,
@@ -19,8 +10,7 @@ import {
     FETCH_USER,
     GET_ALL_CONVERSATIONS,
     GET_CONVERSATION,
-    LOGIN_ACTION,
-    LOGOUT_ACTION,
+    GET_TOKEN_ACTION,
     REGISTER_ACTION,
     SEND_MESSAGE,
     UPDATE_USER
@@ -28,6 +18,8 @@ import {
 import {DEFAULT_PAGE_SIZE, DEFAULT_SORT, DESC_SORT, UPDATED_AT_SORT} from './app-constants'
 
 class Api {
+
+    API_CLIENT_BASIC_OAUTH_HEADER = 'Basic d2ViQ2xpZW50OndlYkNsaWVudFNlY3JldA==';
 
     constructor() {
         this.API_URL = process.env.REACT_APP_API_URL;
@@ -42,24 +34,32 @@ class Api {
         return params.get(name);
     }
 
-    postLogin(login, password) {
-        const url = this.API_URL + API_LOGIN;
+    postGetToken(login, password) {
+
+        const details = {
+            username: login,
+            password: password,
+            "grant_type": "password"
+        };
+
+        let formBody = [];
+        for (const property in details) {
+            const encodedKey = encodeURIComponent(property);
+            const encodedValue = encodeURIComponent(details[property]);
+            formBody.push(encodedKey + "=" + encodedValue);
+        }
+        formBody = formBody.join("&");
+
+        const headers =  {Accept: 'application/json', Authorization: this.API_CLIENT_BASIC_OAUTH_HEADER,
+            'Content-Type': 'application/x-www-form-urlencoded'};
+
+        const url = this.API_URL + API_GET_TOKEN;
         return HttpUtility.post({
             url: url,
-            payload: {
-                login: login,
-                password: password
-            },
-            action: LOGIN_ACTION
-        });
-    };
-
-    logout() {
-        const url = this.API_URL + API_LOGOUT;
-
-        return HttpUtility.post({
-            url: url,
-            action: LOGOUT_ACTION
+            payload: formBody,
+            headers: headers,
+            action: GET_TOKEN_ACTION,
+            json: false
         });
     };
 

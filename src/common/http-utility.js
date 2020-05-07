@@ -21,7 +21,11 @@ class HttpUtility {
         }
 
         let resolvedHeaders = headers ? headers : {Accept: 'application/json', 'Content-Type': 'application/json'};
-        resolvedHeaders['Accept-Language'] = window.lang;
+        resolvedHeaders['Accept-Language'] = store.getState().user.lang;
+        const authToken = store.getState().user.authToken;
+        if (authToken) {
+            resolvedHeaders['Authorization'] = 'Bearer ' + authToken;
+        }
         return {
             type: action,
             payload: fetch(url, {

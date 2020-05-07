@@ -76,7 +76,7 @@ const myOffersReducer = (state = initialState, action) => {
                     ...initialState.currentOffer
                 }
             };
-        case LOGOUT_ACTION + PENDING:
+        case LOGOUT_ACTION:
         case OFFER_CREATED:
         case DELETE_OFFER + FULFILLED:
             return initialState;

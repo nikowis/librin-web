@@ -18,7 +18,7 @@ function LoginView(props) {
     const handleSubmit = (data, actions) => {
         const {dispatch} = props;
         actions.setSubmitting(true);
-        dispatch(Api.postLogin(data.login, data.password))
+        dispatch(Api.postGetToken(data.login, data.password))
             .finally(() => actions.setSubmitting(false));
     };
 

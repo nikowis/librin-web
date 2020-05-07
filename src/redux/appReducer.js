@@ -8,7 +8,7 @@ import {
     HIDE_NOTIFICATION,
     HTTP_REQUEST_FINISH,
     HTTP_REQUEST_START,
-    LOGIN_ACTION,
+    GET_TOKEN_ACTION,
     LOGOUT_ACTION,
     SERVER_ERROR,
     SHOW_NOTIFICATION
@@ -57,12 +57,12 @@ const appReducer = (state = initialState, action) => {
                 error: action.payload,
                 apiError: true
             };
-        case LOGIN_ACTION + FULFILLED:
+        case GET_TOKEN_ACTION + FULFILLED:
             return {
                 ...state,
                 authError: false
             };
-        case LOGOUT_ACTION + FULFILLED:
+        case LOGOUT_ACTION:
             return {
                 ...state,
                 authError: false
