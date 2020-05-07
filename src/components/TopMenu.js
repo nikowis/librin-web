@@ -1,14 +1,11 @@
 import React from 'react';
 import '../App.scss';
 import {connect} from "react-redux";
-import {LOGIN, LOGOUT, MY_OFFERS, CREATE_OFFER, PROFILE, REGISTER, ROOT, OFFERS, MESSAGES} from "../common/paths";
+import {CREATE_OFFER, LOGIN, LOGOUT, MESSAGES, MY_OFFERS, OFFERS, PROFILE, REGISTER, ROOT} from "../common/paths";
 import {useTranslation} from 'react-i18next';
 import MenuIcon from '@material-ui/icons/Menu';
-
-import {CHANGE_LANG} from '../redux/actions'
 import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
-import Button from "@material-ui/core/Button";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -28,9 +25,10 @@ import PersonIcon from '@material-ui/icons/Person';
 import AddIcon from '@material-ui/icons/Add';
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
+
 function TopMenu(props) {
 
-    const {t, i18n} = useTranslation();
+    const {t} = useTranslation();
 
     const [open, setOpen] = React.useState(true);
 
@@ -41,17 +39,6 @@ function TopMenu(props) {
     const handleDrawerClose = () => {
         setOpen(false);
     };
-    const changeLang = (lang) => {
-        const {dispatch} = props;
-        i18n.changeLanguage(lang);
-        dispatch({type: CHANGE_LANG, payload: lang});
-    };
-
-    const languageButton =
-        <>
-            {props.lang !== 'pl' ? <Button onClick={() => changeLang('pl')}>PL</Button> : null}
-            {props.lang !== 'en' ? <Button onClick={() => changeLang('en')}>EN</Button> : null}
-        </>;
 
     const redirect = (to) => {
         // handleDrawerClose();
@@ -118,7 +105,6 @@ function TopMenu(props) {
                     <Typography variant="h6" className='top-menu-title'>
                         Książkofilia
                     </Typography>
-                    {languageButton}
                 </Toolbar>
             </AppBar>
             <Drawer
@@ -146,12 +132,10 @@ TopMenu.propTypes = {
     login: PropTypes.string,
     authenticated: PropTypes.bool.isRequired,
     authError: PropTypes.bool.isRequired,
-    lang: PropTypes.string.isRequired
 };
 
 export default connect(state => ({
     login: state.user.login,
     authenticated: state.user.authenticated,
-    authError: state.app.authError,
-    lang: state.user.lang
+    authError: state.app.authError
 }))(withRouter(TopMenu));
