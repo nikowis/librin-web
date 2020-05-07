@@ -16,7 +16,7 @@ setLocale({
 });
 
 export const registerSchema = Yup.object().shape({
-    login: Yup.string()
+    email: Yup.string()
         .email()
         .required(),
     password: Yup.string()
@@ -28,7 +28,7 @@ export const registerSchema = Yup.object().shape({
 });
 
 export const loginSchema = Yup.object().shape({
-    login: Yup.string()
+    email: Yup.string()
         .email()
         .required(),
     password: Yup.string()

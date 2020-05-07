@@ -11,7 +11,7 @@ function ConversationsList(props) {
 
     const conversationRows = () => {
         return conversations.map((conv) => {
-            const recipientUsername = conv.customer.id === userId ? conv.offer.owner.login : conv.customer.login;
+            const recipientUsername = conv.customer.id === userId ? conv.offer.owner.username : conv.customer.username;
             return (
                 <ListItem selected={conv.id.toString() === convId} button key={conv.id}
                           onClick={() => onConversationClick(conv.id)}>

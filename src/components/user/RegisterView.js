@@ -22,7 +22,7 @@ function RegisterView(props) {
 
     const handleSubmit = (data, actions) => {
         actions.setSubmitting(true);
-        Api.postRegister(data.login, data.password).payload.then((response) => {
+        Api.postRegister(data.email, data.password).payload.then((response) => {
             if (!response.error) {
                 dispatch({type: SHOW_NOTIFICATION, payload: t('notification.registered')});
                 setTimeout(() => {
@@ -44,7 +44,7 @@ function RegisterView(props) {
         <Card>
             <Formik validationSchema={registerSchema} onSubmit={handleSubmit}
                     initialValues={{
-                        login: '',
+                        email: '',
                         password: '',
                         repeatPassword: ''
                     }}
@@ -60,13 +60,13 @@ function RegisterView(props) {
                     <form onSubmit={handleSubmit}>
                         <div>
                             <TextField
-                                error={errors.login && touched.login}
+                                error={errors.email && touched.email}
                                 label={t('email')}
-                                name="login"
+                                name="email"
                                 variant="outlined"
-                                value={values.login}
+                                value={values.email}
                                 onChange={handleChange}
-                                helperText={(errors.login && touched.login) && t(errors.login)}
+                                helperText={(errors.email && touched.email) && t(errors.email)}
                                 margin="normal"
                             />
                         </div>

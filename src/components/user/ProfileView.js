@@ -17,13 +17,13 @@ import Card from "@material-ui/core/Card";
 function ProfileView(props) {
 
     const {t} = useTranslation();
-    const {dispatch, login} = props;
+    const {dispatch, email} = props;
 
     useEffect(() => {
-        if (login === null) {
+        if (email === null) {
             dispatch(Api.getUser());
         }
-    }, [dispatch, login]);
+    }, [dispatch, email]);
 
     const handleSubmit = (data, actions) => {
         actions.setSubmitting(true);
@@ -47,7 +47,7 @@ function ProfileView(props) {
             <Formik validationSchema={profileSchema} onSubmit={handleSubmit} enableReinitialize={true}
                     initialValues={{
                         id: props.id,
-                        login: props.login,
+                        email: props.email,
                         password: '',
                         repeatPassword: ''
                     }}
@@ -72,12 +72,12 @@ function ProfileView(props) {
                         </div>
                         <div>
                             <TextField
-                                error={errors.login && touched.login}
+                                error={errors.email && touched.email}
                                 label={t('email')}
-                                name="login"
-                                value={values.login}
+                                name="email"
+                                value={values.email}
                                 onChange={handleChange}
-                                helperText={(errors.login && touched.login) && t(errors.login)}
+                                helperText={(errors.email && touched.email) && t(errors.email)}
                                 margin="normal"
                                 disabled={true}
                             />
@@ -121,10 +121,10 @@ function ProfileView(props) {
 
 ProfileView.propTypes = {
     id: PropTypes.number,
-    login: PropTypes.string,
+    email: PropTypes.string,
 };
 
 export default connect(state => ({
     id: state.user.id,
-    login: state.user.login,
+    email: state.user.email,
 }))(withRouter(ProfileView));

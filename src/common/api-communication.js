@@ -34,10 +34,10 @@ class Api {
         return params.get(name);
     }
 
-    postGetToken(login, password) {
+    postGetToken(email, password) {
 
         const details = {
-            username: login,
+            username: email,
             password: password,
             "grant_type": "password"
         };
@@ -63,12 +63,12 @@ class Api {
         });
     };
 
-    postRegister(login, password) {
+    postRegister(email, password) {
         const url = this.API_URL + API_REGISTER;
         return HttpUtility.post({
             url: url,
             payload: {
-                login: login,
+                email: email,
                 password: password
             },
             action: REGISTER_ACTION

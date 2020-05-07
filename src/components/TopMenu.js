@@ -129,13 +129,13 @@ function TopMenu(props) {
 }
 
 TopMenu.propTypes = {
-    login: PropTypes.string,
+    email: PropTypes.string,
     authenticated: PropTypes.bool.isRequired,
     authError: PropTypes.bool.isRequired,
 };
 
 export default connect(state => ({
-    login: state.user.login,
+    email: state.user.email,
     authenticated: state.user.authenticated,
     authError: state.app.authError
 }))(withRouter(TopMenu));

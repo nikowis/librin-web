@@ -18,7 +18,7 @@ function LoginView(props) {
     const handleSubmit = (data, actions) => {
         const {dispatch} = props;
         actions.setSubmitting(true);
-        dispatch(Api.postGetToken(data.login, data.password))
+        dispatch(Api.postGetToken(data.email, data.password))
             .finally(() => actions.setSubmitting(false));
     };
 
@@ -31,7 +31,7 @@ function LoginView(props) {
             <Formik validationSchema={loginSchema}
                     onSubmit={handleSubmit}
                     initialValues={{
-                        login: '',
+                        email: '',
                         password: ''
                     }}
             >
@@ -46,13 +46,13 @@ function LoginView(props) {
                     <form onSubmit={handleSubmit}>
                         <div>
                             <TextField
-                                error={errors.login && touched.login}
+                                error={errors.email && touched.email}
                                 label={t('email')}
-                                name="login"
+                                name="email"
                                 variant="outlined"
-                                value={values.login}
+                                value={values.email}
                                 onChange={handleChange}
-                                helperText={(errors.login && touched.login) && t(errors.login)}
+                                helperText={(errors.email && touched.email) && t(errors.email)}
                                 margin="normal"
                             />
                         </div>
