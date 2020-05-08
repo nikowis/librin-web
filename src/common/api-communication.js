@@ -1,4 +1,15 @@
-import {API_GET_TOKEN, API_MESSAGES, API_MY_OFFERS, API_OFFERS, API_REGISTER, API_USER, SOLD_SUFFIX} from './endpoints'
+import {
+    API_GET_TOKEN,
+    API_MESSAGES,
+    API_MY_OFFERS,
+    API_OFFERS,
+    API_POLICIES,
+    API_REGISTER,
+    API_USER,
+    PRIVACY_POLICY,
+    SOLD_SUFFIX,
+    TERMS_AND_CONDITIONS
+} from './endpoints'
 import HttpUtility from './http-utility'
 import {
     CREATE_CONVERSATION,
@@ -50,8 +61,10 @@ class Api {
         }
         formBody = formBody.join("&");
 
-        const headers =  {Accept: 'application/json', Authorization: this.API_CLIENT_BASIC_OAUTH_HEADER,
-            'Content-Type': 'application/x-www-form-urlencoded'};
+        const headers = {
+            Accept: 'application/json', Authorization: this.API_CLIENT_BASIC_OAUTH_HEADER,
+            'Content-Type': 'application/x-www-form-urlencoded'
+        };
 
         const url = this.API_URL + API_GET_TOKEN;
         return HttpUtility.post({
@@ -233,6 +246,14 @@ class Api {
             payload: {content: content},
             action: SEND_MESSAGE
         });
+    }
+
+    getTermsAndConditionsURL() {
+        return this.API_URL + API_POLICIES + '/' + TERMS_AND_CONDITIONS;
+    }
+
+    getPrivacyPolicyURL() {
+        return this.API_URL + API_POLICIES + '/' + PRIVACY_POLICY;
     }
 }
 

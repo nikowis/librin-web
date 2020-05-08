@@ -20,6 +20,8 @@
   "servererror": "Błąd serwera",
   "loading": "Ładowanie...",
   "noElementsFound": "Brak wyników",
+  "termsAndConditions": "Regulamin",
+  "privacyPolicy": "Polityka prywatności",
   "validations": {
     "default": "Niepoprawne dane",
     "required": "Pole wymagane",
@@ -77,5 +79,10 @@
     "offerDeleted": "Oferta usunięta",
     "offerCreated": "Oferat stworzona",
     "offerUpdated": "Oferat zaktualizowana"
+  },
+  "consent" : {
+    "intro": "Tworząc konto akceptuję ",
+    "separator": " oraz ",
+    "outro": "."
   }
 }

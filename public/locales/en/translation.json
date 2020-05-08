@@ -20,6 +20,8 @@
   "servererror": "Server error",
   "loading": "Loading...",
   "noElementsFound": "No results found",
+  "termsAndConditions": "Terms and conditions",
+  "privacyPolicy": "Privacy policy",
   "validations": {
     "default": "Invalid field",
     "required": "Field required",
@@ -77,5 +79,10 @@
     "offerDeleted": "Offer deleted",
     "offerCreated": "Offer created",
     "offerUpdated": "Offer updated"
+  },
+  "consent" : {
+    "intro": "Registering I accept ",
+    "separator": " and ",
+    "outro": "."
   }
 }

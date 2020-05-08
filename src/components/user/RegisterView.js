@@ -13,6 +13,7 @@ import {NOTIFICATION_DURATION} from "../../common/app-constants";
 import {TextField} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
+import RegisterConsentComponent from "../RegisterConsentComponent";
 
 
 function RegisterView(props) {
@@ -36,6 +37,7 @@ function RegisterView(props) {
             }
         }).finally(() => actions.setSubmitting(false));
     };
+
     if (props.authenticated) {
         return <Redirect to={OFFERS} push={true}/>
     }
@@ -135,6 +137,7 @@ function RegisterView(props) {
                                 margin="normal"
                             />
                         </div>
+                        <RegisterConsentComponent/>
                         <Button variant="contained" color="primary" type="submit" disabled={isSubmitting}>
                             {t('register.submit')}
                         </Button>
