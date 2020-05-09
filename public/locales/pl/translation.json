@@ -23,6 +23,8 @@
   "termsAndConditions": "Regulamin",
   "privacyPolicy": "Polityka prywatności",
   "deleteAccount": "Usuń konto",
+  "deleteAccountHeader": "Usuwanie konta",
+  "deleteAccountWarning": "Konto zostanie usunięte nieodwracalnie",
   "validations": {
     "default": "Niepoprawne dane",
     "required": "Pole wymagane",

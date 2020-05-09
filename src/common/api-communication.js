@@ -256,11 +256,12 @@ class Api {
         return this.API_URL + API_POLICIES + '/' + PRIVACY_POLICY;
     }
 
-    deleteUser() {
+    deleteUser(data) {
         const url = this.API_URL + API_USER;
 
         return HttpUtility.delete({
-            url: url
+            url: url,
+            payload: data
         });
     }
 }

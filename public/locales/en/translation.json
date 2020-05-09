@@ -23,6 +23,8 @@
   "termsAndConditions": "Terms and conditions",
   "privacyPolicy": "Privacy policy",
   "deleteAccount": "Delete account",
+  "deleteAccountHeader": "Delete account",
+  "deleteAccountWarning": "This action can not be undone",
   "validations": {
     "default": "Invalid field",
     "required": "Field required",
