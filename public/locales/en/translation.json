@@ -22,6 +22,7 @@
   "noElementsFound": "No results found",
   "termsAndConditions": "Terms and conditions",
   "privacyPolicy": "Privacy policy",
+  "deleteAccount": "Delete account",
   "validations": {
     "default": "Invalid field",
     "required": "Field required",
@@ -78,7 +79,8 @@
     "profileUpdated": "Profile updated",
     "offerDeleted": "Offer deleted",
     "offerCreated": "Offer created",
-    "offerUpdated": "Offer updated"
+    "offerUpdated": "Offer updated",
+    "accountDeleted": "Account deleted"
   },
   "consent" : {
     "intro": "Registering I accept ",

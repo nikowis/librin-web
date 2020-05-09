@@ -255,6 +255,14 @@ class Api {
     getPrivacyPolicyURL() {
         return this.API_URL + API_POLICIES + '/' + PRIVACY_POLICY;
     }
+
+    deleteUser() {
+        const url = this.API_URL + API_USER;
+
+        return HttpUtility.delete({
+            url: url
+        });
+    }
 }
 
 export default Api = new Api();

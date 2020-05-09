@@ -22,6 +22,7 @@
   "noElementsFound": "Brak wyników",
   "termsAndConditions": "Regulamin",
   "privacyPolicy": "Polityka prywatności",
+  "deleteAccount": "Usuń konto",
   "validations": {
     "default": "Niepoprawne dane",
     "required": "Pole wymagane",
@@ -78,7 +79,8 @@
     "profileUpdated": "Profil zaktualizowany",
     "offerDeleted": "Oferta usunięta",
     "offerCreated": "Oferat stworzona",
-    "offerUpdated": "Oferat zaktualizowana"
+    "offerUpdated": "Oferat zaktualizowana",
+    "accountDeleted": "Konto usunięte"
   },
   "consent" : {
     "intro": "Tworząc konto akceptuję ",

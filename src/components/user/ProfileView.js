@@ -13,6 +13,7 @@ import {NOTIFICATION_DURATION} from "../../common/app-constants";
 import {TextField} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
+import DeleteAccountComponent from "./DeleteAccountComponent";
 
 function ProfileView(props) {
 
@@ -153,6 +154,7 @@ function ProfileView(props) {
                     </form>
                 )}
             </Formik>
+            <DeleteAccountComponent/>
         </Card>
     );
 
