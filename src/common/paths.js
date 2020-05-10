@@ -10,3 +10,5 @@ export const MESSAGES_CONVERSATION = MESSAGES + '/:convId';
 export const OFFERS = '/offers';
 export const OFFER_VIEW = OFFERS + '/:id';
 export const CREATE_OFFER = OFFERS + '/create';
+export const CONFIRM_EMAIL_BASE = '/emailconfirm';
+export const CONFIRM_EMAIL = CONFIRM_EMAIL_BASE + '/:confirmTokenId';

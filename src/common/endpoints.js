@@ -8,4 +8,4 @@ export const API_MESSAGES = '/messages';
 export const API_POLICIES = '/policies';
 export const TERMS_AND_CONDITIONS = 'TERM_AND_CONDITIONS';
 export const PRIVACY_POLICY = 'PRIVACY_POLICY';
-
+export const API_CONFIRM_EMAIL = '/confirmemail';

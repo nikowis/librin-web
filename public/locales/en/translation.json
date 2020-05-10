@@ -25,6 +25,7 @@
   "deleteAccount": "Delete account",
   "deleteAccountHeader": "Delete account",
   "deleteAccountWarning": "This action can not be undone",
+  "confirmEmailSuccess": "Email has been verified",
   "validations": {
     "default": "Invalid field",
     "required": "Field required",

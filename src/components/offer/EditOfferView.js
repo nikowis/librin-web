@@ -13,7 +13,7 @@ import Button from "@material-ui/core/Button";
 import CurrencyTextField from '@unicef/material-ui-currency-textfield'
 import {translate} from "../../common/i18n-helper";
 import PropTypes from "prop-types";
-import LoaderView from "../LoaderView";
+import LoaderComponent from "../LoaderComponent";
 import {MY_OFFERS} from "../../common/paths";
 import Card from "@material-ui/core/Card";
 import PhotosInputComponent from "../PhotosInputComponent";
@@ -144,7 +144,7 @@ function EditOfferView(props) {
 
     return (
         <React.Fragment>
-            {props.title === null || props.id.toString() !== id ? <LoaderView/> : getView()}
+            {props.title === null || props.id.toString() !== id ? <LoaderComponent/> : getView()}
         </React.Fragment>
     );
 }

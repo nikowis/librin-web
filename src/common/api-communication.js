@@ -1,4 +1,5 @@
 import {
+    API_CONFIRM_EMAIL,
     API_GET_TOKEN,
     API_MESSAGES,
     API_MY_OFFERS,
@@ -13,7 +14,7 @@ import {
 import HttpUtility from './http-utility'
 import {
     CREATE_CONVERSATION,
-    DELETE_OFFER,
+    DELETE_OFFER, EMAIL_CONFIRM,
     FETCH_MY_OFFER,
     FETCH_MY_OFFERS,
     FETCH_OFFER,
@@ -27,6 +28,7 @@ import {
     UPDATE_USER
 } from "../redux/actions";
 import {DEFAULT_PAGE_SIZE, DEFAULT_SORT, DESC_SORT, UPDATED_AT_SORT} from './app-constants'
+import {CONFIRM_EMAIL_BASE} from "./paths";
 
 class Api {
 
@@ -78,6 +80,7 @@ class Api {
 
     postRegister(data) {
         const url = this.API_URL + API_REGISTER;
+        data.confirmEmailBaseUrl = window.location.origin + CONFIRM_EMAIL_BASE;
         return HttpUtility.post({
             url: url,
             payload: {
@@ -262,6 +265,15 @@ class Api {
         return HttpUtility.delete({
             url: url,
             payload: data
+        });
+    }
+
+    confirmEmail(tokenId) {
+        const url = this.API_URL + API_CONFIRM_EMAIL + '/' + tokenId ;
+
+        return HttpUtility.post({
+            url: url,
+            action: EMAIL_CONFIRM
         });
     }
 }

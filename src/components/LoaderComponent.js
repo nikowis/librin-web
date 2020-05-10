@@ -3,7 +3,7 @@ import '../App.scss';
 import {useTranslation} from "react-i18next";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-function LoaderView() {
+function LoaderComponent() {
     const {t} = useTranslation();
 
     return (
@@ -14,6 +14,6 @@ function LoaderView() {
     );
 }
 
-LoaderView.propTypes = {};
+LoaderComponent.propTypes = {};
 
-export default LoaderView;
+export default LoaderComponent;

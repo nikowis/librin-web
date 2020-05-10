@@ -3,7 +3,7 @@ import '../../App.scss';
 import Api from "./../../common/api-communication"
 import {connect} from "react-redux";
 import {useTranslation} from "react-i18next";
-import LoaderView from "../../components/LoaderView";
+import LoaderComponent from "../LoaderComponent";
 import PropTypes from "prop-types";
 import {EDIT_OFFER, FETCH_MY_OFFERS, HIDE_NOTIFICATION, SHOW_NOTIFICATION} from "../../redux/actions";
 import {store} from "../../index";
@@ -69,7 +69,7 @@ function MyOffersTableView(props) {
 
     return (
         <Card>
-            {offers === null ? <LoaderView/> : getView()}
+            {offers === null ? <LoaderComponent/> : getView()}
         </Card>
     );
 }

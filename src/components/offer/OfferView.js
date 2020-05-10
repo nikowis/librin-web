@@ -5,7 +5,7 @@ import {useParams, withRouter} from 'react-router-dom';
 import {useTranslation} from "react-i18next";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import LoaderView from "../LoaderView";
+import LoaderComponent from "../LoaderComponent";
 import {TextField} from "@material-ui/core";
 import CurrencyTextField from "@unicef/material-ui-currency-textfield";
 import Card from "@material-ui/core/Card/Card";
@@ -160,7 +160,7 @@ function OfferView(props) {
 
     return (
         <Card>
-            {!title || id.toString() !== id ? <LoaderView/> : getView()}
+            {!title || id.toString() !== id ? <LoaderComponent/> : getView()}
         </Card>
     );
 }

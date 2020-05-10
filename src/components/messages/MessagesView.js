@@ -11,7 +11,7 @@ import SendMessageFormComponent from "./SendMessageFormComponent";
 import PropTypes from "prop-types";
 import List from "@material-ui/core/List";
 import ConversationOfferPreviewComponent from "./ConversationOfferPreviewComponent";
-import LoaderView from "../LoaderView";
+import LoaderComponent from "../LoaderComponent";
 import {SELECT_CONVERSATION} from "../../redux/actions";
 import {MESSAGES} from "../../common/paths";
 import Divider from "@material-ui/core/Divider";
@@ -96,7 +96,7 @@ function MessagesView(props) {
                                                    conversations={conversations}/>
                                 {nextConversationLoader}
                             </List>
-                            : <LoaderView/>
+                            : <LoaderComponent/>
                     }
                 </Card>
             </Grid>
@@ -110,7 +110,7 @@ function MessagesView(props) {
                                 <ConversationComponent userId={userId} currentConversation={currentConversation}/>
                                 <SendMessageFormComponent onSendMessage={handleSendMessage}/>
                             </List> :
-                            <LoaderView/>
+                            <LoaderComponent/>
                     }
                 </Card>
             </Grid>

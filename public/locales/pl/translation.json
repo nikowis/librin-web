@@ -25,6 +25,7 @@
   "deleteAccount": "Usuń konto",
   "deleteAccountHeader": "Usuwanie konta",
   "deleteAccountWarning": "Konto zostanie usunięte nieodwracalnie",
+  "confirmEmailSuccess": "Email został poprawnie zweryfikowany",
   "validations": {
     "default": "Niepoprawne dane",
     "required": "Pole wymagane",

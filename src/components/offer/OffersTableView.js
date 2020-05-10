@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {connect} from "react-redux";
 import {useTranslation} from "react-i18next";
 import Api from "../../common/api-communication";
-import LoaderView from "./../LoaderView";
+import LoaderComponent from "../LoaderComponent";
 import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
 import OffersTable from "./OffersTable";
@@ -50,7 +50,7 @@ function OffersTableView(props) {
 
     return (
         <Card>
-            {offers === null ? <LoaderView/> : getView()}
+            {offers === null ? <LoaderComponent/> : getView()}
         </Card>
     );
 

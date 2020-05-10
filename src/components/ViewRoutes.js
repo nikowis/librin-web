@@ -19,7 +19,7 @@ import {
     PROFILE,
     REGISTER,
     ROOT,
-    OFFER_VIEW
+    OFFER_VIEW, CONFIRM_EMAIL
 } from "../common/paths";
 import MyOffersTableView from "./offer/MyOffersTableView";
 import CreateOfferView from "./offer/CreateOfferView";
@@ -27,6 +27,7 @@ import EditOfferView from "./offer/EditOfferView";
 import OfferView from "./offer/OfferView";
 import MessagesView from "./messages/MessagesView";
 import OffersCardsView from "./offer/OffersCardsView";
+import ConfirmEmailView from "./user/ConfirmEmailView";
 
 function ViewRoutes() {
     return (
@@ -63,6 +64,9 @@ function ViewRoutes() {
             </Route>
             <Route path={OFFERS}>
                 <OffersCardsView/>
+            </Route>
+            <Route path={CONFIRM_EMAIL}>
+                <ConfirmEmailView/>
             </Route>
             <Route path={ROOT}>
                 <OffersCardsView/>
