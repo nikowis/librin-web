@@ -26,12 +26,16 @@
   "deleteAccountHeader": "Delete account",
   "deleteAccountWarning": "This action can not be undone",
   "confirmEmailSuccess": "Email has been verified",
+  "confirmEmailInProgress": "Confirming email address",
+  "user": {
+    "generatePasswordTokenLink": "Forgot password?"
+  },
   "validations": {
     "default": "Invalid field",
     "required": "Field required",
     "email": "Incorrect email",
     "passwordMatch": "Passwords don't match",
-    "min" : "Value is too short",
+    "min": "Value is too short",
     "regexp": "Incorrect format"
   },
   "login": {
@@ -68,14 +72,14 @@
       "delete": "Delete offer"
     }
   },
-  "messages" : {
+  "messages": {
     "page": "Messages",
     "conversationsList": "Messages",
     "message": "New message",
     "submit": "Send",
     "nomessages": "No messages",
-    "newer" : "Newer",
-    "older" : "Older"
+    "newer": "Newer",
+    "older": "Older"
   },
   "notification": {
     "registered": "Account created",
@@ -85,7 +89,7 @@
     "offerUpdated": "Offer updated",
     "accountDeleted": "Account deleted"
   },
-  "consent" : {
+  "consent": {
     "intro": "Registering I accept ",
     "separator": " and ",
     "outro": "."

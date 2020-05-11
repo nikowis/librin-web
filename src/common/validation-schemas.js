@@ -50,6 +50,13 @@ export const loginSchema = Yup.object().shape({
         .required()
 });
 
+export const generateResetPasswordSchema = Yup.object().shape({
+    email: Yup.string()
+        .email()
+        .required()
+});
+
+
 export const profileSchema = Yup.object().shape({
     password: Yup.string(),
     repeatPassword: Yup.string()

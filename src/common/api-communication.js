@@ -1,5 +1,6 @@
 import {
-    API_CONFIRM_EMAIL,
+    API_CHANGE_PASSWORD,
+    API_CONFIRM_EMAIL, API_GENERATE_PASSWORD_CHANGE,
     API_GET_TOKEN,
     API_MESSAGES,
     API_MY_OFFERS,
@@ -28,7 +29,7 @@ import {
     UPDATE_USER
 } from "../redux/actions";
 import {DEFAULT_PAGE_SIZE, DEFAULT_SORT, DESC_SORT, UPDATED_AT_SORT} from './app-constants'
-import {CONFIRM_EMAIL_BASE} from "./paths";
+import {CHANGE_PASSWORD_BASE, CONFIRM_EMAIL_BASE} from "./paths";
 
 class Api {
 
@@ -275,6 +276,30 @@ class Api {
         return HttpUtility.post({
             url: url,
             action: EMAIL_CONFIRM
+        });
+    }
+
+    generateResetPasswordToken(email) {
+        const url = this.API_URL + API_GENERATE_PASSWORD_CHANGE;
+        const prefix = process.env.REACT_APP_BASENAME !== "/" ? process.env.REACT_APP_BASENAME : '';
+        const changePasswordBaseUrl = window.location.origin + prefix + CHANGE_PASSWORD_BASE;
+        return HttpUtility.post({
+            url: url,
+            payload: {
+                email,
+                changePasswordBaseUrl
+            }
+        });
+    }
+
+    changePassword(tokenId, password) {
+        const url = this.API_URL + API_CHANGE_PASSWORD + '/' + tokenId ;
+
+        return HttpUtility.post({
+            url: url,
+            payload: {
+                password
+            }
         });
     }
 }

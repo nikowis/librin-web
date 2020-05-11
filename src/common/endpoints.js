@@ -9,3 +9,5 @@ export const API_POLICIES = '/policies';
 export const TERMS_AND_CONDITIONS = 'TERM_AND_CONDITIONS';
 export const PRIVACY_POLICY = 'PRIVACY_POLICY';
 export const API_CONFIRM_EMAIL = '/confirmemail';
+export const API_GENERATE_PASSWORD_CHANGE = '/generateresetpswdtoken';
+export const API_CHANGE_PASSWORD = '/changepassword';

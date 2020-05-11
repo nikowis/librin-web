@@ -12,3 +12,6 @@ export const OFFER_VIEW = OFFERS + '/:id';
 export const CREATE_OFFER = OFFERS + '/create';
 export const CONFIRM_EMAIL_BASE = '/emailconfirm';
 export const CONFIRM_EMAIL = CONFIRM_EMAIL_BASE + '/:confirmTokenId';
+export const CHANGE_PASSWORD_BASE = '/changepassword';
+export const CHANGE_PASSWORD = CHANGE_PASSWORD_BASE + '/:resetTokenId';
+export const GENERATE_PASSWORD_RESET = '/passwordreset';

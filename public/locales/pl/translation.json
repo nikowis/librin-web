@@ -26,6 +26,12 @@
   "deleteAccountHeader": "Usuwanie konta",
   "deleteAccountWarning": "Konto zostanie usunięte nieodwracalnie",
   "confirmEmailSuccess": "Email został poprawnie zweryfikowany",
+  "confirmEmailInProgress": "Potwierdzanie adresu email",
+  "user": {
+    "generatePasswordTokenLink": "Nie pamiętasz hasła?",
+    "generatePasswordSuccess": "Link do zmiany hasła został wysłany na {{email}}",
+    "generatePasswordTokenSubmit": "Wyślij"
+  },
   "validations": {
     "default": "Niepoprawne dane",
     "required": "Pole wymagane",

@@ -19,7 +19,7 @@ import {
     PROFILE,
     REGISTER,
     ROOT,
-    OFFER_VIEW, CONFIRM_EMAIL
+    OFFER_VIEW, CONFIRM_EMAIL, CHANGE_PASSWORD, GENERATE_PASSWORD_RESET
 } from "../common/paths";
 import MyOffersTableView from "./offer/MyOffersTableView";
 import CreateOfferView from "./offer/CreateOfferView";
@@ -28,6 +28,8 @@ import OfferView from "./offer/OfferView";
 import MessagesView from "./messages/MessagesView";
 import OffersCardsView from "./offer/OffersCardsView";
 import ConfirmEmailView from "./user/ConfirmEmailView";
+import GeneratePasswordResetView from "./user/GeneratePasswordResetView";
+import ChangePasswordView from "./user/ChangePasswordView";
 
 function ViewRoutes() {
     return (
@@ -65,6 +67,13 @@ function ViewRoutes() {
             <Route path={OFFERS}>
                 <OffersCardsView/>
             </Route>
+            <Route path={CHANGE_PASSWORD}>
+                <ChangePasswordView/>
+            </Route>
+            <Route path={GENERATE_PASSWORD_RESET}>
+                <GeneratePasswordResetView/>
+            </Route>
+
             <Route path={CONFIRM_EMAIL}>
                 <ConfirmEmailView/>
             </Route>

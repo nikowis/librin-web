@@ -9,23 +9,23 @@ import Typography from "@material-ui/core/Typography";
 import LoaderComponent from "../LoaderComponent";
 
 
-function ConfirmEmailView(props) {
+function ChangePasswordView(props) {
 
     const {t} = useTranslation();
 
     const [infoText, setInfoText] = React.useState(null);
 
-    let {confirmTokenId} = useParams();
+    let {resetTokenId} = useParams();
 
     useEffect(() => {
-        Api.confirmEmail(confirmTokenId).payload.then(res => {
+        Api.confirmEmail(resetTokenId).payload.then(res => {
             if (!res.error) {
                 setInfoText(t('confirmEmailSuccess'));
             } else if (res.status && res.status === 400) {
                 setInfoText(res.errors[0].defaultMessage);
             }
         });
-    }, [t, confirmTokenId]);
+    }, [t, resetTokenId]);
 
     return (
         <Card>
@@ -44,6 +44,6 @@ function ConfirmEmailView(props) {
     );
 }
 
-ConfirmEmailView.propTypes = {};
+ChangePasswordView.propTypes = {};
 
-export default connect(state => ({}))(withRouter(ConfirmEmailView));
+export default connect(state => ({}))(withRouter(ChangePasswordView));
