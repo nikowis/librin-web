@@ -80,7 +80,8 @@ class Api {
 
     postRegister(data) {
         const url = this.API_URL + API_REGISTER;
-        data.confirmEmailBaseUrl = window.location.origin + CONFIRM_EMAIL_BASE;
+        const prefix = process.env.REACT_APP_BASENAME !== "/" ? process.env.REACT_APP_BASENAME : '';
+        data.confirmEmailBaseUrl = window.location.origin + prefix + CONFIRM_EMAIL_BASE;
         return HttpUtility.post({
             url: url,
             payload: {

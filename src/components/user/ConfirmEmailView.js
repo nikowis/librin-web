@@ -24,7 +24,6 @@ function ConfirmEmailView(props) {
             } else if (res.status && res.status === 400) {
                 setInfoText(res.errors[0].defaultMessage);
             }
-
         });
     }, [t, confirmTokenId]);
 
