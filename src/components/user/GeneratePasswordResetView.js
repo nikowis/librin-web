@@ -8,6 +8,7 @@ import Api from "../../common/api-communication";
 import {Formik} from "formik";
 import {generateResetPasswordSchema} from "../../common/validation-schemas";
 import {Button, TextField} from "@material-ui/core";
+import {translate} from "../../common/i18n-helper";
 
 
 function GeneratePasswordResetView(props) {
@@ -57,7 +58,7 @@ function GeneratePasswordResetView(props) {
                                     variant="outlined"
                                     value={values.email}
                                     onChange={handleChange}
-                                    helperText={(errors.email && touched.email) && t(errors.email)}
+                                    helperText={(errors.email && touched.email) && translate(errors.email)}
                                     margin="normal"
                                 />
                             </div>

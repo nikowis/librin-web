@@ -1,6 +1,6 @@
 import React from 'react';
 import '../App.scss';
-import {Redirect} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 import Api from "../common/api-communication";
 import {connect} from "react-redux";
 import {GENERATE_PASSWORD_RESET, OFFERS} from "../common/paths";
@@ -10,7 +10,7 @@ import {loginSchema} from "../common/validation-schemas";
 import {useTranslation} from "react-i18next";
 import PropTypes from "prop-types";
 import Card from "@material-ui/core/Card";
-import Link from "@material-ui/core/Link";
+import {translate} from "../common/i18n-helper";
 
 function LoginView(props) {
 
@@ -26,7 +26,7 @@ function LoginView(props) {
     if (props.authenticated) {
         return <Redirect to={OFFERS} push={true}/>
     }
-    const urlPrefix = process.env.REACT_APP_BASENAME !== "/" ? process.env.REACT_APP_BASENAME : '';
+
     return (
         <Card>
             <Formik validationSchema={loginSchema}
@@ -53,7 +53,7 @@ function LoginView(props) {
                                 variant="outlined"
                                 value={values.email}
                                 onChange={handleChange}
-                                helperText={(errors.email && touched.email) && t(errors.email)}
+                                helperText={(errors.email && touched.email) && translate(errors.email)}
                                 margin="normal"
                             />
                         </div>
@@ -66,7 +66,7 @@ function LoginView(props) {
                                 variant="outlined"
                                 value={values.password}
                                 onChange={handleChange}
-                                helperText={(errors.password && touched.password) && t(errors.password)}
+                                helperText={(errors.password && touched.password) && translate(errors.password)}
                                 margin="normal"
                             />
                         </div>
@@ -76,7 +76,7 @@ function LoginView(props) {
                     </form>
                 )}
             </Formik>
-            <Link href={urlPrefix + GENERATE_PASSWORD_RESET}>
+            <Link to={GENERATE_PASSWORD_RESET}>
                 {t('user.generatePasswordTokenLink')}
             </Link>
         </Card>

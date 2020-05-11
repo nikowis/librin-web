@@ -16,6 +16,7 @@ import TextField from "@material-ui/core/TextField";
 import DialogActions from "@material-ui/core/DialogActions";
 import {Formik} from "formik";
 import {deleteAccountSchema} from "../../common/validation-schemas";
+import {translate} from "../../common/i18n-helper";
 
 function DeleteAccountComponent(props) {
 
@@ -87,7 +88,7 @@ function DeleteAccountComponent(props) {
                                         type="password"
                                         value={values.password}
                                         onChange={handleChange}
-                                        helperText={(errors.password && touched.password) && t(errors.password)}
+                                        helperText={(errors.password && touched.password) && translate(errors.password)}
                                         margin="dense"
                                     />
                                 </div>

@@ -30,7 +30,10 @@
   "user": {
     "generatePasswordTokenLink": "Nie pamiętasz hasła?",
     "generatePasswordSuccess": "Link do zmiany hasła został wysłany na {{email}}",
-    "generatePasswordTokenSubmit": "Wyślij"
+    "generatePasswordTokenSubmit": "Wyślij",
+    "changePassword": "Zmień hasło",
+    "changePasswordSuccess": "Hasło zostało zmnienione",
+    "changePasswordSubmit": "Zmień"
   },
   "validations": {
     "default": "Niepoprawne dane",

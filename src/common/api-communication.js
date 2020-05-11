@@ -273,7 +273,7 @@ class Api {
     confirmEmail(tokenId) {
         const url = this.API_URL + API_CONFIRM_EMAIL + '/' + tokenId ;
 
-        return HttpUtility.post({
+        return HttpUtility.put({
             url: url,
             action: EMAIL_CONFIRM
         });
@@ -295,7 +295,7 @@ class Api {
     changePassword(tokenId, password) {
         const url = this.API_URL + API_CHANGE_PASSWORD + '/' + tokenId ;
 
-        return HttpUtility.post({
+        return HttpUtility.put({
             url: url,
             payload: {
                 password

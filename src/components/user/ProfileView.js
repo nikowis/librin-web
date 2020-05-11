@@ -14,6 +14,7 @@ import {TextField} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import DeleteAccountComponent from "./DeleteAccountComponent";
+import {translate} from "../../common/i18n-helper";
 
 function ProfileView(props) {
 
@@ -81,7 +82,7 @@ function ProfileView(props) {
                                 name="email"
                                 value={values.email}
                                 onChange={handleChange}
-                                helperText={(errors.email && touched.email) && t(errors.email)}
+                                helperText={(errors.email && touched.email) && translate(errors.email)}
                                 margin="normal"
                                 disabled={true}
                             />
@@ -93,7 +94,7 @@ function ProfileView(props) {
                                 name="firstName"
                                 value={values.firstName}
                                 onChange={handleChange}
-                                helperText={(errors.firstName && touched.firstName) && t(errors.firstName)}
+                                helperText={(errors.firstName && touched.firstName) && translate(errors.firstName)}
                                 margin="normal"
                                 disabled={true}
                             />
@@ -105,7 +106,7 @@ function ProfileView(props) {
                                 name="lastName"
                                 value={values.lastName}
                                 onChange={handleChange}
-                                helperText={(errors.lastName && touched.lastName) && t(errors.lastName)}
+                                helperText={(errors.lastName && touched.lastName) && translate(errors.lastName)}
                                 margin="normal"
                                 disabled={true}
                             />
@@ -117,7 +118,7 @@ function ProfileView(props) {
                                 name="username"
                                 value={values.username}
                                 onChange={handleChange}
-                                helperText={(errors.username && touched.username) && t(errors.username)}
+                                helperText={(errors.username && touched.username) && translate(errors.username)}
                                 margin="normal"
                                 disabled={true}
                             />
@@ -131,7 +132,7 @@ function ProfileView(props) {
                                 variant="outlined"
                                 value={values.password}
                                 onChange={handleChange}
-                                helperText={(errors.password && touched.password) && t(errors.password)}
+                                helperText={(errors.password && touched.password) && translate(errors.password)}
                                 margin="normal"
                             />
                         </div>
@@ -144,7 +145,7 @@ function ProfileView(props) {
                                 variant="outlined"
                                 value={values.repeatPassword}
                                 onChange={handleChange}
-                                helperText={(errors.repeatPassword && touched.repeatPassword) && t(errors.repeatPassword)}
+                                helperText={(errors.repeatPassword && touched.repeatPassword) && translate(errors.repeatPassword)}
                                 margin="normal"
                             />
                         </div>
