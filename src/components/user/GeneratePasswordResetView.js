@@ -29,11 +29,11 @@ function GeneratePasswordResetView(props) {
     return (
         <Card>
             <div>
-                {t('user.generatePasswordTokenLink')}
+                {t('user.password.generatePasswordTokenLink')}
             </div>
             {emailSentTo ?
                 <div>
-                    {t('user.generatePasswordSuccess', {'email': emailSentTo})}
+                    {t('user.password.generatePasswordSuccess', {'email': emailSentTo})}
                 </div> :
                 <Formik validationSchema={generateResetPasswordSchema}
                         onSubmit={handleSubmit}
@@ -63,7 +63,7 @@ function GeneratePasswordResetView(props) {
                                 />
                             </div>
                             <Button variant="contained" color="primary" type="submit" disabled={isSubmitting}>
-                                {t('user.generatePasswordTokenSubmit')}
+                                {t('user.password.generatePasswordTokenSubmit')}
                             </Button>
                         </form>
                     )}

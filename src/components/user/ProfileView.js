@@ -29,7 +29,7 @@ function ProfileView(props) {
 
     const handleSubmit = (data, actions) => {
         actions.setSubmitting(true);
-        Api.updateUser(data.password).payload.then((response) => {
+        Api.updateUser(data).payload.then((response) => {
             if (!response.error) {
                 props.dispatch({type: UPDATE_USER, payload: response})
                 props.dispatch({type: SHOW_NOTIFICATION, payload: t('notification.profileUpdated')});
@@ -53,8 +53,6 @@ function ProfileView(props) {
                         firstName: props.firstName,
                         lastName: props.lastName,
                         username: props.username,
-                        password: '',
-                        repeatPassword: ''
                     }}
             >
                 {({
@@ -68,45 +66,12 @@ function ProfileView(props) {
                     <form onSubmit={handleSubmit}>
                         <div>
                             <TextField
-                                label={t('id')}
-                                name="id"
-                                value={values.id}
-                                disabled={true}
-                                margin="normal"
-                            />
-                        </div>
-                        <div>
-                            <TextField
                                 error={errors.email && touched.email}
                                 label={t('email')}
                                 name="email"
                                 value={values.email}
                                 onChange={handleChange}
                                 helperText={(errors.email && touched.email) && translate(errors.email)}
-                                margin="normal"
-                                disabled={true}
-                            />
-                        </div>
-                        <div>
-                            <TextField
-                                error={errors.firstName && touched.firstName}
-                                label={t('firstName')}
-                                name="firstName"
-                                value={values.firstName}
-                                onChange={handleChange}
-                                helperText={(errors.firstName && touched.firstName) && translate(errors.firstName)}
-                                margin="normal"
-                                disabled={true}
-                            />
-                        </div>
-                        <div>
-                            <TextField
-                                error={errors.lastName && touched.lastName}
-                                label={t('lastName')}
-                                name="lastName"
-                                value={values.lastName}
-                                onChange={handleChange}
-                                helperText={(errors.lastName && touched.lastName) && translate(errors.lastName)}
                                 margin="normal"
                                 disabled={true}
                             />
@@ -125,30 +90,27 @@ function ProfileView(props) {
                         </div>
                         <div>
                             <TextField
-                                error={errors.password && touched.password}
-                                label={t('password')}
-                                name="password"
-                                type="password"
-                                variant="outlined"
-                                value={values.password}
+                                error={errors.firstName && touched.firstName}
+                                label={t('firstName')}
+                                name="firstName"
+                                value={values.firstName}
                                 onChange={handleChange}
-                                helperText={(errors.password && touched.password) && translate(errors.password)}
+                                helperText={(errors.firstName && touched.firstName) && translate(errors.firstName)}
                                 margin="normal"
                             />
                         </div>
                         <div>
                             <TextField
-                                error={errors.repeatPassword && touched.repeatPassword}
-                                label={t('repeatPassword')}
-                                name="repeatPassword"
-                                type="password"
-                                variant="outlined"
-                                value={values.repeatPassword}
+                                error={errors.lastName && touched.lastName}
+                                label={t('lastName')}
+                                name="lastName"
+                                value={values.lastName}
                                 onChange={handleChange}
-                                helperText={(errors.repeatPassword && touched.repeatPassword) && translate(errors.repeatPassword)}
+                                helperText={(errors.lastName && touched.lastName) && translate(errors.lastName)}
                                 margin="normal"
                             />
                         </div>
+
                         <Button variant="contained" color="primary" type="submit" disabled={isSubmitting}>
                             {t('submit')}
                         </Button>

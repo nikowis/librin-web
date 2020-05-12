@@ -83,7 +83,7 @@ function DeleteAccountComponent(props) {
                                         autoFocus
                                         fullWidth
                                         error={errors.password && touched.password}
-                                        label={t('password')}
+                                        label={t('user.password.field')}
                                         name="password"
                                         type="password"
                                         value={values.password}

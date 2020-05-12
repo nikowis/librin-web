@@ -7,7 +7,7 @@ import {
     API_OFFERS,
     API_POLICIES,
     API_REGISTER,
-    API_USER,
+    API_PROFILE,
     PRIVACY_POLICY,
     SOLD_SUFFIX,
     TERMS_AND_CONDITIONS
@@ -93,19 +93,19 @@ class Api {
     }
 
     getUser() {
-        const url = new URL(this.API_URL + API_USER);
+        const url = new URL(this.API_URL + API_PROFILE);
         return HttpUtility.get({
             url: url,
             action: FETCH_USER
         });
     };
 
-    updateUser(password) {
-        const url = this.API_URL + API_USER;
+    updateUser(data) {
+        const url = this.API_URL + API_PROFILE;
         return HttpUtility.put({
             url: url,
             payload: {
-                password: password
+                ...data
             },
             action: UPDATE_USER
         });
@@ -262,7 +262,7 @@ class Api {
     }
 
     deleteUser(data) {
-        const url = this.API_URL + API_USER;
+        const url = this.API_URL + API_PROFILE;
 
         return HttpUtility.delete({
             url: url,

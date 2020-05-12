@@ -23,7 +23,7 @@ function ChangePasswordView(props) {
         actions.setSubmitting(true);
         Api.changePassword(resetTokenId, data.password).payload.then(response => {
             if (!response.error) {
-                setInfoText(t('user.changePasswordSuccess'));
+                setInfoText(t('user.password.changePasswordSuccess'));
             } else if (response.status && response.status === 400) {
                 setInfoText(response.errors[0].defaultMessage);
             }
@@ -33,7 +33,7 @@ function ChangePasswordView(props) {
     return (
         <Card>
             <div>
-                {t('user.changePassword')}
+                {t('user.password.changePassword')}
             </div>
             {infoText ?
                 <div>
@@ -58,7 +58,7 @@ function ChangePasswordView(props) {
                             <div>
                                 <TextField
                                     error={errors.password && touched.password}
-                                    label={t('password')}
+                                    label={t('user.password.field')}
                                     name="password"
                                     type="password"
                                     variant="outlined"
@@ -71,7 +71,7 @@ function ChangePasswordView(props) {
                             <div>
                                 <TextField
                                     error={errors.repeatPassword && touched.repeatPassword}
-                                    label={t('repeatPassword')}
+                                    label={t('user.password.repeat')}
                                     name="repeatPassword"
                                     type="password"
                                     variant="outlined"
@@ -82,7 +82,7 @@ function ChangePasswordView(props) {
                                 />
                             </div>
                             <Button variant="contained" color="primary" type="submit" disabled={isSubmitting}>
-                                {t('user.changePasswordSubmit')}
+                                {t('user.password.changePasswordSubmit')}
                             </Button>
                         </form>
                     )}

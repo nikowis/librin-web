@@ -5,8 +5,6 @@
   "lastName": "Nazwisko",
   "username": "Nazwa użytkownika",
   "logout": "Wylogowanie",
-  "password": "Hasło",
-  "repeatPassword": "Powtórz hasło",
   "id": "Id",
   "title": "Tytuł",
   "description": "Opis",
@@ -28,12 +26,19 @@
   "confirmEmailSuccess": "Email został poprawnie zweryfikowany",
   "confirmEmailInProgress": "Potwierdzanie adresu email",
   "user": {
-    "generatePasswordTokenLink": "Nie pamiętasz hasła?",
-    "generatePasswordSuccess": "Link do zmiany hasła został wysłany na {{email}}",
-    "generatePasswordTokenSubmit": "Wyślij",
-    "changePassword": "Zmień hasło",
-    "changePasswordSuccess": "Hasło zostało zmnienione",
-    "changePasswordSubmit": "Zmień"
+    "emmail": {
+
+    },
+    "password" : {
+      "field": "Hasło",
+      "repeat": "Powtórz hasło",
+      "generatePasswordTokenLink": "Nie pamiętasz hasła?",
+      "generatePasswordSuccess": "Link do zmiany hasła został wysłany na {{email}}",
+      "generatePasswordTokenSubmit": "Wyślij",
+      "changePassword": "Zmień hasło",
+      "changePasswordSuccess": "Hasło zostało zmnienione",
+      "changePasswordSubmit": "Zmień"
+    }
   },
   "validations": {
     "default": "Niepoprawne dane",
@@ -41,7 +46,8 @@
     "email": "Niepoprawny adres email",
     "passwordMatch": "Hasła nie pasują",
     "min" : "Wartość za krótka",
-    "regexp": "Niepoprawny format"
+    "regexp": "Niepoprawny format",
+    "passwordRegexFormat": "Min. 8 znaków, bez spacji, w tym jedna litera i jedna cyfra"
   },
   "login": {
     "page": "Logowanie",

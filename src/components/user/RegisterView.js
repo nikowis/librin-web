@@ -115,7 +115,7 @@ function RegisterView(props) {
                         <div>
                             <TextField
                                 error={errors.password && touched.password}
-                                label={t('password')}
+                                label={t('user.password.field')}
                                 name="password"
                                 type="password"
                                 variant="outlined"
@@ -128,7 +128,7 @@ function RegisterView(props) {
                         <div>
                             <TextField
                                 error={errors.repeatPassword && touched.repeatPassword}
-                                label={t('repeatPassword')}
+                                label={t('user.password.repeat')}
                                 name="repeatPassword"
                                 type="password"
                                 variant="outlined"

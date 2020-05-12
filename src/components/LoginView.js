@@ -60,7 +60,7 @@ function LoginView(props) {
                         <div>
                             <TextField
                                 error={errors.password && touched.password}
-                                label={t('password')}
+                                label={t('user.password.field')}
                                 name="password"
                                 type="password"
                                 variant="outlined"
@@ -77,7 +77,7 @@ function LoginView(props) {
                 )}
             </Formik>
             <Link to={GENERATE_PASSWORD_RESET}>
-                {t('user.generatePasswordTokenLink')}
+                {t('user.password.generatePasswordTokenLink')}
             </Link>
         </Card>
     );
