@@ -55,7 +55,7 @@ function DeleteAccountComponent(props) {
     return (
         <div>
             <Button variant="outlined" color="secondary" onClick={handleClickOpen} startIcon={<DeleteIcon/>}>
-                {t('deleteAccount')}
+                {t('user.deleteAccount')}
             </Button>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <Formik validationSchema={deleteAccountSchema}
@@ -73,17 +73,17 @@ function DeleteAccountComponent(props) {
                           isSubmitting
                       }) => (
                         <form onSubmit={handleSubmit}>
-                            <DialogTitle id="form-dialog-title">{t('deleteAccountHeader')}</DialogTitle>
+                            <DialogTitle id="form-dialog-title">{t('user.deleteAccountHeader')}</DialogTitle>
                             <DialogContent>
                                 <DialogContentText>
-                                    {t('deleteAccountWarning')}
+                                    {t('user.deleteAccountWarning')}
                                 </DialogContentText>
                                 <div>
                                     <TextField
                                         autoFocus
                                         fullWidth
                                         error={errors.password && touched.password}
-                                        label={t('user.password.field')}
+                                        label={t('user.password.label')}
                                         name="password"
                                         type="password"
                                         value={values.password}
@@ -98,7 +98,7 @@ function DeleteAccountComponent(props) {
                                     Cancel
                                 </Button>
                                 <Button onClick={handleSubmit} disabled={isSubmitting} startIcon={<DeleteIcon/>} color="secondary">
-                                    {t('deleteAccount')}
+                                    {t('user.deleteAccount')}
                                 </Button>
                             </DialogActions>
                         </form>

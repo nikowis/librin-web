@@ -1,9 +1,5 @@
 {
   "brand": "Książkofilia",
-  "email": "Email",
-  "firstName": "Imię",
-  "lastName": "Nazwisko",
-  "username": "Nazwa użytkownika",
   "logout": "Wylogowanie",
   "id": "Id",
   "title": "Tytuł",
@@ -20,17 +16,17 @@
   "noElementsFound": "Brak wyników",
   "termsAndConditions": "Regulamin",
   "privacyPolicy": "Polityka prywatności",
-  "deleteAccount": "Usuń konto",
-  "deleteAccountHeader": "Usuwanie konta",
-  "deleteAccountWarning": "Konto zostanie usunięte nieodwracalnie",
-  "confirmEmailSuccess": "Email został poprawnie zweryfikowany",
-  "confirmEmailInProgress": "Potwierdzanie adresu email",
   "user": {
-    "emmail": {
-
+    "firstName": "Imię",
+    "lastName": "Nazwisko",
+    "username": "Nazwa użytkownika",
+    "email": {
+      "label": "Email",
+      "confirmEmailSuccess": "Email został poprawnie zweryfikowany",
+      "confirmEmailInProgress": "Potwierdzanie adresu email"
     },
     "password" : {
-      "field": "Hasło",
+      "label": "Hasło",
       "repeat": "Powtórz hasło",
       "generatePasswordTokenLink": "Nie pamiętasz hasła?",
       "generatePasswordSuccess": "Link do zmiany hasła został wysłany na {{email}}",
@@ -38,7 +34,10 @@
       "change": "Zmień hasło",
       "changeSuccess": "Hasło zostało zmnienione",
       "changeSubmit": "Zmień"
-    }
+    },
+    "deleteAccount": "Usuń konto",
+    "deleteAccountHeader": "Usuwanie konta",
+    "deleteAccountWarning": "Konto zostanie usunięte nieodwracalnie"
   },
   "validations": {
     "default": "Niepoprawne dane",

@@ -67,7 +67,7 @@ function RegisterView(props) {
                         <div>
                             <TextField
                                 error={errors.email && touched.email}
-                                label={t('email')}
+                                label={t('user.email.label')}
                                 name="email"
                                 variant="outlined"
                                 value={values.email}
@@ -79,7 +79,7 @@ function RegisterView(props) {
                         <div>
                             <TextField
                                 error={errors.firstName && touched.firstName}
-                                label={t('firstName')}
+                                label={t('user.firstName')}
                                 name="firstName"
                                 variant="outlined"
                                 value={values.firstName}
@@ -91,7 +91,7 @@ function RegisterView(props) {
                         <div>
                             <TextField
                                 error={errors.lastName && touched.lastName}
-                                label={t('lastName')}
+                                label={t('user.lastName')}
                                 name="lastName"
                                 variant="outlined"
                                 value={values.lastName}
@@ -103,7 +103,7 @@ function RegisterView(props) {
                         <div>
                             <TextField
                                 error={errors.username && touched.username}
-                                label={t('username')}
+                                label={t('user.username')}
                                 name="username"
                                 variant="outlined"
                                 value={values.username}
@@ -115,7 +115,7 @@ function RegisterView(props) {
                         <div>
                             <TextField
                                 error={errors.password && touched.password}
-                                label={t('user.password.field')}
+                                label={t('user.password.label')}
                                 name="password"
                                 type="password"
                                 variant="outlined"

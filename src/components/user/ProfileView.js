@@ -68,7 +68,7 @@ function ProfileView(props) {
                         <div>
                             <TextField
                                 error={errors.email && touched.email}
-                                label={t('email')}
+                                label={t('user.email.label')}
                                 name="email"
                                 value={values.email}
                                 onChange={handleChange}
@@ -80,7 +80,7 @@ function ProfileView(props) {
                         <div>
                             <TextField
                                 error={errors.username && touched.username}
-                                label={t('username')}
+                                label={t('user.username')}
                                 name="username"
                                 value={values.username}
                                 onChange={handleChange}
@@ -92,7 +92,7 @@ function ProfileView(props) {
                         <div>
                             <TextField
                                 error={errors.firstName && touched.firstName}
-                                label={t('firstName')}
+                                label={t('user.firstName')}
                                 name="firstName"
                                 value={values.firstName}
                                 onChange={handleChange}
@@ -103,7 +103,7 @@ function ProfileView(props) {
                         <div>
                             <TextField
                                 error={errors.lastName && touched.lastName}
-                                label={t('lastName')}
+                                label={t('user.lastName')}
                                 name="lastName"
                                 value={values.lastName}
                                 onChange={handleChange}

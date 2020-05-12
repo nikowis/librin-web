@@ -1,12 +1,6 @@
 {
   "brand": "Bookphilia",
-  "email": "Email",
-  "firstName": "First name",
-  "lastName": "Last name",
-  "username": "Username",
   "logout": "Logout",
-  "password": "Password",
-  "repeatPassword": "Repeat password",
   "id": "Id",
   "title": "Title",
   "description": "Description",
@@ -22,13 +16,28 @@
   "noElementsFound": "No results found",
   "termsAndConditions": "Terms and conditions",
   "privacyPolicy": "Privacy policy",
-  "deleteAccount": "Delete account",
-  "deleteAccountHeader": "Delete account",
-  "deleteAccountWarning": "This action can not be undone",
-  "confirmEmailSuccess": "Email has been verified",
-  "confirmEmailInProgress": "Confirming email address",
   "user": {
-    "generatePasswordTokenLink": "Forgot password?"
+    "firstName": "First name",
+    "lastName": "Last name",
+    "username": "Username",
+    "email": {
+      "label": "Email",
+      "confirmEmailSuccess": "Email has been verified",
+      "confirmEmailInProgress": "Confirming email address"
+    },
+    "password" : {
+      "label": "Password",
+      "repeat": "Repeat password",
+      "generatePasswordTokenLink": "Forgot password?",
+      "generatePasswordSuccess": "Change password has been sent to {{email}}",
+      "generatePasswordTokenSubmit": "Send",
+      "change": "Change password",
+      "changeSuccess": "Password has been changed",
+      "changeSubmit": "Change"
+    },
+    "deleteAccount": "Delete account",
+    "deleteAccountHeader": "Delete account",
+    "deleteAccountWarning": "This action can not be undone"
   },
   "validations": {
     "default": "Invalid field",
@@ -36,7 +45,8 @@
     "email": "Incorrect email",
     "passwordMatch": "Passwords don't match",
     "min": "Value is too short",
-    "regexp": "Incorrect format"
+    "regexp": "Incorrect format",
+    "passwordRegexFormat": "Min. 8 characters, no spaces, should have at least one letter and one digit"
   },
   "login": {
     "page": "Login",

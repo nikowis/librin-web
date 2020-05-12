@@ -48,7 +48,7 @@ function LoginView(props) {
                         <div>
                             <TextField
                                 error={errors.email && touched.email}
-                                label={t('email')}
+                                label={t('user.email.label')}
                                 name="email"
                                 variant="outlined"
                                 value={values.email}
@@ -60,7 +60,7 @@ function LoginView(props) {
                         <div>
                             <TextField
                                 error={errors.password && touched.password}
-                                label={t('user.password.field')}
+                                label={t('user.password.label')}
                                 name="password"
                                 type="password"
                                 variant="outlined"

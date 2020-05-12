@@ -32,7 +32,7 @@ function ChangePasswordForm(props) {
                     <div>
                         <TextField
                             error={errors.password && touched.password}
-                            label={t('user.password.field')}
+                            label={t('user.password.label')}
                             name="password"
                             type="password"
                             variant="outlined"

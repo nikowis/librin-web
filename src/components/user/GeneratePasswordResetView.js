@@ -53,7 +53,7 @@ function GeneratePasswordResetView(props) {
                             <div>
                                 <TextField
                                     error={errors.email && touched.email}
-                                    label={t('email')}
+                                    label={t('user.email.label')}
                                     name="email"
                                     variant="outlined"
                                     value={values.email}

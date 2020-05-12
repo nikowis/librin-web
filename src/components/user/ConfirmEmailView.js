@@ -20,7 +20,7 @@ function ConfirmEmailView(props) {
     useEffect(() => {
         Api.confirmEmail(confirmTokenId).payload.then(res => {
             if (!res.error) {
-                setInfoText(t('confirmEmailSuccess'));
+                setInfoText(t('user.email.confirmEmailSuccess'));
             } else if (res.status && res.status === 400) {
                 setInfoText(res.errors[0].defaultMessage);
             }
@@ -35,7 +35,7 @@ function ConfirmEmailView(props) {
                 </> :
                 <>
                     <Typography variant="h6">
-                        {t('confirmEmailInProgress')}
+                        {t('user.email.confirmEmailInProgress')}
                     </Typography>
                     <LoaderComponent/>
                 </>
