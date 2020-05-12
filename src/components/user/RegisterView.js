@@ -15,12 +15,28 @@ import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import RegisterConsentComponent from "../RegisterConsentComponent";
 import {translate} from "../../common/i18n-helper";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import IconButton from "@material-ui/core/IconButton";
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import clsx from "clsx";
+import {makeStyles} from "@material-ui/core/styles";
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
+import FormHelperText from "@material-ui/core/FormHelperText";
 
+const useStyles = makeStyles(theme => ({
+    margin: {
+        margin: theme.spacing(1)
+    },
+}));
 
 function RegisterView(props) {
-
+    const classes = useStyles();
     const {t} = useTranslation();
     const {dispatch, history} = props;
+    const [passwordVisible, setPasswordVisible] = React.useState(false);
 
     const handleSubmit = (data, actions) => {
         actions.setSubmitting(true);
@@ -51,8 +67,7 @@ function RegisterView(props) {
                         firstName: '',
                         lastName: '',
                         username: '',
-                        password: '',
-                        repeatPassword: ''
+                        password: ''
                     }}
             >
                 {({
@@ -113,30 +128,31 @@ function RegisterView(props) {
                             />
                         </div>
                         <div>
-                            <TextField
-                                error={errors.password && touched.password}
-                                label={t('user.password.label')}
-                                name="password"
-                                type="password"
-                                variant="outlined"
-                                value={values.password}
-                                onChange={handleChange}
-                                helperText={(errors.password && touched.password) && translate(errors.password)}
-                                margin="normal"
-                            />
-                        </div>
-                        <div>
-                            <TextField
-                                error={errors.repeatPassword && touched.repeatPassword}
-                                label={t('user.password.repeat')}
-                                name="repeatPassword"
-                                type="password"
-                                variant="outlined"
-                                value={values.repeatPassword}
-                                onChange={handleChange}
-                                helperText={(errors.repeatPassword && touched.repeatPassword) && translate(errors.repeatPassword)}
-                                margin="normal"
-                            />
+                            <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined" >
+                                <InputLabel htmlFor="outlined-adornment-password">{t('user.password.label')}</InputLabel>
+                                <OutlinedInput
+                                    id="outlined-adornment-password"
+                                    error={errors.password && touched.password}
+                                    name="password"
+                                    type={passwordVisible ? 'text' : 'password'}
+                                    value={values.password}
+                                    onChange={handleChange}
+                                    labelWidth={70}
+                                    endAdornment={
+                                        <InputAdornment position="end">
+                                            <IconButton
+                                                aria-label="toggle password visibility"
+                                                onClick={() => setPasswordVisible(!passwordVisible)}
+                                            >
+                                                {passwordVisible ? <Visibility/> : <VisibilityOff/>}
+                                            </IconButton>
+                                        </InputAdornment>
+                                    }
+                                />
+                                <FormHelperText id="outlined-weight-helper-text" error={errors.password && touched.password}>
+                                    {(errors.password && touched.password) && translate(errors.password)}
+                                </FormHelperText>
+                            </FormControl>
                         </div>
                         <RegisterConsentComponent/>
                         <Button variant="contained" color="primary" type="submit" disabled={isSubmitting}>

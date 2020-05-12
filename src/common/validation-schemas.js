@@ -37,10 +37,7 @@ export const registerSchema = Yup.object().shape({
         .required(),
     password: Yup.string()
         .matches(passwordRegex, 'validations.passwordRegexFormat')
-        .required(),
-    repeatPassword: Yup.string()
         .required()
-        .oneOf([Yup.ref('password')], 'validations.passwordMatch')
 });
 
 export const changePasswordSchema = Yup.object().shape({
