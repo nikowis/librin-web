@@ -8,7 +8,7 @@ import Api from "../../common/api-communication";
 import ChangePasswordForm from "./ChangePasswordForm";
 
 
-function ChangePasswordView(props) {
+function ChangePasswordWithTokenView(props) {
 
     const {t} = useTranslation();
 
@@ -20,7 +20,7 @@ function ChangePasswordView(props) {
         actions.setSubmitting(true);
         Api.changePassword(resetTokenId, data.password).payload.then(response => {
             if (!response.error) {
-                setInfoText(t('user.password.changePasswordSuccess'));
+                setInfoText(t('user.password.changeSuccess'));
             } else if (response.status && response.status === 400) {
                 setInfoText(response.errors[0].defaultMessage);
             }
@@ -30,7 +30,7 @@ function ChangePasswordView(props) {
     return (
         <Card>
             <div>
-                {t('user.password.changePassword')}
+                {t('user.password.change')}
             </div>
             {infoText ?
                 <div>
@@ -42,6 +42,6 @@ function ChangePasswordView(props) {
     );
 }
 
-ChangePasswordView.propTypes = {};
+ChangePasswordWithTokenView.propTypes = {};
 
-export default connect(state => ({}))(withRouter(ChangePasswordView));
+export default connect(state => ({}))(withRouter(ChangePasswordWithTokenView));

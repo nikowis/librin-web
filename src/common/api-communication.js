@@ -261,7 +261,7 @@ class Api {
         return this.API_URL + API_POLICIES + '/' + PRIVACY_POLICY;
     }
 
-    deleteUser(data) {
+    deleteProfile(data) {
         const url = this.API_URL + API_PROFILE;
 
         return HttpUtility.delete({
@@ -269,6 +269,16 @@ class Api {
             payload: data
         });
     }
+
+    changeProfilePassword(data) {
+        const url = this.API_URL + API_PROFILE + API_CHANGE_PASSWORD;
+
+        return HttpUtility.put({
+            url: url,
+            payload: {...data}
+        });
+    }
+
 
     confirmEmail(tokenId) {
         const url = this.API_URL + API_CONFIRM_EMAIL + '/' + tokenId ;

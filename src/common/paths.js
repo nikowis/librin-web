@@ -3,6 +3,7 @@ export const LOGIN = '/login';
 export const LOGOUT = '/logout';
 export const REGISTER = '/register';
 export const PROFILE = '/profile';
+export const PROFILE_CHANGE_PASSWORD = PROFILE + '/changepassword';
 export const MY_OFFERS = '/myoffers';
 export const EDIT_OFFER = MY_OFFERS + '/:id';
 export const MESSAGES = '/messages';

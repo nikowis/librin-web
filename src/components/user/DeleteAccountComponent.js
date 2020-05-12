@@ -27,7 +27,7 @@ function DeleteAccountComponent(props) {
 
     const handleSubmit = (data, actions) => {
         actions.setSubmitting(true);
-        Api.deleteUser(data).payload.then((response) => {
+        Api.deleteProfile(data).payload.then((response) => {
             if (!response.error) {
                 setOpen(false);
                 props.dispatch({type: LOGOUT_ACTION});

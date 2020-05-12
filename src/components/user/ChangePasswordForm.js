@@ -56,7 +56,7 @@ function ChangePasswordForm(props) {
                         />
                     </div>
                     <Button variant="contained" color="primary" type="submit" disabled={isSubmitting}>
-                        {t('user.password.changePasswordSubmit')}
+                        {t('user.password.changeSubmit')}
                     </Button>
                 </form>
             )}

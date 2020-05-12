@@ -35,9 +35,9 @@
       "generatePasswordTokenLink": "Nie pamiętasz hasła?",
       "generatePasswordSuccess": "Link do zmiany hasła został wysłany na {{email}}",
       "generatePasswordTokenSubmit": "Wyślij",
-      "changePassword": "Zmień hasło",
-      "changePasswordSuccess": "Hasło zostało zmnienione",
-      "changePasswordSubmit": "Zmień"
+      "change": "Zmień hasło",
+      "changeSuccess": "Hasło zostało zmnienione",
+      "changeSubmit": "Zmień"
     }
   },
   "validations": {

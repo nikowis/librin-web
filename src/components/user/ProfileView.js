@@ -15,6 +15,7 @@ import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import DeleteAccountComponent from "./DeleteAccountComponent";
 import {translate} from "../../common/i18n-helper";
+import {PROFILE_CHANGE_PASSWORD} from "../../common/paths";
 
 function ProfileView(props) {
 
@@ -117,6 +118,9 @@ function ProfileView(props) {
                     </form>
                 )}
             </Formik>
+            <Button variant="contained" color="primary" type="submit" onClick={() => props.history.push(PROFILE_CHANGE_PASSWORD)}>
+                {t('user.password.change')}
+            </Button>
             <DeleteAccountComponent/>
         </Card>
     );
