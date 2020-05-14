@@ -1,7 +1,7 @@
 import React from 'react';
-import '../App.scss';
+import '../../App.scss';
 import {connect} from "react-redux";
-import {CREATE_OFFER, LOGIN, LOGOUT, MESSAGES, MY_OFFERS, OFFERS, PROFILE, REGISTER, ROOT} from "../common/paths";
+import {CREATE_OFFER, LOGIN, LOGOUT, MESSAGES, MY_OFFERS, OFFERS, PROFILE, REGISTER, ROOT} from "../../common/paths";
 import {useTranslation} from 'react-i18next';
 import MenuIcon from '@material-ui/icons/Menu';
 import PropTypes from "prop-types";
@@ -27,7 +27,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import SearchComponent from "./SearchComponent";
 
-function TopMenu(props) {
+function TopAppBar(props) {
 
     const {t} = useTranslation();
 
@@ -130,7 +130,7 @@ function TopMenu(props) {
 
 }
 
-TopMenu.propTypes = {
+TopAppBar.propTypes = {
     email: PropTypes.string,
     authenticated: PropTypes.bool.isRequired,
     authError: PropTypes.bool.isRequired,
@@ -140,4 +140,4 @@ export default connect(state => ({
     email: state.user.email,
     authenticated: state.user.authenticated,
     authError: state.app.authError
-}))(withRouter(TopMenu));
+}))(withRouter(TopAppBar));

@@ -1,16 +1,16 @@
 import React from 'react';
-import '../App.scss';
+import '../../App.scss';
 import {Link, Redirect} from "react-router-dom";
-import Api from "../common/api-communication";
+import Api from "../../common/api-communication";
 import {connect} from "react-redux";
-import {GENERATE_PASSWORD_RESET, OFFERS} from "../common/paths";
+import {GENERATE_PASSWORD_RESET, OFFERS} from "../../common/paths";
 import {Formik} from 'formik';
 import {Button, TextField} from '@material-ui/core';
-import {loginSchema} from "../common/validation-schemas";
+import {loginSchema} from "../../common/validation-schemas";
 import {useTranslation} from "react-i18next";
 import PropTypes from "prop-types";
 import Card from "@material-ui/core/Card";
-import {translate} from "../common/i18n-helper";
+import {translate} from "../../common/i18n-helper";
 
 function LoginView(props) {
 

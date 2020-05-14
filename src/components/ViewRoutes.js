@@ -1,6 +1,6 @@
 import React from 'react';
 import './../App.scss';
-import Login from "./LoginView";
+import Login from "./user/LoginView";
 import {Route, Switch} from "react-router-dom";
 import Logout from "./Logout";
 import AuthenticatedRoute from "./AuthenticatedRoute";

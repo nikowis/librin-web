@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import './App.scss';
-import TopMenu from "./components/TopMenu";
+import TopAppBar from "./components/appbar/TopAppBar";
 import {connect} from "react-redux";
 import Api from "./common/api-communication";
 import ViewRoutes from "./components/ViewRoutes";
@@ -21,7 +21,7 @@ function App(props) {
 
     return (
         <div className="app">
-            <TopMenu/>
+            <TopAppBar/>
             <ErrorContainer/>
             <NotificationContainer/>
             <Container maxWidth="lg">

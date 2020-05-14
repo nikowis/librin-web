@@ -1,7 +1,7 @@
 import React from 'react';
 import '../App.scss';
 import PropTypes from "prop-types";
-import {CHANGE_LANG} from "../redux/actions";
+import {CHANGE_LANG} from "../../redux/actions";
 import Button from "@material-ui/core/Button";
 import {useTranslation} from "react-i18next";
 import {connect} from "react-redux";

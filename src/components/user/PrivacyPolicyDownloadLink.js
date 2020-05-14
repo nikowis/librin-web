@@ -1,7 +1,7 @@
 import React from 'react';
-import '../App.scss';
+import '../../App.scss';
 import {useTranslation} from "react-i18next";
-import Api from "../common/api-communication";
+import Api from "../../common/api-communication";
 
 function PrivacyPolicyDownloadLink() {
 

@@ -13,7 +13,7 @@ import {NOTIFICATION_DURATION} from "../../common/app-constants";
 import {TextField} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
-import RegisterConsentComponent from "../RegisterConsentComponent";
+import RegisterConsentComponent from "./RegisterConsentComponent";
 import {translate} from "../../common/i18n-helper";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
