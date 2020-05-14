@@ -14,29 +14,31 @@ import OfferCard from "./OfferCard";
 function OffersCardsView(props) {
 
     const {t} = useTranslation();
-    const {dispatch, offers, location, history, currentPage, totalPages, userId} = props;
+    const {dispatch, offers, location, history, prevSearch, currentPage, totalPages, userId} = props;
     const {search, pathname} = location;
     const {replace} = history;
 
     const pageQuery = Api.getPageParam(search);
 
     useEffect(() => {
-        if (!pageQuery || Number.isNaN(pageQuery)) {
+        if (isNaN(parseInt(pageQuery))) {
+            const urlSearchParams = new URLSearchParams(search);
+            urlSearchParams.set('page', 1);
             replace({
                 pathname: pathname,
-                search: "?" + new URLSearchParams({page: 1}).toString()
+                search: "?" + urlSearchParams.toString()
             })
         }
-    }, [replace, pathname, pageQuery]);
+    }, [replace, pathname, search, pageQuery]);
 
     useEffect(() => {
-        if (!pageQuery || Number.isNaN(pageQuery)) {
+        if (isNaN(parseInt(pageQuery))) {
             return;
         }
-        if (offers === null || (pageQuery !== currentPage)) {
-            dispatch(Api.getOffers(pageQuery - 1));
+        if (offers === null || (search !== prevSearch)) {
+            dispatch(Api.getOffers(new URLSearchParams(search)));
         }
-    }, [dispatch, offers, currentPage, pageQuery]);
+    }, [dispatch, offers, pageQuery, prevSearch, search]);
 
     const handleViewOffer = (offer) => {
         dispatch({type: VIEW_OFFER, payload: offer});
@@ -53,7 +55,8 @@ function OffersCardsView(props) {
         return offers.map((offer) => {
             return (
                 <Grid item sm={12} md={6} lg={4} key={offer.id}>
-                    <OfferCard offer={offer} onView={handleViewOffer} onSendMessage={userId === offer.ownerId ? null : handleSendMessage}/>
+                    <OfferCard offer={offer} onView={handleViewOffer}
+                               onSendMessage={userId === offer.ownerId ? null : handleSendMessage}/>
                 </Grid>
             );
         });
@@ -102,6 +105,7 @@ OffersCardsView.propTypes = {
         }),
     ),
     currentPage: PropTypes.number,
+    prevSearch: PropTypes.string,
     totalPages: PropTypes.number,
 };
 
@@ -110,4 +114,5 @@ export default connect(state => ({
     offers: state.offers.content,
     currentPage: state.offers.currentPage,
     totalPages: state.offers.totalPages,
+    prevSearch: state.offers.search
 }))(withRouter(OffersCardsView));

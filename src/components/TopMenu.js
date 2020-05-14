@@ -25,6 +25,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import AddIcon from '@material-ui/icons/Add';
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
+import SearchComponent from "./SearchComponent";
 
 function TopMenu(props) {
 
@@ -105,6 +106,7 @@ function TopMenu(props) {
                     <Typography variant="h6" className='top-menu-title'>
                         Książkofilia
                     </Typography>
+                    <SearchComponent/>
                 </Toolbar>
             </AppBar>
             <Drawer

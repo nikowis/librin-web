@@ -1,5 +1,5 @@
 import {
-    CLEAR_CURRENT_OFFER,
+    CLEAR_CURRENT_OFFER, CLEAR_OFFERS,
     DELETE_OFFER,
     FETCH_OFFER,
     FETCH_OFFERS,
@@ -23,7 +23,8 @@ const initialState = {
         title: '',
         author: '',
         price: 0
-    }
+    },
+    search: ''
 };
 
 export function processOffer(offer) {
@@ -59,6 +60,7 @@ const offersReducer = (state = initialState, action) => {
                 currentPage: payload.number + 1,
                 totalPages: payload.totalPages,
                 totalElements: payload.totalElements,
+                search: window.location.search,
             };
         case VIEW_OFFER:
         case FETCH_OFFER + FULFILLED:
@@ -89,8 +91,10 @@ const offersReducer = (state = initialState, action) => {
                     ...initialState.currentOffer
                 }
             };
+        case CLEAR_OFFERS:
         case OFFER_CREATED:
         case DELETE_OFFER + FULFILLED:
+            return initialState;
         default:
             return state
     }

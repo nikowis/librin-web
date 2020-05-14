@@ -111,23 +111,19 @@ class Api {
         });
     }
 
-    getOffers(page, owner) {
-        const params = {
-            size: DEFAULT_PAGE_SIZE,
-            sort: DEFAULT_SORT,
-            page
-        };
+    getOffers(urlSearchParams) {
+        urlSearchParams.set('size', DEFAULT_PAGE_SIZE);
+        urlSearchParams.set('sort', DEFAULT_SORT);
 
+        const page = parseInt(urlSearchParams.get('page'));
         if (!page || page < 0) {
-            params.page = 0;
-        }
-
-        if (owner) {
-            params.owner = owner;
+            urlSearchParams.set('page', 0);
+        } else {
+            urlSearchParams.set('page', parseInt(urlSearchParams.get('page'))-1);
         }
 
         const url = new URL(this.API_URL + API_OFFERS);
-        url.search = new URLSearchParams(params).toString();
+        url.search = urlSearchParams.toString();
         return HttpUtility.get({
             url: url,
             action: FETCH_OFFERS
