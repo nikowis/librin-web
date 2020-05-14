@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import TextField from "@material-ui/core/TextField";
 import SearchIcon from '@material-ui/icons/Search';
 import FormControl from "@material-ui/core/FormControl";
@@ -10,14 +10,34 @@ import IconButton from "@material-ui/core/IconButton";
 import {useTranslation} from "react-i18next";
 import {connect} from "react-redux";
 import {CLEAR_OFFERS} from "../../redux/actions";
+import Api from "../../common/api-communication";
 
 function SearchComponent(props) {
 
-    const [category, setCategory] = React.useState('title');
+    const TITLE = 'title';
+    const AUTHOR = 'author';
+
+    const [category, setCategory] = React.useState(TITLE);
     const [search, setSearch] = React.useState('');
 
     const {t} = useTranslation();
-    const {history, dispatch} = props;
+    const {history, location, dispatch} = props;
+
+    const titleQuery = Api.getURLParam(location.search, TITLE);
+    const authorQuery = Api.getURLParam(location.search, AUTHOR);
+    useEffect(() => {
+        if (titleQuery) {
+            setCategory(TITLE);
+            setSearch(titleQuery);
+        } else if (authorQuery) {
+            setCategory(AUTHOR);
+            setSearch(authorQuery);
+        } else {
+            setCategory(TITLE);
+            setSearch('');
+        }
+
+    }, [titleQuery, authorQuery]);
 
     const handleChangeSelect = (event) => {
         setCategory(event.target.value);
@@ -45,8 +65,8 @@ function SearchComponent(props) {
                         value={category}
                         onChange={handleChangeSelect}
                     >
-                        <MenuItem value={'title'}>Tytuł</MenuItem>
-                        <MenuItem value={'author'}>Autor</MenuItem>
+                        <MenuItem value={TITLE}>Tytuł</MenuItem>
+                        <MenuItem value={AUTHOR}>Autor</MenuItem>
                     </Select>
                 </FormControl>
                 <TextField
@@ -55,7 +75,7 @@ function SearchComponent(props) {
                     value={search}
                     onChange={handleChangeSearch}
                 />
-                <IconButton color="default">
+                <IconButton color="default" type={"submit"}>
                     <SearchIcon/>
                 </IconButton>
             </form>
