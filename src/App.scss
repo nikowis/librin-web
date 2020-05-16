@@ -1,42 +1,71 @@
-$primary: #563d7c;
-$primary-shadow: #453163;
+$primary: #9575cd;
+$primary-light: #c7a4ff;
+$primary-shadow: #65499c;
+$secondary: #ebedee;
 
 .app {
   font-family: 'Roboto', sans-serif;
   text-align: center;
-  background-color: #ebedee;
+  background-color: $secondary;
   min-height: 100vh;
 }
 
 .top-menu {
   width: 100%;
+  background-color: white;
+  color: $primary;
 
-  .top-menu-search {
+  #top-menu-search {
     flex-grow: 1;
 
     form {
       display: flex;
       align-items: center;
-    }
+      justify-content: center;
+      .MuiInputBase-root {
+        height: 2rem;
+        background-color: $secondary;
 
-    .MuiInputBase-root {
-      height: 2rem;
-      margin: 0 0.2rem 0 0.2rem;
-      background-color: #60a6ff;
-      &:before {
-        border-color: red;
+        &:before {
+          border-width: 0;
+        }
+
+        &:after {
+          border-width: 0;
+        }
+
+        &:hover {
+          &:before {
+            border-width: 0;
+          }
+        }
+
+        .MuiSelect-root {
+          padding-left: 8px;
+          padding-right: 32px;
+        }
       }
 
-      &:after {
-        border-color: red;
+      .search-select {
+        border-radius: 0.5rem 0 0 0.5rem;
+        border-right-width: 0;
       }
-    }
 
-    .MuiIconButton-root {
-      background-color: #60a6ff;
-      border-radius: 0;
-      height: 2rem;
-      padding: 0 0.5rem 0 0.5rem;
+      .MuiIconButton-root {
+        background-color: $primary;
+        border-radius: 0 0.5rem 0.5rem 0;
+        color: white;
+        height: 2rem;
+        padding: 0 0.5rem 0;
+      }
+
+      .search-text-input {
+        border-left: 1px lightgray solid;
+        border-right: 1px lightgray solid;
+        background-color: $secondary;
+        padding-left: 8px;
+        padding-right: 8px;
+      }
     }
   }
 }

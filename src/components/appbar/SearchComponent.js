@@ -60,6 +60,7 @@ function SearchComponent(props) {
 
         <form onSubmit={handleSubmit}>
             <Select
+                className={"search-select"}
                 value={category}
                 onChange={handleChangeSelect}
             >
@@ -67,7 +68,7 @@ function SearchComponent(props) {
                 <MenuItem value={AUTHOR}>Autor</MenuItem>
             </Select>
             <InputBase
-                id="input-with-icon-textfield"
+                className={"search-text-input"}
                 value={search}
                 placeholder={t('search')}
                 onChange={handleChangeSearch}

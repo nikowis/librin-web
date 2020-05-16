@@ -4,7 +4,6 @@ import {connect} from "react-redux";
 import MenuIcon from '@material-ui/icons/Menu';
 import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
-import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
@@ -26,21 +25,19 @@ function TopAppBar(props) {
 
     return (
         <div className="top-menu">
-            <AppBar position="static">
-                <Toolbar>
-                    <Typography variant="h6" >
-                        Książkofilia
-                    </Typography>
-                    <div className='top-menu-search'>
-                        <SearchComponent />
-                    </div>
+            <Toolbar>
+                <Typography variant="h4" >
+                    Librin
+                </Typography>
+                <div id='top-menu-search'>
+                    <SearchComponent/>
+                </div>
 
-                    <IconButton onClick={handleDrawerOpen} edge="end" color="inherit"
-                                aria-label="menu">
-                        <MenuIcon/>
-                    </IconButton>
-                </Toolbar>
-            </AppBar>
+                <IconButton onClick={handleDrawerOpen} edge="end" color="inherit"
+                            aria-label="menu">
+                    <MenuIcon/>
+                </IconButton>
+            </Toolbar>
             <Drawer
                 variant="persistent"
                 anchor="left"
