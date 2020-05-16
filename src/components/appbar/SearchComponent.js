@@ -1,7 +1,5 @@
 import React, {useEffect} from 'react';
-import TextField from "@material-ui/core/TextField";
 import SearchIcon from '@material-ui/icons/Search';
-import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import {withRouter} from "react-router-dom";
@@ -11,6 +9,7 @@ import {useTranslation} from "react-i18next";
 import {connect} from "react-redux";
 import {CLEAR_OFFERS} from "../../redux/actions";
 import Api from "../../common/api-communication";
+import InputBase from "@material-ui/core/InputBase";
 
 function SearchComponent(props) {
 
@@ -58,28 +57,26 @@ function SearchComponent(props) {
     };
 
     return (
-        <div style={{backgroundColor: 'lightGray'}}>
-            <form onSubmit={handleSubmit}>
-                <FormControl variant="outlined">
-                    <Select
-                        value={category}
-                        onChange={handleChangeSelect}
-                    >
-                        <MenuItem value={TITLE}>Tytuł</MenuItem>
-                        <MenuItem value={AUTHOR}>Autor</MenuItem>
-                    </Select>
-                </FormControl>
-                <TextField
-                    id="input-with-icon-textfield"
-                    label={t('search')}
-                    value={search}
-                    onChange={handleChangeSearch}
-                />
-                <IconButton color="default" type={"submit"}>
-                    <SearchIcon/>
-                </IconButton>
-            </form>
-        </div>
+
+        <form onSubmit={handleSubmit}>
+            <Select
+                value={category}
+                onChange={handleChangeSelect}
+            >
+                <MenuItem value={TITLE}>Tytuł</MenuItem>
+                <MenuItem value={AUTHOR}>Autor</MenuItem>
+            </Select>
+            <InputBase
+                id="input-with-icon-textfield"
+                value={search}
+                placeholder={t('search')}
+                onChange={handleChangeSearch}
+            />
+            <IconButton color="default" type={"submit"}>
+                <SearchIcon/>
+            </IconButton>
+        </form>
+
     );
 }
 

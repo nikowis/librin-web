@@ -28,14 +28,17 @@ function TopAppBar(props) {
         <div className="top-menu">
             <AppBar position="static">
                 <Toolbar>
-                    <IconButton onClick={handleDrawerOpen} edge="start" color="inherit"
+                    <Typography variant="h6" >
+                        Książkofilia
+                    </Typography>
+                    <div className='top-menu-search'>
+                        <SearchComponent />
+                    </div>
+
+                    <IconButton onClick={handleDrawerOpen} edge="end" color="inherit"
                                 aria-label="menu">
                         <MenuIcon/>
                     </IconButton>
-                    <Typography variant="h6" className='top-menu-title'>
-                        Książkofilia
-                    </Typography>
-                    <SearchComponent/>
                 </Toolbar>
             </AppBar>
             <Drawer

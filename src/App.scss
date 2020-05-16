@@ -11,13 +11,38 @@ $primary-shadow: #453163;
 .top-menu {
   width: 100%;
 
-  .top-menu-title {
+  .top-menu-search {
     flex-grow: 1;
+
+    form {
+      display: flex;
+      align-items: center;
+    }
+
+    .MuiInputBase-root {
+      height: 2rem;
+      margin: 0 0.2rem 0 0.2rem;
+      background-color: #60a6ff;
+      &:before {
+        border-color: red;
+      }
+
+      &:after {
+        border-color: red;
+      }
+    }
+
+    .MuiIconButton-root {
+      background-color: #60a6ff;
+      border-radius: 0;
+      height: 2rem;
+      padding: 0 0.5rem 0 0.5rem;
+    }
   }
 }
 
 button.MuiButton-contained {
-    margin: 0.2rem
+  margin: 0.2rem
 }
 
 button.MuiButton-outlined {
