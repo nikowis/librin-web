@@ -1,28 +1,15 @@
 import React from 'react';
 import {connect} from "react-redux";
-import MenuIcon from '@material-ui/icons/Menu';
 import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
 import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import Drawer from "@material-ui/core/Drawer";
 import SearchComponent from "./SearchComponent";
-import Menu from "./Menu";
 import withWidth from '@material-ui/core/withWidth';
+import TopMenu from "./TopMenu";
 
 
 function TopAppBar(props) {
-
-    const [open, setOpen] = React.useState(true);
-
-    const handleDrawerOpen = () => {
-        setOpen(true);
-    };
-
-    const handleDrawerClose = () => {
-        setOpen(false);
-    };
 
     const smallScreen = /xs|sm/.test(props.width);
 
@@ -42,19 +29,9 @@ function TopAppBar(props) {
                         }
                     </div>
                     <div className="top-menu-right">
-                    <IconButton onClick={handleDrawerOpen} color="inherit"
-                                aria-label="menu">
-                        <MenuIcon/>
-                    </IconButton>
+                        <TopMenu authenticated={props.authenticated}/>
                     </div>
                 </Toolbar>
-                <Drawer
-                    variant="persistent"
-                    anchor="left"
-                    open={open}
-                >
-                    <Menu authenticated={props.authenticated} onClose={handleDrawerClose}/>
-                </Drawer>
             </div>
             {
                 smallScreen ?

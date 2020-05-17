@@ -1,14 +1,17 @@
 @import "Variables";
 
+$topMenuHeight: 50px;
+
 .top-menu, .top-menu-second-row {
-  width: 100%;
   background-color: white;
   color: $primary;
-  height: 50px;
+  height: $topMenuHeight;
 
   .MuiToolbar-regular {
-    height: 50px;
-    min-height: 50px;
+    height: $topMenuHeight;
+    min-height: $topMenuHeight;
+    max-width: $maxContentWidth;
+    margin: 0 auto;
   }
 
   .MuiToolbar-gutters {
@@ -114,7 +117,11 @@
 .top-menu-right {
   height: inherit;
   .MuiIconButton-root {
-    height: 50px;
-    width: 50px;
+    height: $topMenuHeight;
+    width: $topMenuHeight;
+  }
+
+  .top-menu-list {
+    z-index: 2;
   }
 }
