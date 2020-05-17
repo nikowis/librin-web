@@ -26,7 +26,7 @@ function TopAppBar(props) {
     return (
         <div className="top-menu">
             <Toolbar>
-                <Typography variant="h4" >
+                <Typography variant="h5" >
                     Librin
                 </Typography>
                 <div id='top-menu-search'>
