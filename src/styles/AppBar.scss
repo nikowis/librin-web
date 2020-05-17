@@ -1,3 +1,4 @@
+@import "Variables";
 
 .top-menu, .top-menu-second-row {
   width: 100%;
@@ -33,6 +34,16 @@
   padding-right: 16px;
   padding-left: 16px;
 
+  .MuiInput-underline {
+    &:hover {
+      &:not(.Mui-disabled) {
+        &:before {
+          border-width: 0;
+        }
+      }
+    }
+  }
+
   .MuiInputBase-root {
     height: 1.8rem;
     background-color: $secondary;
@@ -43,12 +54,6 @@
 
     &:after {
       border-width: 0;
-    }
-
-    &:hover {
-      &:before {
-        border-width: 0;
-      }
     }
 
     .MuiSelect-root {

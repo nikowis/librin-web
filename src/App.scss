@@ -1,9 +1,6 @@
-$primary: #9575cd;
-$primary-light: #c7a4ff;
-$primary-shadow: #65499c;
-$secondary: #ebedee;
 
 @import "styles/AppBar";
+@import "styles/Variables";
 
 .app {
   font-family: 'Roboto', sans-serif;
@@ -19,7 +16,6 @@ button.MuiButton-contained {
 button.MuiButton-outlined {
   margin: 0.1rem
 }
-
 
 .photoPreview {
   background-color: #f5f5f5;
