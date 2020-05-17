@@ -110,3 +110,11 @@
     font-size: 16px;
   }
 }
+
+.top-menu-right {
+  height: inherit;
+  .MuiIconButton-root {
+    height: 50px;
+    width: 50px;
+  }
+}

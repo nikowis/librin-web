@@ -31,9 +31,9 @@ function TopAppBar(props) {
             <div className="top-menu">
                 <Toolbar>
                     <div id="top-menu-left">
-                    <Typography variant="h5">
-                        Librin
-                    </Typography>
+                        <Typography variant="h5">
+                            Librin
+                        </Typography>
                     </div>
                     <div id='top-menu-middle'>
                         {
@@ -42,7 +42,7 @@ function TopAppBar(props) {
                         }
                     </div>
                     <div className="top-menu-right">
-                    <IconButton onClick={handleDrawerOpen} edge="end" color="inherit"
+                    <IconButton onClick={handleDrawerOpen} color="inherit"
                                 aria-label="menu">
                         <MenuIcon/>
                     </IconButton>
