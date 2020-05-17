@@ -10,6 +10,7 @@ import {connect} from "react-redux";
 import {CLEAR_OFFERS} from "../../redux/actions";
 import Api from "../../common/api-communication";
 import InputBase from "@material-ui/core/InputBase";
+import * as PropTypes from "prop-types";
 
 function SearchComponent(props) {
 
@@ -63,6 +64,7 @@ function SearchComponent(props) {
                 className={"search-select"}
                 value={category}
                 onChange={handleChangeSelect}
+                MenuProps={{className: props.selectMenuClassName}}
             >
                 <MenuItem value={TITLE}>Tytuł</MenuItem>
                 <MenuItem value={AUTHOR}>Autor</MenuItem>
@@ -81,6 +83,8 @@ function SearchComponent(props) {
     );
 }
 
-SearchComponent.propTypes = {};
+SearchComponent.propTypes = {
+    selectMenuClassName: PropTypes.string.isRequired
+};
 
 export default connect(state => ({}))(withRouter(SearchComponent));

@@ -5,6 +5,7 @@
   background-color: white;
   color: $primary;
   height: 50px;
+
   .MuiToolbar-regular {
     height: 50px;
     min-height: 50px;
@@ -21,8 +22,27 @@
 
   #top-menu-middle {
     flex-grow: 1;
+
     .top-menu-search {
       max-width: 50%;
+    }
+  }
+}
+
+.search-category-select-menu {
+  .MuiPaper-root {
+    top:46px !important;
+    .MuiList-root {
+      padding: 0;
+    }
+  }
+}
+
+.search-category-select-menu-second-row {
+  .MuiPaper-root {
+    top:90px !important;
+    .MuiList-root {
+      padding: 0;
     }
   }
 }
@@ -63,6 +83,11 @@
   }
 
   .search-select {
+    border-radius: 0.5rem 0 0 0.5rem;
+    border-right-width: 0;
+  }
+
+  .MuiSelect-select:focus {
     border-radius: 0.5rem 0 0 0.5rem;
     border-right-width: 0;
   }
