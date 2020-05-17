@@ -10,6 +10,8 @@ import Typography from "@material-ui/core/Typography";
 import Drawer from "@material-ui/core/Drawer";
 import SearchComponent from "./SearchComponent";
 import Menu from "./Menu";
+import withWidth from '@material-ui/core/withWidth';
+
 
 function TopAppBar(props) {
 
@@ -23,29 +25,45 @@ function TopAppBar(props) {
         setOpen(false);
     };
 
-    return (
-        <div className="top-menu">
-            <Toolbar>
-                <Typography variant="h5" >
-                    Librin
-                </Typography>
-                <div id='top-menu-search'>
-                    <SearchComponent/>
-                </div>
+    const smallScreen = /xs|sm/.test(props.width);
 
-                <IconButton onClick={handleDrawerOpen} edge="end" color="inherit"
-                            aria-label="menu">
-                    <MenuIcon/>
-                </IconButton>
-            </Toolbar>
-            <Drawer
-                variant="persistent"
-                anchor="left"
-                open={open}
-            >
-                <Menu authenticated={props.authenticated} onClose={handleDrawerClose}/>
-            </Drawer>
-        </div>
+    return (
+        <>
+            <div className="top-menu">
+                <Toolbar>
+                    <div id="top-menu-left">
+                    <Typography variant="h5">
+                        Librin
+                    </Typography>
+                    </div>
+                    <div id='top-menu-middle'>
+                        {
+                            smallScreen ? null :
+                                <SearchComponent/>
+                        }
+                    </div>
+                    <div className="top-menu-right">
+                    <IconButton onClick={handleDrawerOpen} edge="end" color="inherit"
+                                aria-label="menu">
+                        <MenuIcon/>
+                    </IconButton>
+                    </div>
+                </Toolbar>
+                <Drawer
+                    variant="persistent"
+                    anchor="left"
+                    open={open}
+                >
+                    <Menu authenticated={props.authenticated} onClose={handleDrawerClose}/>
+                </Drawer>
+            </div>
+            {
+                smallScreen ?
+                    <div className="top-menu-second-row">
+                        <SearchComponent/>
+                    </div> : null
+            }
+        </>
     );
 
 
@@ -57,4 +75,4 @@ TopAppBar.propTypes = {
 
 export default connect(state => ({
     authenticated: state.user.authenticated,
-}))(withRouter(TopAppBar));
+}))(withRouter(withWidth()(TopAppBar)));

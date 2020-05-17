@@ -58,7 +58,7 @@ function SearchComponent(props) {
 
     return (
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={"top-menu-search"}>
             <Select
                 className={"search-select"}
                 value={category}
