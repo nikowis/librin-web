@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../App.scss';
 import {useTranslation} from 'react-i18next';
 import {Formik} from "formik";
 import {changePasswordSchema} from "../../common/validation-schemas";

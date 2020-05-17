@@ -1,5 +1,4 @@
 import React from 'react';
-import '../App.scss';
 import Typography from "@material-ui/core/Typography";
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 import PropTypes from "prop-types";

@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import '../../App.scss';
 import Api from "./../../common/api-communication"
 import {connect} from "react-redux";
 import {useTranslation} from "react-i18next";

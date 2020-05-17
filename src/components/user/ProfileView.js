@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import '../../App.scss';
+
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 

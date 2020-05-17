@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../App.scss';
 import {useParams} from 'react-router-dom';
 import PropTypes from "prop-types";
 import ListItem from "@material-ui/core/ListItem";

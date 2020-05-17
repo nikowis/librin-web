@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../App.scss';
 import {Formik} from "formik";
 import {messageSchema} from "../../common/validation-schemas";
 import {TextField} from "@material-ui/core";

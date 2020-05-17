@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../App.scss';
 import {connect} from "react-redux";
 import MenuIcon from '@material-ui/icons/Menu';
 import PropTypes from "prop-types";

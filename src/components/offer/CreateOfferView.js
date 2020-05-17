@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../App.scss';
 import Api from "./../../common/api-communication"
 import {withRouter} from 'react-router-dom';
 import {useTranslation} from "react-i18next";

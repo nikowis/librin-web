@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../App.scss';
 import {useParams, withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {useTranslation} from 'react-i18next';

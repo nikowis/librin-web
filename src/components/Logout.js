@@ -1,5 +1,4 @@
 import React from 'react';
-import '../App.scss';
 import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import {ROOT} from "../common/paths";

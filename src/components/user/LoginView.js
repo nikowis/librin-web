@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../App.scss';
 import {Link, Redirect} from "react-router-dom";
 import Api from "../../common/api-communication";
 import {connect} from "react-redux";

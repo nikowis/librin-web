@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../App.scss';
 import {useTranslation} from "react-i18next";
 import PropTypes from "prop-types";
 import {Delete, Edit} from '@material-ui/icons';

@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../App.scss';
 import PropTypes from "prop-types";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";

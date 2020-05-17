@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import '../App.scss';
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import Alert from '@material-ui/lab/Alert';

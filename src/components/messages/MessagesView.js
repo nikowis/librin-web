@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import '../../App.scss';
 import {useParams, withRouter} from 'react-router-dom';
 import {connect} from "react-redux";
 import Grid from "@material-ui/core/Grid";
