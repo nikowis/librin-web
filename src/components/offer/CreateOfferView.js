@@ -60,6 +60,7 @@ function CreateOfferView(props) {
                     <form onSubmit={handleSubmit}>
                         <div>
                             <TextField
+                                size="small"
                                 error={errors.title && touched.title}
                                 label={t('title')}
                                 name="title"
@@ -73,6 +74,7 @@ function CreateOfferView(props) {
                         </div>
                         <div>
                             <TextField
+                                size="small"
                                 error={errors.author && touched.author}
                                 label={t('author')}
                                 name="author"
@@ -86,6 +88,7 @@ function CreateOfferView(props) {
                         </div>
                         <div>
                             <CurrencyTextField
+                                size="small"
                                 error={errors.price && touched.price}
                                 label={t('price')}
                                 name="price"
@@ -108,7 +111,7 @@ function CreateOfferView(props) {
                         <div>
                             <PhotosInputComponent setFieldValue={setFieldValue} attachment={values.attachment}/>
                         </div>
-                        <Button variant="contained" color="primary" type="submit" disabled={isSubmitting}>
+                        <Button size={"small"} variant="contained" color="primary" type="submit" disabled={isSubmitting}>
                             {t('offers.create.submit')}
                         </Button>
                     </form>

@@ -30,6 +30,7 @@ function ChangePasswordForm(props) {
                 <form onSubmit={handleSubmit}>
                     <div>
                         <TextField
+                            size="small"
                             error={errors.password && touched.password}
                             label={t('user.password.label')}
                             name="password"
@@ -43,6 +44,7 @@ function ChangePasswordForm(props) {
                     </div>
                     <div>
                         <TextField
+                            size="small"
                             error={errors.repeatPassword && touched.repeatPassword}
                             label={t('user.password.repeat')}
                             name="repeatPassword"
@@ -54,7 +56,7 @@ function ChangePasswordForm(props) {
                             margin="normal"
                         />
                     </div>
-                    <Button variant="contained" color="primary" type="submit" disabled={isSubmitting}>
+                    <Button size={"small"} variant="contained" color="primary" type="submit" disabled={isSubmitting}>
                         {t('user.password.changeSubmit')}
                     </Button>
                 </form>

@@ -80,6 +80,7 @@ function RegisterView(props) {
                     <form onSubmit={handleSubmit}>
                         <div>
                             <TextField
+                                size="small"
                                 error={errors.email && touched.email}
                                 label={t('user.email.label')}
                                 name="email"
@@ -92,6 +93,7 @@ function RegisterView(props) {
                         </div>
                         <div>
                             <TextField
+                                size="small"
                                 error={errors.firstName && touched.firstName}
                                 label={t('user.firstName')}
                                 name="firstName"
@@ -104,6 +106,7 @@ function RegisterView(props) {
                         </div>
                         <div>
                             <TextField
+                                size="small"
                                 error={errors.lastName && touched.lastName}
                                 label={t('user.lastName')}
                                 name="lastName"
@@ -116,6 +119,7 @@ function RegisterView(props) {
                         </div>
                         <div>
                             <TextField
+                                size="small"
                                 error={errors.username && touched.username}
                                 label={t('user.username')}
                                 name="username"
@@ -130,6 +134,7 @@ function RegisterView(props) {
                             <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined" >
                                 <InputLabel htmlFor="outlined-adornment-password">{t('user.password.label')}</InputLabel>
                                 <OutlinedInput
+                                    size="small"
                                     id="outlined-adornment-password"
                                     error={errors.password && touched.password}
                                     name="password"
@@ -154,7 +159,7 @@ function RegisterView(props) {
                             </FormControl>
                         </div>
                         <RegisterConsentComponent/>
-                        <Button variant="contained" color="primary" type="submit" disabled={isSubmitting}>
+                        <Button size={"small"} variant="contained" color="primary" type="submit" disabled={isSubmitting}>
                             {t('register.submit')}
                         </Button>
                     </form>

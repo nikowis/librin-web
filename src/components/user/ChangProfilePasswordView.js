@@ -36,7 +36,7 @@ function ChangProfilePasswordView(props) {
                 <div>
                     {infoText}
                 </div>
-                    <Button variant="contained" color="primary" type="submit" onClick={() => props.history.push(PROFILE)}>
+                    <Button size={"small"} variant="contained" color="primary" type="submit" onClick={() => props.history.push(PROFILE)}>
                         {t('profile.page')}
                     </Button>
                 </> :

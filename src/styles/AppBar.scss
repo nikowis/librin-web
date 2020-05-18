@@ -120,6 +120,11 @@ $topMenuHeight: 50px;
     height: $topMenuHeight;
     width: $topMenuHeight;
   }
+
+  .MuiButton-outlined {
+    font-size: 0.5rem;
+    padding: 3px 5px;
+  }
 }
 
 .top-menu-list {

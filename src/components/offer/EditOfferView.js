@@ -74,6 +74,7 @@ function EditOfferView(props) {
                         <form onSubmit={handleSubmit}>
                             <div>
                                 <TextField
+                                    size="small"
                                     label={t('id')}
                                     name="id"
                                     value={values.id}
@@ -83,6 +84,7 @@ function EditOfferView(props) {
                             </div>
                             <div>
                                 <TextField
+                                    size="small"
                                     error={errors.title && touched.title}
                                     label={t('title')}
                                     name="title"
@@ -96,6 +98,7 @@ function EditOfferView(props) {
                             </div>
                             <div>
                                 <TextField
+                                    size="small"
                                     error={errors.author && touched.author}
                                     label={t('author')}
                                     name="author"
@@ -131,7 +134,7 @@ function EditOfferView(props) {
                             <div>
                                 <PhotosInputComponent setFieldValue={setFieldValue} attachment={values.attachment}/>
                             </div>
-                            <Button variant="contained" color="primary" type="submit" disabled={isSubmitting}>
+                            <Button size={"small"} variant="contained" color="primary" type="submit" disabled={isSubmitting}>
                                 {t('offers.edit.submit')}
                             </Button>
                         </form>

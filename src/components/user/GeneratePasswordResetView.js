@@ -51,6 +51,7 @@ function GeneratePasswordResetView(props) {
                         <form onSubmit={handleSubmit}>
                             <div>
                                 <TextField
+                                    size="small"
                                     error={errors.email && touched.email}
                                     label={t('user.email.label')}
                                     name="email"
@@ -61,7 +62,7 @@ function GeneratePasswordResetView(props) {
                                     margin="normal"
                                 />
                             </div>
-                            <Button variant="contained" color="primary" type="submit" disabled={isSubmitting}>
+                            <Button size={"small"} variant="contained" color="primary" type="submit" disabled={isSubmitting}>
                                 {t('user.password.generatePasswordTokenSubmit')}
                             </Button>
                         </form>

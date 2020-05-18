@@ -46,6 +46,7 @@ function LoginView(props) {
                     <form onSubmit={handleSubmit}>
                         <div>
                             <TextField
+                                size="small"
                                 error={errors.email && touched.email}
                                 label={t('user.email.label')}
                                 name="email"
@@ -58,6 +59,7 @@ function LoginView(props) {
                         </div>
                         <div>
                             <TextField
+                                size="small"
                                 error={errors.password && touched.password}
                                 label={t('user.password.label')}
                                 name="password"
@@ -69,7 +71,7 @@ function LoginView(props) {
                                 margin="normal"
                             />
                         </div>
-                        <Button variant="contained" color="primary" type="submit" disabled={isSubmitting}>
+                        <Button size={"small"} variant="contained" color="primary" type="submit" disabled={isSubmitting}>
                             {t('login.submit')}
                         </Button>
                     </form>

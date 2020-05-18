@@ -17,6 +17,8 @@ import Grow from "@material-ui/core/Grow/Grow";
 import Paper from "@material-ui/core/Paper/Paper";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener/ClickAwayListener";
 import TopMenuListItem from "./TopMenuListItem";
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import MailIcon from '@material-ui/icons/Mail';
 
 function TopMenu(props) {
 
@@ -92,29 +94,21 @@ function TopMenu(props) {
                                     onKeyDown={handleListKeyDown}
                                 >
                                     <TopMenuListItem show selected={currentPathname === OFFERS || currentPathname === ROOT}
-                                                    key={'offers'} icon={<HomeIcon/>} text={t('offers.page')} onClick={(e) => redirect(e, OFFERS)}
-                                    />
+                                                    mykey={'offers'} icon={<HomeIcon/>} text={t('offers.page')} onClick={(e) => redirect(e, OFFERS)}/>
                                     <TopMenuListItem show={!props.authenticated} selected={currentPathname === LOGIN}
-                                                     key={'login'} icon={<VpnKeyIcon/>} text={t('login.page')} onClick={(e) => redirect(e, LOGIN)}
-                                    />
+                                                     mykey={'login'} icon={<AccountCircle/>} text={t('login.page')} onClick={(e) => redirect(e, LOGIN)}/>
                                     <TopMenuListItem show={!props.authenticated} selected={currentPathname === REGISTER}
-                                                     key={'register'} icon={<VpnKeyIcon/>} text={t('register.page')} onClick={(e) => redirect(e, REGISTER)}
-                                    />
+                                                     mykey={'register'} icon={<VpnKeyIcon/>} text={t('register.page')} onClick={(e) => redirect(e, REGISTER)}/>
                                     <TopMenuListItem show={props.authenticated} selected={currentPathname === MESSAGES || currentPathname.replace(urlIdSuffixRegex, "") === MESSAGES}
-                                                     key={'messages'} icon={<VpnKeyIcon/>} text={t('messages.page')} onClick={(e) => redirect(e, MESSAGES)}
-                                    />
+                                                     mykey={'messages'} icon={<MailIcon/>} text={t('messages.page')} onClick={(e) => redirect(e, MESSAGES)}/>
                                     <TopMenuListItem show={props.authenticated} selected={currentPathname === CREATE_OFFER} onClick={(e) => redirect(e, CREATE_OFFER)}
-                                                     key={'create'} icon={<AddIcon/>} text={t('offers.create.page')}
-                                    />
+                                                     mykey={'create'} icon={<AddIcon/>} text={t('offers.create.page')}/>
                                     <TopMenuListItem show={props.authenticated} selected={currentPathname === MY_OFFERS} onClick={(e) => redirect(e, MY_OFFERS)}
-                                                     key={'myoffers'} icon={<PlaylistAddIcon/>} text={t('myoffers.page')}
-                                    />
+                                                     mykey={'myoffers'} icon={<PlaylistAddIcon/>} text={t('myoffers.page')}/>
                                     <TopMenuListItem show={props.authenticated} selected={currentPathname === PROFILE} onClick={(e) => redirect(e, PROFILE)}
-                                                     key={'profile'} icon={<PersonIcon/>} text={t('profile.page')}
-                                    />
+                                                     mykey={'profile'} icon={<PersonIcon/>} text={t('profile.page')}/>
                                     <TopMenuListItem show={props.authenticated} selected={currentPathname === LOGOUT} onClick={(e) => redirect(e, LOGOUT)}
-                                                     key={'logout'} icon={<ExitToAppIcon/>} text={t('logout')}
-                                    />
+                                                     mykey={'logout'} icon={<ExitToAppIcon/>} text={t('logout')}/>
                                 </MenuList>
                             </ClickAwayListener>
                         </Paper>
@@ -123,7 +117,7 @@ function TopMenu(props) {
             </Popper>
         </>
     );
-    
+
 }
 
 TopMenu.propTypes = {

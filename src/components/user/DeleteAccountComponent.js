@@ -54,7 +54,7 @@ function DeleteAccountComponent(props) {
 
     return (
         <div>
-            <Button variant="outlined" color="secondary" onClick={handleClickOpen} startIcon={<DeleteIcon/>}>
+            <Button size={"small"} variant="outlined" color="secondary" onClick={handleClickOpen} startIcon={<DeleteIcon/>}>
                 {t('user.deleteAccount')}
             </Button>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
@@ -80,6 +80,7 @@ function DeleteAccountComponent(props) {
                                 </DialogContentText>
                                 <div>
                                     <TextField
+                                        size="small"
                                         autoFocus
                                         fullWidth
                                         error={errors.password && touched.password}
@@ -94,10 +95,10 @@ function DeleteAccountComponent(props) {
                                 </div>
                             </DialogContent>
                             <DialogActions>
-                                <Button onClick={handleClose} color="primary">
+                                <Button size={"small"} onClick={handleClose} color="primary">
                                     Cancel
                                 </Button>
-                                <Button onClick={handleSubmit} disabled={isSubmitting} startIcon={<DeleteIcon/>} color="secondary">
+                                <Button size={"small"} onClick={handleSubmit} disabled={isSubmitting} startIcon={<DeleteIcon/>} color="secondary">
                                     {t('user.deleteAccount')}
                                 </Button>
                             </DialogActions>

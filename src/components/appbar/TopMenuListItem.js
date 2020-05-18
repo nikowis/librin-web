@@ -5,10 +5,10 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import MenuItem from "@material-ui/core/MenuItem";
 
 function TopMenuListItem(props) {
-    const {show, selected, icon, text, key, onClick} = props;
+    const {show, selected, icon, text, mykey, onClick} = props;
     return (<>
             {show ?
-                <MenuItem dense selected={selected} button key={key}
+                <MenuItem dense selected={selected} button key={mykey}
                           onClick={onClick}>
                     {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
                     <ListItemText primary={text}/>
@@ -25,7 +25,7 @@ TopMenuListItem.propTypes = {
     selected: PropTypes.bool.isRequired,
     icon: PropTypes.object,
     text: PropTypes.string.isRequired,
-    key: PropTypes.string.isRequired
+    mykey: PropTypes.string.isRequired
 };
 
 export default TopMenuListItem;

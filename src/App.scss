@@ -6,6 +6,11 @@
   text-align: center;
   background-color: $secondary;
   min-height: 100vh;
+
+  .MuiButton-containedPrimary {
+    background-color: $primary;
+  }
+
 }
 
 button.MuiButton-contained {
@@ -30,7 +35,6 @@ button.MuiButton-outlined {
 .offerCard {
   text-align: left;
 }
-
 
 
 

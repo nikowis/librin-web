@@ -80,6 +80,7 @@ function OfferView(props) {
             <>
                 <div>
                     <TextField
+                        size="small"
                         label={t('id')}
                         name="id"
                         value={id}
@@ -89,6 +90,7 @@ function OfferView(props) {
                 </div>
                 <div>
                     <TextField
+                        size="small"
                         label={t('title')}
                         name="title"
                         value={title}
@@ -98,6 +100,7 @@ function OfferView(props) {
                 </div>
                 <div>
                     <TextField
+                        size="small"
                         label={t('author')}
                         name="author"
                         value={author}
@@ -106,6 +109,7 @@ function OfferView(props) {
                 </div>
                 <div>
                     <CurrencyTextField
+                        size="small"
                         label={t('price')}
                         name="price"
                         minimumValue={"0"}
@@ -127,24 +131,24 @@ function OfferView(props) {
                 </div>
                 <div>
                     {ownerId !== props.userId ?
-                        <Button variant="contained" color="primary" type="submit" onClick={() => handleSendMessage()}>
+                        <Button size={"small"} variant="contained" color="primary" type="submit" onClick={() => handleSendMessage()}>
                             {t('offers.view.message')}
                         </Button> :
                         (OfferStatus.ACTIVE === status ?
                                 <>
-                                    <Button variant="contained" color="primary" type="submit"
+                                    <Button size={"small"} variant="contained" color="primary" type="submit"
                                             onClick={() => handleEdit()}>
                                         {t('offers.view.edit')}
                                     </Button>
                                     <br/>
 
-                                    <Button variant="contained" color="primary" type="submit"
+                                    <Button size={"small"} variant="contained" color="primary" type="submit"
                                             onClick={() => handleSold()}>
                                         {t('offers.view.sold')}
                                     </Button>
 
                                     <br/>
-                                    <Button variant="contained" color="secondary" type="submit"
+                                    <Button size={"small"} variant="contained" color="secondary" type="submit"
                                             onClick={() => handleDelete()}>
                                         {t('offers.view.delete')}
                                     </Button>

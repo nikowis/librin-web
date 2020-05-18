@@ -7,18 +7,33 @@ import Typography from "@material-ui/core/Typography";
 import SearchComponent from "./SearchComponent";
 import withWidth from '@material-ui/core/withWidth';
 import TopMenu from "./TopMenu";
-
+import IconButton from "@material-ui/core/IconButton";
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import AddIcon from '@material-ui/icons/Add';
+import MailIcon from '@material-ui/icons/Mail';
+import {CREATE_OFFER, LOGIN, MESSAGES, OFFERS, PROFILE, REGISTER} from "../../common/paths";
+import Button from "@material-ui/core/Button";
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import {useTranslation} from "react-i18next";
 
 function TopAppBar(props) {
 
     const smallScreen = /xs|sm/.test(props.width);
+    const verySmallScreen = /xs/.test(props.width);
 
+    const {t} = useTranslation();
+
+    const redirect = (to) => {
+        props.history.push(to);
+    };
+
+    console.log(props.width);
     return (
         <>
             <div className="top-menu">
                 <Toolbar>
                     <div id="top-menu-left">
-                        <Typography variant="h5">
+                        <Typography variant="h5" onClick={() => redirect(OFFERS)}>
                             Librin
                         </Typography>
                     </div>
@@ -29,6 +44,54 @@ function TopAppBar(props) {
                         }
                     </div>
                     <div className="top-menu-right">
+                        {props.authenticated ?
+                            <>
+                                {!verySmallScreen ?
+                                    <>
+                                        <Button size={"small"} variant="outlined" onClick={() => redirect(CREATE_OFFER)}
+                                                color="inherit" startIcon={<AddIcon/>}>
+                                            {t('offers.create.page')}
+                                        </Button>
+                                    </> :
+                                    <IconButton
+                                        onClick={() => redirect(CREATE_OFFER)}
+                                        color={"inherit"}
+                                    >
+                                        <AddIcon/>
+                                    </IconButton>
+                                }
+
+                                <IconButton
+                                    onClick={() => redirect(MESSAGES)}
+                                    color={"inherit"}
+                                >
+                                    <MailIcon/>
+                                </IconButton>
+                                {!verySmallScreen ?
+                                    <IconButton onClick={() => redirect(PROFILE)}
+                                                color={"inherit"}
+                                    >
+                                        <AccountCircle/>
+                                    </IconButton> : null
+                                }
+
+
+                            </> : null
+                        }
+                        {!props.authenticated ?
+                            <>
+                                <Button size={"small"} variant="outlined" onClick={() => redirect(LOGIN)}
+                                        color="inherit" startIcon={<AccountCircle/>}>
+                                    {t('login.page')}
+                                </Button>
+                                {!verySmallScreen ?
+                                    <Button size={"small"} variant="outlined" onClick={() => redirect(REGISTER)}
+                                            color="inherit" startIcon={<VpnKeyIcon/>}>
+                                        {t('register.page')}
+                                    </Button> : null
+                                }
+                            </> : null
+                        }
                         <TopMenu authenticated={props.authenticated}/>
                     </div>
                 </Toolbar>

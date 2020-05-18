@@ -30,6 +30,7 @@ function SendMessageFormComponent(props) {
                     <form onSubmit={handleSubmit}>
                         <div>
                             <TextField
+                                size="small"
                                 error={errors.content && touched.content}
                                 label={t('messages.message')}
                                 name="content"
@@ -40,7 +41,7 @@ function SendMessageFormComponent(props) {
                                 margin="normal"
                             />
                         </div>
-                        <Button variant="contained" color="primary" type="submit" disabled={isSubmitting}>
+                        <Button size={"small"} variant="contained" color="primary" type="submit" disabled={isSubmitting}>
                             {t('messages.submit')}
                         </Button>
                     </form>

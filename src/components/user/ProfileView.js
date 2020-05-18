@@ -67,6 +67,7 @@ function ProfileView(props) {
                     <form onSubmit={handleSubmit}>
                         <div>
                             <TextField
+                                size="small"
                                 error={errors.email && touched.email}
                                 label={t('user.email.label')}
                                 name="email"
@@ -79,6 +80,7 @@ function ProfileView(props) {
                         </div>
                         <div>
                             <TextField
+                                size="small"
                                 error={errors.username && touched.username}
                                 label={t('user.username')}
                                 name="username"
@@ -91,6 +93,7 @@ function ProfileView(props) {
                         </div>
                         <div>
                             <TextField
+                                size="small"
                                 error={errors.firstName && touched.firstName}
                                 label={t('user.firstName')}
                                 name="firstName"
@@ -102,6 +105,7 @@ function ProfileView(props) {
                         </div>
                         <div>
                             <TextField
+                                size="small"
                                 error={errors.lastName && touched.lastName}
                                 label={t('user.lastName')}
                                 name="lastName"
@@ -112,13 +116,13 @@ function ProfileView(props) {
                             />
                         </div>
 
-                        <Button variant="contained" color="primary" type="submit" disabled={isSubmitting}>
+                        <Button size={"small"} variant="contained" color="primary" type="submit" disabled={isSubmitting}>
                             {t('submit')}
                         </Button>
                     </form>
                 )}
             </Formik>
-            <Button variant="contained" color="primary" type="submit" onClick={() => props.history.push(PROFILE_CHANGE_PASSWORD)}>
+            <Button size={"small"} variant="contained" color="primary" type="submit" onClick={() => props.history.push(PROFILE_CHANGE_PASSWORD)}>
                 {t('user.password.change')}
             </Button>
             <DeleteAccountComponent/>
