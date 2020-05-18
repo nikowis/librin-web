@@ -94,28 +94,28 @@ function TopMenu(props) {
                                     id="menu-list-grow"
                                     onKeyDown={handleListKeyDown}
                                 >
-                                    <MenuItem selected={currentPathname === OFFERS || currentPathname === ROOT} button
+                                    <MenuItem dense selected={currentPathname === OFFERS || currentPathname === ROOT} button
                                               key={'offers'}
                                               onClick={(e) => redirect(e, OFFERS)}>
                                         <ListItemIcon><HomeIcon/></ListItemIcon>
                                         <ListItemText primary={t('offers.page')}/>
                                     </MenuItem>
                                     {props.authenticated ? null :
-                                        <MenuItem selected={currentPathname === LOGIN} button key={'login'}
+                                        <MenuItem dense selected={currentPathname === LOGIN} button key={'login'}
                                                   onClick={(e) => redirect(e, LOGIN)}>
                                             <ListItemIcon><VpnKeyIcon/></ListItemIcon>
                                             <ListItemText primary={t('login.page')}/>
                                         </MenuItem>
                                     }
                                     {props.authenticated ? null :
-                                        <MenuItem selected={currentPathname === REGISTER} button key={'register'}
+                                        <MenuItem dense selected={currentPathname === REGISTER} button key={'register'}
                                                   onClick={(e) => redirect(e, REGISTER)}>
                                             <ListItemIcon><VpnKeyIcon/></ListItemIcon>
                                             <ListItemText primary={t('register.page')}/>
                                         </MenuItem>
                                     }
                                     {props.authenticated ?
-                                        <MenuItem
+                                        <MenuItem dense
                                             selected={currentPathname === MESSAGES || currentPathname.replace(urlIdSuffixRegex, "") === MESSAGES}
                                             button key={'messages'} onClick={(e) => redirect(e, MESSAGES)}>
                                             <ListItemIcon><MailOutlineIcon/></ListItemIcon>
@@ -123,28 +123,28 @@ function TopMenu(props) {
                                         </MenuItem> : null
                                     }
                                     {props.authenticated ?
-                                        <MenuItem selected={currentPathname === CREATE_OFFER} button key={'create'}
+                                        <MenuItem dense selected={currentPathname === CREATE_OFFER} button key={'create'}
                                                   onClick={(e) => redirect(e, CREATE_OFFER)}>
                                             <ListItemIcon><AddIcon/></ListItemIcon>
                                             <ListItemText primary={t('offers.create.page')}/>
                                         </MenuItem> : null
                                     }
                                     {props.authenticated ?
-                                        <MenuItem selected={currentPathname === MY_OFFERS} button key={'myoffers'}
+                                        <MenuItem dense selected={currentPathname === MY_OFFERS} button key={'myoffers'}
                                                   onClick={(e) => redirect(e, MY_OFFERS)}>
                                             <ListItemIcon><PlaylistAddIcon/></ListItemIcon>
                                             <ListItemText primary={t('myoffers.page')}/>
                                         </MenuItem> : null
                                     }
                                     {props.authenticated ?
-                                        <MenuItem selected={currentPathname === PROFILE} button key={'profile'}
+                                        <MenuItem dense selected={currentPathname === PROFILE} button key={'profile'}
                                                   onClick={(e) => redirect(e, PROFILE)}>
                                             <ListItemIcon><PersonIcon/></ListItemIcon>
                                             <ListItemText primary={t('profile.page')}/>
                                         </MenuItem> : null
                                     }
                                     {props.authenticated ?
-                                        <MenuItem selected={currentPathname === LOGOUT} button key={'logout'}
+                                        <MenuItem dense selected={currentPathname === LOGOUT} button key={'logout'}
                                                   onClick={(e) => redirect(e, LOGOUT)}>
                                             <ListItemIcon><ExitToAppIcon/></ListItemIcon>
                                             <ListItemText primary={t('logout')}/>

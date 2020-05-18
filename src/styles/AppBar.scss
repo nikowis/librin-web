@@ -120,8 +120,23 @@ $topMenuHeight: 50px;
     height: $topMenuHeight;
     width: $topMenuHeight;
   }
+}
 
-  .top-menu-list {
-    z-index: 2;
+.top-menu-list {
+  z-index: 2;
+
+  .MuiListItem-gutters {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .MuiMenuItem-root {
+    padding-top: 2px;
+    padding-bottom: 2px;
+  }
+
+  .MuiList-root {
+    padding-top: 0;
+    padding-bottom: 0;
   }
 }
