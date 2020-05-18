@@ -4,22 +4,19 @@ import {useTranslation} from 'react-i18next';
 import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
-import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/Home';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
 import PersonIcon from '@material-ui/icons/Person';
 import AddIcon from '@material-ui/icons/Add';
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import MenuItem from "@material-ui/core/MenuItem";
 import MenuList from "@material-ui/core/MenuList";
 import MenuIcon from '@material-ui/icons/Menu';
 import Popper from "@material-ui/core/Popper/Popper";
 import Grow from "@material-ui/core/Grow/Grow";
 import Paper from "@material-ui/core/Paper/Paper";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener/ClickAwayListener";
+import TopMenuListItem from "./TopMenuListItem";
 
 function TopMenu(props) {
 
@@ -94,62 +91,30 @@ function TopMenu(props) {
                                     id="menu-list-grow"
                                     onKeyDown={handleListKeyDown}
                                 >
-                                    <MenuItem dense selected={currentPathname === OFFERS || currentPathname === ROOT} button
-                                              key={'offers'}
-                                              onClick={(e) => redirect(e, OFFERS)}>
-                                        <ListItemIcon><HomeIcon/></ListItemIcon>
-                                        <ListItemText primary={t('offers.page')}/>
-                                    </MenuItem>
-                                    {props.authenticated ? null :
-                                        <MenuItem dense selected={currentPathname === LOGIN} button key={'login'}
-                                                  onClick={(e) => redirect(e, LOGIN)}>
-                                            <ListItemIcon><VpnKeyIcon/></ListItemIcon>
-                                            <ListItemText primary={t('login.page')}/>
-                                        </MenuItem>
-                                    }
-                                    {props.authenticated ? null :
-                                        <MenuItem dense selected={currentPathname === REGISTER} button key={'register'}
-                                                  onClick={(e) => redirect(e, REGISTER)}>
-                                            <ListItemIcon><VpnKeyIcon/></ListItemIcon>
-                                            <ListItemText primary={t('register.page')}/>
-                                        </MenuItem>
-                                    }
-                                    {props.authenticated ?
-                                        <MenuItem dense
-                                            selected={currentPathname === MESSAGES || currentPathname.replace(urlIdSuffixRegex, "") === MESSAGES}
-                                            button key={'messages'} onClick={(e) => redirect(e, MESSAGES)}>
-                                            <ListItemIcon><MailOutlineIcon/></ListItemIcon>
-                                            <ListItemText primary={t('messages.page')}/>
-                                        </MenuItem> : null
-                                    }
-                                    {props.authenticated ?
-                                        <MenuItem dense selected={currentPathname === CREATE_OFFER} button key={'create'}
-                                                  onClick={(e) => redirect(e, CREATE_OFFER)}>
-                                            <ListItemIcon><AddIcon/></ListItemIcon>
-                                            <ListItemText primary={t('offers.create.page')}/>
-                                        </MenuItem> : null
-                                    }
-                                    {props.authenticated ?
-                                        <MenuItem dense selected={currentPathname === MY_OFFERS} button key={'myoffers'}
-                                                  onClick={(e) => redirect(e, MY_OFFERS)}>
-                                            <ListItemIcon><PlaylistAddIcon/></ListItemIcon>
-                                            <ListItemText primary={t('myoffers.page')}/>
-                                        </MenuItem> : null
-                                    }
-                                    {props.authenticated ?
-                                        <MenuItem dense selected={currentPathname === PROFILE} button key={'profile'}
-                                                  onClick={(e) => redirect(e, PROFILE)}>
-                                            <ListItemIcon><PersonIcon/></ListItemIcon>
-                                            <ListItemText primary={t('profile.page')}/>
-                                        </MenuItem> : null
-                                    }
-                                    {props.authenticated ?
-                                        <MenuItem dense selected={currentPathname === LOGOUT} button key={'logout'}
-                                                  onClick={(e) => redirect(e, LOGOUT)}>
-                                            <ListItemIcon><ExitToAppIcon/></ListItemIcon>
-                                            <ListItemText primary={t('logout')}/>
-                                        </MenuItem> : null
-                                    }
+                                    <TopMenuListItem show selected={currentPathname === OFFERS || currentPathname === ROOT}
+                                                    key={'offers'} icon={<HomeIcon/>} text={t('offers.page')} onClick={(e) => redirect(e, OFFERS)}
+                                    />
+                                    <TopMenuListItem show={!props.authenticated} selected={currentPathname === LOGIN}
+                                                     key={'login'} icon={<VpnKeyIcon/>} text={t('login.page')} onClick={(e) => redirect(e, LOGIN)}
+                                    />
+                                    <TopMenuListItem show={!props.authenticated} selected={currentPathname === REGISTER}
+                                                     key={'register'} icon={<VpnKeyIcon/>} text={t('register.page')} onClick={(e) => redirect(e, REGISTER)}
+                                    />
+                                    <TopMenuListItem show={props.authenticated} selected={currentPathname === MESSAGES || currentPathname.replace(urlIdSuffixRegex, "") === MESSAGES}
+                                                     key={'messages'} icon={<VpnKeyIcon/>} text={t('messages.page')} onClick={(e) => redirect(e, MESSAGES)}
+                                    />
+                                    <TopMenuListItem show={props.authenticated} selected={currentPathname === CREATE_OFFER} onClick={(e) => redirect(e, CREATE_OFFER)}
+                                                     key={'create'} icon={<AddIcon/>} text={t('offers.create.page')}
+                                    />
+                                    <TopMenuListItem show={props.authenticated} selected={currentPathname === MY_OFFERS} onClick={(e) => redirect(e, MY_OFFERS)}
+                                                     key={'myoffers'} icon={<PlaylistAddIcon/>} text={t('myoffers.page')}
+                                    />
+                                    <TopMenuListItem show={props.authenticated} selected={currentPathname === PROFILE} onClick={(e) => redirect(e, PROFILE)}
+                                                     key={'profile'} icon={<PersonIcon/>} text={t('profile.page')}
+                                    />
+                                    <TopMenuListItem show={props.authenticated} selected={currentPathname === LOGOUT} onClick={(e) => redirect(e, LOGOUT)}
+                                                     key={'logout'} icon={<ExitToAppIcon/>} text={t('logout')}
+                                    />
                                 </MenuList>
                             </ClickAwayListener>
                         </Paper>
@@ -158,8 +123,7 @@ function TopMenu(props) {
             </Popper>
         </>
     );
-
-
+    
 }
 
 TopMenu.propTypes = {
