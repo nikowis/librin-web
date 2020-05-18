@@ -15,6 +15,7 @@ import {CREATE_OFFER, LOGIN, MESSAGES, OFFERS, PROFILE, REGISTER} from "../../co
 import Button from "@material-ui/core/Button";
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import {useTranslation} from "react-i18next";
+import TopDrawer from "./TopDrawer";
 
 function TopAppBar(props) {
 
@@ -92,7 +93,10 @@ function TopAppBar(props) {
                                 }
                             </> : null
                         }
-                        <TopMenu authenticated={props.authenticated}/>
+                        {verySmallScreen ? <TopDrawer authenticated={props.authenticated}/>
+                             : <TopMenu authenticated={props.authenticated}/>
+                        }
+
                     </div>
                 </Toolbar>
             </div>
