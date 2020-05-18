@@ -82,15 +82,10 @@ function TopMenu(props) {
                 role={undefined}
                 className={"top-menu-list"}
                 transition
-                disablePortal
             >
-                {({TransitionProps, placement}) => (
+                {({TransitionProps}) => (
                     <Grow
                         {...TransitionProps}
-                        style={{
-                            transformOrigin:
-                                placement === "bottom" ? "center top" : "center bottom"
-                        }}
                     >
                         <Paper>
                             <ClickAwayListener onClickAway={handleClose}>
