@@ -24,7 +24,7 @@ function App(props) {
             <TopAppBar/>
             <ErrorContainer/>
             <NotificationContainer/>
-            <Container maxWidth="lg">
+            <Container maxWidth="lg" id="app-content-container">
                 <ViewRoutes/>
             </Container>
         </div>

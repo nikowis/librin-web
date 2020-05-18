@@ -66,7 +66,6 @@ function OffersCardsView(props) {
         return <>
             {pageQuery <= totalPages ?
                 <>
-                    <br/>
                     <Grid container spacing={3} alignItems="center" justify="center">
                         {offerRows()}
                     </Grid>
