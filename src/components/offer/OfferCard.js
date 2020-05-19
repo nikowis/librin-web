@@ -1,12 +1,11 @@
 import React from 'react';
 import {useTranslation} from "react-i18next";
 import PropTypes from "prop-types";
-import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
-import CardMedia from "@material-ui/core/CardMedia";
+import Card from "@material-ui/core/Card";
 
 function OfferCard(props) {
 
@@ -14,7 +13,7 @@ function OfferCard(props) {
     const {offer, onView, onSendMessage} = props;
 
     return (
-        <Card className={'offerCard'} elevation={3} style={{maxWidth: 360, margin: "auto"}}>
+        <Card className={'offer-card'}>
             <CardActionArea onClick={() => onView(offer)}>
                 <CardHeader
                     title={offer.title}
@@ -23,12 +22,11 @@ function OfferCard(props) {
                         <div>{offer.price + ' ' + t('currencySymbol')}</div>
                     </>}
                 />
-                <CardMedia
-                    style={{
-                        paddingTop: '100%'
-                    }}
-                    image={offer.attachment ? offer.attachment.url : process.env.PUBLIC_URL + '/Placeholder.png'}
-                />
+                <div className={'offer-card-image'}>
+                    <div className={'image-container'}>
+                        <img src={offer.attachment ? offer.attachment.url : process.env.PUBLIC_URL + '/Placeholder.png'} alt={"Offer"}/>
+                    </div>
+                </div>
             </CardActionArea>
             <CardActions>
                 {

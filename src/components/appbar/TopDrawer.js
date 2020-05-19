@@ -27,11 +27,6 @@ function TopDrawer(props) {
         toggleDrawer(false)(event);
     };
 
-    const redirect = (to) => {
-        setOpen(false);
-        props.history.push(to);
-    };
-
     return (
         <>
             <IconButton

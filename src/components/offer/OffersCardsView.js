@@ -10,6 +10,7 @@ import {MESSAGES, OFFERS} from "../../common/paths";
 import PaginationComponent from "../PaginationComponent";
 import Grid from "@material-ui/core/Grid";
 import OfferCard from "./OfferCard";
+import {Card} from "@material-ui/core";
 
 function OffersCardsView(props) {
 
@@ -54,7 +55,7 @@ function OffersCardsView(props) {
     const offerRows = () => {
         return offers.map((offer) => {
             return (
-                <Grid item sm={12} md={6} lg={4} key={offer.id}>
+                <Grid item xs={6} sm={4} md={3} key={offer.id} zeroMinWidth>
                     <OfferCard offer={offer} onView={handleViewOffer}
                                onSendMessage={userId === offer.ownerId ? null : handleSendMessage}/>
                 </Grid>
@@ -66,7 +67,7 @@ function OffersCardsView(props) {
         return <>
             {pageQuery <= totalPages ?
                 <>
-                    <Grid container spacing={3} alignItems="center" justify="center">
+                    <Grid container>
                         {offerRows()}
                     </Grid>
                     <PaginationComponent currentPathname={pathname} currentPage={currentPage} totalPages={totalPages}/>
