@@ -148,4 +148,15 @@ $topMenuHeight: 50px;
 
 .top-menu-drawer {
   width: auto;
+  .top-menu-drawer-first-row {
+    padding-left: 16px;
+    padding-right: 16px;
+      height: $topMenuHeight;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .MuiIconButton-root{
+      max-height: $topMenuHeight;
+    }
+  }
 }

@@ -7,11 +7,9 @@ import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
 import TopMenuListItems from "./TopMenuListItems";
 import Divider from "@material-ui/core/Divider";
-import Button from "@material-ui/core/Button";
-import {REGISTER} from "../../common/paths";
 import {useTranslation} from "react-i18next";
-import ListItem from "@material-ui/core/ListItem";
-import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import CloseIcon from '@material-ui/icons/Close';
+import Typography from "@material-ui/core/Typography";
 
 function TopDrawer(props) {
 
@@ -49,17 +47,16 @@ function TopDrawer(props) {
                     onClick={toggleDrawer(false)}
                     onKeyDown={toggleDrawer(false)}
                 >
-                    {!props.authenticated ?
-                        <List>
-                            <ListItem>
-                                <Button size={"small"} variant="outlined" onClick={() => redirect(REGISTER)}
-                                        color="inherit" startIcon={<VpnKeyIcon/>}>
-                                    {t('register.page')}
-                                </Button>
-                            </ListItem>
-                        </List> : null
-                    }
+                    <div className={'top-menu-drawer-first-row'}>
+                        <Typography variant="h6">
+                            {t('menu')}
+                        </Typography>
+                        <IconButton onClick={handleClose}>
+                            <CloseIcon/>
+                        </IconButton>
+                    </div>
                     <Divider/>
+
                     <List>
                         <TopMenuListItems authenticated={props.authenticated} handleClose={handleClose}/>
                     </List>
