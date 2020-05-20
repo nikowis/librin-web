@@ -64,7 +64,7 @@ function SearchComponent(props) {
                 className={"search-select"}
                 value={category}
                 onChange={handleChangeSelect}
-                MenuProps={{className: props.selectMenuClassName}}
+                MenuProps={{disableScrollLock: true, className: props.selectMenuClassName}}
             >
                 <MenuItem value={TITLE}>Tytuł</MenuItem>
                 <MenuItem value={AUTHOR}>Autor</MenuItem>

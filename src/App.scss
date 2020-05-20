@@ -32,32 +32,62 @@ button.MuiButton-outlined {
   align-items: center;
 }
 
+#app-content-container {
+  margin-top: 16px;
+  padding: 0 8px;
+}
+
+
+#app-content-container {
+  .MuiGrid-item {
+    margin-bottom: 16px;
+    padding: 0 4px
+  }
+}
+
 .offer-card {
   text-align: left;
   display: flex;
   flex-direction: column;
+  max-height: 600px;
+  min-height: 250px;
+  max-width: 250px;
+  height: 100%;
+  margin: auto;
+
+  .MuiCardHeader-root {
+    padding: 4px 8px;
+  }
+
+  .MuiCardActions-root {
+    padding: 0 8px;
+  }
 
   .MuiTypography-h5 {
     font-size: 20px;
   }
+
   .MuiCardHeader-subheader {
     font-size: 14px;
   }
+
   .MuiButton-textSizeSmall {
     font-size: 14px;
   }
-  
+
   .offer-card-image {
     flex-grow: 1;
-    img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
       max-width: 100%;
-      max-height: 100%;
+      max-height: 250px;
+      height: auto;
     }
   }
 }
 
-#app-content-container {
-  margin-top: 16px;
-}
+
 
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import {useTranslation} from "react-i18next";
 import PropTypes from "prop-types";
-import CardActionArea from "@material-ui/core/CardActionArea";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
@@ -14,20 +13,18 @@ function OfferCard(props) {
 
     return (
         <Card className={'offer-card'}>
-            <CardActionArea onClick={() => onView(offer)}>
-                <CardHeader
-                    title={offer.title}
-                    subheader={<>
-                        <div>{offer.author}</div>
-                        <div>{offer.price + ' ' + t('currencySymbol')}</div>
-                    </>}
-                />
-                <div className={'offer-card-image'}>
-                    <div className={'image-container'}>
-                        <img src={offer.attachment ? offer.attachment.url : process.env.PUBLIC_URL + '/Placeholder.png'} alt={"Offer"}/>
-                    </div>
-                </div>
-            </CardActionArea>
+            <CardHeader
+                title={offer.title}
+                subheader={<>
+                    <div>{offer.author}</div>
+                    <div>{offer.price + ' ' + t('currencySymbol')}</div>
+                </>}
+            />
+            <div className={'offer-card-image'}>
+                    <img src={offer.attachment ? offer.attachment.url : process.env.PUBLIC_URL + '/Placeholder.png'}
+                         alt={"Offer"}/>
+
+            </div>
             <CardActions>
                 {
                     onView ? <Button size="small" color="primary" onClick={() => onView(offer)}>

@@ -10,7 +10,6 @@ import {MESSAGES, OFFERS} from "../../common/paths";
 import PaginationComponent from "../PaginationComponent";
 import Grid from "@material-ui/core/Grid";
 import OfferCard from "./OfferCard";
-import {Card} from "@material-ui/core";
 
 function OffersCardsView(props) {
 
