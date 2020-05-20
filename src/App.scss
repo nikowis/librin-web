@@ -41,7 +41,8 @@ button.MuiButton-outlined {
 #app-content-container {
   .MuiGrid-item {
     margin-bottom: 16px;
-    padding: 0 4px
+    padding: 0 4px;
+    max-width: 250px;
   }
 }
 
@@ -49,11 +50,9 @@ button.MuiButton-outlined {
   text-align: left;
   display: flex;
   flex-direction: column;
-  max-height: 600px;
-  min-height: 250px;
-  max-width: 250px;
+  max-height: 500px;
+  min-height: 200px;
   height: 100%;
-  margin: auto;
 
   .MuiCardHeader-root {
     padding: 4px 8px;
@@ -64,7 +63,8 @@ button.MuiButton-outlined {
   }
 
   .MuiTypography-h5 {
-    font-size: 20px;
+    font-size: 16px;
+    font-weight: 500;
   }
 
   .MuiCardHeader-subheader {
@@ -81,9 +81,10 @@ button.MuiButton-outlined {
     align-items: center;
     justify-content: center;
     img {
-      max-width: 100%;
-      max-height: 250px;
+      max-height: 300px;
       height: auto;
+      width: 100%;
+      object-fit: cover;
     }
   }
 }

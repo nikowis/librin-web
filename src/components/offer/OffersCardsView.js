@@ -54,7 +54,7 @@ function OffersCardsView(props) {
     const offerRows = () => {
         return offers.map((offer) => {
             return (
-                <Grid item xs={6} sm={4} md={3} key={offer.id} zeroMinWidth>
+                <Grid item xs={6} sm={4} md={3} key={offer.id}>
                     <OfferCard offer={offer} onView={handleViewOffer}
                                onSendMessage={userId === offer.ownerId ? null : handleSendMessage}/>
                 </Grid>

@@ -26,16 +26,7 @@ function OfferCard(props) {
 
             </div>
             <CardActions>
-                {
-                    onView ? <Button size="small" color="primary" onClick={() => onView(offer)}>
-                        {t('offers.view.page')}
-                    </Button> : null
-                }
-                {
-                    onSendMessage ? <Button size="small" color="primary" onClick={() => onSendMessage(offer)}>
-                        {t('offers.view.message')}
-                    </Button> : null
-                }
+
             </CardActions>
         </Card>
     );
