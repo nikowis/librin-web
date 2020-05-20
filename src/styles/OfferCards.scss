@@ -7,6 +7,10 @@
   }
 }
 
+.MuiGrid-root {
+  justify-content: center;
+}
+
 .offer-card {
   align-self: flex-start;
   text-align: left;
@@ -47,6 +51,7 @@
       height: auto;
       width: 100%;
       object-fit: cover;
+      vertical-align: top;
     }
   }
 }

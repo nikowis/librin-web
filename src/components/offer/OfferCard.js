@@ -3,13 +3,13 @@ import {useTranslation} from "react-i18next";
 import PropTypes from "prop-types";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardActions from "@material-ui/core/CardActions";
-import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
+import {OFFERS} from "../../common/paths";
 
 function OfferCard(props) {
 
     const {t} = useTranslation();
-    const {offer, onView, onSendMessage} = props;
+    const {offer} = props;
 
     return (
         <Card className={'offer-card'}>
@@ -20,11 +20,10 @@ function OfferCard(props) {
                     <div>{offer.price + ' ' + t('currencySymbol')}</div>
                 </>}
             />
-            <div className={'offer-card-image'}>
-                    <img src={offer.attachment ? offer.attachment.url : process.env.PUBLIC_URL + '/Placeholder.png'}
-                         alt={"Offer"}/>
-
-            </div>
+            <a href={process.env.PUBLIC_URL + OFFERS + '/' + offer.id} className={'offer-card-image'}>
+                        <img src={offer.attachment ? offer.attachment.url : process.env.PUBLIC_URL + '/Placeholder.png'}
+                             alt={"Offer"}/>
+            </a>
             <CardActions>
 
             </CardActions>
@@ -50,8 +49,6 @@ OfferCard.propTypes = {
                 url: PropTypes.string.isRequired
             }),
         }),
-    onView: PropTypes.func.isRequired,
-    onSendMessage: PropTypes.func,
 };
 
 export default OfferCard;
