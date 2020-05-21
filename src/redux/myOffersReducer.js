@@ -67,7 +67,8 @@ const myOffersReducer = (state = initialState, action) => {
             }
             return {
                 ...state,
-                content: allOffers
+                content: allOffers,
+                currentOffer: updatedOffer
             };
         case CLEAR_CURRENT_MYOFFER:
             return {
