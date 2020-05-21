@@ -1,34 +1,35 @@
 import React from 'react';
-import Typography from "@material-ui/core/Typography";
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 import PropTypes from "prop-types";
+import {useTranslation} from "react-i18next";
 
 function PhotosPreviewComponent(props) {
-    const {attachment} = props;
+    const {photo} = props;
+
+    const {t} = useTranslation();
 
     return (
-        <>
-            <Typography component="div" className={'photoPreview centeredContainer'}>
-                {attachment && attachment.url ?
-                    <div style={{
-                        height: '100%', width: '100%',
-                        backgroundImage: 'url(' + attachment.url + ')',
-                        backgroundSize: '100% 100%'
-                    }}
-                    /> :
-                    <PhotoCameraIcon fontSize={'large'}/>
-                }
-            </Typography>
-        </>
+        <div className={'photoPreview centeredContainer'}>
+            {photo && photo.url ?
+                <img src={photo.url} alt={"Offer"}/>
+                : <>
+                    <PhotoCameraIcon/>
+                    {props.edit ? <div>
+                        {t('photo.upload')}
+                    </div> : null}
+                </>
+            }
+        </div>
     )
 }
 
 PhotosPreviewComponent.propTypes = {
-    attachment: PropTypes.shape({
+    photo: PropTypes.shape({
         name: PropTypes.string.isRequired,
         content: PropTypes.string.isRequired,
         url: PropTypes.string.isRequired
     }),
+    edit: PropTypes.bool
 };
 
 export default PhotosPreviewComponent;

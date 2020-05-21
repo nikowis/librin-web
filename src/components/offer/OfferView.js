@@ -126,7 +126,7 @@ function OfferView(props) {
                 </div>
                 <div>
                     <Container maxWidth="xs">
-                        <PhotosPreviewComponent attachment={attachment}/>
+                        <PhotosPreviewComponent photo={attachment}/>
                     </Container>
                 </div>
                 <div>

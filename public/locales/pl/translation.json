@@ -41,6 +41,10 @@
     "deleteAccountHeader": "Usuwanie konta",
     "deleteAccountWarning": "Konto zostanie usunięte nieodwracalnie"
   },
+  "photo" : {
+    "upload": "Dodaj zdjęcie",
+    "delete": "Usuń zdjęcie"
+  },
   "validations": {
     "default": "Niepoprawne dane",
     "required": "Pole wymagane",
@@ -68,13 +72,11 @@
     "page": "Oferty",
     "create": {
       "page": "Utwórz ofertę",
-      "submit": "Utwórz",
-      "upload": "Zdjęcie"
+      "submit": "Utwórz"
     },
     "edit": {
       "page": "Edytuj ofertę",
-      "submit": "Zapisz",
-      "upload": "Zdjęcie"
+      "submit": "Zapisz"
     },
     "view": {
       "page": "Wyświetl",

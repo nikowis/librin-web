@@ -119,7 +119,7 @@ function EditOfferView(props) {
                                 margin="normal"
                                 fullWidth
                             />
-                            <PhotosInputComponent setFieldValue={setFieldValue} attachment={values.attachment}/>
+                            <PhotosInputComponent setFieldValue={setFieldValue} photo={values.attachment}/>
                             <Button size={"small"} variant="contained" color="primary" type="submit"
                                     disabled={isSubmitting}>
                                 {t('offers.edit.submit')}

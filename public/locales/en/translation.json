@@ -41,6 +41,10 @@
     "deleteAccountHeader": "Delete account",
     "deleteAccountWarning": "This action can not be undone"
   },
+  "photo" : {
+    "upload": "Upload photo",
+    "delete": "Delete photo"
+  },
   "validations": {
     "default": "Invalid field",
     "required": "Field required",
@@ -69,12 +73,10 @@
     "create": {
       "page": "Create offer",
       "submit": "Create",
-      "upload": "Photo"
     },
     "edit": {
       "page": "Edit offer",
       "submit": "Save",
-      "upload": "Photo"
     },
     "view": {
       "page": "View",

@@ -1,12 +1,13 @@
 import React from 'react';
-import Container from "@material-ui/core/Container";
 import {useTranslation} from "react-i18next";
 import PropTypes from "prop-types";
 import {compressFile, loadFileToAttachmentObject, validateFile} from "../common/attachment-utility";
 import PhotosPreviewComponent from "./PhotosPreviewComponent";
+import Button from "@material-ui/core/Button";
+import DeleteIcon from '@material-ui/icons/Delete';
 
 function PhotosInputComponent(props) {
-    const {setFieldValue, attachment} = props;
+    const {setFieldValue, photo} = props;
 
     const {t} = useTranslation();
 
@@ -18,16 +19,16 @@ function PhotosInputComponent(props) {
                 .then(file => compressFile(file))
                 .then(file => validateFile(file))
                 .then(file => {
-                    setFieldValue("attachment", file);
+                    setFieldValue("photo", file);
                 });
         })
     };
 
     return (
-        <>
+        <div className={'photo-input-component'}>
             <input
                 accept="image/*"
-                id="attachment"
+                id="photo"
                 style={{display: 'none'}}
                 onChange={(event) => {
                     handleUploadFile(event, setFieldValue);
@@ -35,18 +36,27 @@ function PhotosInputComponent(props) {
                 type="file"
             />
 
-            <Container maxWidth="xs">
-                <label htmlFor="attachment">
-                    <PhotosPreviewComponent attachment={attachment}/>
+            <div>
+                <label htmlFor="photo">
+                    <PhotosPreviewComponent photo={photo} edit={true}/>
                 </label>
-            </Container>
-            {attachment && attachment.name ? attachment.name : t('offers.edit.upload')}
-        </>
+            </div>
+            {photo ?
+                <Button
+                    size={"small"}
+                    className={'delete-button'}
+                    startIcon={<DeleteIcon/>}
+                    onClick={() => setFieldValue("photo", null)}
+                >
+                    {t('photo.delete')}
+                </Button> : null
+            }
+        </div>
     )
 }
 
 PhotosInputComponent.propTypes = {
-    attachment: PropTypes.shape({
+    photo: PropTypes.shape({
         name: PropTypes.string.isRequired,
         content: PropTypes.string.isRequired,
         url: PropTypes.string.isRequired

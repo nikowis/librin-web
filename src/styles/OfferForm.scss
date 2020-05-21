@@ -2,7 +2,22 @@
 
 .photoPreview {
   background-color: $secondary;
-  height: 35vh;
+  margin: 2px 40px;
+  height: 300px;
+  img {
+    max-height: 300px;
+    height: auto;
+    width: 100%;
+    object-fit: cover;
+    vertical-align: top;
+  }
+}
+
+.photo-input-component {
+  .delete-button {
+    color: #b71c1c;
+    padding: 0;
+  }
 }
 
 .centeredContainer {

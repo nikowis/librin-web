@@ -58,7 +58,7 @@ function CreateOfferView(props) {
                       setFieldValue
                   }) => (
                     <form onSubmit={handleSubmit}>
-                        <PhotosInputComponent setFieldValue={setFieldValue} attachment={values.attachment}/>
+                        <PhotosInputComponent setFieldValue={setFieldValue} photo={values.photo}/>
                         <TextField
                             size="small"
                             error={errors.title && touched.title}
