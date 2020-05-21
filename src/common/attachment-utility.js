@@ -1,4 +1,5 @@
-const FIVE_MB_IN_B = 5242880;
+//5MB
+const MAX_PHOTO_SIZE_BYTES = 5242880;
 const JPG_QUALITY = 0.7;
 const MAX_BORDER_SIZE = 800;
 
@@ -58,10 +59,22 @@ export function initializeAttachmentFromBase64(attachment) {
 }
 
 export function compressFile(file) {
-    return compressPhoto(file, JPG_QUALITY, MAX_BORDER_SIZE);
+    if(file) {
+        return compressPhoto(file, JPG_QUALITY, MAX_BORDER_SIZE);
+    }
+    return null;
 }
 
 export function validateFile(file) {
+    const attachmentSize = attachmentSizeInB(file.content);
+    if (attachmentSize > MAX_PHOTO_SIZE_BYTES) {
+        console.log('File is over the size limit!', attachmentSize);
+        return null;
+    }
+    if (!isPhotoAttachment(file.name)) {
+        console.log('Wrong attachment type!', file.name);
+        return null;
+    }
     return file
 }
 
@@ -102,38 +115,3 @@ function isPhotoAttachment(attachmentName) {
     return ['jpg', 'jpeg', 'png', 'bmp', 'gif', 'tiff', 'tif'].some(
         ext => attachmentName.toLowerCase().endsWith(ext));
 }
-
-// class AttachmentUtils {
-//     validateAttachment(file, allowedExtensions, storedAttachments, errorCallBack) {
-//         if (this.attachmentSizeInB(file.fileRes) > AttachmentUtils.FIVE_MB_IN_B) {
-//             errorCallBack(T.translate('damageView.fileSizeRestriction'));
-//             return false;
-//         }
-//
-//         //Validate photo
-//         const attachmentPhoto = storedAttachments.filter(
-//             att => (att.thumbnailContent != null));
-//         if (attachmentPhoto && attachmentPhoto.length === this._maxPhotoPerDamage &&
-//             this.isPhotoAttachment(file.fileName)) {
-//             errorCallBack(T.translate('damageView.photos.cantUploadPhoto'));
-//             return false;
-//         }
-//
-//         //Validate document
-//         const attachment = storedAttachments.filter(att => (att.thumbnailContent == null));
-//         if (attachment && attachment.length === this._maxDocumentPerDamage && !this.isPhotoAttachment(file.fileName)) {
-//             errorCallBack(T.translate('damageView.files.cantUploadDocument'));
-//             return false;
-//         }
-//
-//         //Validate extensions
-//         if (!allowedExtensions.some(ext => file.fileName.toLowerCase().endsWith(ext))) {
-//             const allAllowedExtensions = allowedExtensions.map(e => '*.' + e).join(', ');
-//             errorCallBack(T.translate('damageView.photos.cantUploadExtension')
-//                 + allAllowedExtensions);
-//             return false;
-//         }
-//
-//         return true;
-//     }
-// }

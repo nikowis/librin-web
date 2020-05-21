@@ -16,8 +16,8 @@ function PhotosInputComponent(props) {
         Object.keys(files).forEach(i => {
             const file = files[i];
             new Promise(resolve => loadFileToAttachmentObject(resolve, file))
-                .then(file => compressFile(file))
-                .then(file => validateFile(file))
+                .then(file => {return validateFile(file);})
+                .then(file => {return compressFile(file);})
                 .then(file => {
                     setFieldValue("photo", file);
                 });
