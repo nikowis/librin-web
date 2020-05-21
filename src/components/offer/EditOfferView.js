@@ -51,7 +51,7 @@ function EditOfferView(props) {
 
     const getView = () => {
         return (
-            <Card>
+            <Card className={'form-container'}>
                 <Formik validationSchema={editOfferSchema} onSubmit={handleSubmit} enableReinitialize={true}
                         initialValues={{
                             id: props.id,
@@ -72,69 +72,56 @@ function EditOfferView(props) {
                           setFieldValue
                       }) => (
                         <form onSubmit={handleSubmit}>
-                            <div>
-                                <TextField
-                                    size="small"
-                                    label={t('id')}
-                                    name="id"
-                                    value={values.id}
-                                    disabled={true}
-                                    margin="normal"
-                                />
-                            </div>
-                            <div>
-                                <TextField
-                                    size="small"
-                                    error={errors.title && touched.title}
-                                    label={t('title')}
-                                    name="title"
-                                    value={values.title}
-                                    variant={'outlined'}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    helperText={(errors.title && touched.title) ? translate(errors.title) : ''}
-                                    margin="normal"
-                                />
-                            </div>
-                            <div>
-                                <TextField
-                                    size="small"
-                                    error={errors.author && touched.author}
-                                    label={t('author')}
-                                    name="author"
-                                    value={values.author}
-                                    variant={'outlined'}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    helperText={(errors.author && touched.author) ? translate(errors.author) : ''}
-                                    margin="normal"
-                                />
-                            </div>
-                            <div>
-                                <CurrencyTextField
-                                    error={errors.price && touched.price}
-                                    label={t('price')}
-                                    name="price"
-                                    minimumValue={"0"}
-                                    variant={'outlined'}
-                                    value={values.price}
-                                    currencySymbol={t('currencySymbol')}
-                                    outputFormat="string"
-                                    decimalCharacter="."
-                                    decimalCharacterAlternative=","
-                                    decimalPlacesShownOnBlur={2}
-                                    digitGroupSeparator={""}
-                                    decimalPlaces={2}
-                                    onChange={(event, value) => setFieldValue('price', value)}
-                                    onBlur={handleBlur}
-                                    helperText={(errors.price && touched.price) ? translate(errors.price) : ''}
-                                    margin="normal"
-                                />
-                            </div>
-                            <div>
-                                <PhotosInputComponent setFieldValue={setFieldValue} attachment={values.attachment}/>
-                            </div>
-                            <Button size={"small"} variant="contained" color="primary" type="submit" disabled={isSubmitting}>
+                            <TextField
+                                size="small"
+                                error={errors.title && touched.title}
+                                label={t('title')}
+                                name="title"
+                                value={values.title}
+                                variant={'outlined'}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                helperText={(errors.title && touched.title) ? translate(errors.title) : ''}
+                                margin="normal"
+                                fullWidth
+                            />
+                            <TextField
+                                size="small"
+                                error={errors.author && touched.author}
+                                label={t('author')}
+                                name="author"
+                                value={values.author}
+                                variant={'outlined'}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                helperText={(errors.author && touched.author) ? translate(errors.author) : ''}
+                                margin="normal"
+                                fullWidth
+                            />
+                            <CurrencyTextField
+                                size="small"
+                                error={errors.price && touched.price}
+                                label={t('price')}
+                                name="price"
+                                minimumValue={"0"}
+                                variant={'outlined'}
+                                value={values.price}
+                                currencySymbol={t('currencySymbol')}
+                                outputFormat="string"
+                                decimalCharacter="."
+                                decimalCharacterAlternative=","
+                                decimalPlacesShownOnBlur={2}
+                                digitGroupSeparator={""}
+                                decimalPlaces={2}
+                                onChange={(event, value) => setFieldValue('price', value)}
+                                onBlur={handleBlur}
+                                helperText={(errors.price && touched.price) ? translate(errors.price) : ''}
+                                margin="normal"
+                                fullWidth
+                            />
+                            <PhotosInputComponent setFieldValue={setFieldValue} attachment={values.attachment}/>
+                            <Button size={"small"} variant="contained" color="primary" type="submit"
+                                    disabled={isSubmitting}>
                                 {t('offers.edit.submit')}
                             </Button>
                         </form>
