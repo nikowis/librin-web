@@ -72,11 +72,11 @@
     "page": "Offers",
     "create": {
       "page": "Create offer",
-      "submit": "Create",
+      "submit": "Create"
     },
     "edit": {
       "page": "Edit offer",
-      "submit": "Save",
+      "submit": "Save"
     },
     "view": {
       "page": "View",
