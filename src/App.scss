@@ -2,6 +2,7 @@
 @import "styles/Variables";
 @import "styles/OfferCards";
 @import "styles/OfferForm";
+@import "styles/OfferView";
 
 .app {
   font-family: 'Roboto', sans-serif;
@@ -24,5 +25,5 @@ button.MuiButton-outlined {
 }
 
 #app-content-container {
-  padding: 16px 8px;
+  padding: 8px 8px;
 }
