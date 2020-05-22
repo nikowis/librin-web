@@ -19,7 +19,7 @@ import {
 import {store} from "../../index";
 import {NOTIFICATION_DURATION, OfferStatus} from "../../common/app-constants";
 import {MESSAGES, MY_OFFERS, OFFERS} from "../../common/paths";
-import PhotosPreviewComponent from "../PhotosPreviewComponent";
+import PhotosInputPreviewComponent from "../PhotosInputPreviewComponent";
 import Container from "@material-ui/core/Container";
 
 function OfferView(props) {
@@ -126,7 +126,7 @@ function OfferView(props) {
                 </div>
                 <div>
                     <Container maxWidth="xs">
-                        <PhotosPreviewComponent photo={attachment}/>
+                        <PhotosInputPreviewComponent photo={attachment}/>
                     </Container>
                 </div>
                 <div>

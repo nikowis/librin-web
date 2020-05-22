@@ -3,7 +3,7 @@ import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 import PropTypes from "prop-types";
 import {useTranslation} from "react-i18next";
 
-function PhotosPreviewComponent(props) {
+function PhotosInputPreviewComponent(props) {
     const {photo} = props;
 
     const {t} = useTranslation();
@@ -23,7 +23,7 @@ function PhotosPreviewComponent(props) {
     )
 }
 
-PhotosPreviewComponent.propTypes = {
+PhotosInputPreviewComponent.propTypes = {
     photo: PropTypes.shape({
         name: PropTypes.string.isRequired,
         content: PropTypes.string.isRequired,
@@ -32,4 +32,4 @@ PhotosPreviewComponent.propTypes = {
     edit: PropTypes.bool
 };
 
-export default PhotosPreviewComponent;
+export default PhotosInputPreviewComponent;
