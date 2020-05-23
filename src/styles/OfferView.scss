@@ -2,15 +2,45 @@
 
 .offer-view {
 
+  .MuiContainer-root {
+    padding: 0;
+  }
+
   img {
     max-width: 300px;
     height: auto;
     border: 1px lightgray solid;
   }
 
-  .offer-info-card {
-    max-width: 300px;
+  .offer-card-details {
     margin: auto;
+    text-align: left;
+    padding: 8px;
+
+    label {
+      display: block;
+      color: gray;
+      font-weight: 400;
+    }
+
+    .primary-text {
+      font-size:20px;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .secondary-text {
+      font-size:18px;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+
+    .other-text {
+      font-size:16px;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+
   }
 
 }

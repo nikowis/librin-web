@@ -8,6 +8,10 @@ import LoaderComponent from "../LoaderComponent";
 import Card from "@material-ui/core/Card/Card";
 import {CLEAR_CURRENT_OFFER} from "../../redux/actions";
 import {MESSAGES} from "../../common/paths";
+import CardActions from "@material-ui/core/CardActions/CardActions";
+import Container from "@material-ui/core/Container";
+import Button from "@material-ui/core/Button";
+import {OfferStatus} from "../../common/app-constants";
 
 function OfferView(props) {
 
@@ -35,10 +39,41 @@ function OfferView(props) {
     const getView = () => {
         return (
             <div className={'offer-view'}>
-                <img src={attachment.url} alt={"Offer"}/>
-                <Card className={'offer-info-card'}>
-                    Some content
-                </Card>
+                <img src={attachment ? attachment.url : process.env.PUBLIC_URL + '/Placeholder.png'}
+                     alt={"Offer"}/>
+                <Container maxWidth={'xs'}>
+                    <Card className={'offer-card-details'}>
+                        <div className={'primary-text'}>
+                            <label htmlFor={'price'}>Cena</label>
+                            <span id={'price'}>
+                            {price + ' ' + t('currencySymbol')}
+                        </span>
+                        </div>
+                        <div className={'secondary-text'}>
+                            <label htmlFor={'title'}>Tytuł</label>
+                            <span id={'title'}>
+                            {title}
+                        </span>
+                        </div>
+                        <div className={'other-text'}>
+                            <label htmlFor={'author'}>Autor</label>
+                            <span id={'author'}>
+                            {author}
+                        </span>
+                        </div>
+                        {OfferStatus.ACTIVE === status ?
+                            <CardActions>
+                                {ownerId !== props.userId ?
+                                    <Button size={"small"} variant="contained" color="primary" type="submit"
+                                            onClick={() => handleSendMessage()}>
+                                        {t('offers.view.message')}
+                                    </Button> : null
+                                }
+                            </CardActions> : "Offer inactive"
+                        }
+
+                    </Card>
+                </Container>
             </div>
         );
     };

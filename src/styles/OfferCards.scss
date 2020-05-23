@@ -37,6 +37,17 @@
   min-height: 200px;
   height: 100%;
 
+  .user-info {
+    font-size: 14px;
+    font-weight: 400;
+    height: 26px;
+
+    .MuiAvatar-root {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
   .MuiCardHeader-root {
     padding: 4px 4px;
   }
