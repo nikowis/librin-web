@@ -1,5 +1,5 @@
-//5MB
-const MAX_PHOTO_SIZE_BYTES = 5242880;
+//10MB
+const MAX_PHOTO_SIZE_BYTES = 10485760;
 const JPG_QUALITY = 0.7;
 const MAX_BORDER_SIZE = 800;
 
@@ -94,10 +94,10 @@ async function compressPhoto(photo, jpgQuality, maxBorderSize) {
     const mimeType = photo.content.substring(photo.content.indexOf(':') + 1, photo.content.indexOf(';'));
     const compressedContent = imageToResizedBase64(image, jpgQuality, mimeType, maxBorderSize);
     const compressedContentSize = attachmentSizeInB(compressedContent);
-    if(compressedContentSize < sourcePhotoSize) {
-        photo.content = compressedContent;
-        photo = initializeAttachmentFromBase64(photo);
-    }
+
+    photo.content = compressedContent;
+    photo = initializeAttachmentFromBase64(photo);
+
     console.log('Attachment size (B) after compression: ' + compressedContentSize);
     return photo;
 }

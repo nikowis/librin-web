@@ -14,15 +14,19 @@ function OfferCard(props) {
     return (
         <Card className={'offer-card'}>
             <CardHeader
-                title={offer.title}
+                title={
+                    <div className={'limit-text-lines two-line'}>
+                        {offer.title}
+                    </div>
+                }
                 subheader={<>
-                    <div>{offer.author}</div>
-                    <div>{offer.price + ' ' + t('currencySymbol')}</div>
+                    <div className={'limit-text-lines'}>{offer.author}</div>
+                    <div className={'limit-text-lines'}>{offer.price + ' ' + t('currencySymbol')}</div>
                 </>}
             />
             <a href={process.env.PUBLIC_URL + OFFERS + '/' + offer.id} className={'offer-card-image'}>
-                        <img src={offer.attachment ? offer.attachment.url : process.env.PUBLIC_URL + '/Placeholder.png'}
-                             alt={"Offer"}/>
+                <img src={offer.attachment ? offer.attachment.url : process.env.PUBLIC_URL + '/Placeholder.png'}
+                     alt={"Offer"}/>
             </a>
             <CardActions>
 

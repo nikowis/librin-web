@@ -11,6 +11,23 @@
   justify-content: center;
 }
 
+.limit-text-lines {
+  display: block;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow: hidden;
+  line-height: 1rem;
+  max-height: 1rem;
+}
+
+.two-line {
+  max-height: 2rem;
+}
+
+.MuiCardHeader-content {
+  max-width: 100%;
+}
+
 .offer-card {
   align-self: flex-start;
   text-align: left;
@@ -21,7 +38,7 @@
   height: 100%;
 
   .MuiCardHeader-root {
-    padding: 4px 8px;
+    padding: 4px 4px;
   }
 
   .MuiCardActions-root {
@@ -44,7 +61,7 @@
   .offer-card-image {
     flex-grow: 1;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
     img {
       max-height: 300px;
