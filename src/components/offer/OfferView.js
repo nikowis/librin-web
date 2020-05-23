@@ -12,6 +12,7 @@ import CardActions from "@material-ui/core/CardActions/CardActions";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import {OfferStatus} from "../../common/app-constants";
+import Avatar from "@material-ui/core/Avatar";
 
 function OfferView(props) {
 
@@ -21,7 +22,7 @@ function OfferView(props) {
     const propId = props.id;
 
     const {history} = props;
-    const {title, author, price, ownerId, status, attachment} = props.currentOffer;
+    const {title, author, price, ownerId, status, attachment, owner} = props.currentOffer;
 
     useEffect(() => {
         if (!propId || propId.toString() !== id) {
@@ -73,6 +74,12 @@ function OfferView(props) {
                         }
 
                     </Card>
+                    <Card className={'user-details'}>
+                        <Avatar>
+                            {owner.username.substring(0, 1).toUpperCase()}
+                        </Avatar>
+                        {owner.username}
+                    </Card>
                 </Container>
             </div>
         );
@@ -104,6 +111,10 @@ OfferView.propTypes = {
                 content: PropTypes.string.isRequired,
                 url: PropTypes.string.isRequired
             }),
+            owner: PropTypes.shape({
+                id: PropTypes.number.isRequired,
+                username: PropTypes.string.isRequired,
+            }).isRequired
         }),
 
 };
