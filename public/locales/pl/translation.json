@@ -45,6 +45,14 @@
     "upload": "Dodaj zdjęcie",
     "delete": "Usuń zdjęcie"
   },
+  "offer" : {
+    "status" : {
+      "inactive": "Oferta sprzedana lub usunięta"
+    },
+    "owner": {
+      "myoffer": "Ta oferta należy do Ciebie"
+    }
+  },
   "validations": {
     "default": "Niepoprawne dane",
     "required": "Pole wymagane",

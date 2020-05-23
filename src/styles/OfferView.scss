@@ -12,10 +12,16 @@
     border: 1px lightgray solid;
   }
 
+  .MuiCardActions-root {
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+    justify-content: center;
+  }
+
   .offer-card-details {
     margin: auto;
     text-align: left;
-    padding: 8px;
 
     label {
       display: block;
@@ -26,21 +32,27 @@
     .primary-text {
       font-size:20px;
       font-weight: 500;
-      margin-bottom: 8px;
+      padding: 8px;
     }
 
     .secondary-text {
       font-size:18px;
       font-weight: 400;
-      margin-bottom: 8px;
+      padding: 8px;
     }
 
     .other-text {
       font-size:16px;
       font-weight: 400;
-      margin-bottom: 8px;
+      padding: 8px;
     }
 
+  }
+
+  .offer-warning-strip {
+    width: 100%;
+    background: lightgray;
+    text-align: center;
   }
 
   .user-details {

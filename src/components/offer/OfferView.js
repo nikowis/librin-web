@@ -13,6 +13,7 @@ import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import {OfferStatus} from "../../common/app-constants";
 import Avatar from "@material-ui/core/Avatar";
+import OfferWarningStrip from "./OfferWarningStrip";
 
 function OfferView(props) {
 
@@ -68,9 +69,9 @@ function OfferView(props) {
                                     <Button size={"small"} variant="contained" color="primary" type="submit"
                                             onClick={() => handleSendMessage()}>
                                         {t('offers.view.message')}
-                                    </Button> : null
+                                    </Button> : <OfferWarningStrip text={t('offer.owner.myoffer')}/>
                                 }
-                            </CardActions> : "Offer inactive"
+                            </CardActions> : <OfferWarningStrip text={t('offer.status.inactive')}/>
                         }
 
                     </Card>
