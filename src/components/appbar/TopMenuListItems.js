@@ -28,7 +28,7 @@ function TopMenuListItems(props) {
     return (
         <>
             <TopMenuListItem show selected={currentPathname === OFFERS || currentPathname === ROOT}
-                             mykey={'offers'} icon={<HomeIcon/>} text={t('offers.page')}
+                             mykey={'offers'} icon={<HomeIcon/>} text={t('offer.offersPage')}
                              onClick={(e) => redirect(e, OFFERS)}/>
             <TopMenuListItem show={!props.authenticated} selected={currentPathname === LOGIN}
                              mykey={'login'} icon={<AccountCircle/>} text={t('login.page')}
@@ -42,10 +42,10 @@ function TopMenuListItems(props) {
                              onClick={(e) => redirect(e, MESSAGES)}/>
             <TopMenuListItem show={props.authenticated} selected={currentPathname === CREATE_OFFER}
                              onClick={(e) => redirect(e, CREATE_OFFER)}
-                             mykey={'create'} icon={<AddIcon/>} text={t('offers.create.page')}/>
+                             mykey={'create'} icon={<AddIcon/>} text={t('offer.createPage')}/>
             <TopMenuListItem show={props.authenticated} selected={currentPathname === MY_OFFERS}
                              onClick={(e) => redirect(e, MY_OFFERS)}
-                             mykey={'myoffers'} icon={<PlaylistAddIcon/>} text={t('myoffers.page')}/>
+                             mykey={'myoffers'} icon={<PlaylistAddIcon/>} text={t('offer.myoffersPage')}/>
             <TopMenuListItem show={props.authenticated} selected={currentPathname === PROFILE}
                              onClick={(e) => redirect(e, PROFILE)}
                              mykey={'profile'} icon={<PersonIcon/>} text={t('profile.page')}/>

@@ -68,7 +68,7 @@ function OfferView(props) {
                                 {ownerId !== props.userId ?
                                     <Button size={"small"} variant="contained" color="primary" type="submit"
                                             onClick={() => handleSendMessage()}>
-                                        {t('offers.view.message')}
+                                        {t('offer.sendMessage')}
                                     </Button> : <OfferWarningStrip text={t('offer.owner.myoffer')}/>
                                 }
                             </CardActions> : <OfferWarningStrip text={t('offer.status.inactiveWarn')}/>

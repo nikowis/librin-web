@@ -51,7 +51,7 @@ function TopAppBar(props) {
                                     <>
                                         <Button size={"small"} variant="outlined" onClick={() => redirect(CREATE_OFFER)}
                                                 color="inherit" startIcon={<AddIcon/>}>
-                                            {t('offers.create.page')}
+                                            {t('offer.createPage')}
                                         </Button>
                                     </> :
                                     <IconButton

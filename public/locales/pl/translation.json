@@ -51,7 +51,14 @@
     "title": "Tytuł",
     "description": "Opis",
     "author": "Autor",
-    "price": "Cena"
+    "price": "Cena",
+    "newSubmit":  "Utwórz",
+    "editSubmit": "Zapisz",
+    "sendMessage": "Wyślij wiadomość",
+    "createPage": "Utwórz ofertę",
+    "editPage": "Edytuj ofertę",
+    "offersPage": "Oferty",
+    "myoffersPage": "Moje oferty"
   },
   "validations": {
     "default": "Niepoprawne dane",
@@ -72,27 +79,6 @@
   },
   "profile": {
     "page": "Profil"
-  },
-  "myoffers": {
-    "page": "Moje oferty"
-  },
-  "offers": {
-    "page": "Oferty",
-    "create": {
-      "page": "Utwórz ofertę",
-      "submit": "Utwórz"
-    },
-    "edit": {
-      "page": "Edytuj ofertę",
-      "submit": "Zapisz"
-    },
-    "view": {
-      "page": "Wyświetl",
-      "message": "Wyślij wiadomość",
-      "sold": "Oznacz jako sprzedane",
-      "edit": "Edytuj ofertę",
-      "delete": "Usuń ofertę"
-    }
   },
   "messages" : {
     "page": "Wiadomości",
