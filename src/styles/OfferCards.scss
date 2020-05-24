@@ -48,6 +48,14 @@
     }
   }
 
+  .status-info-active {
+    background-color: lightgreen;
+  }
+
+  .status-info-sold {
+    background-color: lightgray;
+  }
+
   .MuiCardHeader-root {
     padding: 4px 4px;
   }
@@ -83,7 +91,5 @@
     }
   }
 }
-
-
 
 

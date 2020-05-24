@@ -5,16 +5,15 @@ import Api from "../../common/api-communication";
 import LoaderComponent from "../LoaderComponent";
 import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
-import {VIEW_OFFER} from "../../redux/actions";
-import {MESSAGES, OFFERS} from "../../common/paths";
+import {OFFERS} from "../../common/paths";
 import PaginationComponent from "../PaginationComponent";
 import Grid from "@material-ui/core/Grid";
 import OfferCard from "./OfferCard";
 
-function OffersCardsView(props) {
+function OffersView(props) {
 
     const {t} = useTranslation();
-    const {dispatch, offers, location, history, prevSearch, currentPage, totalPages, userId} = props;
+    const {dispatch, offers, location, history, prevSearch, currentPage, totalPages} = props;
     const {search, pathname} = location;
     const {replace} = history;
 
@@ -40,23 +39,11 @@ function OffersCardsView(props) {
         }
     }, [dispatch, offers, pageQuery, prevSearch, search]);
 
-    const handleViewOffer = (offer) => {
-        dispatch({type: VIEW_OFFER, payload: offer});
-        props.history.push(OFFERS + '/' + offer.id);
-    };
-
-    const handleSendMessage = (offer) => {
-        dispatch(Api.createConversation(offer.id)).then(res => {
-            history.push(MESSAGES + '/' + res.value.id);
-        });
-    };
-
     const offerRows = () => {
         return offers.map((offer) => {
             return (
                 <Grid item xs={6} sm={4} md={3} key={offer.id} className={"offer-grid-item"}>
-                    <OfferCard offer={offer} onView={handleViewOffer}
-                               onSendMessage={userId === offer.ownerId ? null : handleSendMessage}/>
+                    <OfferCard offer={offer} link={process.env.PUBLIC_URL + OFFERS + '/' + offer.id}/>
                 </Grid>
             );
         });
@@ -83,7 +70,7 @@ function OffersCardsView(props) {
 
 }
 
-OffersCardsView.propTypes = {
+OffersView.propTypes = {
     userId: PropTypes.number,
     offers: PropTypes.arrayOf(
         PropTypes.shape({
@@ -114,4 +101,4 @@ export default connect(state => ({
     currentPage: state.offers.currentPage,
     totalPages: state.offers.totalPages,
     prevSearch: state.offers.search
-}))(withRouter(OffersCardsView));
+}))(withRouter(OffersView));

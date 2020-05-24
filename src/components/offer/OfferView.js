@@ -71,7 +71,7 @@ function OfferView(props) {
                                         {t('offers.view.message')}
                                     </Button> : <OfferWarningStrip text={t('offer.owner.myoffer')}/>
                                 }
-                            </CardActions> : <OfferWarningStrip text={t('offer.status.inactive')}/>
+                            </CardActions> : <OfferWarningStrip text={t('offer.status.inactiveWarn')}/>
                         }
 
                     </Card>

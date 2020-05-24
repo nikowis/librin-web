@@ -4,15 +4,15 @@ import {connect} from "react-redux";
 import {useTranslation} from "react-i18next";
 import LoaderComponent from "../LoaderComponent";
 import PropTypes from "prop-types";
-import {EDIT_OFFER, FETCH_MY_OFFERS, HIDE_NOTIFICATION, SHOW_NOTIFICATION} from "../../redux/actions";
-import {store} from "../../index";
-import {NOTIFICATION_DURATION} from "../../common/app-constants";
+import {FETCH_MY_OFFERS} from "../../redux/actions";
 import {withRouter} from 'react-router-dom';
-import {MY_OFFERS, OFFERS, OFFER_VIEW} from "../../common/paths";
-import OffersTable from "./OffersTable";
+import {MY_OFFERS} from "../../common/paths";
 import Card from "@material-ui/core/Card";
+import Grid from "@material-ui/core/Grid";
+import PaginationComponent from "../PaginationComponent";
+import OfferCard from "./OfferCard";
 
-function MyOffersTableView(props) {
+function MyOffersView(props) {
 
     const {t} = useTranslation();
     const {dispatch, offers, location, history, currentPage, totalPages, userId} = props;
@@ -39,41 +39,37 @@ function MyOffersTableView(props) {
         }
     }, [dispatch, offers, currentPage, pageQuery, userId]);
 
-    const handleDelete = (offer) => {
-        dispatch(Api.removeOffer(offer.id)).then(res => {
-            if (res.action.payload && !res.action.payload.status) {
-                dispatch({type: SHOW_NOTIFICATION, payload: t('notification.offerDeleted')});
-                setTimeout(() => {
-                    store.dispatch({type: HIDE_NOTIFICATION})
-                }, NOTIFICATION_DURATION);
-            }
+    const offerRows = () => {
+        return offers.map((offer) => {
+            return (
+                <Grid item xs={6} sm={4} md={3} key={offer.id} className={"offer-grid-item"}>
+                    <OfferCard offer={offer} myOffer={true} link={process.env.PUBLIC_URL + MY_OFFERS + '/' + offer.id}/>
+                </Grid>
+            );
         });
-    };
-
-    const handleEdit = (offer) => {
-        dispatch({type: EDIT_OFFER, payload: offer});
-        props.history.push(MY_OFFERS + '/' + offer.id);
-    };
-
-    const handleView = (offer) => {
-        dispatch({type: OFFER_VIEW, payload: offer});
-        props.history.push(OFFERS + '/' + offer.id);
     };
 
     const getView = () => {
         return <>
-            {pageQuery <= totalPages ? <OffersTable offers={offers} currentPathname={pathname} currentPage={currentPage} totalPages={totalPages} handleDelete={handleDelete} handleEdit={handleEdit} handleView={handleView}/> : t('noElementsFound')}
+            {pageQuery <= totalPages ?
+                <>
+                    <Grid container>
+                        {offerRows()}
+                    </Grid>
+                    <PaginationComponent currentPathname={pathname} currentPage={currentPage} totalPages={totalPages}/>
+                </>
+                : t('noElementsFound')}
         </>;
     };
 
     return (
-        <Card>
+        <>
             {offers === null ? <LoaderComponent/> : getView()}
-        </Card>
+        </>
     );
 }
 
-MyOffersTableView.propTypes = {
+MyOffersView.propTypes = {
     userId: PropTypes.number.isRequired,
     offers: PropTypes.arrayOf(
         PropTypes.shape({
@@ -91,4 +87,4 @@ export default connect(state => ({
     offers: state.myoffers.content,
     currentPage: state.myoffers.currentPage,
     totalPages: state.myoffers.totalPages,
-}))(withRouter(MyOffersTableView));
+}))(withRouter(MyOffersView));

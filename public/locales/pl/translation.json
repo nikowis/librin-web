@@ -47,7 +47,9 @@
   },
   "offer" : {
     "status" : {
-      "inactive": "Oferta sprzedana lub usunięta"
+      "active": "Aktywna",
+      "sold": "Sprzedana",
+      "inactiveWarn": "Oferta sprzedana lub usunięta"
     },
     "owner": {
       "myoffer": "Ta oferta należy do Ciebie"

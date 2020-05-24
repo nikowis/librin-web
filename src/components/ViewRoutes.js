@@ -20,12 +20,12 @@ import {
     ROOT,
     OFFER_VIEW, CONFIRM_EMAIL, CHANGE_PASSWORD, GENERATE_PASSWORD_RESET, PROFILE_CHANGE_PASSWORD
 } from "../common/paths";
-import MyOffersTableView from "./offer/MyOffersTableView";
+import MyOffersTableView from "./offer/MyOffersView";
 import CreateOfferView from "./offer/CreateOfferView";
 import EditOfferView from "./offer/EditOfferView";
 import OfferView from "./offer/OfferView";
 import MessagesView from "./messages/MessagesView";
-import OffersCardsView from "./offer/OffersCardsView";
+import OffersView from "./offer/OffersView";
 import ConfirmEmailView from "./user/ConfirmEmailView";
 import GeneratePasswordResetView from "./user/GeneratePasswordResetView";
 import ChangePasswordView from "./user/ChangePasswordWithTokenView";
@@ -68,7 +68,7 @@ function ViewRoutes() {
                 <OfferView/>
             </Route>
             <Route path={OFFERS}>
-                <OffersCardsView/>
+                <OffersView/>
             </Route>
             <Route path={CHANGE_PASSWORD}>
                 <ChangePasswordView/>
@@ -81,7 +81,7 @@ function ViewRoutes() {
                 <ConfirmEmailView/>
             </Route>
             <Route path={ROOT}>
-                <OffersCardsView/>
+                <OffersView/>
             </Route>
             <Route component={NoMatchingView}/>
         </Switch>
