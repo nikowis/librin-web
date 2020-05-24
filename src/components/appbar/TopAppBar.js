@@ -35,7 +35,7 @@ function TopAppBar(props) {
                 <Toolbar>
                     <div id="top-menu-left">
                         <Typography variant="h5" onClick={() => redirect(OFFERS)}>
-                            Librin
+                            {t('brand')}
                         </Typography>
                     </div>
                     <div id='top-menu-middle'>

@@ -7,7 +7,6 @@ import PropTypes from "prop-types";
 import {FETCH_MY_OFFERS} from "../../redux/actions";
 import {withRouter} from 'react-router-dom';
 import {MY_OFFERS} from "../../common/paths";
-import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
 import PaginationComponent from "../PaginationComponent";
 import OfferCard from "./OfferCard";

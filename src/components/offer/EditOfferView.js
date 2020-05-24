@@ -75,7 +75,7 @@ function EditOfferView(props) {
                             <TextField
                                 size="small"
                                 error={errors.title && touched.title}
-                                label={t('title')}
+                                label={t('offer.title')}
                                 name="title"
                                 value={values.title}
                                 variant={'outlined'}
@@ -88,7 +88,7 @@ function EditOfferView(props) {
                             <TextField
                                 size="small"
                                 error={errors.author && touched.author}
-                                label={t('author')}
+                                label={t('offer.author')}
                                 name="author"
                                 value={values.author}
                                 variant={'outlined'}
@@ -101,7 +101,7 @@ function EditOfferView(props) {
                             <CurrencyTextField
                                 size="small"
                                 error={errors.price && touched.price}
-                                label={t('price')}
+                                label={t('offer.price')}
                                 name="price"
                                 minimumValue={"0"}
                                 variant={'outlined'}

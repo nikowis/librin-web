@@ -1,15 +1,9 @@
 {
-  "brand": "Książkofilia",
+  "brand": "Librin",
   "logout": "Wylogowanie",
   "id": "Id",
-  "title": "Tytuł",
-  "description": "Opis",
-  "author": "Autor",
-  "price": "Cena",
   "currencySymbol": "PLN",
-  "status": "Status",
   "createdAt": "Data utworzenia",
-  "owner": "Właściciel",
   "submit": "Zapisz",
   "servererror": "Błąd serwera",
   "loading": "Ładowanie...",
@@ -53,7 +47,11 @@
     },
     "owner": {
       "myoffer": "Ta oferta należy do Ciebie"
-    }
+    },
+    "title": "Tytuł",
+    "description": "Opis",
+    "author": "Autor",
+    "price": "Cena"
   },
   "validations": {
     "default": "Niepoprawne dane",
