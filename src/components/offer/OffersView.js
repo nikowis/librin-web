@@ -7,8 +7,7 @@ import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
 import {OFFERS} from "../../common/paths";
 import PaginationComponent from "../PaginationComponent";
-import Grid from "@material-ui/core/Grid";
-import OfferCard from "./OfferCard";
+import OffersGrid from "./OffersGrid";
 
 function OffersView(props) {
 
@@ -38,24 +37,12 @@ function OffersView(props) {
             dispatch(Api.getOffers(new URLSearchParams(search)));
         }
     }, [dispatch, offers, pageQuery, prevSearch, search]);
-
-    const offerRows = () => {
-        return offers.map((offer) => {
-            return (
-                <Grid item xs={6} sm={4} md={3} key={offer.id} className={"offer-grid-item"}>
-                    <OfferCard offer={offer} link={process.env.PUBLIC_URL + OFFERS + '/' + offer.id}/>
-                </Grid>
-            );
-        });
-    };
-
+    
     const getView = () => {
         return <>
             {pageQuery <= totalPages ?
                 <>
-                    <Grid container spacing={1}>
-                        {offerRows()}
-                    </Grid>
+                    <OffersGrid offers={offers} offerLinkBase={process.env.PUBLIC_URL + OFFERS}/>
                     <PaginationComponent currentPathname={pathname} currentPage={currentPage} totalPages={totalPages}/>
                 </>
                 : t('noElementsFound')}

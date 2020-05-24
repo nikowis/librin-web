@@ -7,9 +7,8 @@ import PropTypes from "prop-types";
 import {FETCH_MY_OFFERS} from "../../redux/actions";
 import {withRouter} from 'react-router-dom';
 import {MY_OFFERS} from "../../common/paths";
-import Grid from "@material-ui/core/Grid";
 import PaginationComponent from "../PaginationComponent";
-import OfferCard from "./OfferCard";
+import OffersGrid from "./OffersGrid";
 
 function MyOffersView(props) {
 
@@ -38,23 +37,11 @@ function MyOffersView(props) {
         }
     }, [dispatch, offers, currentPage, pageQuery, userId]);
 
-    const offerRows = () => {
-        return offers.map((offer) => {
-            return (
-                <Grid item xs={6} sm={4} md={3} key={offer.id} className={"offer-grid-item"}>
-                    <OfferCard offer={offer} myOffer={true} link={process.env.PUBLIC_URL + MY_OFFERS + '/' + offer.id}/>
-                </Grid>
-            );
-        });
-    };
-
     const getView = () => {
         return <>
             {pageQuery <= totalPages ?
                 <>
-                    <Grid container>
-                        {offerRows()}
-                    </Grid>
+                    <OffersGrid offers={offers} offerLinkBase={process.env.PUBLIC_URL + MY_OFFERS}/>
                     <PaginationComponent currentPathname={pathname} currentPage={currentPage} totalPages={totalPages}/>
                 </>
                 : t('noElementsFound')}
