@@ -46,7 +46,7 @@ function ProfileView(props) {
     };
 
     return (
-        <Card>
+        <Card className={'form-container'}>
             <Formik validationSchema={profileSchema} onSubmit={handleSubmit} enableReinitialize={true}
                     initialValues={{
                         id: props.id,
@@ -76,6 +76,8 @@ function ProfileView(props) {
                                 helperText={(errors.email && touched.email) && translate(errors.email)}
                                 margin="normal"
                                 disabled={true}
+                                variant={'outlined'}
+                                fullWidth
                             />
                         </div>
                         <div>
@@ -89,6 +91,8 @@ function ProfileView(props) {
                                 helperText={(errors.username && touched.username) && translate(errors.username)}
                                 margin="normal"
                                 disabled={true}
+                                variant={'outlined'}
+                                fullWidth
                             />
                         </div>
                         <div>
@@ -101,6 +105,8 @@ function ProfileView(props) {
                                 onChange={handleChange}
                                 helperText={(errors.firstName && touched.firstName) && translate(errors.firstName)}
                                 margin="normal"
+                                variant={'outlined'}
+                                fullWidth
                             />
                         </div>
                         <div>
@@ -113,6 +119,8 @@ function ProfileView(props) {
                                 onChange={handleChange}
                                 helperText={(errors.lastName && touched.lastName) && translate(errors.lastName)}
                                 margin="normal"
+                                variant={'outlined'}
+                                fullWidth
                             />
                         </div>
 

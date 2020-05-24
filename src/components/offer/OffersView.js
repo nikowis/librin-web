@@ -53,7 +53,7 @@ function OffersView(props) {
         return <>
             {pageQuery <= totalPages ?
                 <>
-                    <Grid container>
+                    <Grid container spacing={1}>
                         {offerRows()}
                     </Grid>
                     <PaginationComponent currentPathname={pathname} currentPage={currentPage} totalPages={totalPages}/>

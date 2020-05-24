@@ -1,14 +1,8 @@
 
 #app-content-container {
   .offer-grid-item {
-    margin-bottom: 16px;
-    padding: 0 4px;
     max-width: 300px;
   }
-}
-
-.MuiGrid-root {
-  justify-content: center;
 }
 
 .limit-text-lines {
@@ -40,11 +34,24 @@
   .user-info {
     font-size: 14px;
     font-weight: 400;
-    height: 26px;
+    height: 22px;
+    max-width: 136px;
 
     .MuiAvatar-root {
       width: 20px;
       height: 20px;
+      margin-left: 0;
+    }
+
+    .MuiChip-label {
+      padding: 0 8px;
+    }
+
+    @media (max-width: 360px) {
+      max-width: 130px;
+    }
+    @media (min-width: 361px) {
+      max-width: 90%;
     }
   }
 
