@@ -5,6 +5,8 @@ import CardHeader from "@material-ui/core/CardHeader";
 import Card from "@material-ui/core/Card";
 import Avatar from "@material-ui/core/Avatar";
 import Chip from "@material-ui/core/Chip";
+import {Link} from "react-router-dom";
+import {USERS} from "../../common/paths";
 
 function OfferCard(props) {
 
@@ -26,17 +28,20 @@ function OfferCard(props) {
                     <div className={'limit-text-lines'}>{offer.author}</div>
                     <div className={'limit-text-lines'}>{offer.price + ' ' + t('currencySymbol')}</div>
                     {myOffer ?
+
                         <Chip label={t('offer.status.' + status)} className={'status-info-' + status}/>
                         :
-                        <Chip avatar={<Avatar>{owner.username.substring(0, 1).toUpperCase()}</Avatar>}
-                              label={owner.username} className={'user-info'}/>
+                        <Link to={USERS + '/' + owner.id} className={'user-info'}>
+                            <Chip avatar={<Avatar>{owner.username.substring(0, 1).toUpperCase()}</Avatar>}
+                                  label={owner.username} className={'user-info'}/>
+                        </Link>
                     }
                 </>}
             />
-            <a href={props.link} className={'offer-card-image'}>
+            <Link to={props.link} className={'offer-card-image'}>
                 <img src={offer.attachment ? offer.attachment.url : process.env.PUBLIC_URL + '/Placeholder.png'}
                      alt={"Offer"}/>
-            </a>
+            </Link>
         </Card>
     );
 }

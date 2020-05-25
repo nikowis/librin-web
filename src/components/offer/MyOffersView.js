@@ -41,7 +41,7 @@ function MyOffersView(props) {
         return <>
             {pageQuery <= totalPages ?
                 <>
-                    <OffersGrid offers={offers} offerLinkBase={process.env.PUBLIC_URL + MY_OFFERS}/>
+                    <OffersGrid offers={offers} offerLinkBase={MY_OFFERS}/>
                     <PaginationComponent currentPathname={pathname} currentPage={currentPage} totalPages={totalPages}/>
                 </>
                 : t('noElementsFound')}

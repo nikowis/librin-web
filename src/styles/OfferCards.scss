@@ -38,9 +38,10 @@
     height: 22px;
     max-width: 136px;
 
+    color: black;
+    text-decoration: none;
+
     .MuiAvatar-root {
-      width: 20px;
-      height: 20px;
       margin-left: 0;
     }
 
@@ -90,6 +91,7 @@
     display: flex;
     align-items: flex-end;
     justify-content: center;
+
     img {
       max-height: 300px;
       height: auto;

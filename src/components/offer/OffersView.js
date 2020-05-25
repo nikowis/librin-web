@@ -37,12 +37,12 @@ function OffersView(props) {
             dispatch(Api.getOffers(new URLSearchParams(search)));
         }
     }, [dispatch, offers, pageQuery, prevSearch, search]);
-    
+
     const getView = () => {
         return <>
             {pageQuery <= totalPages ?
                 <>
-                    <OffersGrid offers={offers} offerLinkBase={process.env.PUBLIC_URL + OFFERS}/>
+                    <OffersGrid offers={offers} offerLinkBase={OFFERS}/>
                     <PaginationComponent currentPathname={pathname} currentPage={currentPage} totalPages={totalPages}/>
                 </>
                 : t('noElementsFound')}
