@@ -20,17 +20,18 @@ function OfferView(props) {
     const {t} = useTranslation();
     const {dispatch} = props;
     let {id} = useParams();
-    const propId = props.id;
+    const propId = props.currentOffer.id;
 
     const {history} = props;
     const {title, author, price, ownerId, status, attachment, owner} = props.currentOffer;
+    const wrongOfferIsLoaded = !propId || propId.toString() !== id;
 
     useEffect(() => {
-        if (!propId || propId.toString() !== id) {
+        if (wrongOfferIsLoaded) {
             dispatch({type: CLEAR_CURRENT_OFFER});
             dispatch(Api.getOffer(id));
         }
-    }, [dispatch, id, propId]);
+    }, [dispatch, id, wrongOfferIsLoaded]);
 
     const handleSendMessage = () => {
         dispatch(Api.createConversation(id)).then(res => {
@@ -88,7 +89,7 @@ function OfferView(props) {
 
     return (
         <>
-            {!title || id.toString() !== id ? <LoaderComponent/> : getView()}
+            {!title || wrongOfferIsLoaded ? <LoaderComponent/> : getView()}
         </>
     )
         ;
