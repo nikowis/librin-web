@@ -10,7 +10,6 @@ import {insertItem, removeItem} from "../common/array-helper";
 
 const initialState = {
     content: null,
-    loading: false,
     currentPage: null,
     totalPages: null,
     totalElements: null,
@@ -36,7 +35,6 @@ const messagesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 content: payload.content,
-                loading: false,
                 currentPage: payload.number + 1,
                 totalPages: payload.totalPages,
                 totalElements: payload.totalElements,

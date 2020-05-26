@@ -17,21 +17,26 @@ import OfferWarningStrip from "./OfferWarningStrip";
 
 function OfferView(props) {
 
+    const [loading, setLoading] = React.useState(false);
     const {t} = useTranslation();
     const {dispatch} = props;
     let {id} = useParams();
+    id = parseInt(id);
     const propId = props.currentOffer.id;
+    const apiError = props.currentOffer.apiError;
 
     const {history} = props;
     const {title, author, price, ownerId, status, attachment, owner} = props.currentOffer;
-    const wrongOfferIsLoaded = !propId || propId.toString() !== id;
+    const wrongOfferIsLoaded = !propId || propId !== id;
+    const validUrlIdParam = !isNaN(id);
 
     useEffect(() => {
-        if (wrongOfferIsLoaded) {
+        if (!loading && validUrlIdParam && !apiError && wrongOfferIsLoaded) {
             dispatch({type: CLEAR_CURRENT_OFFER});
-            dispatch(Api.getOffer(id));
+            setLoading(true);
+            dispatch(Api.getOffer(id)).then(() => setLoading(false));
         }
-    }, [dispatch, id, wrongOfferIsLoaded]);
+    }, [dispatch, id, wrongOfferIsLoaded, loading, apiError, validUrlIdParam]);
 
     const handleSendMessage = () => {
         dispatch(Api.createConversation(id)).then(res => {
@@ -89,16 +94,18 @@ function OfferView(props) {
 
     return (
         <>
-            {!title || wrongOfferIsLoaded ? <LoaderComponent/> : getView()}
+            {validUrlIdParam && !apiError && wrongOfferIsLoaded ? <Card><LoaderComponent/></Card> : (
+                !validUrlIdParam || apiError ? <Card> {t('offerNotFound')}</Card> : getView()
+            )}
         </>
-    )
-        ;
+    );
 }
 
 OfferView.propTypes = {
     userId: PropTypes.number,
     currentOffer:
         PropTypes.shape({
+            apiError: PropTypes.string,
             id: PropTypes.number,
             title: PropTypes.string,
             author: PropTypes.string,

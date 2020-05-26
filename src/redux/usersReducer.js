@@ -1,11 +1,11 @@
 import {CLEAR_CURRENT_USER, FETCH_USER, FULFILLED, PENDING} from "./actions";
 
 const initialState = {
-    loaded: false,
     currentUser: {
         id: 0,
         username: '',
-        status: ''
+        status: '',
+        apiError: null
     },
 };
 
@@ -16,12 +16,19 @@ const usersReducer = (state = initialState, action) => {
         case FETCH_USER + PENDING:
             return {
                 ...state,
-                loaded: false,
             };
         case FETCH_USER + FULFILLED:
+            if(payload.errors) {
+                return {
+                    ...state,
+                    currentUser: {
+                        ...initialState,
+                        apiError: payload.errors[0].defaultMessage
+                    }
+                };
+            }
             return {
                 ...state,
-                loaded: true,
                 currentUser: {
                     ...payload
                 }
@@ -29,7 +36,6 @@ const usersReducer = (state = initialState, action) => {
         case CLEAR_CURRENT_USER:
             return {
                 ...state,
-                loaded: false,
                 currentUser: {
                     ...initialState.currentUser
                 }

@@ -14,11 +14,11 @@ import {initializeAttachmentFromBase64} from "../common/attachment-utility";
 
 const initialState = {
     content: null,
-    loading: false,
     currentPage: null,
     totalPages: null,
     totalElements: null,
     currentOffer: {
+        apiError: null,
         id: 0,
         title: '',
         author: '',
@@ -49,14 +49,12 @@ const offersReducer = (state = initialState, action) => {
         case FETCH_OFFERS + PENDING:
             return {
                 ...state,
-                loading: true
             };
         case FETCH_OFFERS + FULFILLED:
             let processedContent = processOffers(payload.content);
             return {
                 ...state,
                 content: processedContent,
-                loading: false,
                 currentPage: payload.number + 1,
                 totalPages: payload.totalPages,
                 totalElements: payload.totalElements,
@@ -64,6 +62,15 @@ const offersReducer = (state = initialState, action) => {
             };
         case VIEW_OFFER:
         case FETCH_OFFER + FULFILLED:
+            if(payload.errors) {
+                return {
+                    ...state,
+                    currentOffer: {
+                        ...initialState,
+                        apiError: payload.errors[0].defaultMessage
+                    }
+                };
+            }
             let processedPayload = processOffer(payload);
 
             return {

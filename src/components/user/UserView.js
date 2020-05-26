@@ -13,28 +13,27 @@ import PropTypes from "prop-types";
 function UserView(props) {
 
     const [loading, setLoading] = React.useState(false);
-
     const {t} = useTranslation();
-    const {dispatch, username, loaded} = props;
+    const {dispatch, username, apiError} = props;
     let {id} = useParams();
+    id = parseInt(id);
     const propId = props.id;
-    const wrongUserIsLoaded = !propId || propId.toString() !== id;
+    const wrongUserIsLoaded = !propId || propId !== id;
+    const validUrlIdParam = !isNaN(id);
 
     useEffect(() => {
-        if (!loading && wrongUserIsLoaded) {
+        if (!loading && validUrlIdParam && !apiError && wrongUserIsLoaded) {
             dispatch({type: CLEAR_CURRENT_USER});
             setLoading(true);
-            dispatch(Api.getUser(id));
+            dispatch(Api.getUser(id)).then(() => setLoading(false));
         }
-    }, [dispatch, id, wrongUserIsLoaded, loading]);
+    }, [dispatch, id, wrongUserIsLoaded, loading, apiError, validUrlIdParam]);
 
     return (
         <>
-            {!loaded || wrongUserIsLoaded ? <Card><LoaderComponent/></Card> : (
-                propId > 0 ? <UserCardComponent username={username}/> :
-                    <Card>
-                        {t('userNotFound')}
-                    </Card>
+            {validUrlIdParam && !apiError && wrongUserIsLoaded ? <Card><LoaderComponent/></Card> : (
+                !validUrlIdParam || apiError ? <Card>{t('userNotFound')}</Card> :
+                    <UserCardComponent username={username}/>
             )}
         </>
     );
@@ -42,15 +41,15 @@ function UserView(props) {
 }
 
 UserView.propTypes = {
-    loaded: PropTypes.bool.isRequired,
     id: PropTypes.number,
     username: PropTypes.string,
     status: PropTypes.string,
+    apiError: PropTypes.string,
 };
 
 export default connect(state => ({
-    loaded: state.users.loaded,
     id: state.users.currentUser.id,
     username: state.users.currentUser.username,
-    status: state.users.currentUser.status
+    status: state.users.currentUser.status,
+    apiError: state.users.currentUser.apiError
 }))(withRouter(UserView));

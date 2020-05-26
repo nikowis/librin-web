@@ -15,7 +15,6 @@ import {processOffer, processOffers} from "./offersReducer";
 
 const initialState = {
     content: null,
-    loading: false,
     currentPage: null,
     totalPages: null,
     totalElements: null,
@@ -34,7 +33,6 @@ const myOffersReducer = (state = initialState, action) => {
         case FETCH_MY_OFFERS + PENDING:
             return {
                 ...state,
-                loading: true
             };
         case FETCH_MY_OFFERS + FULFILLED:
             let processedContent = processOffers(payload.content);
@@ -42,7 +40,6 @@ const myOffersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 content: processedContent,
-                loading: false,
                 currentPage: payload.number + 1,
                 totalPages: payload.totalPages,
                 totalElements: payload.totalElements,
