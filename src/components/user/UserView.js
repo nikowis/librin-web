@@ -7,13 +7,15 @@ import Card from "@material-ui/core/Card";
 import Api from "../../common/api-communication";
 import {CLEAR_CURRENT_USER} from "../../redux/actions";
 import LoaderComponent from "../LoaderComponent";
+import UserCardComponent from "./UserCardComponent";
+import PropTypes from "prop-types";
 
 function UserView(props) {
 
     const [loading, setLoading] = React.useState(false);
 
     const {t} = useTranslation();
-    const {dispatch, username, status, loaded} = props;
+    const {dispatch, username, loaded} = props;
     let {id} = useParams();
     const propId = props.id;
     const wrongUserIsLoaded = !propId || propId.toString() !== id;
@@ -28,17 +30,23 @@ function UserView(props) {
 
     return (
         <>
-            <Card className={''}>
-                {!loaded || wrongUserIsLoaded ? <LoaderComponent/> : (
-                    propId > 0 ? (propId + ' ' + username + ' ' + status) : t('userNotFound')
-                )}
-            </Card>
+            {!loaded || wrongUserIsLoaded ? <Card><LoaderComponent/></Card> : (
+                propId > 0 ? <UserCardComponent username={username}/> :
+                    <Card>
+                        {t('userNotFound')}
+                    </Card>
+            )}
         </>
     );
 
 }
 
-UserView.propTypes = {};
+UserView.propTypes = {
+    loaded: PropTypes.bool.isRequired,
+    id: PropTypes.number,
+    username: PropTypes.string,
+    status: PropTypes.string,
+};
 
 export default connect(state => ({
     loaded: state.users.loaded,
