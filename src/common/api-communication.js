@@ -10,7 +10,7 @@ import {
     API_PROFILE,
     PRIVACY_POLICY,
     SOLD_SUFFIX,
-    TERMS_AND_CONDITIONS
+    TERMS_AND_CONDITIONS, API_USERS
 } from './endpoints'
 import HttpUtility from './http-utility'
 import {
@@ -20,13 +20,13 @@ import {
     FETCH_MY_OFFERS,
     FETCH_OFFER,
     FETCH_OFFERS,
-    FETCH_USER,
+    FETCH_ME,
     GET_ALL_CONVERSATIONS,
     GET_CONVERSATION,
     GET_TOKEN_ACTION,
     REGISTER_ACTION,
     SEND_MESSAGE,
-    UPDATE_USER
+    UPDATE_USER, FETCH_USER
 } from "../redux/actions";
 import {DEFAULT_PAGE_SIZE, DEFAULT_SORT, DESC_SORT, UPDATED_AT_SORT} from './app-constants'
 import {CHANGE_PASSWORD_BASE, CONFIRM_EMAIL_BASE} from "./paths";
@@ -92,8 +92,16 @@ class Api {
         });
     }
 
-    getUser() {
+    getMe() {
         const url = new URL(this.API_URL + API_PROFILE);
+        return HttpUtility.get({
+            url: url,
+            action: FETCH_ME
+        });
+    };
+
+    getUser(userId) {
+        const url = new URL(this.API_URL + API_USERS + '/' + userId);
         return HttpUtility.get({
             url: url,
             action: FETCH_USER

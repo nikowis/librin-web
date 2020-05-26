@@ -24,7 +24,7 @@ function ProfileView(props) {
 
     useEffect(() => {
         if (email === null) {
-            dispatch(Api.getUser());
+            dispatch(Api.getMe());
         }
     }, [dispatch, email]);
 

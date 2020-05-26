@@ -8,6 +8,8 @@
   "servererror": "Błąd serwera",
   "loading": "Ładowanie...",
   "noElementsFound": "Brak wyników",
+  "noOffersFound": "Brak ofert",
+  "userNotFound": "Nie odnaleziono użytkownika",
   "termsAndConditions": "Regulamin",
   "privacyPolicy": "Polityka prywatności",
   "search": "Szukaj",

@@ -15,7 +15,7 @@ function App(props) {
 
     useEffect(() => {
         if (authenticated) {
-            dispatch(Api.getUser());
+            dispatch(Api.getMe());
         }
     }, [dispatch, authenticated]);
 

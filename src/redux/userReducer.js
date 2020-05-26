@@ -1,4 +1,4 @@
-import {AUTH_ERROR, CHANGE_LANG, FETCH_USER, FULFILLED, GET_TOKEN_ACTION, LOGOUT_ACTION, UPDATE_USER} from "./actions";
+import {AUTH_ERROR, CHANGE_LANG, FETCH_ME, FULFILLED, GET_TOKEN_ACTION, LOGOUT_ACTION, UPDATE_USER} from "./actions";
 
 const initialState = {
     id: null,
@@ -22,7 +22,7 @@ const userReducer = (state = initialState, action) => {
                 authToken: payload.access_token
             };
         case UPDATE_USER:
-        case FETCH_USER + FULFILLED:
+        case FETCH_ME + FULFILLED:
             return {
                 ...state,
                 ...payload

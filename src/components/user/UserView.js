@@ -2,38 +2,47 @@ import React, {useEffect} from 'react';
 
 import {useParams, withRouter} from "react-router-dom";
 import {connect} from "react-redux";
-
-import Api from "../../common/api-communication";
-import {profileSchema} from "../../common/validation-schemas";
 import {useTranslation} from 'react-i18next';
-import {Formik} from 'formik';
-import {HIDE_NOTIFICATION, SHOW_NOTIFICATION, UPDATE_USER} from "../../redux/actions";
-import PropTypes from "prop-types";
-import {NOTIFICATION_DURATION} from "../../common/app-constants";
-import {TextField} from "@material-ui/core";
-import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
-import DeleteAccountComponent from "./DeleteAccountComponent";
-import {translate} from "../../common/i18n-helper";
-import {PROFILE_CHANGE_PASSWORD} from "../../common/paths";
+import Api from "../../common/api-communication";
+import {CLEAR_CURRENT_USER} from "../../redux/actions";
+import LoaderComponent from "../LoaderComponent";
 
 function UserView(props) {
 
+    const [loading, setLoading] = React.useState(false);
+
     const {t} = useTranslation();
-    const {dispatch, email} = props;
+    const {dispatch, username, status, loaded} = props;
     let {id} = useParams();
+    const propId = props.id;
+    const wrongUserIsLoaded = !propId || propId.toString() !== id;
+
+    useEffect(() => {
+        if (!loading && wrongUserIsLoaded) {
+            dispatch({type: CLEAR_CURRENT_USER});
+            setLoading(true);
+            dispatch(Api.getUser(id));
+        }
+    }, [dispatch, id, wrongUserIsLoaded, loading]);
+
     return (
-        <Card className={''}>
-            User view {id}
-        </Card>
+        <>
+            <Card className={''}>
+                {!loaded || wrongUserIsLoaded ? <LoaderComponent/> : (
+                    propId > 0 ? (propId + ' ' + username + ' ' + status) : t('userNotFound')
+                )}
+            </Card>
+        </>
     );
 
 }
 
-UserView.propTypes = {
-
-};
+UserView.propTypes = {};
 
 export default connect(state => ({
-
+    loaded: state.users.loaded,
+    id: state.users.currentUser.id,
+    username: state.users.currentUser.username,
+    status: state.users.currentUser.status
 }))(withRouter(UserView));
