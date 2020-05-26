@@ -21,8 +21,8 @@ class HttpUtility {
         }
 
         let resolvedHeaders = headers ? headers : {Accept: 'application/json', 'Content-Type': 'application/json'};
-        resolvedHeaders['Accept-Language'] = store.getState().user.lang;
-        const authToken = store.getState().user.authToken;
+        resolvedHeaders['Accept-Language'] = store.getState().me.lang;
+        const authToken = store.getState().me.authToken;
         if (authToken) {
             resolvedHeaders['Authorization'] = 'Bearer ' + authToken;
         }

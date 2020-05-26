@@ -148,9 +148,9 @@ ProfileView.propTypes = {
 };
 
 export default connect(state => ({
-    id: state.user.id,
-    email: state.user.email,
-    firstName: state.user.firstName,
-    lastName: state.user.lastName,
-    username: state.user.username,
+    id: state.me.id,
+    email: state.me.email,
+    firstName: state.me.firstName,
+    lastName: state.me.lastName,
+    username: state.me.username,
 }))(withRouter(ProfileView));

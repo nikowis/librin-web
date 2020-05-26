@@ -115,12 +115,12 @@ OfferView.propTypes = {
             owner: PropTypes.shape({
                 id: PropTypes.number.isRequired,
                 username: PropTypes.string.isRequired,
-            }).isRequired
+            })
         }),
 
 };
 
 export default connect(state => ({
-    userId: state.user.id,
+    userId: state.me.id,
     currentOffer: state.offers.currentOffer
 }))(withRouter(OfferView));

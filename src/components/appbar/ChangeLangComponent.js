@@ -28,5 +28,5 @@ ChangeLangComponent.propTypes = {
 };
 
 export default connect(state => ({
-    lang: state.user.lang
+    lang: state.me.lang
 }))(ChangeLangComponent);

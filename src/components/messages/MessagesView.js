@@ -137,7 +137,7 @@ MessagesView.propTypes = {
 };
 
 export default connect(state => ({
-    userId: state.user.id,
+    userId: state.me.id,
     currentConversation: state.messages.currentConversation,
     conversations: state.messages.content,
     currentPage: state.messages.currentPage,

@@ -11,7 +11,7 @@ const initialState = {
     authToken: null
 };
 
-const userReducer = (state = initialState, action) => {
+const meReducer = (state = initialState, action) => {
     const payload = action.payload;
 
     switch (action.type) {
@@ -43,4 +43,4 @@ const userReducer = (state = initialState, action) => {
     }
 };
 
-export default userReducer;
+export default meReducer;

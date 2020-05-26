@@ -83,7 +83,7 @@ OffersView.propTypes = {
 };
 
 export default connect(state => ({
-    userId: state.user.id,
+    userId: state.me.id,
     offers: state.offers.content,
     currentPage: state.offers.currentPage,
     totalPages: state.offers.totalPages,

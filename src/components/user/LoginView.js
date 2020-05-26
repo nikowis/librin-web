@@ -90,5 +90,5 @@ LoginView.propTypes = {
 };
 
 export default connect(state => ({
-    authenticated: state.user.authenticated,
+    authenticated: state.me.authenticated,
 }))(LoginView);

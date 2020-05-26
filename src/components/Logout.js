@@ -25,5 +25,5 @@ Logout.propTypes = {
 };
 
 export default connect(state => ({
-    authenticated: state.user.authenticated
+    authenticated: state.me.authenticated
 }))(Logout);

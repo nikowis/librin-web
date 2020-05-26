@@ -38,6 +38,6 @@ App.propTypes = {
 };
 
 export default connect(state => ({
-    authenticated: state.user.authenticated,
+    authenticated: state.me.authenticated,
     pendingRequests: state.app.pendingRequests
 }))(App);
