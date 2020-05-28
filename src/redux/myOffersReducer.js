@@ -23,7 +23,8 @@ const initialState = {
         title: '',
         author: '',
         price: 0
-    }
+    },
+    search: ''
 };
 
 const myOffersReducer = (state = initialState, action) => {
@@ -43,6 +44,7 @@ const myOffersReducer = (state = initialState, action) => {
                 currentPage: payload.number + 1,
                 totalPages: payload.totalPages,
                 totalElements: payload.totalElements,
+                search: window.location.search,
             };
         case EDIT_OFFER:
         case FETCH_MY_OFFER + FULFILLED:

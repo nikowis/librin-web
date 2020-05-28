@@ -1,56 +1,24 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import Api from "./../../common/api-communication"
 import {connect} from "react-redux";
-import {useTranslation} from "react-i18next";
-import LoaderComponent from "../LoaderComponent";
 import PropTypes from "prop-types";
 import {FETCH_MY_OFFERS} from "../../redux/actions";
 import {withRouter} from 'react-router-dom';
-import {MY_OFFERS} from "../../common/paths";
-import PaginationComponent from "../PaginationComponent";
-import OffersGrid from "./OffersGrid";
+import OffersPaginatedGrid from "./OffersPaginatedGrid";
 
 function MyOffersView(props) {
 
-    const {t} = useTranslation();
-    const {dispatch, offers, location, history, currentPage, totalPages, userId} = props;
-    const {search, pathname} = location;
-    const {replace} = history;
+    const {dispatch, offers, currentPage, totalPages, userId, currentLoadedSearch} = props;
 
-    const pageQuery = Api.getPageParam(search);
-
-    useEffect(() => {
-        if (!pageQuery || Number.isNaN(pageQuery)) {
-            replace({
-                pathname: pathname,
-                search: "?" + new URLSearchParams({page: 1}).toString()
-            })
-        }
-    }, [replace, pathname, pageQuery]);
-
-    useEffect(() => {
-        if (!pageQuery || Number.isNaN(pageQuery)) {
-            return;
-        }
-        if (offers === null || (pageQuery !== currentPage)) {
-            dispatch(Api.getMyOffers(pageQuery - 1, userId, FETCH_MY_OFFERS));
-        }
-    }, [dispatch, offers, currentPage, pageQuery, userId]);
-
-    const getView = () => {
-        return <>
-            {pageQuery <= totalPages ?
-                <>
-                    <OffersGrid myOffers={true} offers={offers} offerLinkBase={MY_OFFERS}/>
-                    <PaginationComponent currentPathname={pathname} currentPage={currentPage} totalPages={totalPages}/>
-                </>
-                : t('noElementsFound')}
-        </>;
+    const loadOffers = (search) => {
+        const searchParams = new URLSearchParams(search);
+        dispatch(Api.getMyOffers(searchParams.get('page')-1, userId, FETCH_MY_OFFERS));
     };
 
     return (
         <>
-            {offers === null ? <LoaderComponent/> : getView()}
+            <OffersPaginatedGrid myOffers={true} offers={offers} currentPage={currentPage} totalPages={totalPages}
+                                 currentLoadedSearch={currentLoadedSearch} loadOffers={loadOffers}/>
         </>
     );
 }
@@ -73,4 +41,5 @@ export default connect(state => ({
     offers: state.myoffers.content,
     currentPage: state.myoffers.currentPage,
     totalPages: state.myoffers.totalPages,
+    currentLoadedSearch: state.myoffers.search
 }))(withRouter(MyOffersView));
