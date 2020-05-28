@@ -5,13 +5,13 @@ import OfferCard from "./OfferCard";
 
 function OffersGrid(props) {
 
-    const {offers, offerLinkBase} = props;
+    const {offers, offerLinkBase, myOffers} = props;
 
     const offerRows = () => {
         return offers.map((offer) => {
             return (
                 <Grid item xs={6} sm={4} md={3} key={offer.id} className={"offer-grid-item"}>
-                    <OfferCard offer={offer} link={offerLinkBase + '/' + offer.id}/>
+                    <OfferCard myOffer={myOffers} offer={offer} link={offerLinkBase + '/' + offer.id}/>
                 </Grid>
             );
         });
@@ -44,7 +44,8 @@ OffersGrid.propTypes = {
             }),
         }),
     ),
-    offerLinkBase: PropTypes.string.isRequired
+    offerLinkBase: PropTypes.string.isRequired,
+    myOffers: PropTypes.bool
 };
 
 export default OffersGrid;

@@ -11,7 +11,7 @@ import OffersGrid from "./OffersGrid";
 function OffersPaginatedGrid(props) {
 
     const {t} = useTranslation();
-    const {offers, location, history, currentLoadedSearch, currentPage, totalPages, loadOffers} = props;
+    const {offers, location, history, currentLoadedSearch, currentPage, totalPages, loadOffers, myOffers} = props;
     const {search, pathname} = location;
     const {replace} = history;
 
@@ -42,7 +42,7 @@ function OffersPaginatedGrid(props) {
         return <>
             {pageQuery <= totalPages ?
                 <>
-                    <OffersGrid offers={offers} offerLinkBase={OFFERS}/>
+                    <OffersGrid myOffers={myOffers} offers={offers} offerLinkBase={OFFERS}/>
                     <PaginationComponent currentPathname={pathname} currentPage={currentPage} totalPages={totalPages}/>
                 </>
                 : t('noElementsFound')}
@@ -80,6 +80,7 @@ OffersPaginatedGrid.propTypes = {
     currentLoadedSearch: PropTypes.string,
     totalPages: PropTypes.number,
     loadOffers: PropTypes.func,
+    myOffers: PropTypes.bool,
 };
 
 export default withRouter(OffersPaginatedGrid);

@@ -25,6 +25,7 @@ function UserView(props) {
     const validUrlIdParam = !isNaN(id);
 
     const loadOffers = (search) => {
+        //TODO store user offers somewhere else or clear on redirect
         let searchParams = new URLSearchParams(search);
         searchParams.set('owner', id);
         dispatch(Api.getOffers(new URLSearchParams(searchParams)));
