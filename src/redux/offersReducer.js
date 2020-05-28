@@ -1,12 +1,12 @@
 import {
-    CLEAR_CURRENT_OFFER, CLEAR_OFFERS,
+    CLEAR_CURRENT_OFFER,
+    CLEAR_OFFERS,
     DELETE_OFFER,
     FETCH_OFFER,
     FETCH_OFFERS,
     FULFILLED,
     OFFER_CREATED,
     OFFER_UPDATED,
-    PENDING,
     VIEW_OFFER
 } from "./actions";
 import {insertItem, removeItem} from "../common/array-helper";
@@ -45,11 +45,6 @@ const offersReducer = (state = initialState, action) => {
     const payload = action.payload;
 
     switch (action.type) {
-        case FETCH_OFFER + PENDING:
-        case FETCH_OFFERS + PENDING:
-            return {
-                ...state,
-            };
         case FETCH_OFFERS + FULFILLED:
             let processedContent = processOffers(payload.content);
             return {

@@ -9,17 +9,14 @@ import {CLEAR_CURRENT_USER} from "../../redux/actions";
 import LoaderComponent from "../LoaderComponent";
 import UserCardComponent from "./UserCardComponent";
 import PropTypes from "prop-types";
-import OffersGrid from "../offer/OffersGrid";
-import {OFFERS} from "../../common/paths";
-import PaginationComponent from "../PaginationComponent";
+import OffersPaginatedGrid from "../offer/OffersPaginatedGrid";
 
 function UserView(props) {
 
     const [loading, setLoading] = React.useState(false);
     const {t} = useTranslation();
-    const {dispatch, username, apiError, offers, location, history, prevSearch, currentPage, totalPages} = props;
-    const {search, pathname} = location;
-    const {replace} = history;
+    const {dispatch, username, apiError, offers, currentLoadedSearch, currentPage, totalPages} = props;
+
 
     let {id} = useParams();
     id = parseInt(id);
@@ -27,31 +24,11 @@ function UserView(props) {
     const wrongUserIsLoaded = !propId || propId !== id;
     const validUrlIdParam = !isNaN(id);
 
-
-    const pageQuery = Api.getPageParam(search);
-
-    useEffect(() => {
-        if (isNaN(parseInt(pageQuery))) {
-            const urlSearchParams = new URLSearchParams(search);
-            urlSearchParams.set('page', 1);
-            replace({
-                pathname: pathname,
-                search: "?" + urlSearchParams.toString()
-            })
-        }
-    }, [replace, pathname, search, pageQuery]);
-
-    useEffect(() => {
-        if (isNaN(parseInt(pageQuery))) {
-            return;
-        }
+    const loadOffers = (search) => {
         let searchParams = new URLSearchParams(search);
         searchParams.set('owner', id);
-        if (offers === null || (search !== prevSearch)) {
-            dispatch(Api.getOffers(searchParams));
-        }
-    }, [dispatch, offers, pageQuery, id, prevSearch, search]);
-
+        dispatch(Api.getOffers(new URLSearchParams(searchParams)));
+    };
 
     useEffect(() => {
         if (!loading && validUrlIdParam && !apiError && wrongUserIsLoaded) {
@@ -61,16 +38,6 @@ function UserView(props) {
         }
     }, [dispatch, id, wrongUserIsLoaded, loading, apiError, validUrlIdParam]);
 
-    const getOffersView = () => {
-        return <>
-            {pageQuery <= totalPages ?
-                <>
-                    <OffersGrid offers={offers} offerLinkBase={OFFERS}/>
-                    <PaginationComponent currentPathname={pathname} currentPage={currentPage} totalPages={totalPages}/>
-                </>
-                : t('noElementsFound')}
-        </>
-    };
 
     return (
         <>
@@ -78,7 +45,8 @@ function UserView(props) {
                 !validUrlIdParam || apiError ? <Card>{t('userNotFound')}</Card> :
                     <UserCardComponent username={username}/>
             )}
-            {offers === null ? <LoaderComponent/> : getOffersView()}
+            <OffersPaginatedGrid offers={offers} currentPage={currentPage} totalPages={totalPages}
+                                 currentLoadedSearch={currentLoadedSearch} loadOffers={loadOffers}/>
 
         </>
     );
@@ -109,7 +77,7 @@ UserView.propTypes = {
         }),
     ),
     currentPage: PropTypes.number,
-    prevSearch: PropTypes.string,
+    currentLoadedSearch: PropTypes.string,
     totalPages: PropTypes.number,
 };
 
@@ -121,5 +89,5 @@ export default connect(state => ({
     offers: state.offers.content,
     currentPage: state.offers.currentPage,
     totalPages: state.offers.totalPages,
-    prevSearch: state.offers.search
+    currentLoadedSearch: state.offers.search
 }))(withRouter(UserView));
