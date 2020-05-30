@@ -8,10 +8,14 @@ import PropTypes from "prop-types";
 import ErrorContainer from "./components/ErrorContainer";
 import NotificationContainer from "./components/NotificationContainer";
 import Container from "@material-ui/core/Container";
+import CookieConsent from "react-cookie-consent";
+import {useTranslation} from "react-i18next";
+import CookiesPolicyLink from "./components/user/CookiesPolicyLink";
 
 function App(props) {
 
     const {dispatch, authenticated} = props;
+    const {t} = useTranslation();
 
     useEffect(() => {
         if (authenticated) {
@@ -27,6 +31,19 @@ function App(props) {
             <Container maxWidth="lg" id="app-content-container">
                 <ViewRoutes/>
             </Container>
+            <CookieConsent location="bottom"
+                           buttonText={t('gpdr.cookieAcceptButtonText')}
+                           cookieName="GPDRConsentCookie"
+                           disableStyles
+                           disableButtonStyles
+                           contentClasses={'cookie-banner-text'}
+                           buttonClasses={'cookie-banner-button'}
+                           sameSite={'lax'}
+            >
+                {t('gpdr.cookieBannerText')}
+                <br/>
+                <CookiesPolicyLink/>
+            </CookieConsent>
         </div>
     );
 

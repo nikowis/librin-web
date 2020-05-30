@@ -13,6 +13,7 @@
   "offerNotFound": "Nie odnaleziono oferty",
   "termsAndConditions": "Regulamin",
   "privacyPolicy": "Polityka prywatności",
+  "cookiePolicy": "Polityka cookies",
   "search": "Szukaj",
   "menu": "Menu",
   "user": {
@@ -24,7 +25,7 @@
       "confirmEmailSuccess": "Email został poprawnie zweryfikowany",
       "confirmEmailInProgress": "Potwierdzanie adresu email"
     },
-    "password" : {
+    "password": {
       "label": "Hasło",
       "repeat": "Powtórz hasło",
       "generatePasswordTokenLink": "Nie pamiętasz hasła?",
@@ -38,12 +39,12 @@
     "deleteAccountHeader": "Usuwanie konta",
     "deleteAccountWarning": "Konto zostanie usunięte nieodwracalnie"
   },
-  "photo" : {
+  "photo": {
     "upload": "Dodaj zdjęcie",
     "delete": "Usuń zdjęcie"
   },
-  "offer" : {
-    "status" : {
+  "offer": {
+    "status": {
       "active": "Aktywna",
       "sold": "Sprzedana",
       "inactiveWarn": "Oferta sprzedana lub usunięta"
@@ -55,7 +56,7 @@
     "description": "Opis",
     "author": "Autor",
     "price": "Cena",
-    "newSubmit":  "Utwórz",
+    "newSubmit": "Utwórz",
     "editSubmit": "Zapisz",
     "sendMessage": "Wyślij wiadomość",
     "createPage": "Utwórz ofertę",
@@ -63,12 +64,18 @@
     "offersPage": "Oferty",
     "myoffersPage": "Moje oferty"
   },
+  "gpdr": {
+    "cookieAcceptButtonText": "Akceptuję",
+    "cookieDeclineButtonText": "Akceptuję",
+    "cookieBannerText": "W celu świadczenia usług na najwyższym poziomie nasza strona korzysta z plików cookies. Korzystanie z naszej witryny oznacza, że będą one zapisywane na Twoim urządzeniu. W każdym momencie możesz dokonać zmiany ustawień w swojej przeglądarce.",
+    "cookieBannerLinkText": "Polityka prywatności"
+  },
   "validations": {
     "default": "Niepoprawne dane",
     "required": "Pole wymagane",
     "email": "Niepoprawny adres email",
     "passwordMatch": "Hasła nie pasują",
-    "min" : "Wartość za krótka",
+    "min": "Wartość za krótka",
     "regexp": "Niepoprawny format",
     "passwordRegexFormat": "Min. 8 znaków, bez spacji, w tym jedna litera i jedna cyfra"
   },
@@ -83,14 +90,14 @@
   "profile": {
     "page": "Profil"
   },
-  "messages" : {
+  "messages": {
     "page": "Wiadomości",
     "conversationsList": "Wiadomości",
     "message": "Nowa wiadomość",
     "submit": "Wyślij",
     "nomessages": "Brak wiadomości",
-    "newer" : "Nowsze",
-    "older" : "Starsze"
+    "newer": "Nowsze",
+    "older": "Starsze"
   },
   "notification": {
     "registered": "Konto utworzone",
@@ -100,7 +107,7 @@
     "offerUpdated": "Oferat zaktualizowana",
     "accountDeleted": "Konto usunięte"
   },
-  "consent" : {
+  "consent": {
     "intro": "Tworząc konto akceptuję ",
     "separator": " oraz ",
     "outro": "."

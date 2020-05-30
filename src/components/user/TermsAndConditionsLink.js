@@ -2,7 +2,7 @@ import React from 'react';
 import {useTranslation} from "react-i18next";
 import Api from "../../common/api-communication";
 
-function TermsAndConditionsDownloadLink() {
+function TermsAndConditionsLink() {
 
     const {t} = useTranslation();
 
@@ -13,7 +13,7 @@ function TermsAndConditionsDownloadLink() {
 
 }
 
-TermsAndConditionsDownloadLink.propTypes = {
+TermsAndConditionsLink.propTypes = {
 };
 
-export default TermsAndConditionsDownloadLink;
+export default TermsAndConditionsLink;

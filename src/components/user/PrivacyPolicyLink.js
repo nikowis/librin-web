@@ -2,7 +2,7 @@ import React from 'react';
 import {useTranslation} from "react-i18next";
 import Api from "../../common/api-communication";
 
-function PrivacyPolicyDownloadLink() {
+function PrivacyPolicyLink() {
 
     const {t} = useTranslation();
 
@@ -11,7 +11,7 @@ function PrivacyPolicyDownloadLink() {
     </a>
 }
 
-PrivacyPolicyDownloadLink.propTypes = {
+PrivacyPolicyLink.propTypes = {
 };
 
-export default PrivacyPolicyDownloadLink;
+export default PrivacyPolicyLink;

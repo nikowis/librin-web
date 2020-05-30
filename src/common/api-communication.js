@@ -10,7 +10,7 @@ import {
     API_PROFILE,
     PRIVACY_POLICY,
     SOLD_SUFFIX,
-    TERMS_AND_CONDITIONS, API_USERS
+    TERMS_AND_CONDITIONS, API_USERS, COOKIES_POLICY
 } from './endpoints'
 import HttpUtility from './http-utility'
 import {
@@ -263,6 +263,10 @@ class Api {
 
     getPrivacyPolicyURL() {
         return this.API_URL + API_POLICIES + '/' + PRIVACY_POLICY;
+    }
+
+    getCookiesPolicyLink() {
+        return this.API_URL + API_POLICIES + '/' + COOKIES_POLICY;
     }
 
     deleteProfile(data) {
