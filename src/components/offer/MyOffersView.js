@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import {FETCH_MY_OFFERS} from "../../redux/actions";
 import {withRouter} from 'react-router-dom';
 import OffersPaginatedGrid from "./OffersPaginatedGrid";
+import {MY_OFFERS} from "../../common/paths";
 
 function MyOffersView(props) {
 
@@ -18,7 +19,7 @@ function MyOffersView(props) {
     return (
         <>
             <OffersPaginatedGrid myOffers={true} offers={offers} currentPage={currentPage} totalPages={totalPages}
-                                 currentLoadedSearch={currentLoadedSearch} loadOffers={loadOffers}/>
+                                 currentLoadedSearch={currentLoadedSearch} loadOffers={loadOffers} offerLinkBase={MY_OFFERS}/>
         </>
     );
 }

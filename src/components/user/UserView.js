@@ -10,6 +10,7 @@ import LoaderComponent from "../LoaderComponent";
 import UserCardComponent from "./UserCardComponent";
 import PropTypes from "prop-types";
 import OffersPaginatedGrid from "../offer/OffersPaginatedGrid";
+import {OFFERS} from "../../common/paths";
 
 function UserView(props) {
 
@@ -47,7 +48,7 @@ function UserView(props) {
                     <UserCardComponent username={username}/>
             )}
             <OffersPaginatedGrid offers={offers} currentPage={currentPage} totalPages={totalPages}
-                                 currentLoadedSearch={currentLoadedSearch} loadOffers={loadOffers}/>
+                                 currentLoadedSearch={currentLoadedSearch} loadOffers={loadOffers} offerLinkBase={OFFERS}/>
 
         </>
     );

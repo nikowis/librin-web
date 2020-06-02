@@ -4,6 +4,7 @@ import Api from "../../common/api-communication";
 import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
 import OffersPaginatedGrid from "./OffersPaginatedGrid";
+import {OFFERS} from "../../common/paths";
 
 function OffersView(props) {
 
@@ -15,7 +16,7 @@ function OffersView(props) {
 
     return (
         <>
-            <OffersPaginatedGrid offers={offers} currentPage={currentPage} totalPages={totalPages}
+            <OffersPaginatedGrid offers={offers} currentPage={currentPage} totalPages={totalPages} offerLinkBase={OFFERS}
                                 currentLoadedSearch={currentLoadedSearch} loadOffers={loadOffers}/>
         </>
     );

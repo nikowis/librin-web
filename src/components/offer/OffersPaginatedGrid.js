@@ -4,7 +4,6 @@ import Api from "../../common/api-communication";
 import LoaderComponent from "../LoaderComponent";
 import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
-import {OFFERS} from "../../common/paths";
 import PaginationComponent from "../PaginationComponent";
 import OffersGrid from "./OffersGrid";
 
@@ -42,7 +41,7 @@ function OffersPaginatedGrid(props) {
         return <>
             {pageQuery <= totalPages ?
                 <>
-                    <OffersGrid myOffers={myOffers} offers={offers} offerLinkBase={OFFERS}/>
+                    <OffersGrid myOffers={myOffers} offers={offers} offerLinkBase={props.offerLinkBase}/>
                     <PaginationComponent currentPathname={pathname} currentPage={currentPage} totalPages={totalPages}/>
                 </>
                 : t('noElementsFound')}
@@ -81,6 +80,7 @@ OffersPaginatedGrid.propTypes = {
     totalPages: PropTypes.number,
     loadOffers: PropTypes.func,
     myOffers: PropTypes.bool,
+    offerLinkBase: PropTypes.string.isRequired,
 };
 
 export default withRouter(OffersPaginatedGrid);
