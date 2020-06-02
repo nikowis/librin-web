@@ -42,6 +42,7 @@ class HttpUtility {
                         return response;
                     }
                 } else if (response.status === 400) {
+                    this.handleError(response);
                     return response.json()
                 } else {
                     this.handleError(response);
@@ -71,7 +72,7 @@ class HttpUtility {
             });
             setTimeout(() => {
                 store.dispatch({type: CLEAR_AUTH_ERROR})
-            }, API_ERROR_NOTIFICATION_DURATION)
+            }, AUTH_ERROR_NOTIFICATION_DURATION)
         } else if (response.status === 400 || response.status === 500) {
             store.dispatch({
                 type: API_ERROR
@@ -79,7 +80,7 @@ class HttpUtility {
             });
             setTimeout(() => {
                 store.dispatch({type: CLEAR_API_ERROR})
-            }, AUTH_ERROR_NOTIFICATION_DURATION)
+            }, API_ERROR_NOTIFICATION_DURATION)
         } else {
             throw new Error(response.json());
         }

@@ -5,10 +5,10 @@ import {
     CLEAR_AUTH_ERROR,
     CLEAR_SERVER_ERROR,
     FULFILLED,
+    GET_TOKEN_ACTION,
     HIDE_NOTIFICATION,
     HTTP_REQUEST_FINISH,
     HTTP_REQUEST_START,
-    GET_TOKEN_ACTION,
     LOGOUT_ACTION,
     SERVER_ERROR,
     SHOW_NOTIFICATION
@@ -44,12 +44,15 @@ const appReducer = (state = initialState, action) => {
                 authError: true
             };
         case API_ERROR + FULFILLED:
-            return {
-                ...state,
-                errorMessage: JSON.stringify(action.payload),
-                error: action.payload,
-                apiError: true
-            };
+            if (action.payload && action.payload.errors && action.payload.errors.length === 1) {
+                return {
+                    ...state,
+                    errorMessage: action.payload.errors[0].defaultMessage,
+                    error: action.payload,
+                    apiError: true
+                };
+            }
+            return {...state};
         case SERVER_ERROR:
             return {
                 ...state,
