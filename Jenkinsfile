@@ -5,8 +5,8 @@ pipeline {
 	
         stage('Remove deployment') {
             steps {
-                sh 'cp -r /home/pi/nikowiscom/ksiazkofilia/html/. /home/pi/nikowiscom/ksiazkofilia/backups/html'
-                sh 'rm -rf /home/pi/nikowiscom/ksiazkofilia/html/*'
+                sh 'cp -r /home/pi/nikowiscom/librin/html/. /home/pi/nikowiscom/librin/backups/html'
+                sh 'rm -rf /home/pi/nikowiscom/librin/html/*'
             }
         }
 		
@@ -20,7 +20,7 @@ pipeline {
 
         stage('Deploy frontend') {
             steps {
-                sh 'cp -r ./build/. /home/pi/nikowiscom/ksiazkofilia/html'
+                sh 'cp -r ./build/. /home/pi/nikowiscom/librin/html'
             }
         }
 		
