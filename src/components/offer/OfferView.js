@@ -14,6 +14,7 @@ import Button from "@material-ui/core/Button";
 import {OfferStatus} from "../../common/app-constants";
 import Avatar from "@material-ui/core/Avatar";
 import OfferWarningStrip from "./OfferWarningStrip";
+import PhotoPreviewComponent from "../PhotoPreviewComponent";
 
 function OfferView(props) {
 
@@ -47,8 +48,8 @@ function OfferView(props) {
     const getView = () => {
         return (
             <div className={'offer-view'}>
-                <img src={attachment ? attachment.url : process.env.PUBLIC_URL + '/Placeholder.png'}
-                     alt={"Offer"}/>
+                {attachment ? <img src={attachment.url} alt={"Offer"}/>
+                    : <PhotoPreviewComponent edit={false}/>}
                 <Container maxWidth={'xs'}>
                     <Card className={'offer-card-details'}>
                         <div className={'primary-text'}>

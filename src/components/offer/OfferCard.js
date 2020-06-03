@@ -7,6 +7,7 @@ import Avatar from "@material-ui/core/Avatar";
 import Chip from "@material-ui/core/Chip";
 import {Link} from "react-router-dom";
 import {USERS} from "../../common/paths";
+import PhotoPreviewComponent from "../PhotoPreviewComponent";
 
 function OfferCard(props) {
 
@@ -39,8 +40,8 @@ function OfferCard(props) {
                 </>}
             />
             <Link to={props.link} className={'offer-card-image'}>
-                <img src={offer.attachment ? offer.attachment.url : process.env.PUBLIC_URL + '/Placeholder.png'}
-                     alt={"Offer"}/>
+                {offer.attachment ?<img src={offer.attachment.url} alt={"Offer"}/>
+                : <PhotoPreviewComponent edit={false}/>}
             </Link>
         </Card>
     );

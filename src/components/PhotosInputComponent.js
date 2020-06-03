@@ -2,7 +2,7 @@ import React from 'react';
 import {useTranslation} from "react-i18next";
 import PropTypes from "prop-types";
 import {compressFile, loadFileToAttachmentObject, validateFile} from "../common/attachment-utility";
-import PhotosInputPreviewComponent from "./PhotosInputPreviewComponent";
+import PhotoPreviewComponent from "./PhotoPreviewComponent";
 import Button from "@material-ui/core/Button";
 import DeleteIcon from '@material-ui/icons/Delete';
 import {API_ERROR, CLEAR_API_ERROR} from "../redux/actions";
@@ -54,7 +54,7 @@ function PhotosInputComponent(props) {
 
             <div>
                 <label htmlFor="photo">
-                    <PhotosInputPreviewComponent photo={photo} edit={true}/>
+                    <PhotoPreviewComponent photo={photo} edit={true}/>
                 </label>
             </div>
             {photo ?
