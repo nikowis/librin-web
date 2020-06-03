@@ -68,10 +68,10 @@ export function compressFile(file) {
 export function validateFile(file) {
     const attachmentSize = attachmentSizeInB(file.content);
     if (attachmentSize > MAX_PHOTO_SIZE_BYTES) {
-        throw new Error('validations.file.tooBig');
+        throw new Error('validations.photo.tooBig');
     }
     if (!isPhotoAttachment(file.name)) {
-        throw new Error('validations.file.wrongExtension');
+        throw new Error('validations.photo.wrongExtension');
     }
     return file
 }

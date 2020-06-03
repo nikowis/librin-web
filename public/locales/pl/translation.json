@@ -78,8 +78,9 @@
     "min": "Wartość za krótka",
     "regexp": "Niepoprawny format",
     "passwordRegexFormat": "Min. 8 znaków, bez spacji, w tym jedna litera i jedna cyfra",
-    "file": {
+    "photo": {
       "tooBig": "Zdjęcie jest za duże",
+      "required": "Zdjęcie jest wymagane",
       "wrongExtension": "Niedopuszczalne rozszerzenie pliku"
     }
   },

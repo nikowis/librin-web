@@ -1,7 +1,7 @@
 import React from 'react';
 import {useTranslation} from "react-i18next";
 import {Formik} from 'formik';
-import {createOfferSchema} from "../../common/validation-schemas";
+import {createOfferSchema, editOfferSchema} from "../../common/validation-schemas";
 import {TextField} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import CurrencyTextField from '@unicef/material-ui-currency-textfield'
@@ -16,16 +16,17 @@ function EditOfferComponent(props) {
     const {offer} = props;
 
     const newOffer = !offer;
+    let validationSchema = newOffer ? createOfferSchema : editOfferSchema;
 
     return (
         <Card className={'form-container'}>
-            <Formik validationSchema={createOfferSchema} onSubmit={props.handleSubmit}
+            <Formik validationSchema={validationSchema} onSubmit={props.handleSubmit}
                     initialValues={{
                         id: offer ? offer.id : null,
-                        title: offer ? offer.title : null,
-                        author: offer ? offer.author : null,
-                        price: offer ? offer.price : null,
-                        photo: offer ? offer.attachment : null
+                        title: offer ? offer.title : '',
+                        author: offer ? offer.author : '',
+                        price: offer ? offer.price : '',
+                        photo: offer ? offer.attachment : ''
                     }}
             >
                 {({
@@ -40,6 +41,10 @@ function EditOfferComponent(props) {
                   }) => (
                     <form onSubmit={handleSubmit}>
                         <PhotosInputComponent setFieldValue={setFieldValue} photo={values.photo}/>
+                        {errors.photo && touched.photo ?
+                            (<div className={"photo-label-error"}>{t('validations.photo.required')}</div>)
+                            : null
+                        }
                         <TextField
                             size="small"
                             error={errors.title && touched.title}

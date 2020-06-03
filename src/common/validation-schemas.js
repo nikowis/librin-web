@@ -84,7 +84,11 @@ export const createOfferSchema = Yup.object().shape({
         .required(),
     price: Yup.string()
         .required()
-        .matches(moneyRegex)
+        .matches(moneyRegex),
+    photo: Yup.object({
+        name: Yup.string().required().nullable(),
+        content: Yup.string().required().nullable()
+    }).required().nullable()
 });
 
 
@@ -97,7 +101,11 @@ export const editOfferSchema = Yup.object().shape({
         .required(),
     price: Yup.string()
         .required()
-        .matches(moneyRegex)
+        .matches(moneyRegex),
+    photo: Yup.object({
+        name: Yup.string().required().nullable(),
+        content: Yup.string().required().nullable()
+    }).required().nullable()
 });
 
 export const messageSchema = Yup.object().shape({
