@@ -43,6 +43,7 @@ const appReducer = (state = initialState, action) => {
                 error: action.payload,
                 authError: true
             };
+        case API_ERROR:
         case API_ERROR + FULFILLED:
             if (action.payload && action.payload.errors && action.payload.errors.length === 1) {
                 return {
@@ -51,8 +52,14 @@ const appReducer = (state = initialState, action) => {
                     error: action.payload,
                     apiError: true
                 };
+            } else {
+                return {
+                    ...state
+                    , errorMessage: action.payload,
+                    error: action.payload,
+                    apiError: true
+                };
             }
-            return {...state};
         case SERVER_ERROR:
             return {
                 ...state,

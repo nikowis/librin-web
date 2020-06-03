@@ -77,7 +77,11 @@
     "passwordMatch": "Hasła nie pasują",
     "min": "Wartość za krótka",
     "regexp": "Niepoprawny format",
-    "passwordRegexFormat": "Min. 8 znaków, bez spacji, w tym jedna litera i jedna cyfra"
+    "passwordRegexFormat": "Min. 8 znaków, bez spacji, w tym jedna litera i jedna cyfra",
+    "file": {
+      "tooBig": "Zdjęcie jest za duże",
+      "wrongExtension": "Niedopuszczalne rozszerzenie pliku"
+    }
   },
   "login": {
     "page": "Logowanie",
