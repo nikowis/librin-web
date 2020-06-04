@@ -20,32 +20,21 @@ const initialState = {
     }
 };
 
+function replaceFetchedEntityInListIfPossible(conversationList, newEntity) {
+    const updatedConvIndex = conversationList ? conversationList.findIndex(conv => conv.id === newEntity.id) : null;
+
+    if (updatedConvIndex >= 0) {
+        conversationList = removeItem(conversationList, updatedConvIndex);
+        conversationList = insertItem(conversationList, {index: 0, item: newEntity});
+    }
+    return conversationList;
+}
+
 const messagesReducer = (state = initialState, action) => {
     const payload = action.payload;
     switch (action.type) {
-        case GET_CONVERSATION + FULFILLED:
-            return {
-                ...state,
-                currentConversation: {
-                    ...payload
-                }
-            };
-        case GET_ALL_CONVERSATIONS + FULFILLED:
-            return {
-                ...state,
-                content: payload.content,
-                currentPage: payload.number + 1,
-                totalPages: payload.totalPages,
-                totalElements: payload.totalElements,
-            };
-        case SEND_MESSAGE + FULFILLED:
-            let conversationList = state.content;
-            const updatedConvIndex = conversationList ? conversationList.findIndex(conv => conv.id === payload.id) : null;
-
-            if(updatedConvIndex >= 0) {
-                conversationList =  removeItem(conversationList, updatedConvIndex);
-                conversationList = insertItem(conversationList, {index: 0, item: payload});
-            }
+        case GET_CONVERSATION + FULFILLED: {
+            const conversationList = replaceFetchedEntityInListIfPossible(state.content, payload);
 
             return {
                 ...state,
@@ -54,6 +43,26 @@ const messagesReducer = (state = initialState, action) => {
                     ...payload
                 }
             };
+        }
+        case GET_ALL_CONVERSATIONS + FULFILLED:
+            return {
+                ...state,
+                content: payload.content,
+                currentPage: payload.number + 1,
+                totalPages: payload.totalPages,
+                totalElements: payload.totalElements,
+            };
+        case SEND_MESSAGE + FULFILLED: {
+            const conversationList = replaceFetchedEntityInListIfPossible(state.content, payload);
+
+            return {
+                ...state,
+                content: conversationList,
+                currentConversation: {
+                    ...payload
+                }
+            };
+        }
         case CREATE_CONVERSATION + FULFILLED:
             return initialState;
         default:

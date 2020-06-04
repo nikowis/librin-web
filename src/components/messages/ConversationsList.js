@@ -1,12 +1,11 @@
 import React from 'react';
-import {Link, useParams} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import PropTypes from "prop-types";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText/ListItemText";
 import {MESSAGES} from "../../common/paths";
 
 function ConversationsList(props) {
-    let {convId} = useParams();
     const {conversations, userId} = props;
 
     const conversationRows = () => {
@@ -14,7 +13,7 @@ function ConversationsList(props) {
             const recipientUsername = conv.customer.id === userId ? conv.offer.owner.username : conv.customer.username;
             return (
                 <Link to={MESSAGES + '/' + conv.id} key={conv.id} className={"link-no-styles"}>
-                    <ListItem selected={conv.id.toString() === convId} button >
+                    <ListItem className={conv.read ? null : 'conversation-unread'} button >
                         <ListItemText primary={recipientUsername} secondary={conv.offer.title + ', ' + conv.offer.author}/>
                     </ListItem>
                 </Link>

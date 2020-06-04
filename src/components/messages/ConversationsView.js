@@ -49,7 +49,7 @@ function ConversationsView(props) {
 
     return (
         <XsWidthContainer>
-            <Card>
+            <Card className={'conversations-view'}>
                 {
                     conversations ?
                         <List subheader={<ListSubheader>{t('messages.conversationsList')}</ListSubheader>}>
