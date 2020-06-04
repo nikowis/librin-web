@@ -1,9 +1,7 @@
 import React, {useEffect} from 'react';
 import {useParams, withRouter} from 'react-router-dom';
 import {connect} from "react-redux";
-import Grid from "@material-ui/core/Grid";
 import ConversationComponent from "./ConversationComponent";
-import ConversationsList from "./ConversationsList";
 import Card from "@material-ui/core/Card/Card";
 import Api from "../../common/api-communication";
 import SendMessageFormComponent from "./SendMessageFormComponent";
@@ -11,39 +9,14 @@ import PropTypes from "prop-types";
 import List from "@material-ui/core/List";
 import ConversationOfferPreviewComponent from "./ConversationOfferPreviewComponent";
 import LoaderComponent from "../LoaderComponent";
-import {SELECT_CONVERSATION} from "../../redux/actions";
-import {MESSAGES} from "../../common/paths";
 import Divider from "@material-ui/core/Divider";
-import {useTranslation} from "react-i18next";
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-import ListSubheader from "@material-ui/core/ListSubheader";
-import Fab from "@material-ui/core/Fab";
+import XsWidthContainer from "../XsWidthContainer";
 
 function MessagesView(props) {
 
-    const {dispatch, history, currentConversation, conversations, userId, totalPages, currentPage} = props;
+    const {dispatch, currentConversation, userId} = props;
     const propId = currentConversation.id;
     let {convId} = useParams();
-    const {t} = useTranslation();
-
-    const redirect = (conversationId) => {
-        dispatch({type: SELECT_CONVERSATION, payload: conversationId});
-        history.push(MESSAGES + '/' + conversationId);
-    };
-
-    useEffect(() => {
-        if (conversations !== null && conversations.length && !convId) {
-            dispatch({type: SELECT_CONVERSATION, payload: conversations[0].id});
-            history.push(MESSAGES + '/' + conversations[0].id);
-        }
-    }, [dispatch, history, conversations, convId]);
-
-    useEffect(() => {
-        if (conversations === null) {
-            dispatch(Api.getAllConversations());
-        }
-    }, [dispatch, conversations]);
 
     useEffect(() => {
         if (convId && (!propId || propId.toString() !== convId)) {
@@ -61,59 +34,21 @@ function MessagesView(props) {
             });
     };
 
-    const loadNextConversations = () => {
-        dispatch(Api.getAllConversations(currentPage));
-    };
-
-    const loadPrevConversations = () => {
-        dispatch(Api.getAllConversations(currentPage - 2));
-    };
-
-    let prevConversationLoader = currentPage > 1 ? (
-        <Fab variant="extended" onClick={() => loadPrevConversations()}>
-            <KeyboardArrowUpIcon/>
-            {t('messages.newer')}
-        </Fab>
-    ) : null;
-
-    let nextConversationLoader = currentPage >= totalPages ? null : (
-        <Fab variant="extended" onClick={() => loadNextConversations()}>
-            <KeyboardArrowDownIcon/>
-            {t('messages.older')}
-        </Fab>
-    );
-
     return (
-        <Grid container spacing={3}>
-            <Grid item xs={12} md={4}>
-                <Card>
-                    {
-                        conversations ?
-                            <List subheader={<ListSubheader>{t('messages.conversationsList')}</ListSubheader>}>
-                                {prevConversationLoader}
-                                <ConversationsList userId={userId} onConversationClick={redirect}
-                                                   conversations={conversations}/>
-                                {nextConversationLoader}
-                            </List>
-                            : <LoaderComponent/>
-                    }
-                </Card>
-            </Grid>
-            <Grid item xs={12} md={8}>
-                <Card>
-                    {totalPages !== null && totalPages === 0 ? t('messages.nomessages') :
-                        currentConversation.id ?
-                            <List>
-                                <ConversationOfferPreviewComponent conversation={currentConversation}/>
-                                <Divider variant="middle"/>
-                                <ConversationComponent userId={userId} currentConversation={currentConversation}/>
-                                <SendMessageFormComponent onSendMessage={handleSendMessage}/>
-                            </List> :
-                            <LoaderComponent/>
-                    }
-                </Card>
-            </Grid>
-        </Grid>
+        <XsWidthContainer>
+            <Card>
+                {
+                    currentConversation.id ?
+                        <List>
+                            <ConversationOfferPreviewComponent conversation={currentConversation}/>
+                            <Divider variant="middle"/>
+                            <ConversationComponent userId={userId} currentConversation={currentConversation}/>
+                            <SendMessageFormComponent onSendMessage={handleSendMessage}/>
+                        </List> :
+                        <LoaderComponent/>
+                }
+            </Card>
+        </XsWidthContainer>
     );
 }
 
@@ -133,13 +68,9 @@ MessagesView.propTypes = {
             }),
             createdAt: PropTypes.string
         }),
-    conversations: PropTypes.array
 };
 
 export default connect(state => ({
     userId: state.me.id,
     currentConversation: state.messages.currentConversation,
-    conversations: state.messages.content,
-    currentPage: state.messages.currentPage,
-    totalPages: state.messages.totalPages
 }))(withRouter(MessagesView));

@@ -3,7 +3,6 @@ import {
     FULFILLED,
     GET_ALL_CONVERSATIONS,
     GET_CONVERSATION,
-    SELECT_CONVERSATION,
     SEND_MESSAGE
 } from "./actions";
 import {insertItem, removeItem} from "../common/array-helper";
@@ -53,14 +52,6 @@ const messagesReducer = (state = initialState, action) => {
                 content: conversationList,
                 currentConversation: {
                     ...payload
-                }
-            };
-        case SELECT_CONVERSATION:
-            const selectedConv = state.content ? state.content.find(conv => conv.id === payload) : initialState.currentConversation;
-            return {
-                ...state,
-                currentConversation: {
-                    ...selectedConv
                 }
             };
         case CREATE_CONVERSATION + FULFILLED:

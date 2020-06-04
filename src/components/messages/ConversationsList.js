@@ -1,21 +1,23 @@
 import React from 'react';
-import {useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import PropTypes from "prop-types";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText/ListItemText";
+import {MESSAGES} from "../../common/paths";
 
 function ConversationsList(props) {
     let {convId} = useParams();
-    const {onConversationClick, conversations, userId} = props;
+    const {conversations, userId} = props;
 
     const conversationRows = () => {
         return conversations.map((conv) => {
             const recipientUsername = conv.customer.id === userId ? conv.offer.owner.username : conv.customer.username;
             return (
-                <ListItem selected={conv.id.toString() === convId} button key={conv.id}
-                          onClick={() => onConversationClick(conv.id)}>
-                    <ListItemText primary={recipientUsername} secondary={conv.offer.title + ', ' + conv.offer.author}/>
-                </ListItem>
+                <Link to={MESSAGES + '/' + conv.id} key={conv.id} className={"link-no-styles"}>
+                    <ListItem selected={conv.id.toString() === convId} button >
+                        <ListItemText primary={recipientUsername} secondary={conv.offer.title + ', ' + conv.offer.author}/>
+                    </ListItem>
+                </Link>
             );
         });
     };
@@ -46,7 +48,6 @@ ConversationsList.propTypes = {
     ),
     currentPage: PropTypes.number,
     totalPages: PropTypes.number,
-    onConversationClick: PropTypes.func
 };
 
 export default ConversationsList;

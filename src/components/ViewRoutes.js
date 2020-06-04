@@ -31,6 +31,7 @@ import GeneratePasswordResetView from "./user/GeneratePasswordResetView";
 import ChangePasswordView from "./user/ChangePasswordWithTokenView";
 import ChangProfilePasswordView from "./user/ChangProfilePasswordView";
 import UserView from "./user/UserView";
+import ConversationsView from "./messages/ConversationsView";
 
 function ViewRoutes() {
     return (
@@ -63,7 +64,7 @@ function ViewRoutes() {
                 <MessagesView/>
             </AuthenticatedRoute>
             <AuthenticatedRoute path={MESSAGES}>
-                <MessagesView/>
+                <ConversationsView/>
             </AuthenticatedRoute>
             <Route path={USER_VIEW}>
                 <UserView/>

@@ -32,7 +32,7 @@ function OfferCard(props) {
 
                         <Chip label={t('offer.status.' + status)} className={'status-info-' + status}/>
                         :
-                        <Link to={USERS + '/' + owner.id} className={'user-info'}>
+                        <Link to={USERS + '/' + owner.id} className={'link-no-styles'}>
                             <Chip avatar={<Avatar>{owner.username.substring(0, 1).toUpperCase()}</Avatar>}
                                   label={owner.username} className={'user-info'}/>
                         </Link>
