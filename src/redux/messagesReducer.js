@@ -21,11 +21,12 @@ const initialState = {
 };
 
 function replaceFetchedEntityInListIfPossible(conversationList, newEntity) {
-    const updatedConvIndex = conversationList ? conversationList.findIndex(conv => conv.id === newEntity.id) : null;
-
-    if (updatedConvIndex >= 0) {
-        conversationList = removeItem(conversationList, updatedConvIndex);
-        conversationList = insertItem(conversationList, {index: 0, item: newEntity});
+    if(conversationList && conversationList.length > 0) {
+        const updatedConvIndex = conversationList ? conversationList.findIndex(conv => conv.id === newEntity.id) : null;
+        if (updatedConvIndex  && updatedConvIndex >= 0) {
+            conversationList = removeItem(conversationList, updatedConvIndex);
+            conversationList = insertItem(conversationList, {index: 0, item: newEntity});
+        }
     }
     return conversationList;
 }
