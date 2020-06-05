@@ -128,6 +128,12 @@ $topMenuHeight: 50px;
     width: $topMenuHeight;
   }
 
+  .MuiBadge-badge {
+    background-color: $validationErrorColor;
+    color: white;
+    transform: scale(0.9) translate(30%, -30%);
+  }
+
   .MuiButton-outlined {
     font-size: 0.5rem;
     padding: 3px 5px;

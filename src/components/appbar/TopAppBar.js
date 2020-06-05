@@ -16,6 +16,7 @@ import Button from "@material-ui/core/Button";
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import {useTranslation} from "react-i18next";
 import TopDrawer from "./TopDrawer";
+import Badge from "@material-ui/core/Badge";
 
 function TopAppBar(props) {
 
@@ -61,12 +62,13 @@ function TopAppBar(props) {
                                         <AddIcon/>
                                     </IconButton>
                                 }
-
                                 <IconButton
                                     onClick={() => redirect(MESSAGES)}
                                     color={"inherit"}
                                 >
-                                    <MailIcon/>
+                                    <Badge badgeContent={props.unreadConversations}>
+                                        <MailIcon />
+                                    </Badge>
                                 </IconButton>
                                 {!verySmallScreen ?
                                     <IconButton onClick={() => redirect(PROFILE)}
@@ -118,4 +120,5 @@ TopAppBar.propTypes = {
 
 export default connect(state => ({
     authenticated: state.me.authenticated,
+    unreadConversations: state.messages.content ? state.messages.content.filter(conv => conv.read === false).length : 0
 }))(withRouter(withWidth()(TopAppBar)));

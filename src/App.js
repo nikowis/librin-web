@@ -20,6 +20,7 @@ function App(props) {
     useEffect(() => {
         if (authenticated) {
             dispatch(Api.getMe());
+            dispatch(Api.getAllConversations());
         }
     }, [dispatch, authenticated]);
 
