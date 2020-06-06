@@ -12,23 +12,34 @@ import LoaderComponent from "../LoaderComponent";
 import Divider from "@material-ui/core/Divider";
 import MaxWidthContainer from "../MaxWidthContainer";
 import UserBannerComponent from "../user/UserBannerComponent";
-import {USERS} from "../../common/paths";
+import {MESSAGES, USERS} from "../../common/paths";
 
 function MessagesView(props) {
 
-    const {dispatch, currentConversation, userId} = props;
+    const {dispatch, currentConversation, userId, history} = props;
     const propId = currentConversation.id;
     let {convId} = useParams();
+    convId = parseInt(convId);
+    const invalidId = isNaN(convId);
+    if(invalidId) {
+        history.push(MESSAGES);
+    }
     let recipient = null;
     if(currentConversation.id) {
         recipient = userId === currentConversation.customer.id ? currentConversation.offer.owner : currentConversation.customer;
     }
 
+    const wrongConvLoaded = !propId || propId !== convId || invalidId;
+
     useEffect(() => {
         if (convId && (!propId || propId.toString() !== convId)) {
-            dispatch(Api.getConversation(convId));
+            dispatch(Api.getConversation(convId)).then(res => {
+                if(res.action.payload.status === 400) {
+                    history.replace(MESSAGES);
+                }
+            });
         }
-    }, [dispatch, convId, propId]);
+    }, [dispatch, history, convId, propId]);
 
     const handleSendMessage = (data, actions) => {
         const {dispatch} = props;
@@ -48,7 +59,7 @@ function MessagesView(props) {
         <MaxWidthContainer size={'sm'}>
             <Card className={'single-conversation-view'}>
                 {
-                    currentConversation.id ?
+                    !wrongConvLoaded && currentConversation.id ?
                         <List>
                             <Link to={USERS + '/' + recipient.id} className={'link-no-styles'}>
                                 <UserBannerComponent username={recipient.username}/>

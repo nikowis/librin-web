@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 
 import {useParams, withRouter} from "react-router-dom";
 import {connect} from "react-redux";
-import {useTranslation} from 'react-i18next';
 import Card from "@material-ui/core/Card";
 import Api from "../../common/api-communication";
 import {CLEAR_CURRENT_USER} from "../../redux/actions";
@@ -15,15 +14,16 @@ import {OFFERS} from "../../common/paths";
 function UserView(props) {
 
     const [loading, setLoading] = React.useState(false);
-    const {t} = useTranslation();
-    const {dispatch, username, apiError, offers, currentLoadedSearch, currentPage, totalPages} = props;
-
+    const {dispatch, history, username, offers, currentLoadedSearch, currentPage, totalPages} = props;
 
     let {id} = useParams();
     id = parseInt(id);
+    const invalidId = isNaN(id);
+    if (invalidId) {
+        history.push(OFFERS);
+    }
     const propId = props.id;
     const wrongUserIsLoaded = !propId || propId !== id;
-    const validUrlIdParam = !isNaN(id);
 
     const loadOffers = (search) => {
         //TODO store user offers somewhere else or clear on redirect
@@ -33,25 +33,29 @@ function UserView(props) {
     };
 
     useEffect(() => {
-        if (!loading && validUrlIdParam && !apiError && wrongUserIsLoaded) {
+        if (!loading && !invalidId && wrongUserIsLoaded) {
             dispatch({type: CLEAR_CURRENT_USER});
             setLoading(true);
-            dispatch(Api.getUser(id)).then(() => setLoading(false));
+            dispatch(Api.getUser(id)).then(res => {
+                if (res.action.payload.status === 400) {
+                    history.replace(OFFERS);
+                }
+            }).then(() => setLoading(false));
         }
-    }, [dispatch, id, wrongUserIsLoaded, loading, apiError, validUrlIdParam]);
-
+    }, [dispatch, history, id, wrongUserIsLoaded, loading, invalidId]);
 
     return (
         <>
-            {validUrlIdParam && !apiError && wrongUserIsLoaded ? <Card><LoaderComponent/></Card> : (
-                !validUrlIdParam || apiError ? <Card>{t('userNotFound')}</Card> :
+            {wrongUserIsLoaded ? <Card><LoaderComponent/></Card> :
+                <>
                     <Card className={'user-info-card'}>
                         <UserBannerComponent username={username}/>
                     </Card>
-            )}
-            <OffersPaginatedGrid offers={offers} currentPage={currentPage} totalPages={totalPages}
-                                 currentLoadedSearch={currentLoadedSearch} loadOffers={loadOffers} offerLinkBase={OFFERS}/>
-
+                    <OffersPaginatedGrid offers={offers} currentPage={currentPage} totalPages={totalPages}
+                                         currentLoadedSearch={currentLoadedSearch} loadOffers={loadOffers}
+                                         offerLinkBase={OFFERS}/>
+                </>
+            }
         </>
     );
 
@@ -61,7 +65,6 @@ UserView.propTypes = {
     id: PropTypes.number,
     username: PropTypes.string,
     status: PropTypes.string,
-    apiError: PropTypes.string,
     offers: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.number.isRequired,
@@ -89,7 +92,6 @@ export default connect(state => ({
     id: state.users.currentUser.id,
     username: state.users.currentUser.username,
     status: state.users.currentUser.status,
-    apiError: state.users.currentUser.apiError,
     offers: state.offers.content,
     currentPage: state.offers.currentPage,
     totalPages: state.offers.totalPages,

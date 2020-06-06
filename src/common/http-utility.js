@@ -42,8 +42,15 @@ class HttpUtility {
                         return response;
                     }
                 } else if (response.status === 400) {
-                    this.handleError(response);
-                    return response.json()
+                    const respJson = response.json();
+                    store.dispatch({
+                        type: API_ERROR
+                        , payload: respJson
+                    });
+                    setTimeout(() => {
+                        store.dispatch({type: CLEAR_API_ERROR})
+                    }, API_ERROR_NOTIFICATION_DURATION)
+                    return respJson;
                 } else {
                     this.handleError(response);
                     return Promise.reject(response);

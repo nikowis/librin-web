@@ -4,8 +4,7 @@ const initialState = {
     currentUser: {
         id: 0,
         username: '',
-        status: '',
-        apiError: null
+        status: ''
     },
 };
 
@@ -18,15 +17,6 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
             };
         case FETCH_USER + FULFILLED:
-            if(payload.errors) {
-                return {
-                    ...state,
-                    currentUser: {
-                        ...initialState,
-                        apiError: payload.errors[0].defaultMessage
-                    }
-                };
-            }
             return {
                 ...state,
                 currentUser: {

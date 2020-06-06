@@ -18,7 +18,6 @@ const initialState = {
     totalPages: null,
     totalElements: null,
     currentOffer: {
-        apiError: null,
         id: 0,
         title: '',
         author: '',
@@ -57,15 +56,6 @@ const offersReducer = (state = initialState, action) => {
             };
         case VIEW_OFFER:
         case FETCH_OFFER + FULFILLED:
-            if(payload.errors) {
-                return {
-                    ...state,
-                    currentOffer: {
-                        ...initialState,
-                        apiError: payload.errors[0].defaultMessage
-                    }
-                };
-            }
             let processedPayload = processOffer(payload);
 
             return {

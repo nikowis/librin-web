@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import LoaderComponent from "../LoaderComponent";
 import Card from "@material-ui/core/Card/Card";
 import {CLEAR_CURRENT_OFFER} from "../../redux/actions";
-import {MESSAGES} from "../../common/paths";
+import {MESSAGES, OFFERS} from "../../common/paths";
 import CardActions from "@material-ui/core/CardActions/CardActions";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
@@ -20,24 +20,28 @@ function OfferView(props) {
 
     const [loading, setLoading] = React.useState(false);
     const {t} = useTranslation();
-    const {dispatch} = props;
+    const {dispatch, history} = props;
     let {id} = useParams();
     id = parseInt(id);
+    const invalidId = isNaN(id);
+    if(invalidId) {
+        history.push(OFFERS);
+    }
     const propId = props.currentOffer.id;
-    const apiError = props.currentOffer.apiError;
-
-    const {history} = props;
     const {title, author, price, ownerId, status, attachment, owner} = props.currentOffer;
-    const wrongOfferIsLoaded = !propId || propId !== id;
-    const validUrlIdParam = !isNaN(id);
+    const wrongOfferIsLoaded = !propId || propId !== id || invalidId;
 
     useEffect(() => {
-        if (!loading && validUrlIdParam && !apiError && wrongOfferIsLoaded) {
+        if (!loading && !invalidId && wrongOfferIsLoaded) {
             dispatch({type: CLEAR_CURRENT_OFFER});
             setLoading(true);
-            dispatch(Api.getOffer(id)).then(() => setLoading(false));
+            dispatch(Api.getOffer(id)).then(res => {
+                if(res.action.payload.status === 400) {
+                    history.replace(OFFERS);
+                }
+            }).then(() => setLoading(false));
         }
-    }, [dispatch, id, wrongOfferIsLoaded, loading, apiError, validUrlIdParam]);
+    }, [dispatch, history, id, wrongOfferIsLoaded, loading, invalidId]);
 
     const handleSendMessage = () => {
         dispatch(Api.createConversation(id)).then(res => {
@@ -95,9 +99,7 @@ function OfferView(props) {
 
     return (
         <>
-            {validUrlIdParam && !apiError && wrongOfferIsLoaded ? <Card><LoaderComponent/></Card> : (
-                !validUrlIdParam || apiError ? <Card> {t('offerNotFound')}</Card> : getView()
-            )}
+            {wrongOfferIsLoaded ? <Card><LoaderComponent/></Card> : getView()}
         </>
     );
 }
