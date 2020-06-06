@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
 import {formatDateToString} from "../../common/date-utility";
 
 
@@ -18,9 +17,10 @@ function ConversationComponent(props) {
                     <div className={'message-datetime'}>
                         {formatDateToString(msg.createdAt, true, true)}
                     </div>
-                    <div className={'message-content'}>
-                        {msg.content}
-                    </div>
+                        <div className={'message-content'}>
+                            {msg.content}
+                        </div>
+
                 {/*    secondary={new Date(msg.createdAt).toLocaleString()}*/}
                 </ListItem>
             )

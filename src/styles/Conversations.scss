@@ -5,7 +5,7 @@
     border-top: 1px lightgray solid;
   }
   .conversation-unread {
-    background-color: rgba(149, 117, 205, 0.2);
+    background-color: $primary-transparent;
     .MuiTypography-root {
       font-weight: 500;
     }
@@ -21,16 +21,30 @@
 
     %message {
       display: block;
+
     }
 
     .notmy-message {
       @extend %message;
-
+      .message-content {
+        background-color: $secondary;
+        border-radius: 10px 10px 10px 0;
+      }
     }
 
     .my-message {
       @extend %message;
       text-align: right;
+      .message-content {
+        background-color: $primary-transparent;
+        border-radius: 10px 10px 0 10px;
+
+      }
+    }
+
+    .message-content {
+      border: 1px solid lightgray;
+      padding: 8px;
     }
 
     .message-datetime {
