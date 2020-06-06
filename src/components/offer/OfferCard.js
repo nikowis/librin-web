@@ -3,11 +3,10 @@ import {useTranslation} from "react-i18next";
 import PropTypes from "prop-types";
 import CardHeader from "@material-ui/core/CardHeader";
 import Card from "@material-ui/core/Card";
-import Avatar from "@material-ui/core/Avatar";
 import Chip from "@material-ui/core/Chip";
 import {Link} from "react-router-dom";
-import {USERS} from "../../common/paths";
 import PhotoPreviewComponent from "../PhotoPreviewComponent";
+import UserInfoChipLink from "./UserInfoChipLink";
 
 function OfferCard(props) {
 
@@ -29,13 +28,8 @@ function OfferCard(props) {
                     <div className={'limit-text-lines'}>{offer.author}</div>
                     <div className={'limit-text-lines'}>{offer.price + ' ' + t('currencySymbol')}</div>
                     {myOffer ?
-
                         <Chip label={t('offer.status.' + status)} className={'status-info-' + status}/>
-                        :
-                        <Link to={USERS + '/' + owner.id} className={'link-no-styles'}>
-                            <Chip avatar={<Avatar>{owner.username.substring(0, 1).toUpperCase()}</Avatar>}
-                                  label={owner.username} className={'user-info'}/>
-                        </Link>
+                        : <UserInfoChipLink user={owner}/>
                     }
                 </>}
             />

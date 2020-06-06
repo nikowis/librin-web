@@ -108,11 +108,6 @@ export const editOfferSchema = Yup.object().shape({
     }).required().nullable()
 });
 
-export const messageSchema = Yup.object().shape({
-    content: Yup.string()
-        .required()
-});
-
 export const deleteAccountSchema = Yup.object().shape({
     password: Yup.string()
         .required()

@@ -11,12 +11,17 @@ import ConversationOfferPreviewComponent from "./ConversationOfferPreviewCompone
 import LoaderComponent from "../LoaderComponent";
 import Divider from "@material-ui/core/Divider";
 import XsWidthContainer from "../XsWidthContainer";
+import UserCardComponent from "../user/UserCardComponent";
 
 function MessagesView(props) {
 
     const {dispatch, currentConversation, userId} = props;
     const propId = currentConversation.id;
     let {convId} = useParams();
+    let recipient = null;
+    if(currentConversation.id) {
+        recipient = userId === currentConversation.customer.id ? currentConversation.offer.owner : currentConversation.customer;
+    }
 
     useEffect(() => {
         if (convId && (!propId || propId.toString() !== convId)) {
@@ -26,10 +31,14 @@ function MessagesView(props) {
 
     const handleSendMessage = (data, actions) => {
         const {dispatch} = props;
+        const content = data.content;
+        if(!content || /^\s*$/.test(content)) {
+            return;
+        }
         actions.setSubmitting(true);
-        dispatch(Api.sendMessage(currentConversation.id, data.content))
+        dispatch(Api.sendMessage(currentConversation.id, content))
             .finally(() => {
-                actions.setSubmitting(false)
+                actions.setSubmitting(false);
                 actions.resetForm()
             });
     };
@@ -40,6 +49,8 @@ function MessagesView(props) {
                 {
                     currentConversation.id ?
                         <List>
+                            <UserCardComponent username={recipient.username}/>
+                            <Divider variant="fullWidth"/>
                             <ConversationOfferPreviewComponent conversation={currentConversation}/>
                             {currentConversation.messages && currentConversation.messages.length > 0 ? <Divider variant="middle"/> : null}
                             <ConversationComponent userId={userId} currentConversation={currentConversation}/>
@@ -66,8 +77,16 @@ MessagesView.propTypes = {
                 price: PropTypes.string,
                 status: PropTypes.string,
                 ownerId: PropTypes.number,
+                owner: PropTypes.shape({
+                    id: PropTypes.number.isRequired,
+                    username: PropTypes.string.isRequired,
+                })
             }),
-            createdAt: PropTypes.string
+            createdAt: PropTypes.string,
+            customer: PropTypes.shape({
+                id: PropTypes.number.isRequired,
+                username: PropTypes.string.isRequired,
+            })
         }),
 };
 
