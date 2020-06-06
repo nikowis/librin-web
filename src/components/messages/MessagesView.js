@@ -36,7 +36,7 @@ function MessagesView(props) {
 
     return (
         <XsWidthContainer>
-            <Card>
+            <Card className={'single-conversation-view'}>
                 {
                     currentConversation.id ?
                         <List>

@@ -116,5 +116,17 @@
     "intro": "Tworząc konto akceptuję ",
     "separator": " oraz ",
     "outro": "."
-  }
+  },
+  "date": {
+    "days" : {
+      "today": "Dziś",
+      "1": "Poniedziałek",
+      "2": "Wtorek",
+      "3": "Środa",
+      "4": "Czwartek",
+      "5": "Piątek",
+      "6": "Sobota",
+      "7": "Niedziela"
+    }
+}
 }

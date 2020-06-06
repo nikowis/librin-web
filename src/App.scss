@@ -4,6 +4,7 @@
 @import "styles/Forms";
 @import "styles/OfferView";
 @import "styles/CookiesBanner";
+@import "styles/Conversations";
 
 .app {
   font-family: 'Roboto', sans-serif;
@@ -14,20 +15,6 @@
   .MuiButton-containedPrimary {
     background-color: $primary;
   }
-
-}
-
-.conversations-view {
-  .MuiListItem-root {
-    border-top: 1px lightgray solid;
-  }
-  .conversation-unread {
-    background-color: rgba(149, 117, 205, 0.2);
-    .MuiTypography-root {
-      font-weight: 500;
-    }
-  }
-
 }
 
 button.MuiButton-contained {

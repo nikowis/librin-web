@@ -1,0 +1,42 @@
+@import "Variables";
+
+.conversations-view {
+  .MuiListItem-root {
+    border-top: 1px lightgray solid;
+  }
+  .conversation-unread {
+    background-color: rgba(149, 117, 205, 0.2);
+    .MuiTypography-root {
+      font-weight: 500;
+    }
+  }
+
+  .MuiFab-extended {
+    height: 36px;
+    margin: 8px;
+  }
+}
+
+.single-conversation-view {
+
+    %message {
+      display: block;
+    }
+
+    .notmy-message {
+      @extend %message;
+
+    }
+
+    .my-message {
+      @extend %message;
+      text-align: right;
+    }
+
+    .message-datetime {
+      text-align: center;
+      font-size: 12px;
+      color: gray;
+    }
+
+}
