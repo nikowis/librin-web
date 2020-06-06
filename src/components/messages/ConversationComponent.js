@@ -17,11 +17,9 @@ function ConversationComponent(props) {
                     <div className={'message-datetime'}>
                         {formatDateToString(msg.createdAt, true, true)}
                     </div>
-                        <div className={'message-content'}>
-                            {msg.content}
-                        </div>
-
-                {/*    secondary={new Date(msg.createdAt).toLocaleString()}*/}
+                    <div className={'message-content'}>
+                        {msg.content}
+                    </div>
                 </ListItem>
             )
         });

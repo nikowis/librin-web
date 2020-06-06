@@ -5,6 +5,7 @@ import {TextField} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import {useTranslation} from "react-i18next";
 import PropTypes from "prop-types";
+import SendIcon from '@material-ui/icons/Send';
 
 function SendMessageFormComponent(props) {
 
@@ -27,22 +28,20 @@ function SendMessageFormComponent(props) {
                       handleSubmit,
                       isSubmitting
                   }) => (
-                    <form onSubmit={handleSubmit}>
-                        <div>
-                            <TextField
-                                size="small"
-                                error={errors.content && touched.content}
-                                label={t('messages.message')}
-                                name="content"
-                                variant="outlined"
-                                value={values.content}
-                                onChange={handleChange}
-                                helperText={(errors.content && touched.content) && t(errors.content)}
-                                margin="normal"
-                            />
-                        </div>
+                    <form onSubmit={handleSubmit} className={'send-message-form'}>
+                        <TextField
+                            size="small"
+                            error={errors.content && touched.content}
+                            label={t('messages.message')}
+                            name="content"
+                            variant="outlined"
+                            value={values.content}
+                            onChange={handleChange}
+                            helperText={(errors.content && touched.content) && t(errors.content)}
+                            margin="none"
+                        />
                         <Button size={"small"} variant="contained" color="primary" type="submit" disabled={isSubmitting}>
-                            {t('messages.submit')}
+                            <SendIcon fontSize={'small'}/>
                         </Button>
                     </form>
                 )}

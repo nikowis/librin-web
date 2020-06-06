@@ -41,8 +41,9 @@ function MessagesView(props) {
                     currentConversation.id ?
                         <List>
                             <ConversationOfferPreviewComponent conversation={currentConversation}/>
-                            <Divider variant="middle"/>
+                            {currentConversation.messages && currentConversation.messages.length > 0 ? <Divider variant="middle"/> : null}
                             <ConversationComponent userId={userId} currentConversation={currentConversation}/>
+                            <Divider variant="fullWidth"/>
                             <SendMessageFormComponent onSendMessage={handleSendMessage}/>
                         </List> :
                         <LoaderComponent/>
