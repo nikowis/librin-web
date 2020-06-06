@@ -37,11 +37,19 @@ button.MuiButton-outlined {
   text-decoration: none;
 }
 
-.user-info-banner {
+.user-info-card {
   max-width: 400px;
-  padding: 8px;
   margin-bottom: 8px;
   display: flex;
+  align-items: center;
+  .MuiAvatar-root {
+    margin: 0 16px;
+  }
+}
+
+.user-info-banner {
+  display: flex;
+  padding: 8px;
   align-items: center;
   .MuiAvatar-root {
     margin: 0 16px;

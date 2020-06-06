@@ -29,7 +29,7 @@ function TopAppBar(props) {
         props.history.push(to);
     };
 
-    console.log(props.width);
+    // console.log(props.width);
     return (
         <>
             <div className="top-menu">

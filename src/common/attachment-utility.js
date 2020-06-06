@@ -85,18 +85,18 @@ function convertToImage(url) {
 }
 
 async function compressPhoto(photo, jpgQuality, maxBorderSize) {
-    let sourcePhotoSize = attachmentSizeInB(photo.content);
-    console.log('Attachment size (B) before compression: ' + sourcePhotoSize);
+    // let sourcePhotoSize = attachmentSizeInB(photo.content);
+    // console.log('Attachment size (B) before compression: ' + sourcePhotoSize);
     const image = await convertToImage(photo.url);
     //example base64 encoded file="data:image/jpeg;base64,{content}"
     const mimeType = photo.content.substring(photo.content.indexOf(':') + 1, photo.content.indexOf(';'));
     const compressedContent = imageToResizedBase64(image, jpgQuality, mimeType, maxBorderSize);
-    const compressedContentSize = attachmentSizeInB(compressedContent);
+    // const compressedContentSize = attachmentSizeInB(compressedContent);
 
     photo.content = compressedContent;
     photo = initializeAttachmentFromBase64(photo);
 
-    console.log('Attachment size (B) after compression: ' + compressedContentSize);
+    // console.log('Attachment size (B) after compression: ' + compressedContentSize);
     return photo;
 }
 

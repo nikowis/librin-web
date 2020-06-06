@@ -5,7 +5,6 @@ export function formatDateToString(date, removeSeconds = true, removeDateIfToday
     const dateObj = new Date(date);
     const now = new Date();
     if (!removeDateIfToday || dateObj.toDateString() !== now.toDateString()) {
-        console.log(dateObj.toLocaleDateString(), ' difference ', daysBetween(now, dateObj));
         if (recentDaysAsWords && daysBetween(dateObj, now) < 7) {
             result += i18n.t('date.days.' + dateObj.getDay());
         } else {

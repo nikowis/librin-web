@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {useParams, withRouter} from 'react-router-dom';
+import {Link, useParams, withRouter} from 'react-router-dom';
 import {connect} from "react-redux";
 import ConversationComponent from "./ConversationComponent";
 import Card from "@material-ui/core/Card/Card";
@@ -12,6 +12,7 @@ import LoaderComponent from "../LoaderComponent";
 import Divider from "@material-ui/core/Divider";
 import MaxWidthContainer from "../MaxWidthContainer";
 import UserBannerComponent from "../user/UserBannerComponent";
+import {USERS} from "../../common/paths";
 
 function MessagesView(props) {
 
@@ -49,7 +50,10 @@ function MessagesView(props) {
                 {
                     currentConversation.id ?
                         <List>
-                            <UserBannerComponent username={recipient.username}/>
+                            <Link to={USERS + '/' + recipient.id} className={'link-no-styles'}>
+                                <UserBannerComponent username={recipient.username}/>
+                            </Link>
+
                             <Divider variant="fullWidth"/>
                             <ConversationOfferPreviewComponent conversation={currentConversation}/>
                             {currentConversation.messages && currentConversation.messages.length > 0 ? <Divider variant="middle"/> : null}

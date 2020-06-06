@@ -45,8 +45,8 @@ function UserView(props) {
         <>
             {validUrlIdParam && !apiError && wrongUserIsLoaded ? <Card><LoaderComponent/></Card> : (
                 !validUrlIdParam || apiError ? <Card>{t('userNotFound')}</Card> :
-                    <Card>
-                    <UserBannerComponent username={username}/>
+                    <Card className={'user-info-card'}>
+                        <UserBannerComponent username={username}/>
                     </Card>
             )}
             <OffersPaginatedGrid offers={offers} currentPage={currentPage} totalPages={totalPages}
