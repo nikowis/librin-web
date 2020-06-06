@@ -4,8 +4,10 @@
   .MuiListItem-root {
     border-top: 1px lightgray solid;
   }
+
   .conversation-unread {
     background-color: $primary-transparent;
+
     .MuiTypography-root {
       font-weight: 500;
     }
@@ -18,11 +20,16 @@
 }
 
 .single-conversation-view {
+  max-height: 85vh;
+  .messages-list {
+    overflow: auto;
+    max-height: 55vh;
+  }
 
-    %message {
-      display: flex;
-      flex-direction: column;
-    }
+  %message {
+    display: flex;
+    flex-direction: column;
+  }
 
   .message-content {
     border: 1px solid lightgray;
@@ -30,36 +37,38 @@
     width: fit-content;
   }
 
-    .notmy-message {
-      @extend %message;
-      .message-content {
-        background-color: $secondary;
-        border-radius: 10px 10px 10px 0;
-        margin-right: auto;
-      }
-    }
+  .notmy-message {
+    @extend %message;
 
-    .my-message {
-      @extend %message;
-      text-align: right;
-      .message-content {
-        background-color: $primary-transparent;
-        border-radius: 10px 10px 0 10px;
-        margin-left: auto;
-      }
+    .message-content {
+      background-color: $secondary;
+      border-radius: 10px 10px 10px 0;
+      margin-right: auto;
     }
+  }
 
-    .message-datetime {
-      text-align: center;
-      font-size: 12px;
-      color: gray;
-    }
+  .my-message {
+    @extend %message;
+    text-align: right;
 
-    .send-message-form {
-      padding: 8px;
-      display: flex;
-      justify-content: center;
+    .message-content {
+      background-color: $primary-transparent;
+      border-radius: 10px 10px 0 10px;
+      margin-left: auto;
     }
+  }
+
+  .message-datetime {
+    text-align: center;
+    font-size: 12px;
+    color: gray;
+  }
+
+  .send-message-form {
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+  }
 
   .MuiList-padding {
     padding: 0;

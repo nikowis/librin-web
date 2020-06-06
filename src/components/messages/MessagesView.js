@@ -1,12 +1,11 @@
 import React, {useEffect} from 'react';
 import {Link, useParams, withRouter} from 'react-router-dom';
 import {connect} from "react-redux";
-import ConversationComponent from "./ConversationComponent";
+import MessagesListComponent from "./MessagesListComponent";
 import Card from "@material-ui/core/Card/Card";
 import Api from "../../common/api-communication";
 import SendMessageFormComponent from "./SendMessageFormComponent";
 import PropTypes from "prop-types";
-import List from "@material-ui/core/List";
 import ConversationOfferPreviewComponent from "./ConversationOfferPreviewComponent";
 import LoaderComponent from "../LoaderComponent";
 import Divider from "@material-ui/core/Divider";
@@ -60,18 +59,17 @@ function MessagesView(props) {
             <Card className={'single-conversation-view'}>
                 {
                     !wrongConvLoaded && currentConversation.id ?
-                        <List>
+                        <>
                             <Link to={USERS + '/' + recipient.id} className={'link-no-styles'}>
                                 <UserBannerComponent username={recipient.username}/>
                             </Link>
-
                             <Divider variant="fullWidth"/>
                             <ConversationOfferPreviewComponent conversation={currentConversation}/>
                             {currentConversation.messages && currentConversation.messages.length > 0 ? <Divider variant="middle"/> : null}
-                            <ConversationComponent userId={userId} currentConversation={currentConversation}/>
+                            <MessagesListComponent userId={userId} currentConversation={currentConversation}/>
                             <Divider variant="fullWidth"/>
                             <SendMessageFormComponent onSendMessage={handleSendMessage}/>
-                        </List> :
+                        </> :
                         <LoaderComponent/>
                 }
             </Card>

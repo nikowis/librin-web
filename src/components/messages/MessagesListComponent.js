@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from "prop-types";
 import ListItem from "@material-ui/core/ListItem";
 import {formatDateToString} from "../../common/date-utility";
+import List from "@material-ui/core/List";
 
 
-function ConversationComponent(props) {
+function MessagesListComponent(props) {
 
     const {currentConversation, userId} = props;
     const {messages} = currentConversation;
@@ -26,13 +27,13 @@ function ConversationComponent(props) {
     };
 
     return (
-        <>
+        <List className={'messages-list'}>
             {messageRows()}
-        </>
+        </List>
     );
 }
 
-ConversationComponent.propTypes = {
+MessagesListComponent.propTypes = {
     userId: PropTypes.number,
     currentConversation:
         PropTypes.shape({
@@ -50,4 +51,4 @@ ConversationComponent.propTypes = {
         })
 };
 
-export default ConversationComponent;
+export default MessagesListComponent;

@@ -13,7 +13,7 @@ function ConversationOfferPreviewComponent(props) {
     const {conversation} = props;
 
     return (
-        <ListItem>
+        <ListItem className={'conversation-offer-preview'}>
             <ListItemAvatar>
                 <Avatar>
                     <LocalOffer/>
