@@ -20,15 +20,22 @@
 .single-conversation-view {
 
     %message {
-      display: block;
-
+      display: flex;
+      flex-direction: column;
     }
+
+  .message-content {
+    border: 1px solid lightgray;
+    padding: 4px 8px;
+    width: fit-content;
+  }
 
     .notmy-message {
       @extend %message;
       .message-content {
         background-color: $secondary;
         border-radius: 10px 10px 10px 0;
+        margin-right: auto;
       }
     }
 
@@ -38,13 +45,8 @@
       .message-content {
         background-color: $primary-transparent;
         border-radius: 10px 10px 0 10px;
-
+        margin-left: auto;
       }
-    }
-
-    .message-content {
-      border: 1px solid lightgray;
-      padding: 8px;
     }
 
     .message-datetime {
