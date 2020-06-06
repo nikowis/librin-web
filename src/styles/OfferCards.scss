@@ -33,17 +33,21 @@
   height: 100%;
 
   .user-info {
-    font-size: 14px;
     font-weight: 400;
-    height: 22px;
+    height: 20px;
     max-width: 136px;
+    border: 1px solid $primary-light;
 
     .MuiAvatar-root {
       margin-left: 0;
+      font-size: 0.6rem;
+      height: 20px;
+      width: 20px;
     }
 
     .MuiChip-label {
       padding: 0 8px;
+      font-size: 12px;
     }
 
     @media (max-width: 360px) {
@@ -88,6 +92,7 @@
     display: flex;
     align-items: flex-end;
     justify-content: center;
+    min-height: 200px;
 
     img {
       max-height: 300px;
