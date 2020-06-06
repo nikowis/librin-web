@@ -10,8 +10,8 @@ import List from "@material-ui/core/List";
 import ConversationOfferPreviewComponent from "./ConversationOfferPreviewComponent";
 import LoaderComponent from "../LoaderComponent";
 import Divider from "@material-ui/core/Divider";
-import XsWidthContainer from "../XsWidthContainer";
-import UserCardComponent from "../user/UserCardComponent";
+import MaxWidthContainer from "../MaxWidthContainer";
+import UserBannerComponent from "../user/UserBannerComponent";
 
 function MessagesView(props) {
 
@@ -44,12 +44,12 @@ function MessagesView(props) {
     };
 
     return (
-        <XsWidthContainer>
+        <MaxWidthContainer size={'sm'}>
             <Card className={'single-conversation-view'}>
                 {
                     currentConversation.id ?
                         <List>
-                            <UserCardComponent username={recipient.username}/>
+                            <UserBannerComponent username={recipient.username}/>
                             <Divider variant="fullWidth"/>
                             <ConversationOfferPreviewComponent conversation={currentConversation}/>
                             {currentConversation.messages && currentConversation.messages.length > 0 ? <Divider variant="middle"/> : null}
@@ -60,7 +60,7 @@ function MessagesView(props) {
                         <LoaderComponent/>
                 }
             </Card>
-        </XsWidthContainer>
+        </MaxWidthContainer>
     );
 }
 

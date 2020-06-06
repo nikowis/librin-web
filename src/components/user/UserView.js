@@ -7,7 +7,7 @@ import Card from "@material-ui/core/Card";
 import Api from "../../common/api-communication";
 import {CLEAR_CURRENT_USER} from "../../redux/actions";
 import LoaderComponent from "../LoaderComponent";
-import UserCardComponent from "./UserCardComponent";
+import UserBannerComponent from "./UserBannerComponent";
 import PropTypes from "prop-types";
 import OffersPaginatedGrid from "../offer/OffersPaginatedGrid";
 import {OFFERS} from "../../common/paths";
@@ -46,7 +46,7 @@ function UserView(props) {
             {validUrlIdParam && !apiError && wrongUserIsLoaded ? <Card><LoaderComponent/></Card> : (
                 !validUrlIdParam || apiError ? <Card>{t('userNotFound')}</Card> :
                     <Card>
-                    <UserCardComponent username={username}/>
+                    <UserBannerComponent username={username}/>
                     </Card>
             )}
             <OffersPaginatedGrid offers={offers} currentPage={currentPage} totalPages={totalPages}

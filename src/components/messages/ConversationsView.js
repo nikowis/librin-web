@@ -12,7 +12,7 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import ListSubheader from "@material-ui/core/ListSubheader";
 import Fab from "@material-ui/core/Fab";
-import XsWidthContainer from "../XsWidthContainer";
+import MaxWidthContainer from "../MaxWidthContainer";
 
 function ConversationsView(props) {
 
@@ -48,7 +48,7 @@ function ConversationsView(props) {
     );
 
     return (
-        <XsWidthContainer>
+        <MaxWidthContainer size={'sm'}>
             <Card className={'conversations-view'}>
                 {
                     conversations ?
@@ -60,7 +60,7 @@ function ConversationsView(props) {
                         : <LoaderComponent/>
                 }
             </Card>
-        </XsWidthContainer>
+        </MaxWidthContainer>
     );
 }
 

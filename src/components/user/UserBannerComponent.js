@@ -1,7 +1,7 @@
 import React from 'react';
 import Avatar from "@material-ui/core/Avatar";
 
-function UserCardComponent(props) {
+function UserBannerComponent(props) {
     const {username} = props;
     return (
         <div className={'user-info-banner'}>
@@ -11,6 +11,6 @@ function UserCardComponent(props) {
     );
 }
 
-UserCardComponent.propTypes = {};
+UserBannerComponent.propTypes = {};
 
-export default UserCardComponent;
+export default UserBannerComponent;
