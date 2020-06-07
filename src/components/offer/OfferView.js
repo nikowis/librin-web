@@ -1,20 +1,20 @@
 import React, {useEffect} from 'react';
 import Api from "./../../common/api-communication"
-import {useParams, withRouter} from 'react-router-dom';
+import {Link, useParams, withRouter} from 'react-router-dom';
 import {useTranslation} from "react-i18next";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import LoaderComponent from "../LoaderComponent";
 import Card from "@material-ui/core/Card/Card";
 import {CLEAR_CURRENT_OFFER} from "../../redux/actions";
-import {MESSAGES, OFFERS} from "../../common/paths";
+import {MESSAGES, OFFERS, USERS} from "../../common/paths";
 import CardActions from "@material-ui/core/CardActions/CardActions";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import {OfferStatus} from "../../common/app-constants";
-import Avatar from "@material-ui/core/Avatar";
 import OfferWarningStrip from "./OfferWarningStrip";
 import PhotoPreviewComponent from "../PhotoPreviewComponent";
+import UserBannerComponent from "../user/UserBannerComponent";
 
 function OfferView(props) {
 
@@ -87,10 +87,9 @@ function OfferView(props) {
 
                     </Card>
                     <Card className={'user-details'}>
-                        <Avatar>
-                            {owner.username.substring(0, 1).toUpperCase()}
-                        </Avatar>
-                        {owner.username}
+                        <Link to={USERS + '/' + owner.id} className={'link-no-styles'}>
+                            <UserBannerComponent username={owner.username}/>
+                        </Link>
                     </Card>
                 </Container>
             </div>

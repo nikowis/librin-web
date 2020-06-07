@@ -10,7 +10,7 @@
 
   .MuiListItem-root {
     border-top: 1px lightgray solid;
-    padding: 4px 16px;
+    padding: 4px 8px;
     display: flex;
     flex-direction: column;
     .conversation-item {
@@ -23,6 +23,11 @@
       }
       .MuiListItemText-secondary {
         font-size: 16px;
+        line-height: 1rem;
+        max-height: 2rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-wrap: break-word;
       }
     }
   }
@@ -38,6 +43,7 @@
   .MuiFab-extended {
     height: 36px;
     margin: 8px;
+    font-size: 16px;
   }
 }
 
@@ -45,18 +51,18 @@
 
   .messages-list {
     overflow: auto;
-    max-height: 65vh;
+    height: 65vh;
 
     @media (max-height:800px) {
-      max-height: 60vh;
+      height: 60vh;
     }
 
     @media (max-height:700px) {
-      max-height: 55vh;
+      height: 55vh;
     }
 
     @media (max-height: 600px) {
-      max-height: 50vh;
+      height: 50vh;
     }
 
   }
@@ -64,6 +70,9 @@
   .user-info-banner {
     padding: 4px 8px;
     font-size: 18px;
+    .MuiAvatar-root {
+      margin: 0 8px;
+    }
   }
 
   .conversation-offer-preview {
@@ -75,6 +84,11 @@
       .MuiListItemText-primary {
         font-size: 18px;
         font-weight: 500;
+        line-height: 1rem;
+        max-height: 2rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-wrap: break-word;
       }
 
       .MuiTypography-colorTextSecondary {
@@ -84,7 +98,7 @@
 
     .MuiListItemAvatar-root {
       min-width: unset;
-      margin: 0 16px;
+      margin: 0 8px;
     }
 
   }
