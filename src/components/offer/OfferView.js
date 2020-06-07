@@ -29,7 +29,7 @@ function OfferView(props) {
     }
     const propId = props.currentOffer.id;
     const {title, author, price, ownerId, status, attachment, owner} = props.currentOffer;
-    const wrongOfferIsLoaded = !propId || propId !== id || invalidId;
+    const wrongOfferIsLoaded = !propId || propId !== id;
 
     useEffect(() => {
         if (!loading && !invalidId && wrongOfferIsLoaded) {

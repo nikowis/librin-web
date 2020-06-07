@@ -13,8 +13,9 @@ import MaxWidthContainer from "../MaxWidthContainer";
 import UserBannerComponent from "../user/UserBannerComponent";
 import {MESSAGES, OFFERS, USERS} from "../../common/paths";
 
-function MessagesView(props) {
+function ConversationView(props) {
 
+    const [loading, setLoading] = React.useState(false);
     const {dispatch, currentConversation, userId, history} = props;
     const propId = currentConversation.id;
     let {convId} = useParams();
@@ -31,14 +32,15 @@ function MessagesView(props) {
     const wrongConvLoaded = !propId || propId !== convId || invalidId;
 
     useEffect(() => {
-        if (convId && (!propId || propId.toString() !== convId)) {
+        if (!loading && wrongConvLoaded && !invalidId) {
+            setLoading(true);
             dispatch(Api.getConversation(convId)).then(res => {
                 if(res.action.payload.status === 400) {
                     history.replace(MESSAGES);
                 }
-            });
+            }).then(() => setLoading(false));
         }
-    }, [dispatch, history, convId, propId]);
+    }, [dispatch, loading, history, convId, wrongConvLoaded, invalidId]);
 
     const handleSendMessage = (data, actions) => {
         const {dispatch} = props;
@@ -79,7 +81,7 @@ function MessagesView(props) {
     );
 }
 
-MessagesView.propTypes = {
+ConversationView.propTypes = {
     userId: PropTypes.number,
     currentConversation:
         PropTypes.shape({
@@ -108,4 +110,4 @@ MessagesView.propTypes = {
 export default connect(state => ({
     userId: state.me.id,
     currentConversation: state.messages.currentConversation,
-}))(withRouter(MessagesView));
+}))(withRouter(ConversationView));
