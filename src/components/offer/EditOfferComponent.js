@@ -26,7 +26,7 @@ function EditOfferComponent(props) {
                         title: offer ? offer.title : '',
                         author: offer ? offer.author : '',
                         price: offer ? offer.price : '',
-                        photo: offer ? offer.attachment : ''
+                        photo: offer ? offer.attachment : null
                     }}
             >
                 {({
