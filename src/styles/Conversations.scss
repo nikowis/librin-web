@@ -20,21 +20,51 @@
 }
 
 .single-conversation-view {
-  max-height: 85vh;
+
   .messages-list {
     overflow: auto;
-    max-height: 55vh;
+    max-height: 50vh;
+  }
+
+  .user-info-banner {
+    padding: 4px 8px;
+    font-size: 18px;
+  }
+
+  .conversation-offer-preview {
+    padding: 4px 8px;
+
+    .MuiListItemText-root {
+      margin: 0;
+
+      .MuiListItemText-primary {
+        font-size: 18px;
+        font-weight: 500;
+      }
+
+      .MuiTypography-colorTextSecondary {
+        font-size: 18px;
+      }
+    }
+
+    .MuiListItemAvatar-root {
+      min-width: unset;
+      margin: 0 16px;
+    }
+
   }
 
   %message {
     display: flex;
     flex-direction: column;
+    padding-top: 0;
   }
 
   .message-content {
     border: 1px solid lightgray;
     padding: 4px 8px;
     width: fit-content;
+    font-size: 16px;
   }
 
   .notmy-message {

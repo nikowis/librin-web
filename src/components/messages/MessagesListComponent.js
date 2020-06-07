@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import PropTypes from "prop-types";
 import ListItem from "@material-ui/core/ListItem";
 import {formatDateToString} from "../../common/date-utility";
@@ -7,8 +7,15 @@ import List from "@material-ui/core/List";
 
 function MessagesListComponent(props) {
 
+    const messagesEndRef = useRef(null);
+
     const {currentConversation, userId} = props;
     const {messages} = currentConversation;
+
+    const scrollToBottom = () => {
+        messagesEndRef.current.scrollIntoView();
+    };
+    useEffect(scrollToBottom, [currentConversation]);
 
     const messageRows = () => {
         return messages.map((msg) => {
@@ -29,6 +36,7 @@ function MessagesListComponent(props) {
     return (
         <List className={'messages-list'}>
             {messageRows()}
+            <div ref={messagesEndRef} />
         </List>
     );
 }
