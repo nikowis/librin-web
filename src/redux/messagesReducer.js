@@ -20,12 +20,12 @@ const initialState = {
     }
 };
 
-function replaceFetchedEntityInListIfPossible(conversationList, newEntity) {
+function replaceFetchedEntityInListIfPossible(conversationList, newEntity, putAtStart=true) {
     if(conversationList && conversationList.length > 0) {
         const updatedConvIndex = conversationList ? conversationList.findIndex(conv => conv.id === newEntity.id) : null;
         if (updatedConvIndex  && updatedConvIndex >= 0) {
             conversationList = removeItem(conversationList, updatedConvIndex);
-            conversationList = insertItem(conversationList, {index: 0, item: newEntity});
+            conversationList = insertItem(conversationList, {index: putAtStart ? 0 : updatedConvIndex, item: newEntity});
         }
     }
     return conversationList;
@@ -35,7 +35,7 @@ const messagesReducer = (state = initialState, action) => {
     const payload = action.payload;
     switch (action.type) {
         case GET_CONVERSATION + FULFILLED: {
-            const conversationList = replaceFetchedEntityInListIfPossible(state.content, payload);
+            const conversationList = replaceFetchedEntityInListIfPossible(state.content, payload, false);
 
             return {
                 ...state,
