@@ -11,7 +11,7 @@ import LoaderComponent from "../LoaderComponent";
 import Divider from "@material-ui/core/Divider";
 import MaxWidthContainer from "../MaxWidthContainer";
 import UserBannerComponent from "../user/UserBannerComponent";
-import {MESSAGES, USERS} from "../../common/paths";
+import {MESSAGES, OFFERS, USERS} from "../../common/paths";
 
 function MessagesView(props) {
 
@@ -64,7 +64,9 @@ function MessagesView(props) {
                                 <UserBannerComponent username={recipient.username}/>
                             </Link>
                             <Divider variant="fullWidth"/>
-                            <ConversationOfferPreviewComponent conversation={currentConversation}/>
+                            <Link to={OFFERS + '/' + currentConversation.offer.id} className={'link-no-styles'}>
+                                <ConversationOfferPreviewComponent conversation={currentConversation}/>
+                            </Link>
                             {currentConversation.messages && currentConversation.messages.length > 0 ? <Divider variant="middle"/> : null}
                             <MessagesListComponent userId={userId} currentConversation={currentConversation}/>
                             <Divider variant="fullWidth"/>

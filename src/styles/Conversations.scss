@@ -23,7 +23,20 @@
 
   .messages-list {
     overflow: auto;
-    max-height: 50vh;
+    max-height: 65vh;
+
+    @media (max-height:800px) {
+      max-height: 60vh;
+    }
+
+    @media (max-height:700px) {
+      max-height: 55vh;
+    }
+
+    @media (max-height: 600px) {
+      max-height: 50vh;
+    }
+
   }
 
   .user-info-banner {
