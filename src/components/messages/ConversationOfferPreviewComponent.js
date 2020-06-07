@@ -37,7 +37,8 @@ ConversationOfferPreviewComponent.propTypes = {
                 status: PropTypes.string,
                 ownerId: PropTypes.number,
             }),
-            createdAt: PropTypes.string
+            createdAt: PropTypes.string,
+            updatedAt: PropTypes.string,
         }),
 };
 

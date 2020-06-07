@@ -1,8 +1,30 @@
 @import "Variables";
 
 .conversations-view {
+
+  .conversation-datetime {
+    text-align: center;
+    font-size: 12px;
+    color: gray;
+  }
+
   .MuiListItem-root {
     border-top: 1px lightgray solid;
+    padding: 4px 16px;
+    display: flex;
+    flex-direction: column;
+    .conversation-item {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      align-items: center;
+      .MuiListItemText-primary {
+        font-size: 18px;
+      }
+      .MuiListItemText-secondary {
+        font-size: 16px;
+      }
+    }
   }
 
   .conversation-unread {
