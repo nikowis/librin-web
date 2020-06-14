@@ -16,10 +16,9 @@ class Websocket {
         const self = this;
         headers['token'] = store.getState().me.authToken;
         self.stompClient.connect(headers, function (frame) {
-            console.log('Connected: ' + frame);
+            // console.log('Connected: ' + frame);
             self.stompClient.subscribe('/users/queue/conversation/{convId}', function (message) {
-                console.log("RECEIVED MESSAGE");
-                console.log(JSON.parse(message.body).content);
+                conversationUpdateCallback(JSON.parse(message.body));
             });
         });
     }

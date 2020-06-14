@@ -3,7 +3,7 @@ import {
     FULFILLED,
     GET_ALL_CONVERSATIONS,
     GET_CONVERSATION,
-    SEND_MESSAGE
+    SEND_MESSAGE, WS_UPDATE_CONVERSATION
 } from "./actions";
 import {insertItem, removeItem} from "../common/array-helper";
 
@@ -20,12 +20,12 @@ const initialState = {
     }
 };
 
-function replaceFetchedEntityInListIfPossible(conversationList, newEntity, putAtStart=true) {
+function replaceUpdatedConversationInListIfPossible(conversationList, updatedConv, putAtStart=true) {
     if(conversationList && conversationList.length > 0) {
-        const updatedConvIndex = conversationList ? conversationList.findIndex(conv => conv.id === newEntity.id) : null;
-        if (updatedConvIndex  && updatedConvIndex >= 0) {
+        const updatedConvIndex = conversationList ? conversationList.findIndex(conv => conv.id === updatedConv.id) : null;
+        if (updatedConvIndex === 0 || updatedConvIndex > 0) {
             conversationList = removeItem(conversationList, updatedConvIndex);
-            conversationList = insertItem(conversationList, {index: putAtStart ? 0 : updatedConvIndex, item: newEntity});
+            conversationList = insertItem(conversationList, {index: putAtStart ? 0 : updatedConvIndex, item: updatedConv});
         }
     }
     return conversationList;
@@ -35,7 +35,7 @@ const messagesReducer = (state = initialState, action) => {
     const payload = action.payload;
     switch (action.type) {
         case GET_CONVERSATION + FULFILLED: {
-            const conversationList = replaceFetchedEntityInListIfPossible(state.content, payload, false);
+            const conversationList = replaceUpdatedConversationInListIfPossible(state.content, payload, false);
 
             return {
                 ...state,
@@ -54,7 +54,7 @@ const messagesReducer = (state = initialState, action) => {
                 totalElements: payload.totalElements,
             };
         case SEND_MESSAGE + FULFILLED: {
-            const conversationList = replaceFetchedEntityInListIfPossible(state.content, payload);
+            const conversationList = replaceUpdatedConversationInListIfPossible(state.content, payload);
 
             return {
                 ...state,
@@ -63,6 +63,31 @@ const messagesReducer = (state = initialState, action) => {
                     ...payload
                 }
             };
+        }
+        case WS_UPDATE_CONVERSATION: {
+            let updatedConversationList = null;
+            const updatedConversation = state.content ? state.content.find(conv => conv.id === payload.conversationId) : null;
+            if(updatedConversation) {
+                updatedConversation.read = false;
+                updatedConversation.updatedAt = payload.createdAt;
+                updatedConversationList = replaceUpdatedConversationInListIfPossible(state.content, updatedConversation);
+            }
+
+            const currConv = state.currentConversation;
+            if(currConv.id === payload.conversationId) {
+                currConv.messages.push(payload);
+                updatedConversation.read = false;
+                updatedConversation.updatedAt = payload.createdAt;
+            }
+
+            return {
+                ...state,
+                content: updatedConversationList,
+                currentConversation: {
+                    ...currConv
+                }
+            };
+
         }
         case CREATE_CONVERSATION + FULFILLED:
             return initialState;
