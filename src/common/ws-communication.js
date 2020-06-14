@@ -1,5 +1,6 @@
 import SockJS from "sockjs-client"
 import {Stomp} from "@stomp/stompjs"
+import {store} from '../index';
 
 class Websocket {
 
@@ -13,7 +14,7 @@ class Websocket {
         this.stompClient = Stomp.over(socket);
         var headers = {};
         const self = this;
-        headers['token'] = 'd53eaa4f-a332-4ba7-813e-5390f7d2a1a1';
+        headers['token'] = store.getState().me.authToken;
         self.stompClient.connect(headers, function (frame) {
             console.log('Connected: ' + frame);
             self.stompClient.subscribe('/users/queue/conversation/{convId}', function (message) {
