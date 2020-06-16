@@ -12,6 +12,7 @@ import Divider from "@material-ui/core/Divider";
 import MaxWidthContainer from "../MaxWidthContainer";
 import UserBannerComponent from "../user/UserBannerComponent";
 import {MESSAGES, OFFERS, USERS} from "../../common/paths";
+import {READ_CONVERSATION} from "../../redux/actions";
 
 function ConversationView(props) {
 
@@ -56,6 +57,13 @@ function ConversationView(props) {
             });
     };
 
+    const handleMarkConversationAsRead = () => {
+        if(!currentConversation.read) {
+            Api.markConversationAsRead(currentConversation.id);
+            dispatch({type: READ_CONVERSATION, payload: {id: currentConversation.id}})
+        }
+    };
+
     return (
         <MaxWidthContainer size={'sm'}>
             <Card className={'single-conversation-view'}>
@@ -72,7 +80,7 @@ function ConversationView(props) {
                             {currentConversation.messages && currentConversation.messages.length > 0 ? <Divider variant="middle"/> : null}
                             <MessagesListComponent userId={userId} currentConversation={currentConversation}/>
                             <Divider variant="fullWidth"/>
-                            <SendMessageFormComponent onSendMessage={handleSendMessage}/>
+                            <SendMessageFormComponent onSendMessage={handleSendMessage} onClick={handleMarkConversationAsRead}/>
                         </> :
                         <LoaderComponent/>
                 }
@@ -86,6 +94,7 @@ ConversationView.propTypes = {
     currentConversation:
         PropTypes.shape({
             id: PropTypes.number,
+            read: PropTypes.bool,
             messages: PropTypes.array,
             offer: PropTypes.shape({
                 id: PropTypes.number,

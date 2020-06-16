@@ -31,6 +31,7 @@ function SendMessageFormComponent(props) {
                             variant="outlined"
                             value={values.content}
                             onChange={handleChange}
+                            onClick={() => props.onClick()}
                             margin="none"
                         />
                         <Button size={"small"} variant="contained" color="primary" type="submit">
@@ -44,7 +45,8 @@ function SendMessageFormComponent(props) {
 }
 
 SendMessageFormComponent.propTypes = {
-    onSendMessage: PropTypes.func
+    onSendMessage: PropTypes.func.isRequired,
+    onClick: PropTypes.func.isRequired
 };
 
 export default SendMessageFormComponent;

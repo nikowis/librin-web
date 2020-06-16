@@ -3,6 +3,7 @@ import './App.scss';
 import TopAppBar from "./components/appbar/TopAppBar";
 import {connect} from "react-redux";
 import Api from "./common/api-communication";
+import Websocket from "./common/ws-communication";
 import ViewRoutes from "./components/ViewRoutes";
 import PropTypes from "prop-types";
 import ErrorContainer from "./components/ErrorContainer";
@@ -11,18 +12,26 @@ import Container from "@material-ui/core/Container";
 import CookieConsent from "react-cookie-consent";
 import {useTranslation} from "react-i18next";
 import CookiesPolicyLink from "./components/user/CookiesPolicyLink";
+import {WS_UPDATE_CONVERSATION} from "./redux/actions";
 
 function App(props) {
 
-    const {dispatch, authenticated} = props;
+    const {dispatch, authenticated, mustReloadMessages} = props;
     const {t} = useTranslation();
 
     useEffect(() => {
         if (authenticated) {
             dispatch(Api.getMe());
             dispatch(Api.getAllConversations());
+            Websocket.connectAndSubscribe((payload) => {dispatch({type: WS_UPDATE_CONVERSATION, payload: payload})})
         }
     }, [dispatch, authenticated]);
+
+    useEffect(() => {
+        if (authenticated && mustReloadMessages) {
+            dispatch(Api.getAllConversations());
+        }
+    }, [dispatch, authenticated, mustReloadMessages]);
 
     return (
         <div className="app">
@@ -52,10 +61,12 @@ function App(props) {
 
 App.propTypes = {
     authenticated: PropTypes.bool.isRequired,
-    pendingRequests: PropTypes.number.isRequired
+    pendingRequests: PropTypes.number.isRequired,
+    mustReloadMessages: PropTypes.bool.isRequired,
 };
 
 export default connect(state => ({
     authenticated: state.me.authenticated,
-    pendingRequests: state.app.pendingRequests
+    pendingRequests: state.app.pendingRequests,
+    mustReloadMessages: state.messages.mustReload,
 }))(App);
