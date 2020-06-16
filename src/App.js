@@ -16,7 +16,7 @@ import {WS_UPDATE_CONVERSATION} from "./redux/actions";
 
 function App(props) {
 
-    const {dispatch, authenticated} = props;
+    const {dispatch, authenticated, mustReloadMessages} = props;
     const {t} = useTranslation();
 
     useEffect(() => {
@@ -26,6 +26,12 @@ function App(props) {
             Websocket.connectAndSubscribe((payload) => {dispatch({type: WS_UPDATE_CONVERSATION, payload: payload})})
         }
     }, [dispatch, authenticated]);
+
+    useEffect(() => {
+        if (authenticated && mustReloadMessages) {
+            dispatch(Api.getAllConversations());
+        }
+    }, [dispatch, authenticated, mustReloadMessages]);
 
     return (
         <div className="app">
@@ -55,10 +61,12 @@ function App(props) {
 
 App.propTypes = {
     authenticated: PropTypes.bool.isRequired,
-    pendingRequests: PropTypes.number.isRequired
+    pendingRequests: PropTypes.number.isRequired,
+    mustReloadMessages: PropTypes.bool.isRequired,
 };
 
 export default connect(state => ({
     authenticated: state.me.authenticated,
-    pendingRequests: state.app.pendingRequests
+    pendingRequests: state.app.pendingRequests,
+    mustReloadMessages: state.messages.mustReload,
 }))(App);

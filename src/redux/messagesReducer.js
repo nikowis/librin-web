@@ -3,7 +3,9 @@ import {
     FULFILLED,
     GET_ALL_CONVERSATIONS,
     GET_CONVERSATION,
-    SEND_MESSAGE, WS_UPDATE_CONVERSATION
+    READ_CONVERSATION,
+    SEND_MESSAGE,
+    WS_UPDATE_CONVERSATION
 } from "./actions";
 import {insertItem, removeItem} from "../common/array-helper";
 
@@ -12,6 +14,7 @@ const initialState = {
     currentPage: null,
     totalPages: null,
     totalElements: null,
+    mustReload: false,
     currentConversation: {
         id: null,
         messages: [],
@@ -52,6 +55,7 @@ const messagesReducer = (state = initialState, action) => {
                 currentPage: payload.number + 1,
                 totalPages: payload.totalPages,
                 totalElements: payload.totalElements,
+                mustReload: false
             };
         case SEND_MESSAGE + FULFILLED: {
             const conversationList = replaceUpdatedConversationInListIfPossible(state.content, payload);
@@ -65,19 +69,54 @@ const messagesReducer = (state = initialState, action) => {
             };
         }
         case WS_UPDATE_CONVERSATION: {
+            let mustReload = false;
             let updatedConversationList = null;
             const updatedConversation = state.content ? state.content.find(conv => conv.id === payload.conversationId) : null;
             if(updatedConversation) {
                 updatedConversation.read = false;
                 updatedConversation.updatedAt = payload.createdAt;
                 updatedConversationList = replaceUpdatedConversationInListIfPossible(state.content, updatedConversation);
+            } else {
+                mustReload = true;
+                // const conversationStub = {id: payload.conversationId, read: false
+                //     // , messages: [{id: payload.id, content: payload.content, createdBy: payload.createdBy, read: false, createdAt: payload.createdAt}]
+                // };
+                // if(state.content) {
+                //     updatedConversationList = state.content;
+                //     updatedConversationList.unshift(conversationStub);
+                // } else {
+                //     updatedConversationList = [conversationStub];
+                // }
             }
 
             const currConv = state.currentConversation;
             if(currConv.id === payload.conversationId) {
                 currConv.messages.push(payload);
-                updatedConversation.read = false;
-                updatedConversation.updatedAt = payload.createdAt;
+                currConv.read = false;
+                currConv.updatedAt = payload.createdAt;
+            }
+
+            return {
+                ...state,
+                content: updatedConversationList,
+                mustReload: mustReload,
+                currentConversation: {
+                    ...currConv
+                }
+            };
+        }
+
+        case READ_CONVERSATION: {
+            let updatedConversationList = null;
+            const updatedConversation = state.content ? state.content.find(conv => conv.id === payload.id) : null;
+            if(updatedConversation) {
+                updatedConversation.read = true;
+                updatedConversationList = replaceUpdatedConversationInListIfPossible(state.content, updatedConversation);
+            }
+
+            const currConv = state.currentConversation;
+            if(currConv.id === payload.id) {
+                currConv.read = true;
             }
 
             return {
@@ -87,7 +126,6 @@ const messagesReducer = (state = initialState, action) => {
                     ...currConv
                 }
             };
-
         }
         case CREATE_CONVERSATION + FULFILLED:
             return initialState;

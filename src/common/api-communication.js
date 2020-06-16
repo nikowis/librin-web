@@ -1,34 +1,40 @@
 import {
     API_CHANGE_PASSWORD,
-    API_CONFIRM_EMAIL, API_GENERATE_PASSWORD_CHANGE,
+    API_CONFIRM_EMAIL,
+    API_GENERATE_PASSWORD_CHANGE,
     API_GET_TOKEN,
     API_MESSAGES,
+    API_MESSAGES_READ,
     API_MY_OFFERS,
     API_OFFERS,
     API_POLICIES,
-    API_REGISTER,
     API_PROFILE,
+    API_REGISTER,
+    API_USERS,
+    COOKIES_POLICY,
     PRIVACY_POLICY,
     SOLD_SUFFIX,
-    TERMS_AND_CONDITIONS, API_USERS, COOKIES_POLICY
+    TERMS_AND_CONDITIONS
 } from './endpoints'
 import HttpUtility from './http-utility'
 import {
     CREATE_CONVERSATION,
-    DELETE_OFFER, EMAIL_CONFIRM,
+    DELETE_OFFER,
+    EMAIL_CONFIRM,
+    FETCH_ME,
     FETCH_MY_OFFER,
     FETCH_MY_OFFERS,
     FETCH_OFFER,
     FETCH_OFFERS,
-    FETCH_ME,
+    FETCH_USER,
     GET_ALL_CONVERSATIONS,
     GET_CONVERSATION,
     GET_TOKEN_ACTION,
     REGISTER_ACTION,
     SEND_MESSAGE,
-    UPDATE_USER, FETCH_USER
+    UPDATE_USER
 } from "../redux/actions";
-import {DEFAULT_PAGE_SIZE, DEFAULT_SORT, DESC_SORT, UPDATED_AT_SORT} from './app-constants'
+import {CREATED_AT_SORT, DEFAULT_PAGE_SIZE, DESC_SORT, UPDATED_AT_SORT} from './app-constants'
 import {CHANGE_PASSWORD_BASE, CONFIRM_EMAIL_BASE} from "./paths";
 
 class Api {
@@ -121,7 +127,7 @@ class Api {
 
     getOffers(urlSearchParams) {
         urlSearchParams.set('size', DEFAULT_PAGE_SIZE);
-        urlSearchParams.set('sort', DEFAULT_SORT);
+        urlSearchParams.set('sort', UPDATED_AT_SORT + ',' + DESC_SORT);
 
         const page = parseInt(urlSearchParams.get('page'));
         if (!page || page < 0) {
@@ -141,7 +147,7 @@ class Api {
     getMyOffers(page) {
         const params = {
             size: DEFAULT_PAGE_SIZE,
-            sort: DEFAULT_SORT,
+            sort: CREATED_AT_SORT + ',' + DESC_SORT,
             page
         };
 
@@ -256,6 +262,15 @@ class Api {
             action: SEND_MESSAGE
         });
     }
+
+    markConversationAsRead(conversationId) {
+        const url = this.API_URL + API_MESSAGES + '/' + conversationId + API_MESSAGES_READ;
+
+        return HttpUtility.put({
+            url: url
+        });
+    }
+
 
     getTermsAndConditionsURL() {
         return this.API_URL + API_POLICIES + '/' + TERMS_AND_CONDITIONS;

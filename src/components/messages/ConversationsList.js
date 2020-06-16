@@ -15,7 +15,7 @@ function ConversationsList(props) {
         return conversations.map((conv) => {
             const recipientUsername = conv.customer.id === userId ? conv.offer.owner.username : conv.customer.username;
             return (
-                <Link to={MESSAGES + '/' + conv.id} key={conv.id} className={"link-no-styles"}>
+                <Link to={MESSAGES + '/' + conv.id} key={conv.id} className={"link-no-styles"} onClick={() => props.onConversationOpen(conv)}>
                     <ListItem className={conv.read ? null : 'conversation-unread'} button>
                         <div className={'conversation-datetime'}>
                             {formatDateToString(conv.updatedAt, true, true)}
@@ -60,6 +60,7 @@ ConversationsList.propTypes = {
     ),
     currentPage: PropTypes.number,
     totalPages: PropTypes.number,
+    onConversationOpen: PropTypes.func.isRequired,
 };
 
 export default ConversationsList;
