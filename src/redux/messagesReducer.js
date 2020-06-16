@@ -78,15 +78,6 @@ const messagesReducer = (state = initialState, action) => {
                 updatedConversationList = replaceUpdatedConversationInListIfPossible(state.content, updatedConversation);
             } else {
                 mustReload = true;
-                // const conversationStub = {id: payload.conversationId, read: false
-                //     // , messages: [{id: payload.id, content: payload.content, createdBy: payload.createdBy, read: false, createdAt: payload.createdAt}]
-                // };
-                // if(state.content) {
-                //     updatedConversationList = state.content;
-                //     updatedConversationList.unshift(conversationStub);
-                // } else {
-                //     updatedConversationList = [conversationStub];
-                // }
             }
 
             const currConv = state.currentConversation;
