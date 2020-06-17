@@ -181,3 +181,20 @@
     padding: 0;
   }
 }
+
+.signle-conversation-offer-actions {
+  margin-bottom: 8px;
+  .MuiButtonBase-root {
+    background-color: white;
+  }
+
+  .delete {
+    color: $validationErrorColor;
+    border-color: $primary;
+  }
+
+  .sell {
+    border-color: $primary;
+    color: $primary;
+  }
+}

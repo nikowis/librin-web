@@ -52,6 +52,18 @@
     "owner": {
       "myoffer": "Ta oferta należy do Ciebie"
     },
+    "sellDialog" : {
+      "title": "",
+      "content": "Sprzedaj książkę użytkownikowi {{username}}",
+      "yesText": "Sprzedaj",
+      "noText": ""
+    },
+    "deleteDialog" : {
+      "title": "",
+      "content": "",
+      "yesText": "",
+      "noText": ""
+    },
     "title": "Tytuł",
     "description": "Opis",
     "author": "Autor",
@@ -61,6 +73,8 @@
     "sendMessage": "Wyślij wiadomość",
     "createPage": "Utwórz ofertę",
     "editPage": "Edytuj ofertę",
+    "sell": "Sprzedaj temu użytkownikowi",
+    "delete": "Usuń ofertę",
     "offersPage": "Oferty",
     "myoffersPage": "Moje oferty"
   },

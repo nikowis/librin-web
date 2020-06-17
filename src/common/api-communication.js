@@ -30,7 +30,7 @@ import {
     GET_ALL_CONVERSATIONS,
     GET_CONVERSATION,
     GET_TOKEN_ACTION,
-    REGISTER_ACTION,
+    REGISTER_ACTION, SELL_OFFER,
     SEND_MESSAGE,
     UPDATE_USER
 } from "../redux/actions";
@@ -206,11 +206,13 @@ class Api {
         });
     }
 
-    offerSold(id) {
-        const url = this.API_URL + API_MY_OFFERS + '/' + id + '/' + SOLD_SUFFIX;
+    sellOffer(offerId, customerId) {
+        const url = this.API_URL + API_MY_OFFERS + '/' + offerId + '/' + SOLD_SUFFIX;
 
         return HttpUtility.put({
             url: url,
+            payload: {customerId},
+            action: SELL_OFFER
         });
     }
 
