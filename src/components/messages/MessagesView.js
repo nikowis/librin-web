@@ -14,14 +14,19 @@ import {READ_CONVERSATION} from "../../redux/actions";
 import ConversationOfferActions from "./ConversationOfferActions";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
+import {OfferStatus} from "../../common/app-constants";
+import WarningStrip from "../WarningStrip";
+import {useTranslation} from "react-i18next";
 
 function ConversationView(props) {
 
     const [loading, setLoading] = React.useState(false);
 
     const {dispatch, currentConversation, userId, history} = props;
+    const {offer} = currentConversation;
     const propId = currentConversation.id;
     let {convId} = useParams();
+    const {t} = useTranslation();
     convId = parseInt(convId);
     const invalidId = isNaN(convId);
     if (invalidId) {
@@ -91,6 +96,9 @@ function ConversationView(props) {
                                 <Divider variant="middle"/> : null}
                             <MessagesListComponent userId={userId}
                                                    currentConversation={currentConversation}/>
+                            {OfferStatus.SOLD === offer.status || OfferStatus.DELETED === offer.status ?
+                                <WarningStrip text={t('offer.status.inactiveWarn')}/> : null}
+
                             <Divider variant="fullWidth"/>
                             <SendMessageFormComponent onSendMessage={handleSendMessage}
                                                       onClick={handleMarkConversationAsRead}/>

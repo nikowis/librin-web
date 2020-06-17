@@ -1,19 +1,19 @@
 import React from 'react';
 import PropTypes from "prop-types";
 
-function OfferWarningStrip(props) {
+function WarningStrip(props) {
 
     const {text} = props;
     return (
-        <div className={'offer-warning-strip'}>
+        <div className={'warning-strip'}>
             {text}
         </div>
     );
 
 }
 
-OfferWarningStrip.propTypes = {
+WarningStrip.propTypes = {
     text: PropTypes.string.isRequired
 };
 
-export default OfferWarningStrip;
+export default WarningStrip;

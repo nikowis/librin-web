@@ -12,7 +12,7 @@ import CardActions from "@material-ui/core/CardActions/CardActions";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import {OfferStatus} from "../../common/app-constants";
-import OfferWarningStrip from "./OfferWarningStrip";
+import WarningStrip from "./../WarningStrip";
 import PhotoPreviewComponent from "../PhotoPreviewComponent";
 import UserBannerComponent from "../user/UserBannerComponent";
 
@@ -84,9 +84,9 @@ function OfferView(props) {
                                     <Button size={"small"} variant="contained" color="primary" type="submit"
                                             onClick={() => handleSendMessage()}>
                                         {t('offer.sendMessage')}
-                                    </Button> : <OfferWarningStrip text={t('offer.owner.myoffer')}/>
+                                    </Button> : <WarningStrip text={t('offer.owner.myoffer')}/>
                                 }
-                            </CardActions> : <OfferWarningStrip text={t('offer.status.inactiveWarn')}/>
+                            </CardActions> : <WarningStrip text={t('offer.status.inactiveWarn')}/>
                         }
 
                     </Card>
