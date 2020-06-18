@@ -4,8 +4,9 @@ import PropTypes from "prop-types";
 function WarningStrip(props) {
 
     const {text} = props;
+    const classNames = 'warning-strip ' + (props.type ? props.type : '');
     return (
-        <div className={'warning-strip'}>
+        <div className={classNames}>
             {text}
         </div>
     );
@@ -13,7 +14,8 @@ function WarningStrip(props) {
 }
 
 WarningStrip.propTypes = {
-    text: PropTypes.string.isRequired
+    text: PropTypes.string.isRequired,
+    type: PropTypes.string,
 };
 
 export default WarningStrip;

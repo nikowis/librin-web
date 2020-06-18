@@ -14,9 +14,7 @@ import {READ_CONVERSATION} from "../../redux/actions";
 import ConversationOfferActions from "./ConversationOfferActions";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import {OfferStatus} from "../../common/app-constants";
-import WarningStrip from "../WarningStrip";
-import {useTranslation} from "react-i18next";
+import OfferStatusInfoBanner from "../offer/OfferStatusInfoBanner";
 
 function ConversationView(props) {
 
@@ -26,15 +24,16 @@ function ConversationView(props) {
     const {offer} = currentConversation;
     const propId = currentConversation.id;
     let {convId} = useParams();
-    const {t} = useTranslation();
     convId = parseInt(convId);
     const invalidId = isNaN(convId);
     if (invalidId) {
         history.push(MESSAGES);
     }
     let recipient = null;
+    let isOfferOwner = null;
     if (currentConversation.id) {
-        recipient = userId === currentConversation.customer.id ? currentConversation.offer.owner : currentConversation.customer;
+        isOfferOwner = userId === currentConversation.offer.ownerId;
+        recipient = isOfferOwner ? currentConversation.customer : currentConversation.offer.owner;
     }
 
     const wrongConvLoaded = !propId || propId !== convId || invalidId;
@@ -96,8 +95,8 @@ function ConversationView(props) {
                                 <Divider variant="middle"/> : null}
                             <MessagesListComponent userId={userId}
                                                    currentConversation={currentConversation}/>
-                            {OfferStatus.SOLD === offer.status || OfferStatus.DELETED === offer.status ?
-                                <WarningStrip text={t('offer.status.inactiveWarn')}/> : null}
+
+                            <OfferStatusInfoBanner offer={offer} userId={userId} otherUserId={recipient.id}/>
 
                             <Divider variant="fullWidth"/>
                             <SendMessageFormComponent onSendMessage={handleSendMessage}
@@ -124,6 +123,7 @@ ConversationView.propTypes = {
                 price: PropTypes.string,
                 status: PropTypes.string,
                 ownerId: PropTypes.number,
+                soldToMe: PropTypes.bool,
                 owner: PropTypes.shape({
                     id: PropTypes.number.isRequired,
                     username: PropTypes.string.isRequired,

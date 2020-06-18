@@ -41,7 +41,7 @@ function ConversationsView(props) {
         }
     };
 
-    let prevConversationLoader = currentPage > 1 ?
+    const prevConversationLoader = currentPage > 1 ?
         <div className={'MuiButtonBase-root button'} onClick={() => loadPrevConversations()}>
             <ArrowBackIosIcon/>
             {t('messages.newer')}
@@ -51,7 +51,7 @@ function ConversationsView(props) {
             {t('messages.newer')}
         </div>;
 
-    let nextConversationLoader = currentPage >= totalPages ?
+    const nextConversationLoader = currentPage >= totalPages ?
         <div className={'MuiButtonBase-root button disabled'}>
             {t('messages.older')}
             <ArrowForwardIosIcon/>

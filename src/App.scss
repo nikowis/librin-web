@@ -57,8 +57,11 @@ button.MuiButton-outlined {
 }
 
 .warning-strip {
-  width: 100%;
   padding: 8px;
   background: lightgray;
   text-align: center;
+
+  &.success {
+    background-color: $success-transparent;
+  }
 }

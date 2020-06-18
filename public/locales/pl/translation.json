@@ -47,7 +47,12 @@
     "status": {
       "active": "Aktywna",
       "sold": "Sprzedana",
-      "inactiveWarn": "Oferta sprzedana lub usunięta"
+      "inactiveWarn": "Oferta sprzedana lub usunięta",
+      "soldToMe": "Gratulacje! Kupiłeś tę książkę",
+      "youDeleted": "Usunąłeś tą ofertę",
+      "youSold": "Sprzedałeś tę książkę",
+      "youSoldToThisUser": "Sprzedałeś tę książkę temu użytkownikowi",
+      "youDeleted": "Gratulacje! Kupiłeś tę książkę"
     },
     "owner": {
       "myoffer": "Ta oferta należy do Ciebie"
