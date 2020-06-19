@@ -28,9 +28,9 @@ function OfferView(props) {
         history.push(OFFERS);
     }
     const propId = props.currentOffer.id;
-    const {title, author, price, ownerId, status, attachment, owner} = props.currentOffer;
+    const {title, author, price, ownerId, status, attachments, owner} = props.currentOffer;
     const wrongOfferIsLoaded = !propId || propId !== id;
-
+    const attachment = attachments ? attachments[0] : null;
     useEffect(() => {
         if (!loading && !invalidId && wrongOfferIsLoaded) {
             dispatch({type: CLEAR_CURRENT_OFFER});
@@ -122,11 +122,13 @@ OfferView.propTypes = {
             ]),
             status: PropTypes.string,
             ownerId: PropTypes.number,
-            attachment: PropTypes.shape({
-                name: PropTypes.string.isRequired,
-                content: PropTypes.string.isRequired,
-                url: PropTypes.string.isRequired
-            }),
+            attachments: PropTypes.arrayOf(
+                PropTypes.shape({
+                    name: PropTypes.string.isRequired,
+                    content: PropTypes.string.isRequired,
+                    url: PropTypes.string.isRequired
+                }),
+            ),
             owner: PropTypes.shape({
                 id: PropTypes.number.isRequired,
                 username: PropTypes.string.isRequired,

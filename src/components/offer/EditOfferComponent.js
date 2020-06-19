@@ -26,7 +26,7 @@ function EditOfferComponent(props) {
                         title: offer ? offer.title : '',
                         author: offer ? offer.author : '',
                         price: offer ? offer.price : '',
-                        photo: offer ? offer.attachment : null
+                        photos: offer && offer.attachments ? offer.attachments : []
                     }}
             >
                 {({
@@ -40,8 +40,8 @@ function EditOfferComponent(props) {
                       setFieldValue
                   }) => (
                     <form onSubmit={handleSubmit}>
-                        <PhotosInputComponent setFieldValue={setFieldValue} photo={values.photo}/>
-                        {errors.photo && touched.photo ?
+                        <PhotosInputComponent setFieldValue={setFieldValue} photo={values.photos ? values.photos[0] : null}/>
+                        {errors.photos && touched.photos ?
                             (<div className={"photo-label-error"}>{t('validations.photo.required')}</div>)
                             : null
                         }

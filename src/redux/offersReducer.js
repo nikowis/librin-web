@@ -30,6 +30,9 @@ export function processOffer(offer) {
     if(offer.attachment) {
         offer.attachment = initializeAttachmentFromBase64(offer.attachment);
     }
+    if(offer.attachments) {
+        offer.attachments = offer.attachments.map(att => initializeAttachmentFromBase64(att));
+    }
     return offer;
 }
 

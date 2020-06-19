@@ -85,10 +85,12 @@ export const createOfferSchema = Yup.object().shape({
     price: Yup.string()
         .required()
         .matches(moneyRegex),
-    photo: Yup.object({
-        name: Yup.string().required().nullable(),
-        content: Yup.string().required().nullable()
-    }).required().nullable()
+    photos: Yup.array(
+        Yup.object({
+            name: Yup.string().required().nullable(),
+            content: Yup.string().required().nullable()
+        }).required().nullable()
+    ).nullable()
 });
 
 
@@ -102,10 +104,12 @@ export const editOfferSchema = Yup.object().shape({
     price: Yup.string()
         .required()
         .matches(moneyRegex),
-    photo: Yup.object({
-        name: Yup.string().required().nullable(),
-        content: Yup.string().required().nullable()
-    }).required().nullable()
+    photos: Yup.array(
+        Yup.object({
+            name: Yup.string().required().nullable(),
+            content: Yup.string().required().nullable()
+        }).required().nullable()
+    ).nullable()
 });
 
 export const deleteAccountSchema = Yup.object().shape({

@@ -7,7 +7,6 @@ import Button from "@material-ui/core/Button";
 import DeleteIcon from '@material-ui/icons/Delete';
 import {API_ERROR, CLEAR_API_ERROR} from "../redux/actions";
 import {API_ERROR_NOTIFICATION_DURATION} from "../common/app-constants";
-import {connect} from "react-redux";
 
 function PhotosInputComponent(props) {
     const {setFieldValue, photo} = props;
@@ -26,7 +25,7 @@ function PhotosInputComponent(props) {
                     return compressFile(file);
                 })
                 .then(file => {
-                    setFieldValue("photo", file);
+                    setFieldValue("photos", [file]);
                 }).catch(e => {
                     props.dispatch({
                         type: API_ERROR
@@ -62,7 +61,7 @@ function PhotosInputComponent(props) {
                     size={"small"}
                     className={'delete-button'}
                     startIcon={<DeleteIcon/>}
-                    onClick={() => setFieldValue("photo", null)}
+                    onClick={() => setFieldValue("photos", [])}
                 >
                     {t('photo.delete')}
                 </Button> : null
@@ -81,5 +80,4 @@ PhotosInputComponent.propTypes = {
     setFieldValue: PropTypes.func
 };
 
-export default connect(state => ({
-}))(PhotosInputComponent);
+export default PhotosInputComponent
