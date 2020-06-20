@@ -9,6 +9,7 @@ import {translate} from "../../common/i18n-helper";
 import Card from "@material-ui/core/Card";
 import PhotosInputComponent from "../PhotosInputComponent";
 import PropTypes from "prop-types";
+import OfferPhotosEditComponent from "./OfferPhotosEditComponent";
 
 function EditOfferComponent(props) {
 
@@ -40,7 +41,7 @@ function EditOfferComponent(props) {
                       setFieldValue
                   }) => (
                     <form onSubmit={handleSubmit}>
-                        <PhotosInputComponent setFieldValue={setFieldValue} photo={values.photos ? values.photos[0] : null}/>
+                        <OfferPhotosEditComponent photos={values.photos} setFieldValue={setFieldValue}/>
                         {errors.photos && touched.photos ?
                             (<div className={"photo-label-error"}>{t('validations.photo.required')}</div>)
                             : null
@@ -112,11 +113,13 @@ EditOfferComponent.propTypes = {
             PropTypes.string,
             PropTypes.number
         ]),
-        attachment: PropTypes.shape({
-            name: PropTypes.string.isRequired,
-            content: PropTypes.string.isRequired,
-            url: PropTypes.string.isRequired
-        }),
+        attachments: PropTypes.arrayOf(
+            PropTypes.shape({
+                name: PropTypes.string.isRequired,
+                content: PropTypes.string.isRequired,
+                url: PropTypes.string.isRequired
+            }),
+        ),
     }),
     handleSubmit: PropTypes.func.isRequired
 };

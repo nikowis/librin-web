@@ -18,16 +18,31 @@
   }
 }
 
-.photo-input-component {
-  .delete-button {
-    color: $photoErrorColor;
-    padding: 0;
+.offer-photos-edit-component {
+
+  display: flex;
+  flex-direction: row;
+
+  .offer-single-photo-edit-component{
+
+      .photoPreview {
+        width: 100px;
+        height: 100px;
+        margin: 8px;
+      }
   }
 }
-
-.photo-label-error {
-  color: $validationErrorColor;
-}
+//
+//.photo-input-component {
+//  .delete-button {
+//    color: $photoErrorColor;
+//    padding: 0;
+//  }
+//}
+//
+//.photo-label-error {
+//  color: $validationErrorColor;
+//}
 
 .centeredContainer {
   display: flex;
