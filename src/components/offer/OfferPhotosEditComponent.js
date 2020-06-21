@@ -20,7 +20,6 @@ function OfferPhotosEditComponent(props) {
                 })
                 .then(file => {
                     photos[idx] = file;
-                    photos[0].main = true;
                     setFieldValue("photos", photos);
                 }).catch(e => {
                     handlePhotoError(e);
@@ -29,15 +28,23 @@ function OfferPhotosEditComponent(props) {
         })
     };
 
+    const handleRemovePhoto = (idx) => {
+        photos.splice(idx, 1);
+        setFieldValue("photos", photos);
+    };
+
     const photosInputs = photos ? photos.map((photo, idx) => {
         return (
-            <OfferSinglePhotoEditComponent key={idx} photo={photo} index={idx} onFileUpload={handleUploadFile}/>
+            <OfferSinglePhotoEditComponent key={idx} photo={photo} index={idx}
+                                           onFileUpload={handleUploadFile}
+                                            onRemovePhoto={handleRemovePhoto}
+            />
         )
     }) : [];
 
     if (photosInputs.length < 3) {
         photosInputs.push(<OfferSinglePhotoEditComponent key={photosInputs.length} index={photosInputs.length}
-                                                         onFileUpload={handleUploadFile}/>);
+                                                         onFileUpload={handleUploadFile} onRemovePhoto={()=>{}}/>);
     }
 
     return (
