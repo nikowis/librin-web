@@ -3,7 +3,7 @@ import {
     FULFILLED,
     GET_ALL_CONVERSATIONS,
     GET_CONVERSATION,
-    READ_CONVERSATION,
+    READ_CONVERSATION, SELL_OFFER,
     SEND_MESSAGE,
     WS_UPDATE_CONVERSATION
 } from "./actions";
@@ -119,6 +119,7 @@ const messagesReducer = (state = initialState, action) => {
             };
         }
         case CREATE_CONVERSATION + FULFILLED:
+        case SELL_OFFER + FULFILLED:
             return initialState;
         default:
             return state
