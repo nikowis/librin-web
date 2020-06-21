@@ -1,15 +1,11 @@
 import React from 'react';
-import {useTranslation} from "react-i18next";
 import PropTypes from "prop-types";
 import {compressFile, loadFileToAttachmentObject, validateFile} from "../../common/attachment-utility";
-import {API_ERROR, CLEAR_API_ERROR} from "../../redux/actions";
-import {API_ERROR_NOTIFICATION_DURATION} from "../../common/app-constants";
 import OfferSinglePhotoEditComponent from "./OfferSinglePhotoEditComponent";
+import {InputLabel} from "@material-ui/core";
 
 function OfferPhotosEditComponent(props) {
-    const {setFieldValue, photos} = props;
-
-    const {t} = useTranslation();
+    const {setFieldValue, photos, handlePhotoError} = props;
 
     const handleUploadFile = (e, idx) => {
         const files = e.target.files;
@@ -24,21 +20,14 @@ function OfferPhotosEditComponent(props) {
                 })
                 .then(file => {
                     photos[idx] = file;
+                    photos[0].main = true;
                     setFieldValue("photos", photos);
                 }).catch(e => {
-                    props.dispatch({
-                        type: API_ERROR
-                        , payload: t(e.message)
-                    });
-                    setTimeout(() => {
-                        props.dispatch({type: CLEAR_API_ERROR})
-                    }, API_ERROR_NOTIFICATION_DURATION);
+                    handlePhotoError(e);
                 }
             );
         })
     };
-
-    let photoIdx = 0;
 
     const photosInputs = photos ? photos.map((photo, idx) => {
         return (
@@ -46,14 +35,20 @@ function OfferPhotosEditComponent(props) {
         )
     }) : [];
 
-    if(photosInputs.length < 3) {
-        photosInputs.push(<OfferSinglePhotoEditComponent key={photosInputs.length} index={photosInputs.length} onFileUpload={handleUploadFile}/>);
+    if (photosInputs.length < 3) {
+        photosInputs.push(<OfferSinglePhotoEditComponent key={photosInputs.length} index={photosInputs.length}
+                                                         onFileUpload={handleUploadFile}/>);
     }
 
     return (
-        <div className={'offer-photos-edit-component'}>
-            {photosInputs}
-        </div>
+        <>
+            <InputLabel className={'offer-photos-edit-component-label'}>
+                Dodaj do 3 zdjęć
+            </InputLabel>
+            <div className={'offer-photos-edit-component'}>
+                {photosInputs}
+            </div>
+        </>
     )
 }
 
@@ -65,7 +60,8 @@ OfferPhotosEditComponent.propTypes = {
             url: PropTypes.string.isRequired
         }),
     ),
-    setFieldValue: PropTypes.func
+    setFieldValue: PropTypes.func.isRequired,
+    handlePhotoError: PropTypes.func.isRequired,
 };
 
-export default OfferPhotosEditComponent
+export default OfferPhotosEditComponent;

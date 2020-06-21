@@ -80,7 +80,9 @@
     "sell": "Sprzedaj temu użytkownikowi",
     "delete": "Usuń ofertę",
     "offersPage": "Oferty",
-    "myoffersPage": "Moje oferty"
+    "myoffersPage": "Moje oferty",
+    "editPageTitle": "Edycja oferty",
+    "createPageTitle": "Sprzedaj książkę"
   },
   "gpdr": {
     "cookieAcceptButtonText": "Akceptuję",
@@ -98,7 +100,7 @@
     "passwordRegexFormat": "Min. 8 znaków, bez spacji, w tym jedna litera i jedna cyfra",
     "photo": {
       "tooBig": "Zdjęcie jest za duże",
-      "required": "Zdjęcie jest wymagane",
+      "required": "Co najmniej jedno zdjęcie jest wymagane",
       "wrongExtension": "Niedopuszczalne rozszerzenie pliku"
     }
   },

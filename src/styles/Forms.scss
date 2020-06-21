@@ -5,6 +5,7 @@
   background-color: $secondary-shadow;
   margin: 2px 40px;
   height: 300px;
+
   img {
     max-height: 300px;
     height: auto;
@@ -18,31 +19,54 @@
   }
 }
 
+.offer-photos-edit-component-label {
+  &.MuiInputLabel-root {
+    text-align: left;
+    font-size: 16px;
+  }
+}
+
 .offer-photos-edit-component {
 
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
+  border: 1px $primary-light dashed;
+  padding: 4px;
 
-  .offer-single-photo-edit-component{
+  .offer-single-photo-edit-component {
+    height: 120px;
+    width: 92px;
+    margin: 4px;
 
-      .photoPreview {
-        width: 100px;
-        height: 100px;
-        margin: 8px;
-      }
+
+    .photo-edit-preview {
+      background-color: $secondary;
+      border: 1px lightgray solid;
+      height: 100%;
+    }
+
+    .background-img {
+      background-color: unset;
+      width: 100%;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-size: 100% auto;
+      background-position: center;
+      border: 1px lightgray solid;
+    }
+
+    .MuiSvgIcon-root {
+      color: rgba(0, 0, 0, 0.87);
+    }
   }
 }
-//
-//.photo-input-component {
-//  .delete-button {
-//    color: $photoErrorColor;
-//    padding: 0;
-//  }
-//}
-//
-//.photo-label-error {
-//  color: $validationErrorColor;
-//}
+
+
+.photo-label-error {
+  color: $validationErrorColor;
+  font-size: 16px;
+}
 
 .centeredContainer {
   display: flex;
@@ -53,7 +77,8 @@
 .form-container {
   max-width: 350px;
   margin: auto;
+
   form {
-    padding: 8px 16px;
+    padding: 8px 8px;
   }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import PhotoPreviewComponent from "./../PhotoPreviewComponent";
+import AddIcon from '@material-ui/icons/Add';
 
 function OfferSinglePhotoEditComponent(props) {
     const {onFileUpload, photo, index} = props;
@@ -17,9 +17,17 @@ function OfferSinglePhotoEditComponent(props) {
                 }}
                 type="file"
             />
-            <label htmlFor={inputId}>
-                <PhotoPreviewComponent photo={photo}/>
-            </label>
+            {photo && photo.url ?
+                <div className={'background-img'} style={{backgroundImage: "url(" + photo.url + ")"}}>
+
+                </div>
+                : <label htmlFor={inputId}>
+                    <div className={'photo-edit-preview centeredContainer'}>
+                        <AddIcon/>
+                    </div>
+                </label>
+            }
+
         </div>
     )
 }
@@ -31,7 +39,7 @@ OfferSinglePhotoEditComponent.propTypes = {
         url: PropTypes.string.isRequired
     }),
     onFileUpload: PropTypes.func.isRequired,
-    idx: PropTypes.number.isRequired
+    index: PropTypes.number.isRequired
 };
 
 export default OfferSinglePhotoEditComponent
