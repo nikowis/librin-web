@@ -7,6 +7,8 @@ import {HIDE_NOTIFICATION, OFFER_CREATED, SHOW_NOTIFICATION} from "../../redux/a
 import {MY_OFFERS} from "../../common/paths";
 import {NOTIFICATION_DURATION} from "../../common/app-constants";
 import EditOfferComponent from "./EditOfferComponent";
+import Paper from "@material-ui/core/Paper/Paper";
+import Typography from "@material-ui/core/Typography";
 
 function CreateOfferView(props) {
 
@@ -32,7 +34,12 @@ function CreateOfferView(props) {
     };
 
     return (
-       <EditOfferComponent offer={null} handleSubmit={handleSubmit}/>
+        <Paper className={'form-container'}>
+            <Typography variant="h6">
+                {t('offer.createPageTitle')}
+            </Typography>
+            <EditOfferComponent offer={null} handleSubmit={handleSubmit}/>
+        </Paper>
     );
 }
 

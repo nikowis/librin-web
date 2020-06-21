@@ -9,6 +9,8 @@ import PropTypes from "prop-types";
 import LoaderComponent from "../LoaderComponent";
 import {MY_OFFERS} from "../../common/paths";
 import EditOfferComponent from "./EditOfferComponent";
+import Paper from "@material-ui/core/Paper/Paper";
+import Typography from "@material-ui/core/Typography";
 
 function EditOfferView(props) {
 
@@ -44,7 +46,12 @@ function EditOfferView(props) {
 
     const getView = () => {
         return (
-            <EditOfferComponent offer={offer} handleSubmit={handleSubmit}/>
+            <Paper className={'form-container'}>
+                <Typography variant="h6">
+                    {t('offer.editPageTitle')}
+                </Typography>
+                <EditOfferComponent offer={offer} handleSubmit={handleSubmit}/>
+            </Paper>
         );
     };
 
