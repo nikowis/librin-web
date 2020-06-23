@@ -60,14 +60,12 @@ function OfferView(props) {
     const getView = () => {
         return (
             <Grid container className={'offer-view'} spacing={1} justify={'center'}>
-                {attachments && attachments.length > 0 ?
-                    <OfferPhotosViewComponent photos={attachments}/>
-                    : <EmptyPhotoPreviewComponent/>}
+
                 <Grid item xs={12} sm={8} md={imagesGridSize}>
-                    <div className={'offer-view'}>
-                        {attachment ? <img src={attachment.url} alt={"Offer"}/>
-                        : <EmptyPhotoPreviewComponent edit={false}/>}
-                    </div>
+                    {attachments && attachments.length > 0 ?
+                        <OfferPhotosViewComponent photos={attachments}/>
+                        : <EmptyPhotoPreviewComponent/>
+                    }
                 </Grid>
                 <Grid item xs={12} sm={8} md={4}>
                     <Card className={'offer-card-details'}>

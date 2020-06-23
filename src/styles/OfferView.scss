@@ -17,6 +17,18 @@
     border: 1px lightgray solid;
   }
 
+  .photos-preview {
+    height: 35vh;
+    min-height: 200px;
+    max-height: 350px;
+    .background-img {
+      background-size: cover;
+    }
+    .double-photo {
+      height: inherit;
+    }
+  }
+
   .MuiCardActions-root {
     padding-left: 0;
     padding-right: 0;

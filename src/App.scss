@@ -65,3 +65,20 @@ button.MuiButton-outlined {
     background-color: $success-transparent;
   }
 }
+
+
+.background-img {
+  background-color: unset;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: center;
+  border: 1px lightgray solid;
+  position: relative;
+
+  .remove-button {
+    position: absolute;
+    right: 0;
+  }
+}
