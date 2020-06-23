@@ -13,8 +13,10 @@ import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import {OfferStatus} from "../../common/app-constants";
 import WarningStrip from "./../WarningStrip";
-import PhotoPreviewComponent from "../PhotoPreviewComponent";
+import EmptyPhotoPreviewComponent from "../EmptyPhotoPreviewComponent";
 import UserBannerComponent from "../user/UserBannerComponent";
+import OfferPhotosViewComponent from "./OfferPhotosViewComponent";
+import { Grid } from '@material-ui/core';
 
 function OfferView(props) {
 
@@ -53,12 +55,21 @@ function OfferView(props) {
         }
     };
 
+    const imagesGridSize = attachments && attachments.length > 1 ? 6 : 4
+
     const getView = () => {
         return (
-            <div className={'offer-view'}>
-                {attachment ? <img src={attachment.url} alt={"Offer"}/>
-                    : <PhotoPreviewComponent edit={false}/>}
-                <Container maxWidth={'xs'}>
+            <Grid container className={'offer-view'} spacing={1} justify={'center'}>
+                {attachments && attachments.length > 0 ?
+                    <OfferPhotosViewComponent photos={attachments}/>
+                    : <EmptyPhotoPreviewComponent/>}
+                <Grid item xs={12} sm={8} md={imagesGridSize}>
+                    <div className={'offer-view'}>
+                        {attachment ? <img src={attachment.url} alt={"Offer"}/>
+                        : <EmptyPhotoPreviewComponent edit={false}/>}
+                    </div>
+                </Grid>
+                <Grid item xs={12} sm={8} md={4}>
                     <Card className={'offer-card-details'}>
                         <div className={'primary-text'}>
                             <label htmlFor={'price'}>Cena</label>
@@ -78,7 +89,7 @@ function OfferView(props) {
                             {author}
                         </span>
                         </div>
-                        {OfferStatus.ACTIVE === status ?
+                        {OfferStatus.ACTIVE === status ? 
                             <CardActions>
                                 {ownerId !== props.userId ?
                                     <Button size={"small"} variant="contained" color="primary" type="submit"
@@ -95,8 +106,8 @@ function OfferView(props) {
                             <UserBannerComponent username={owner.username}/>
                         </Link>
                     </Card>
-                </Container>
-            </div>
+                </Grid>
+            </Grid>
         );
     };
 

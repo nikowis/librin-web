@@ -5,7 +5,7 @@ import CardHeader from "@material-ui/core/CardHeader";
 import Card from "@material-ui/core/Card";
 import Chip from "@material-ui/core/Chip";
 import {Link} from "react-router-dom";
-import PhotoPreviewComponent from "../PhotoPreviewComponent";
+import EmptyPhotoPreviewComponent from "../EmptyPhotoPreviewComponent";
 import UserInfoChipLink from "./UserInfoChipLink";
 
 function OfferCard(props) {
@@ -35,7 +35,7 @@ function OfferCard(props) {
             />
             <Link to={props.link} className={'offer-card-image'}>
                 {offer.attachment ?<img src={offer.attachment.url} alt={"Offer"}/>
-                : <PhotoPreviewComponent edit={false}/>}
+                : <EmptyPhotoPreviewComponent/>}
             </Link>
         </Card>
     );

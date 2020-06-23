@@ -3,33 +3,24 @@ import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 import PropTypes from "prop-types";
 import {useTranslation} from "react-i18next";
 
-function PhotoPreviewComponent(props) {
-    const {photo} = props;
-
-    const {t} = useTranslation();
+function OfferPhotosViewComponent(props) {
+    const {photos} = props;
 
     return (
-        <div className={'photoPreview centeredContainer'}>
-            {photo && photo.url ?
-                <img src={photo.url} alt={"Offer"}/>
-                : <>
-                    <PhotoCameraIcon/>
-                    {props.edit ? <div>
-                        {t('photo.upload')}
-                    </div> : null}
-                </>
-            }
+        <div className={'photo-preview'}>
+
         </div>
     )
 }
 
-PhotoPreviewComponent.propTypes = {
-    photo: PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        content: PropTypes.string.isRequired,
-        url: PropTypes.string.isRequired
-    }),
-    edit: PropTypes.bool
+OfferPhotosViewComponent.propTypes = {
+    photos: PropTypes.arrayOf(
+        PropTypes.shape({
+            name: PropTypes.string.isRequired,
+            content: PropTypes.string.isRequired,
+            url: PropTypes.string.isRequired
+        }),
+    ),
 };
 
-export default PhotoPreviewComponent;
+export default OfferPhotosViewComponent;
