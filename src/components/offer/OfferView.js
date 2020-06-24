@@ -14,7 +14,7 @@ import {OfferStatus} from "../../common/app-constants";
 import WarningStrip from "./../WarningStrip";
 import EmptyPhotoPreviewComponent from "../EmptyPhotoPreviewComponent";
 import UserBannerComponent from "../user/UserBannerComponent";
-import OfferPhotosViewComponent from "./OfferPhotosViewComponent";
+import OfferPhotosComponent from "./OfferPhotosComponent";
 import { Grid } from '@material-ui/core';
 
 function OfferView(props) {
@@ -61,7 +61,7 @@ function OfferView(props) {
 
                 <Grid item xs={12} sm={8} md={imagesGridSize}>
                     {attachments && attachments.length > 0 ?
-                        <OfferPhotosViewComponent photos={attachments}/>
+                        <OfferPhotosComponent photos={attachments}/>
                         : <EmptyPhotoPreviewComponent/>
                     }
                 </Grid>

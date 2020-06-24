@@ -11,21 +11,49 @@
     margin: auto auto 8px;
   }
 
-  img {
-    max-width: 300px;
-    height: auto;
-    border: 1px lightgray solid;
-  }
-
   .photos-preview {
-    height: 35vh;
+    height: 40vh;
     min-height: 200px;
     max-height: 350px;
+    justify-content: flex-end;
+    @media (max-width: 969px) {
+      justify-content: center;
+    }
+    @media (max-width: 599px) {
+      height: 35vh;
+    }
+    .MuiGrid-item {
+      max-width: 250px;
+    }
     .background-img {
       background-size: cover;
+      cursor: pointer;
     }
     .double-photo {
       height: inherit;
+    }
+  }
+
+  .MuiBackdrop-root{
+    background-color: rgba(0, 0, 0, 0.8);
+    .fullscreen-photo {
+      height: 60vh;
+      width: 60vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      @media (max-width: 959px) {
+        height: 80vh;
+        width: 80vw;
+      }
+
+      .background-img {
+        height: 100%;
+        width: 100%;
+        background-size: contain;
+        border:none;
+      }
     }
   }
 
