@@ -9,7 +9,6 @@ import Card from "@material-ui/core/Card/Card";
 import {CLEAR_CURRENT_OFFER} from "../../redux/actions";
 import {LOGIN, MESSAGES, OFFERS, USERS} from "../../common/paths";
 import CardActions from "@material-ui/core/CardActions/CardActions";
-import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import {OfferStatus} from "../../common/app-constants";
 import WarningStrip from "./../WarningStrip";
@@ -32,7 +31,6 @@ function OfferView(props) {
     const propId = props.currentOffer.id;
     const {title, author, price, ownerId, status, attachments, owner} = props.currentOffer;
     const wrongOfferIsLoaded = !propId || propId !== id;
-    const attachment = attachments ? attachments[0] : null;
     useEffect(() => {
         if (!loading && !invalidId && wrongOfferIsLoaded) {
             dispatch({type: CLEAR_CURRENT_OFFER});
