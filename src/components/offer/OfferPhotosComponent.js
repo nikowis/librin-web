@@ -7,14 +7,6 @@ function OfferPhotosComponent(props) {
     const [open, setOpen] = React.useState(false);
     const [index, setIndex] = React.useState(0);
 
-    const handleNext = () => {
-        setIndex(0);
-    };
-
-    const handlePrev = () => {
-        setIndex(0);
-    };
-
     const handleClose = () => {
         setOpen(false);
     };
