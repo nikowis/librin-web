@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import {Link, useParams, withRouter} from 'react-router-dom';
 import MessagesListComponent from "./MessagesListComponent";
-import Card from "@material-ui/core/Card/Card";
 import Api from "../../common/api-communication";
 import SendMessageFormComponent from "./SendMessageFormComponent";
 import ConversationOfferPreviewComponent from "./ConversationOfferPreviewComponent";
@@ -15,6 +14,8 @@ import ConversationOfferActions from "./ConversationOfferActions";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import OfferStatusInfoBanner from "../offer/OfferStatusInfoBanner";
+import { Paper } from '@material-ui/core';
+import {PAPER_ELEVATION} from './../../common/app-constants'
 
 function ConversationView(props) {
 
@@ -79,7 +80,7 @@ function ConversationView(props) {
                     null
             }
 
-            <Card className={'single-conversation-view'}>
+            <Paper elevation={PAPER_ELEVATION} square className={'single-conversation-view'}>
                 {
                     !wrongConvLoaded && currentConversation.id ?
                         <>
@@ -104,7 +105,7 @@ function ConversationView(props) {
                         </> :
                         <LoaderComponent/>
                 }
-            </Card>
+            </Paper>
         </MaxWidthContainer>
     );
 }

@@ -1,12 +1,13 @@
-import React from 'react';
-import {withRouter} from "react-router-dom";
-import {connect} from "react-redux";
-import {useTranslation} from 'react-i18next';
-import Card from "@material-ui/core/Card";
-import Api from "../../common/api-communication";
-import ChangePasswordForm from "./ChangePasswordForm";
+import { Paper } from '@material-ui/core';
 import Button from "@material-ui/core/Button";
-import {PROFILE} from "../../common/paths";
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import Api from "../../common/api-communication";
+import { PAPER_ELEVATION } from '../../common/app-constants';
+import { PROFILE } from "../../common/paths";
+import ChangePasswordForm from "./ChangePasswordForm";
 
 
 function ChangProfilePasswordView(props) {
@@ -27,7 +28,7 @@ function ChangProfilePasswordView(props) {
     };
 
     return (
-        <Card>
+        <Paper elevation={PAPER_ELEVATION} square>
             <div>
                 {t('user.password.change')}
             </div>
@@ -42,7 +43,7 @@ function ChangProfilePasswordView(props) {
                 </> :
                 <ChangePasswordForm onSubmit={handleSubmit}/>
             }
-        </Card>
+        </Paper>
     );
 }
 

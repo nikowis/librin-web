@@ -1,13 +1,13 @@
+import { Button, Paper, TextField } from "@material-ui/core";
+import { Formik } from "formik";
 import React from 'react';
-import {withRouter} from "react-router-dom";
-import {connect} from "react-redux";
-import {useTranslation} from 'react-i18next';
-import Card from "@material-ui/core/Card";
+import { useTranslation } from 'react-i18next';
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import Api from "../../common/api-communication";
-import {Formik} from "formik";
-import {generateResetPasswordSchema} from "../../common/validation-schemas";
-import {Button, TextField} from "@material-ui/core";
-import {translate} from "../../common/i18n-helper";
+import { PAPER_ELEVATION } from '../../common/app-constants';
+import { translate } from "../../common/i18n-helper";
+import { generateResetPasswordSchema } from "../../common/validation-schemas";
 
 
 function GeneratePasswordResetView(props) {
@@ -26,7 +26,7 @@ function GeneratePasswordResetView(props) {
     };
 
     return (
-        <Card>
+        <Paper elevation={PAPER_ELEVATION} square>
             <div>
                 {t('user.password.generatePasswordTokenLink')}
             </div>
@@ -69,7 +69,7 @@ function GeneratePasswordResetView(props) {
                     )}
                 </Formik>
             }
-        </Card>
+        </Paper>
     );
 }
 

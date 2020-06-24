@@ -1,15 +1,15 @@
-import React from 'react';
-import {Link, Redirect} from "react-router-dom";
-import Api from "../../common/api-communication";
-import {connect} from "react-redux";
-import {GENERATE_PASSWORD_RESET, OFFERS} from "../../common/paths";
-import {Formik} from 'formik';
-import {Button, TextField} from '@material-ui/core';
-import {loginSchema} from "../../common/validation-schemas";
-import {useTranslation} from "react-i18next";
+import { Button, Paper, TextField } from '@material-ui/core';
+import { Formik } from 'formik';
 import PropTypes from "prop-types";
-import Card from "@material-ui/core/Card";
-import {translate} from "../../common/i18n-helper";
+import React from 'react';
+import { useTranslation } from "react-i18next";
+import { connect } from "react-redux";
+import { Link, Redirect } from "react-router-dom";
+import Api from "../../common/api-communication";
+import { PAPER_ELEVATION } from '../../common/app-constants';
+import { translate } from "../../common/i18n-helper";
+import { GENERATE_PASSWORD_RESET, OFFERS } from "../../common/paths";
+import { loginSchema } from "../../common/validation-schemas";
 
 function LoginView(props) {
 
@@ -27,7 +27,7 @@ function LoginView(props) {
     }
 
     return (
-        <Card>
+        <Paper elevation={PAPER_ELEVATION} square>
             <Formik validationSchema={loginSchema}
                     onSubmit={handleSubmit}
                     initialValues={{
@@ -80,7 +80,7 @@ function LoginView(props) {
             <Link to={GENERATE_PASSWORD_RESET}>
                 {t('user.password.generatePasswordTokenLink')}
             </Link>
-        </Card>
+        </Paper>
     );
 
 }

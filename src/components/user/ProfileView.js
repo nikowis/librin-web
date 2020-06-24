@@ -1,21 +1,20 @@
-import React, {useEffect} from 'react';
-
-import {withRouter} from "react-router-dom";
-import {connect} from "react-redux";
-
-import Api from "../../common/api-communication";
-import {profileSchema} from "../../common/validation-schemas";
-import {useTranslation} from 'react-i18next';
-import {Formik} from 'formik';
-import {HIDE_NOTIFICATION, SHOW_NOTIFICATION, UPDATE_USER} from "../../redux/actions";
-import PropTypes from "prop-types";
-import {NOTIFICATION_DURATION} from "../../common/app-constants";
-import {TextField} from "@material-ui/core";
+import { Paper, TextField } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
+import { Formik } from 'formik';
+import PropTypes from "prop-types";
+import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import Api from "../../common/api-communication";
+import { NOTIFICATION_DURATION, PAPER_ELEVATION } from "../../common/app-constants";
+import { translate } from "../../common/i18n-helper";
+import { PROFILE_CHANGE_PASSWORD } from "../../common/paths";
+import { profileSchema } from "../../common/validation-schemas";
+import { HIDE_NOTIFICATION, SHOW_NOTIFICATION, UPDATE_USER } from "../../redux/actions";
 import DeleteAccountComponent from "./DeleteAccountComponent";
-import {translate} from "../../common/i18n-helper";
-import {PROFILE_CHANGE_PASSWORD} from "../../common/paths";
+
+
 
 function ProfileView(props) {
 
@@ -46,7 +45,7 @@ function ProfileView(props) {
     };
 
     return (
-        <Card className={'form-container'}>
+        <Paper elevation={PAPER_ELEVATION} square className={'form-container'}>
             <Formik validationSchema={profileSchema} onSubmit={handleSubmit} enableReinitialize={true}
                     initialValues={{
                         id: props.id,
@@ -134,7 +133,7 @@ function ProfileView(props) {
                 {t('user.password.change')}
             </Button>
             <DeleteAccountComponent/>
-        </Card>
+        </Paper>
     );
 
 }

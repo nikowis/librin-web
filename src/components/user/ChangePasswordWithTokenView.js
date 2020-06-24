@@ -1,9 +1,10 @@
+import { Paper } from '@material-ui/core';
 import React from 'react';
-import {useParams, withRouter} from "react-router-dom";
-import {connect} from "react-redux";
-import {useTranslation} from 'react-i18next';
-import Card from "@material-ui/core/Card";
+import { useTranslation } from 'react-i18next';
+import { connect } from "react-redux";
+import { useParams, withRouter } from "react-router-dom";
 import Api from "../../common/api-communication";
+import { PAPER_ELEVATION } from '../../common/app-constants';
 import ChangePasswordForm from "./ChangePasswordForm";
 
 
@@ -27,7 +28,7 @@ function ChangePasswordWithTokenView(props) {
     };
 
     return (
-        <Card>
+        <Paper elevation={PAPER_ELEVATION} square>
             <div>
                 {t('user.password.change')}
             </div>
@@ -37,7 +38,7 @@ function ChangePasswordWithTokenView(props) {
                 </div> :
                 <ChangePasswordForm onSubmit={handleSubmit}/>
             }
-        </Card>
+        </Paper>
     );
 }
 

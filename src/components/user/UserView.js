@@ -1,15 +1,16 @@
-import React, {useEffect} from 'react';
-
-import {useParams, withRouter} from "react-router-dom";
-import {connect} from "react-redux";
-import Card from "@material-ui/core/Card";
-import Api from "../../common/api-communication";
-import {CLEAR_CURRENT_USER} from "../../redux/actions";
-import LoaderComponent from "../LoaderComponent";
-import UserBannerComponent from "./UserBannerComponent";
+import { Paper } from '@material-ui/core';
 import PropTypes from "prop-types";
+import React, { useEffect } from 'react';
+import { connect } from "react-redux";
+import { useParams, withRouter } from "react-router-dom";
+import Api from "../../common/api-communication";
+import { PAPER_ELEVATION } from '../../common/app-constants';
+import { OFFERS } from "../../common/paths";
+import { CLEAR_CURRENT_USER } from "../../redux/actions";
+import LoaderComponent from "../LoaderComponent";
 import OffersPaginatedGrid from "../offer/OffersPaginatedGrid";
-import {OFFERS} from "../../common/paths";
+import UserBannerComponent from "./UserBannerComponent";
+
 
 function UserView(props) {
 
@@ -46,11 +47,11 @@ function UserView(props) {
 
     return (
         <>
-            {wrongUserIsLoaded ? <Card><LoaderComponent/></Card> :
+            {wrongUserIsLoaded ? <LoaderComponent/> :
                 <>
-                    <Card className={'user-info-card'}>
+                    <Paper elevation={PAPER_ELEVATION} square className={'user-info-card'}>
                         <UserBannerComponent username={username}/>
-                    </Card>
+                    </Paper>
                     <OffersPaginatedGrid offers={offers} currentPage={currentPage} totalPages={totalPages}
                                          currentLoadedSearch={currentLoadedSearch} loadOffers={loadOffers}
                                          offerLinkBase={OFFERS}/>

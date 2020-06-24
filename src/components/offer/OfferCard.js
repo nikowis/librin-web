@@ -7,6 +7,7 @@ import Chip from "@material-ui/core/Chip";
 import {Link} from "react-router-dom";
 import EmptyPhotoPreviewComponent from "../EmptyPhotoPreviewComponent";
 import UserInfoChipLink from "./UserInfoChipLink";
+import {PAPER_ELEVATION} from './../../common/app-constants'
 
 function OfferCard(props) {
 
@@ -17,7 +18,7 @@ function OfferCard(props) {
     const status = offer.status.toLowerCase();
 
     return (
-        <Card className={'offer-card'}>
+        <Card elevation={PAPER_ELEVATION} square className={'offer-card'}>
             <CardHeader
                 title={
                     <div className={'limit-text-lines two-line'}>

@@ -10,7 +10,7 @@ import {CLEAR_CURRENT_OFFER} from "../../redux/actions";
 import {LOGIN, MESSAGES, OFFERS, USERS} from "../../common/paths";
 import CardActions from "@material-ui/core/CardActions/CardActions";
 import Button from "@material-ui/core/Button";
-import {OfferStatus} from "../../common/app-constants";
+import {OfferStatus, PAPER_ELEVATION} from "../../common/app-constants";
 import WarningStrip from "./../WarningStrip";
 import EmptyPhotoPreviewComponent from "../EmptyPhotoPreviewComponent";
 import UserBannerComponent from "../user/UserBannerComponent";
@@ -66,7 +66,7 @@ function OfferView(props) {
                     }
                 </Grid>
                 <Grid item xs={12} sm={8} md={4}>
-                    <Card className={'offer-card-details'}>
+                    <Card elevation={PAPER_ELEVATION} square className={'offer-card-details'}>
                         <div className={'primary-text'}>
                             <label htmlFor={'price'}>Cena</label>
                             <span id={'price'}>
@@ -97,7 +97,7 @@ function OfferView(props) {
                         }
 
                     </Card>
-                    <Card className={'user-details'}>
+                    <Card elevation={PAPER_ELEVATION} square className={'user-details'}>
                         <Link to={USERS + '/' + owner.id} className={'link-no-styles'}>
                             <UserBannerComponent username={owner.username}/>
                         </Link>

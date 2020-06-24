@@ -1,19 +1,20 @@
-import React, {useEffect} from 'react';
-import {withRouter} from 'react-router-dom';
-import {connect} from "react-redux";
-import ConversationsList from "./ConversationsList";
-import Card from "@material-ui/core/Card/Card";
-import Api from "../../common/api-communication";
-import PropTypes from "prop-types";
-import List from "@material-ui/core/List";
-import LoaderComponent from "../LoaderComponent";
-import {useTranslation} from "react-i18next";
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import ListSubheader from "@material-ui/core/ListSubheader";
-import MaxWidthContainer from "../MaxWidthContainer";
-import {READ_CONVERSATION} from "../../redux/actions";
+import { Paper } from '@material-ui/core';
 import Divider from "@material-ui/core/Divider";
+import List from "@material-ui/core/List";
+import ListSubheader from "@material-ui/core/ListSubheader";
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import PropTypes from "prop-types";
+import React, { useEffect } from 'react';
+import { useTranslation } from "react-i18next";
+import { connect } from "react-redux";
+import { withRouter } from 'react-router-dom';
+import Api from "../../common/api-communication";
+import { PAPER_ELEVATION } from '../../common/app-constants';
+import { READ_CONVERSATION } from "../../redux/actions";
+import LoaderComponent from "../LoaderComponent";
+import MaxWidthContainer from "../MaxWidthContainer";
+import ConversationsList from "./ConversationsList";
 
 function ConversationsView(props) {
 
@@ -64,7 +65,7 @@ function ConversationsView(props) {
 
     return (
         <MaxWidthContainer size={'sm'}>
-            <Card className={'conversations-view'}>
+            <Paper elevation={PAPER_ELEVATION} square className={'conversations-view'}>
                 {
                     conversations && !mustReload ?
                         <List subheader={<ListSubheader>{t('messages.conversationsList')}</ListSubheader>}>
@@ -79,7 +80,7 @@ function ConversationsView(props) {
                         </List>
                         : <LoaderComponent/>
                 }
-            </Card>
+            </Paper>
         </MaxWidthContainer>
     );
 }

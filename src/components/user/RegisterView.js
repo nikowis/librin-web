@@ -1,29 +1,28 @@
-import React from 'react';
-import {Redirect, withRouter} from "react-router-dom";
-import {connect} from "react-redux";
-import Api from "../../common/api-communication";
-import {registerSchema} from "../../common/validation-schemas";
-import {useTranslation} from 'react-i18next';
-import {Formik} from 'formik';
-import {LOGIN, OFFERS} from "../../common/paths";
-import PropTypes from "prop-types";
-import {HIDE_NOTIFICATION, SHOW_NOTIFICATION} from "../../redux/actions";
-import {NOTIFICATION_DURATION} from "../../common/app-constants";
-import {TextField} from "@material-ui/core";
+import { Paper, TextField } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import RegisterConsentComponent from "./RegisterConsentComponent";
-import {translate} from "../../common/i18n-helper";
-import InputAdornment from "@material-ui/core/InputAdornment";
+import FormControl from "@material-ui/core/FormControl";
+import FormHelperText from "@material-ui/core/FormHelperText";
 import IconButton from "@material-ui/core/IconButton";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import InputLabel from "@material-ui/core/InputLabel";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
+import { makeStyles } from "@material-ui/core/styles";
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import clsx from "clsx";
-import {makeStyles} from "@material-ui/core/styles";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
-import FormHelperText from "@material-ui/core/FormHelperText";
+import { Formik } from 'formik';
+import PropTypes from "prop-types";
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { connect } from "react-redux";
+import { Redirect, withRouter } from "react-router-dom";
+import Api from "../../common/api-communication";
+import { NOTIFICATION_DURATION, PAPER_ELEVATION } from "../../common/app-constants";
+import { translate } from "../../common/i18n-helper";
+import { LOGIN, OFFERS } from "../../common/paths";
+import { registerSchema } from "../../common/validation-schemas";
+import { HIDE_NOTIFICATION, SHOW_NOTIFICATION } from "../../redux/actions";
+import RegisterConsentComponent from "./RegisterConsentComponent";
 
 const useStyles = makeStyles(theme => ({
     margin: {
@@ -59,7 +58,7 @@ function RegisterView(props) {
     }
 
     return (
-        <Card>
+        <Paper elevation={PAPER_ELEVATION} square>
             <Formik validationSchema={registerSchema} onSubmit={handleSubmit}
                     initialValues={{
                         email: '',
@@ -165,7 +164,7 @@ function RegisterView(props) {
                     </form>
                 )}
             </Formik>
-        </Card>
+        </Paper>
     );
 }
 

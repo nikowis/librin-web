@@ -1,10 +1,11 @@
-import React, {useEffect} from 'react';
-import {useParams, withRouter} from "react-router-dom";
-import {connect} from "react-redux";
-import {useTranslation} from 'react-i18next';
-import Card from "@material-ui/core/Card";
-import Api from "../../common/api-communication";
+import { Paper } from '@material-ui/core';
 import Typography from "@material-ui/core/Typography";
+import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { connect } from "react-redux";
+import { useParams, withRouter } from "react-router-dom";
+import Api from "../../common/api-communication";
+import { PAPER_ELEVATION } from '../../common/app-constants';
 import LoaderComponent from "../LoaderComponent";
 
 
@@ -27,7 +28,7 @@ function ConfirmEmailView(props) {
     }, [t, confirmTokenId]);
 
     return (
-        <Card>
+        <Paper elevation={PAPER_ELEVATION} square>
             {infoText ?
                 <>
                     {infoText}
@@ -39,7 +40,7 @@ function ConfirmEmailView(props) {
                     <LoaderComponent/>
                 </>
             }
-        </Card>
+        </Paper>
     );
 }
 
