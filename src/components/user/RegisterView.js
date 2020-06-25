@@ -58,7 +58,7 @@ function RegisterView(props) {
     }
 
     return (
-        <Paper elevation={PAPER_ELEVATION} square>
+        <Paper elevation={PAPER_ELEVATION} square className={'form-container'}>
             <Formik validationSchema={registerSchema} onSubmit={handleSubmit}
                     initialValues={{
                         email: '',
@@ -130,7 +130,7 @@ function RegisterView(props) {
                             />
                         </div>
                         <div>
-                            <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined" >
+                            <FormControl margin="dense" size="small" className={clsx(classes.margin, classes.textField)} variant="outlined" >
                                 <InputLabel htmlFor="outlined-adornment-password">{t('user.password.label')}</InputLabel>
                                 <OutlinedInput
                                     size="small"

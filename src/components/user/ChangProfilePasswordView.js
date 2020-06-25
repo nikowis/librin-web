@@ -28,7 +28,7 @@ function ChangProfilePasswordView(props) {
     };
 
     return (
-        <Paper elevation={PAPER_ELEVATION} square>
+        <Paper elevation={PAPER_ELEVATION} square className={'form-container'}>
             <div>
                 {t('user.password.change')}
             </div>

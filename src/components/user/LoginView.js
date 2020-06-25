@@ -8,7 +8,7 @@ import { Link, Redirect } from "react-router-dom";
 import Api from "../../common/api-communication";
 import { PAPER_ELEVATION } from '../../common/app-constants';
 import { translate } from "../../common/i18n-helper";
-import { GENERATE_PASSWORD_RESET, OFFERS } from "../../common/paths";
+import { GENERATE_PASSWORD_RESET, OFFERS, REGISTER } from "../../common/paths";
 import { loginSchema } from "../../common/validation-schemas";
 
 function LoginView(props) {
@@ -27,7 +27,8 @@ function LoginView(props) {
     }
 
     return (
-        <Paper elevation={PAPER_ELEVATION} square>
+        <>
+        <Paper elevation={PAPER_ELEVATION} square className={'form-container'}>
             <Formik validationSchema={loginSchema}
                     onSubmit={handleSubmit}
                     initialValues={{
@@ -77,10 +78,16 @@ function LoginView(props) {
                     </form>
                 )}
             </Formik>
+        </Paper>
+        <Paper elevation={PAPER_ELEVATION} square className={'action-buttons-bar form-container'}>
+            <Link to={REGISTER}>
+                {t('user.registerLink')}
+            </Link>
             <Link to={GENERATE_PASSWORD_RESET}>
                 {t('user.password.generatePasswordTokenLink')}
             </Link>
         </Paper>
+        </>
     );
 
 }

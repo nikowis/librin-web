@@ -5,7 +5,7 @@ import {useTranslation} from "react-i18next";
 import {connect} from "react-redux";
 import {HIDE_NOTIFICATION, OFFER_CREATED, SHOW_NOTIFICATION} from "../../redux/actions";
 import {MY_OFFERS} from "../../common/paths";
-import {NOTIFICATION_DURATION} from "../../common/app-constants";
+import {NOTIFICATION_DURATION, PAPER_ELEVATION} from "../../common/app-constants";
 import EditOfferComponent from "./EditOfferComponent";
 import Paper from "@material-ui/core/Paper/Paper";
 import Typography from "@material-ui/core/Typography";
@@ -34,7 +34,7 @@ function CreateOfferView(props) {
     };
 
     return (
-        <Paper className={'form-container'}>
+        <Paper square elevation={PAPER_ELEVATION} className={'form-container'}>
             <Typography variant="h6">
                 {t('offer.createPageTitle')}
             </Typography>

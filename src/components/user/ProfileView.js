@@ -14,8 +14,6 @@ import { profileSchema } from "../../common/validation-schemas";
 import { HIDE_NOTIFICATION, SHOW_NOTIFICATION, UPDATE_USER } from "../../redux/actions";
 import DeleteAccountComponent from "./DeleteAccountComponent";
 
-
-
 function ProfileView(props) {
 
     const {t} = useTranslation();
@@ -45,6 +43,7 @@ function ProfileView(props) {
     };
 
     return (
+        <>
         <Paper elevation={PAPER_ELEVATION} square className={'form-container'}>
             <Formik validationSchema={profileSchema} onSubmit={handleSubmit} enableReinitialize={true}
                     initialValues={{
@@ -129,11 +128,14 @@ function ProfileView(props) {
                     </form>
                 )}
             </Formik>
+        </Paper>
+        <Paper elevation={PAPER_ELEVATION} square className={'action-buttons-bar form-container'}>
             <Button size={"small"} variant="contained" color="primary" type="submit" onClick={() => props.history.push(PROFILE_CHANGE_PASSWORD)}>
-                {t('user.password.change')}
+            {t('user.password.change')}
             </Button>
             <DeleteAccountComponent/>
         </Paper>
+        </>
     );
 
 }

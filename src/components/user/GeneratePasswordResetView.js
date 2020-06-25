@@ -8,6 +8,7 @@ import Api from "../../common/api-communication";
 import { PAPER_ELEVATION } from '../../common/app-constants';
 import { translate } from "../../common/i18n-helper";
 import { generateResetPasswordSchema } from "../../common/validation-schemas";
+import MaxWidthContainer from "../MaxWidthContainer";
 
 
 function GeneratePasswordResetView(props) {
@@ -26,6 +27,7 @@ function GeneratePasswordResetView(props) {
     };
 
     return (
+        <MaxWidthContainer size='xs'>
         <Paper elevation={PAPER_ELEVATION} square>
             <div>
                 {t('user.password.generatePasswordTokenLink')}
@@ -70,6 +72,7 @@ function GeneratePasswordResetView(props) {
                 </Formik>
             }
         </Paper>
+        </MaxWidthContainer>
     );
 }
 

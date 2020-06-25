@@ -82,3 +82,14 @@ button.MuiButton-outlined {
     right: 0;
   }
 }
+
+.action-buttons-bar {
+  margin-top: 16px;
+  padding:8px 0;
+  button {
+    margin: 8px; 
+  }
+  a {
+    display: block;
+  }
+}

@@ -53,7 +53,7 @@ function DeleteAccountComponent(props) {
     };
 
     return (
-        <div>
+        <>
             <Button size={"small"} variant="outlined" color="secondary" onClick={handleClickOpen} startIcon={<DeleteIcon/>}>
                 {t('user.deleteAccount')}
             </Button>
@@ -106,7 +106,7 @@ function DeleteAccountComponent(props) {
                     )}
                 </Formik>
             </Dialog>
-        </div>
+        </>
     );
 
 }

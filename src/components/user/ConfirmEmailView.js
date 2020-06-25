@@ -7,6 +7,7 @@ import { useParams, withRouter } from "react-router-dom";
 import Api from "../../common/api-communication";
 import { PAPER_ELEVATION } from '../../common/app-constants';
 import LoaderComponent from "../LoaderComponent";
+import MaxWidthContainer from '../MaxWidthContainer';
 
 
 function ConfirmEmailView(props) {
@@ -28,19 +29,21 @@ function ConfirmEmailView(props) {
     }, [t, confirmTokenId]);
 
     return (
-        <Paper elevation={PAPER_ELEVATION} square>
-            {infoText ?
-                <>
-                    {infoText}
-                </> :
-                <>
-                    <Typography variant="h6">
-                        {t('user.email.confirmEmailInProgress')}
-                    </Typography>
-                    <LoaderComponent/>
-                </>
-            }
-        </Paper>
+        <MaxWidthContainer size={'xs'}>
+            <Paper elevation={PAPER_ELEVATION} square>
+                {infoText ?
+                    <>
+                        {infoText}
+                    </> :
+                    <>
+                        <Typography variant="h6">
+                            {t('user.email.confirmEmailInProgress')}
+                        </Typography>
+                        <LoaderComponent/>
+                    </>
+                }
+            </Paper>
+        </MaxWidthContainer>
     );
 }
 

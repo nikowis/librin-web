@@ -37,7 +37,8 @@
     },
     "deleteAccount": "Usuń konto",
     "deleteAccountHeader": "Usuwanie konta",
-    "deleteAccountWarning": "Konto zostanie usunięte nieodwracalnie"
+    "deleteAccountWarning": "Konto zostanie usunięte nieodwracalnie",
+    "registerLink": "Zarejestruj się"
   },
   "photo": {
     "upload": "Dodaj zdjęcie",
