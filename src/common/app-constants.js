@@ -25,9 +25,9 @@ export const OfferCategory = [
 ]
 
 export const OfferCondition = [
-    {name: 'NEW'},
-    {name: 'PERFECT'},
-    {name: 'GOOD'},
-    {name: 'USED'},
-    {name: 'DESTROYED'}
+    {value: 5, name: 'NEW'},
+    {value: 4, name: 'PERFECT'},
+    {value: 3, name: 'GOOD'},
+    {value: 2, name: 'USED'},
+    {value: 1, name: 'DESTROYED'}
 ]

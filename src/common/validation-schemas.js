@@ -14,6 +14,7 @@ setLocale({
     },
     string: {
         min: ({min}) => ({key: 'validations.min', value: min}),
+        max: ({max}) => ({key: 'validations.max', value: max}),
         email: 'validations.email',
         matches: 'validations.regexp'
     }

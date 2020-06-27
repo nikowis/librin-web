@@ -113,7 +113,8 @@
     "required": "Pole wymagane",
     "email": "Niepoprawny adres email",
     "passwordMatch": "Hasła nie pasują",
-    "min": "Wartość za krótka",
+    "min": "Minimalna liczba znaków to {{value}}",
+    "max": "Maksymalna liczba znaków to {{value}}",
     "regexp": "Niepoprawny format",
     "passwordRegexFormat": "Min. 8 znaków, bez spacji, w tym jedna litera i jedna cyfra",
     "photo": {
