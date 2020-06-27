@@ -12,7 +12,8 @@ import {PersistGate} from 'redux-persist/integration/react'
 import './i18n';
 import './common/validation-schemas'
 import App from "./App";
-import 'typeface-roboto'
+import WebFont from "webfontloader";
+WebFont.load({google: {families: ["Roboto:300,400,500"]}});
 
 export const {persistor, store} = configureStore();
 
