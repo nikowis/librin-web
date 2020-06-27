@@ -54,6 +54,23 @@
       "youSold": "Sprzedałeś tę książkę",
       "youSoldToThisUser": "Sprzedałeś tę książkę temu użytkownikowi"
     },
+    "category" : {
+      "label": "Kategoria",
+      "FANTASY": "Fantastyka",
+      "HISTORY": "Historyczne",
+      "COMIC_BOOK": "Komiks",
+      "CRIMINAL": "Kryminał",
+      "SCI_FI": "Science fiction",
+      "OTHER": "Inna"
+    },
+    "condition" : {
+      "label": "Stan książki",
+      "NEW": "Nowy",
+      "PERFECT": "Doskonały",
+      "GOOD": "Dobry",
+      "USED": "Zużyty",
+      "DESTROYED": "Zniszczony"
+    },
     "owner": {
       "myoffer": "Ta oferta należy do Ciebie"
     },

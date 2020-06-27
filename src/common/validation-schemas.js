@@ -82,6 +82,14 @@ export const createOfferSchema = Yup.object().shape({
     author: Yup.string()
         .min(2)
         .required(),
+    category: Yup.string()
+        .min(1)
+        .required(),
+    condition: Yup.string()
+        .min(1)
+        .required(),
+    description: Yup.string()
+        .max(512),
     price: Yup.string()
         .required()
         .matches(moneyRegex),
@@ -90,7 +98,7 @@ export const createOfferSchema = Yup.object().shape({
             name: Yup.string().required().nullable(),
             content: Yup.string().required().nullable()
         }).required().nullable()
-    ).nullable()
+    ).nullable().min(1)
 });
 
 
@@ -101,6 +109,14 @@ export const editOfferSchema = Yup.object().shape({
     author: Yup.string()
         .min(2)
         .required(),
+    category: Yup.string()
+        .min(1)
+        .required(),
+    condition: Yup.string()
+        .min(1)
+        .required(),
+    description: Yup.string()
+        .max(512),
     price: Yup.string()
         .required()
         .matches(moneyRegex),
@@ -109,7 +125,7 @@ export const editOfferSchema = Yup.object().shape({
             name: Yup.string().required().nullable(),
             content: Yup.string().required().nullable()
         }).required().nullable()
-    ).nullable()
+    ).nullable().min(1)
 });
 
 export const deleteAccountSchema = Yup.object().shape({

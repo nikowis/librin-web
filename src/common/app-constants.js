@@ -14,3 +14,20 @@ export class OfferStatus {
     static SOLD = 'SOLD';
     static DELETED = 'DELETED';
 }
+
+export const OfferCategory = [
+    {name: 'FANTASY'},
+    {name: 'HISTORY'},
+    {name: 'COMIC_BOOK'},
+    {name: 'CRIMINAL'},
+    {name: 'SCI_FI'},
+    {name: 'OTHER'}
+]
+
+export const OfferCondition = [
+    {name: 'NEW'},
+    {name: 'PERFECT'},
+    {name: 'GOOD'},
+    {name: 'USED'},
+    {name: 'DESTROYED'}
+]
