@@ -36,6 +36,7 @@ import {
 } from "../redux/actions";
 import {CREATED_AT_SORT, DEFAULT_PAGE_SIZE, DESC_SORT, UPDATED_AT_SORT} from './app-constants'
 import {CHANGE_PASSWORD_BASE, CONFIRM_EMAIL_BASE} from "./paths";
+import { cleanFields } from './object-helper';
 
 class Api {
 
@@ -125,19 +126,10 @@ class Api {
         });
     }
 
-    getOffers(urlSearchParams) {
-        urlSearchParams.set('size', DEFAULT_PAGE_SIZE);
-        urlSearchParams.set('sort', UPDATED_AT_SORT + ',' + DESC_SORT);
-
-        const page = parseInt(urlSearchParams.get('page'));
-        if (!page || page < 0) {
-            urlSearchParams.set('page', 0);
-        } else {
-            urlSearchParams.set('page', parseInt(urlSearchParams.get('page'))-1);
-        }
-
+    getOffers(filter) {
         const url = new URL(this.API_URL + API_OFFERS);
-        url.search = urlSearchParams.toString();
+        const cleanFilter = cleanFields(filter);
+        url.search = new URLSearchParams(cleanFilter).toString();
         return HttpUtility.get({
             url: url,
             action: FETCH_OFFERS

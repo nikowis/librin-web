@@ -7,10 +7,12 @@ import {
     FULFILLED,
     OFFER_CREATED,
     OFFER_UPDATED,
-    VIEW_OFFER
+    VIEW_OFFER,
+    CHANGE_OFFERS_FILTER
 } from "./actions";
 import {insertItem, removeItem} from "../common/array-helper";
 import {initializeAttachmentFromBase64} from "../common/attachment-utility";
+import { CREATED_AT_SORT, DESC_SORT, DEFAULT_PAGE_SIZE } from "../common/app-constants";
 
 const initialState = {
     content: null,
@@ -23,7 +25,22 @@ const initialState = {
         author: '',
         price: 0
     },
-    search: ''
+    currentFilter: {
+        page: 0,
+        userId: null,
+        category: null,
+        condition: null,
+        sort: CREATED_AT_SORT + ',' + DESC_SORT,
+        size: DEFAULT_PAGE_SIZE
+    },
+    newFilter: {
+        page: 0,
+        userId: null,
+        category: null,
+        condition: null,
+        sort: CREATED_AT_SORT + ',' + DESC_SORT,
+        size: DEFAULT_PAGE_SIZE
+    }
 };
 
 export function processOffer(offer) {
@@ -55,7 +72,7 @@ const offersReducer = (state = initialState, action) => {
                 currentPage: payload.number + 1,
                 totalPages: payload.totalPages,
                 totalElements: payload.totalElements,
-                search: window.location.search,
+                currentFilter: Object.assign({}, state.newFilter),
             };
         case VIEW_OFFER:
         case FETCH_OFFER + FULFILLED:
@@ -86,6 +103,19 @@ const offersReducer = (state = initialState, action) => {
                     ...initialState.currentOffer
                 }
             };
+        case CHANGE_OFFERS_FILTER: {
+            if(payload.page) {
+                if (payload.page < 0) {
+                    payload.page = 0;
+                } else {
+                    payload.page = payload.page - 1;
+                }
+            }
+            return {
+                ...state,
+                newFilter: Object.assign({}, state.currentFilter, payload)
+            };
+        }
         case CLEAR_OFFERS:
         case OFFER_CREATED:
         case DELETE_OFFER + FULFILLED:

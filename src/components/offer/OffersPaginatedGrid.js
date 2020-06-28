@@ -6,11 +6,14 @@ import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
 import PaginationComponent from "../PaginationComponent";
 import OffersGrid from "./OffersGrid";
+import { connect } from 'react-redux';
+import { objectEquals } from '../../common/object-helper';
+import { CHANGE_OFFERS_FILTER } from '../../redux/actions';
 
 function OffersPaginatedGrid(props) {
 
     const {t} = useTranslation();
-    const {offers, location, history, currentLoadedSearch, currentPage, totalPages, loadOffers, myOffers} = props;
+    const {offers, location, history, currentPage, totalPages, myOffers, currentFilter, newFilter, dispatch} = props;
     const {search, pathname} = location;
     const {replace} = history;
 
@@ -24,18 +27,27 @@ function OffersPaginatedGrid(props) {
                 pathname: pathname,
                 search: "?" + urlSearchParams.toString()
             })
+            dispatch({
+                type: CHANGE_OFFERS_FILTER
+                , payload: {page: 1}
+            });
+        } else {
+            console.log('Change filter with page param');
+            dispatch({
+                type: CHANGE_OFFERS_FILTER
+                , payload: {page: pageQuery}
+            });
         }
-    }, [replace, pathname, search, pageQuery]);
+    }, [replace, dispatch, pathname, search, pageQuery]);
 
     useEffect(() => {
         if (isNaN(parseInt(pageQuery))) {
             return;
         }
-        if (offers === null || (search !== currentLoadedSearch)) {
-            loadOffers(search);
-        }
-        // eslint-disable-next-line
-    }, [offers, pageQuery, currentLoadedSearch, search]);
+        if (offers === null || (!objectEquals(currentFilter, newFilter))) {
+            dispatch(Api.getOffers(newFilter));
+        } 
+    }, [dispatch, offers, pageQuery, currentFilter, newFilter]);
 
     const getView = () => {
         return <>
@@ -76,11 +88,17 @@ OffersPaginatedGrid.propTypes = {
         }),
     ),
     currentPage: PropTypes.number,
-    currentLoadedSearch: PropTypes.string,
     totalPages: PropTypes.number,
-    loadOffers: PropTypes.func,
     myOffers: PropTypes.bool,
     offerLinkBase: PropTypes.string.isRequired,
+    currentFilter: PropTypes.object.isRequired,
+    newFilter: PropTypes.object.isRequired,
 };
 
-export default withRouter(OffersPaginatedGrid);
+export default connect(state => ({
+    offers: state.offers.content,
+    currentPage: state.offers.currentPage,
+    totalPages: state.offers.totalPages,
+    currentFilter: state.offers.currentFilter,
+    newFilter: state.offers.newFilter,
+}))(withRouter(OffersPaginatedGrid));

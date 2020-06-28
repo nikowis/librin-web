@@ -22,6 +22,7 @@ export const FETCH_OFFER = 'FETCH_OFFER';
 export const FETCH_MY_OFFER = 'FETCH_MY_OFFER';
 export const EDIT_OFFER = 'EDIT_OFFER';
 export const VIEW_OFFER = 'VIEW_OFFER';
+export const CHANGE_OFFERS_FILTER = 'CHANGE_OFFERS_FILTER';
 export const OFFER_CREATED = 'OFFER_CREATED';
 export const CLEAR_OFFERS = 'CLEAR_OFFERS';
 export const OFFER_UPDATED = 'OFFER_UPDATED';
