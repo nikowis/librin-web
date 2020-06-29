@@ -27,27 +27,15 @@ function OffersPaginatedGrid(props) {
                 pathname: pathname,
                 search: "?" + urlSearchParams.toString()
             })
+        } else if(newFilter.page !== pageQuery-1){
             dispatch({
                 type: CHANGE_OFFERS_FILTER
-                , payload: {page: 1}
+                , payload: {page: pageQuery-1}
             });
-        } else {
-            console.log('Change filter with page param');
-            dispatch({
-                type: CHANGE_OFFERS_FILTER
-                , payload: {page: pageQuery}
-            });
-        }
-    }, [replace, dispatch, pathname, search, pageQuery]);
-
-    useEffect(() => {
-        if (isNaN(parseInt(pageQuery))) {
-            return;
-        }
-        if (offers === null || (!objectEquals(currentFilter, newFilter))) {
+        } else if (!objectEquals(currentFilter, newFilter)) {
             dispatch(Api.getOffers(newFilter));
         } 
-    }, [dispatch, offers, pageQuery, currentFilter, newFilter]);
+    }, [replace, dispatch, pathname, search, pageQuery, currentFilter, newFilter]);
 
     const getView = () => {
         return <>
