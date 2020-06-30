@@ -3,7 +3,8 @@ import {
   CLEAR_OFFERS,
   DELETE_OFFER,
   FETCH_OFFER,
-  FETCH_OFFERS,
+  FETCH_MAINVIEW_OFFERS,
+  FETCH_USERVIEW_OFFERS,
   FULFILLED,
   OFFER_CREATED,
   OFFER_UPDATED,
@@ -20,17 +21,11 @@ import {
   DEFAULT_PAGE_SIZE,
 } from "../common/app-constants";
 
-const initialState = {
+const initialOffersView = {
   content: null,
   currentPage: null,
   totalPages: null,
   totalElements: null,
-  currentOffer: {
-    id: 0,
-    title: "",
-    author: "",
-    price: 0,
-  },
   currentFilter: {
     page: null,
     title: null,
@@ -52,6 +47,20 @@ const initialState = {
     statuses: null,
     sort: CREATED_AT_SORT + "," + DESC_SORT,
     size: DEFAULT_PAGE_SIZE,
+  },
+};
+
+export const MAIN_VIEW = 'mainView';
+export const USER_VIEW = 'userView';
+
+const initialState = {
+  [MAIN_VIEW]: initialOffersView,
+  [USER_VIEW]: initialOffersView,
+  currentOffer: {
+    id: 0,
+    title: "",
+    author: "",
+    price: 0,
   },
 };
 
@@ -78,16 +87,34 @@ const offersReducer = (state = initialState, action) => {
   const payload = action.payload;
 
   switch (action.type) {
-    case FETCH_OFFERS + FULFILLED:
+    case FETCH_MAINVIEW_OFFERS + FULFILLED: {
       let processedContent = processOffers(payload.content);
       return {
         ...state,
-        content: processedContent,
-        currentPage: payload.number + 1,
-        totalPages: payload.totalPages,
-        totalElements: payload.totalElements,
-        currentFilter: Object.assign({}, state.newFilter),
+        [MAIN_VIEW]: {
+          ...state[MAIN_VIEW],
+          content: processedContent,
+          currentPage: payload.number + 1,
+          totalPages: payload.totalPages,
+          totalElements: payload.totalElements,
+          currentFilter: Object.assign({}, state[MAIN_VIEW].newFilter),
+        },
       };
+    }
+    case FETCH_USERVIEW_OFFERS + FULFILLED: {
+      let processedContent = processOffers(payload.content);
+      return {
+        ...state,
+        [USER_VIEW]: {
+          ...state[USER_VIEW],
+          content: processedContent,
+          currentPage: payload.number + 1,
+          totalPages: payload.totalPages,
+          totalElements: payload.totalElements,
+          currentFilter: Object.assign({}, state[USER_VIEW].newFilter),
+        },
+      };
+    }
     case VIEW_OFFER:
     case FETCH_OFFER + FULFILLED:
       let processedPayload = processOffer(payload);
@@ -98,23 +125,20 @@ const offersReducer = (state = initialState, action) => {
           ...processedPayload,
         },
       };
-    case OFFER_UPDATED:
+    case OFFER_UPDATED: {
       let updatedOffer = processOffer(payload);
-      let allOffers = state.content;
-      const updatedOfferIndex = allOffers
-        ? allOffers.findIndex((offer) => offer.id === updatedOffer.id)
-        : null;
-      if (allOffers && updatedOfferIndex >= 0) {
-        allOffers = removeItem(allOffers, updatedOfferIndex);
-        allOffers = insertItem(allOffers, {
-          index: updatedOfferIndex,
-          item: updatedOffer,
-        });
-      }
       return {
         ...state,
-        content: allOffers,
+        [MAIN_VIEW]: {
+          ...state[MAIN_VIEW],
+          content: updateOfferInList(state[MAIN_VIEW].content, updatedOffer),
+        },
+        userView: {
+          ...state[USER_VIEW],
+          content: updateOfferInList(state[USER_VIEW].content, updatedOffer),
+        }
       };
+    }
     case CLEAR_CURRENT_OFFER:
       return {
         ...state,
@@ -124,22 +148,35 @@ const offersReducer = (state = initialState, action) => {
       };
     case CHANGE_OFFERS_FILTER: {
       validatePageParam(payload);
+      const view = action.view;
       return {
         ...state,
-        newFilter: Object.assign({}, state.currentFilter, payload),
+        [view] : {
+          ...state[view],
+          newFilter: Object.assign({}, state[view].currentFilter, payload),
+        }
       };
     }
     case REPLACE_OFFERS_FILTER: {
       validatePageParam(payload);
+      const view = action.view;
       return {
         ...state,
-        newFilter: Object.assign({}, initialState.newFilter, payload),
+        [view] : {
+          ...state[view],
+          newFilter: Object.assign({}, initialState[view].newFilter, payload),
+        }
       };
     }
     case RESET_OFFERS_FILTER: {
+      const view = action.view;
       return {
         ...state,
-        newFilter: { ...initialState.newFilter },
+        [view] : {
+          ...state[view],
+          newFilter: { ...initialState[view].newFilter },
+        }
+        
       };
     }
     case CLEAR_OFFERS:
@@ -152,6 +189,20 @@ const offersReducer = (state = initialState, action) => {
 };
 
 export default offersReducer;
+
+function updateOfferInList(allOffers, updatedOffer) {
+  const updatedOfferIndex = allOffers
+    ? allOffers.findIndex((offer) => offer.id === updatedOffer.id)
+    : null;
+  if (allOffers && updatedOfferIndex >= 0) {
+    allOffers = removeItem(allOffers, updatedOfferIndex);
+    allOffers = insertItem(allOffers, {
+      index: updatedOfferIndex,
+      item: updatedOffer,
+    });
+  }
+  return allOffers;
+}
 
 function validatePageParam(payload) {
   if (payload.page && payload.page < 0) {

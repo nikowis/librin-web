@@ -9,7 +9,7 @@ import { OFFERS } from "../../common/paths";
 import {
   CLEAR_CURRENT_USER,
   REPLACE_OFFERS_FILTER,
-  CHANGE_OFFERS_FILTER,
+  FETCH_USERVIEW_OFFERS
 } from "../../redux/actions";
 import LoaderComponent from "../LoaderComponent";
 import UserBannerComponent from "./UserBannerComponent";
@@ -17,6 +17,7 @@ import { useTranslation } from "react-i18next";
 import OffersGrid from "../offer/OffersGrid";
 import PaginationComponent from "../PaginationComponent";
 import { objectEquals } from "../../common/object-helper";
+import { USER_VIEW } from "../../redux/offersReducer";
 
 function UserView(props) {
   const [loading, setLoading] = React.useState(false);
@@ -69,22 +70,19 @@ function UserView(props) {
         pathname: pathname,
         search: "?" + urlSearchParams.toString(),
       });
-    } else if (
-      !wrongUserIsLoaded &&
-      (newFilter.owner !== propId || newFilter.page !== pageQuery - 1)
-    ) {
+    } else if ((newFilter.owner !== id || newFilter.page !== pageQuery - 1)) {
       dispatch({
         type: REPLACE_OFFERS_FILTER,
-        payload: { page: pageQuery - 1, owner: propId },
+        view: USER_VIEW,
+        payload: { page: pageQuery - 1, owner: id },
       });
     } else if (!objectEquals(currentFilter, newFilter)) {
-      dispatch(Api.getOffers(newFilter));
+      dispatch(Api.getOffers(newFilter, FETCH_USERVIEW_OFFERS));
     }
   }, [
     history,
     dispatch,
-    propId,
-    wrongUserIsLoaded,
+    id,
     pathname,
     search,
     pageQuery,
@@ -152,18 +150,18 @@ UserView.propTypes = {
     })
   ),
   currentPage: PropTypes.number,
-  currentLoadedSearch: PropTypes.string,
   totalPages: PropTypes.number,
+  currentFilter: PropTypes.object.isRequired,
+  newFilter: PropTypes.object.isRequired,
 };
 
 export default connect((state) => ({
   id: state.users.currentUser.id,
   username: state.users.currentUser.username,
   status: state.users.currentUser.status,
-  offers: state.offers.content,
-  currentPage: state.offers.currentPage,
-  totalPages: state.offers.totalPages,
-  currentLoadedSearch: state.offers.search,
-  currentFilter: state.offers.currentFilter,
-  newFilter: state.offers.newFilter,
+  offers: state.offers.userView.content,
+  currentPage: state.offers.userView.currentPage,
+  totalPages: state.offers.userView.totalPages,
+  currentFilter: state.offers.userView.currentFilter,
+  newFilter: state.offers.userView.newFilter,
 }))(withRouter(UserView));

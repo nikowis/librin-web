@@ -2,7 +2,7 @@ import {CLEAR_CURRENT_USER, FETCH_USER, FULFILLED, PENDING} from "./actions";
 
 const initialState = {
     currentUser: {
-        id: 0,
+        id: null,
         username: '',
         status: ''
     },
