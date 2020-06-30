@@ -14,6 +14,8 @@ import { useTranslation } from "react-i18next";
 import { objectEquals } from "../../common/object-helper";
 import { OFFERS } from "../../common/paths";
 import { MAIN_VIEW } from "../../redux/offersReducer";
+import { Grid } from "@material-ui/core";
+import OffersFilterComponent from "./OffersFilterComponent";
 
 function OffersView(props) {
   const { t } = useTranslation();
@@ -62,24 +64,31 @@ function OffersView(props) {
 
   return (
     <>
-      {objectEquals(currentFilter, newFilter) ? (
-        pageQuery <= totalPages ? (
-          <>
-            <OffersGrid
-              myOffers={myOffers}
-              offers={offers}
-              offerLinkBase={OFFERS}
-            />
-            <PaginationComponent
-              currentPathname={pathname}
-              currentPage={currentPage}
-              totalPages={totalPages}
-            />
-          </>
-        ) : (
-          t("noElementsFound")
-        )
-      ) : null}
+      <Grid container spacing={1}>
+        <Grid item xs={12} sm={4} md={2}>
+          <OffersFilterComponent />
+        </Grid>
+        <Grid item xs={12} sm={8} md={10}>
+          {objectEquals(currentFilter, newFilter) ? (
+            pageQuery <= totalPages ? (
+              <>
+                <OffersGrid
+                  myOffers={myOffers}
+                  offers={offers}
+                  offerLinkBase={OFFERS}
+                />
+                <PaginationComponent
+                  currentPathname={pathname}
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                />
+              </>
+            ) : (
+              t("noElementsFound")
+            )
+          ) : null}
+        </Grid>
+      </Grid>
     </>
   );
 }
@@ -106,7 +115,6 @@ OffersView.propTypes = {
   currentPage: PropTypes.number,
   totalPages: PropTypes.number,
   myOffers: PropTypes.bool,
-  offerLinkBase: PropTypes.string.isRequired,
   currentFilter: PropTypes.object.isRequired,
   newFilter: PropTypes.object.isRequired,
 };
