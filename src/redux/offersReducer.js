@@ -38,7 +38,7 @@ const initialOffersView = {
     size: null,
   },
   newFilter: {
-    page: 0,
+    page: 1,
     title: null,
     author: null,
     owner: null,
@@ -153,7 +153,7 @@ const offersReducer = (state = initialState, action) => {
         ...state,
         [view] : {
           ...state[view],
-          newFilter: Object.assign({}, state[view].currentFilter, payload),
+          newFilter: Object.assign({}, state[view].newFilter, payload),
         }
       };
     }

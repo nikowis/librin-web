@@ -137,6 +137,7 @@ class Api {
   getOffers(filter, action) {
     const url = new URL(this.API_URL + API_OFFERS);
     const cleanFilter = cleanFields(filter);
+    cleanFilter['page'] = cleanFilter['page'] - 1;
     url.search = new URLSearchParams(cleanFilter).toString();
     return HttpUtility.get({
       url: url,

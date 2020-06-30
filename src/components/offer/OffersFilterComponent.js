@@ -18,22 +18,33 @@ function OffersFilterComponent(props) {
   const { replace } = history;
   const { search, pathname } = location;
 
-  const pageQuery = Api.getPageParam(search);
-  const categoryQuery = Api.getURLParam(search, 'category');
 
   useEffect(() => {
-    if (newFilter.category !== categoryQuery ) {
+    const pageQuery = Api.getPageParam(search);
+    const categoryQuery = Api.getURLParam(search, 'category');
+    let filterChanged = false;
+    let changeFilter = {...newFilter};
+    if (newFilter.category !== categoryQuery) {
+      changeFilter.category = categoryQuery;
+      filterChanged = true;
+    } 
+    if(!isNaN(parseInt(pageQuery)) && newFilter.page !== parseInt(pageQuery)) {
+      changeFilter.page = parseInt(pageQuery);
+      filterChanged = true;
+    }
+
+    if(filterChanged) {
       dispatch({
         type: CHANGE_OFFERS_FILTER,
         view: MAIN_VIEW,
-        payload: { 'category': categoryQuery,  page: 0},
+        payload: {...changeFilter},
       });
     }
-  }, [dispatch, categoryQuery, newFilter]);
+  }, [dispatch, newFilter, search]);
 
   const changeFilter = (filterField, value) => {
     if (currentFilter[filterField] !== value) {
-      const urlSearchParams = new URLSearchParams(search);
+      const urlSearchParams = new URLSearchParams();
       urlSearchParams.set(filterField, value);
       urlSearchParams.set("page", 1);
       replace({

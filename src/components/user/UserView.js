@@ -9,7 +9,7 @@ import { OFFERS } from "../../common/paths";
 import {
   CLEAR_CURRENT_USER,
   REPLACE_OFFERS_FILTER,
-  FETCH_USERVIEW_OFFERS
+  FETCH_USERVIEW_OFFERS,
 } from "../../redux/actions";
 import LoaderComponent from "../LoaderComponent";
 import UserBannerComponent from "./UserBannerComponent";
@@ -18,6 +18,7 @@ import OffersGrid from "../offer/OffersGrid";
 import PaginationComponent from "../PaginationComponent";
 import { objectEquals } from "../../common/object-helper";
 import { USER_VIEW } from "../../redux/offersReducer";
+import { filterMatchesUrl } from "../../common/filter-helper";
 
 function UserView(props) {
   const [loading, setLoading] = React.useState(false);
@@ -63,18 +64,11 @@ function UserView(props) {
   }, [dispatch, history, id, wrongUserIsLoaded, loading, invalidId]);
 
   useEffect(() => {
-    if (isNaN(parseInt(pageQuery))) {
-      const urlSearchParams = new URLSearchParams(search);
-      urlSearchParams.set("page", 1);
-      history.replace({
-        pathname: pathname,
-        search: "?" + urlSearchParams.toString(),
-      });
-    } else if ((newFilter.owner !== id || newFilter.page !== pageQuery - 1)) {
+    if (newFilter.owner !== id || newFilter.page !== pageQuery) {
       dispatch({
         type: REPLACE_OFFERS_FILTER,
         view: USER_VIEW,
-        payload: { page: pageQuery - 1, owner: id },
+        payload: { page: pageQuery, owner: id },
       });
     } else if (!objectEquals(currentFilter, newFilter)) {
       dispatch(Api.getOffers(newFilter, FETCH_USERVIEW_OFFERS));
@@ -104,23 +98,19 @@ function UserView(props) {
             <UserBannerComponent username={username} />
           </Paper>
           {objectEquals(currentFilter, newFilter) ? (
-            pageQuery <= totalPages ? (
+            offers && offers.length > 0 ? (
               <>
                 <OffersGrid
                   myOffers={myOffers}
                   offers={offers}
                   offerLinkBase={OFFERS}
                 />
-                <PaginationComponent
-                  currentPathname={pathname}
-                  currentPage={currentPage}
-                  totalPages={totalPages}
-                />
               </>
             ) : (
               t("noElementsFound")
             )
           ) : null}
+          <PaginationComponent totalPages={totalPages} />
         </>
       )}
     </>

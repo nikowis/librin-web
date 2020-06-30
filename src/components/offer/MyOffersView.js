@@ -9,6 +9,7 @@ import OffersGrid from "./OffersGrid";
 import PaginationComponent from "../PaginationComponent";
 import { useTranslation } from "react-i18next";
 import { objectEquals } from "../../common/object-helper";
+import { filterMatchesUrl } from "../../common/filter-helper";
 
 function MyOffersView(props) {
   const { t } = useTranslation();
@@ -16,7 +17,6 @@ function MyOffersView(props) {
     offers,
     location,
     history,
-    currentPage,
     totalPages,
     currentFilter,
     newFilter,
@@ -29,20 +29,16 @@ function MyOffersView(props) {
   const pageQuery = Api.getPageParam(search);
 
   useEffect(() => {
-    if (isNaN(parseInt(pageQuery))) {
-      const urlSearchParams = new URLSearchParams(search);
-      urlSearchParams.set("page", 1);
-      replace({
-        pathname: pathname,
-        search: "?" + urlSearchParams.toString(),
-      });
-    } else if (newFilter.page !== pageQuery - 1) {
+    if (newFilter.page !== pageQuery) {
       dispatch({
         type: REPLACE_MYOFFERS_FILTER,
-        payload: { page: pageQuery - 1 },
+        payload: { page: pageQuery },
       });
-    } else if (!objectEquals(currentFilter, newFilter)) {
-      dispatch(Api.getMyOffers(newFilter.page, userId, FETCH_MY_OFFERS));
+    } else if (
+      filterMatchesUrl(newFilter, search) &&
+      !objectEquals(currentFilter, newFilter)
+    ) {
+      dispatch(Api.getMyOffers(newFilter.page - 1, userId, FETCH_MY_OFFERS));
     }
   }, [
     replace,
@@ -58,23 +54,19 @@ function MyOffersView(props) {
   return (
     <>
       {objectEquals(currentFilter, newFilter) ? (
-        pageQuery <= totalPages ? (
+        offers && offers.length > 0 ? (
           <>
             <OffersGrid
               myOffers={true}
               offers={offers}
               offerLinkBase={MY_OFFERS}
             />
-            <PaginationComponent
-              currentPathname={pathname}
-              currentPage={currentPage}
-              totalPages={totalPages}
-            />
           </>
         ) : (
           t("noElementsFound")
         )
       ) : null}
+      <PaginationComponent totalPages={totalPages} />
     </>
   );
 }
@@ -88,14 +80,12 @@ MyOffersView.propTypes = {
       author: PropTypes.string.isRequired,
     })
   ),
-  currentPage: PropTypes.number,
   totalPages: PropTypes.number,
 };
 
 export default connect((state) => ({
   userId: state.me.id,
   offers: state.myoffers.content,
-  currentPage: state.myoffers.currentPage,
   totalPages: state.myoffers.totalPages,
   currentFilter: state.myoffers.currentFilter,
   newFilter: state.myoffers.newFilter,

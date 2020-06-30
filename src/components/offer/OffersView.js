@@ -6,61 +6,31 @@ import OffersGrid from "./OffersGrid";
 import PaginationComponent from "../PaginationComponent";
 import PropTypes from "prop-types";
 import Api from "../../common/api-communication";
-import {
-  REPLACE_OFFERS_FILTER,
-  FETCH_MAINVIEW_OFFERS,
-} from "../../redux/actions";
+import { FETCH_MAINVIEW_OFFERS } from "../../redux/actions";
 import { useTranslation } from "react-i18next";
 import { objectEquals } from "../../common/object-helper";
 import { OFFERS } from "../../common/paths";
-import { MAIN_VIEW } from "../../redux/offersReducer";
 import { Grid } from "@material-ui/core";
 import OffersFilterComponent from "./OffersFilterComponent";
+import { filterMatchesUrl } from "../../common/filter-helper";
 
 function OffersView(props) {
   const { t } = useTranslation();
   const {
     offers,
     location,
-    history,
-    currentPage,
     totalPages,
-    myOffers,
     currentFilter,
     newFilter,
     dispatch,
   } = props;
-  const { search, pathname } = location;
-  const { replace } = history;
-
-  const pageQuery = Api.getPageParam(search);
+  const { search } = location;
 
   useEffect(() => {
-    if (isNaN(parseInt(pageQuery))) {
-      const urlSearchParams = new URLSearchParams(search);
-      urlSearchParams.set("page", 1);
-      replace({
-        pathname: pathname,
-        search: "?" + urlSearchParams.toString(),
-      });
-    } else if (newFilter.page !== pageQuery - 1) {
-      dispatch({
-        type: REPLACE_OFFERS_FILTER,
-        view: MAIN_VIEW,
-        payload: { page: pageQuery - 1 },
-      });
-    } else if (!objectEquals(currentFilter, newFilter)) {
+    if (filterMatchesUrl(newFilter, search) && !objectEquals(currentFilter, newFilter)) {
       dispatch(Api.getOffers(newFilter, FETCH_MAINVIEW_OFFERS));
     }
-  }, [
-    replace,
-    dispatch,
-    pathname,
-    search,
-    pageQuery,
-    currentFilter,
-    newFilter,
-  ]);
+  }, [dispatch, search, currentFilter, newFilter]);
 
   return (
     <>
@@ -70,23 +40,18 @@ function OffersView(props) {
         </Grid>
         <Grid item xs={12} sm={8} md={10}>
           {objectEquals(currentFilter, newFilter) ? (
-            pageQuery <= totalPages ? (
+            offers && offers.length > 0 ? (
               <>
                 <OffersGrid
-                  myOffers={myOffers}
                   offers={offers}
                   offerLinkBase={OFFERS}
-                />
-                <PaginationComponent
-                  currentPathname={pathname}
-                  currentPage={currentPage}
-                  totalPages={totalPages}
                 />
               </>
             ) : (
               t("noElementsFound")
             )
           ) : null}
+          <PaginationComponent totalPages={totalPages} />
         </Grid>
       </Grid>
     </>
@@ -112,7 +77,6 @@ OffersView.propTypes = {
       }),
     })
   ),
-  currentPage: PropTypes.number,
   totalPages: PropTypes.number,
   myOffers: PropTypes.bool,
   currentFilter: PropTypes.object.isRequired,
@@ -121,7 +85,6 @@ OffersView.propTypes = {
 
 export default connect((state) => ({
   offers: state.offers.mainView.content,
-  currentPage: state.offers.mainView.currentPage,
   totalPages: state.offers.mainView.totalPages,
   currentFilter: state.offers.mainView.currentFilter,
   newFilter: state.offers.mainView.newFilter,
