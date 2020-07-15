@@ -2,13 +2,14 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://nikowis.com/librin/",
+  "homepage": "http://stage.librin.pl/",
   "dependencies": {
     "@material-ui/core": "^4.9.10",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.49",
     "@stomp/stompjs": "^5.4.4",
     "@unicef/material-ui-currency-textfield": "^0.8.6",
+    "env-cmd": "^10.1.0",
     "formik": "^2.1.4",
     "i18n-react": "^0.7.0",
     "i18next": "^19.3.2",
@@ -35,6 +36,7 @@
   },
   "scripts": {
     "start": "react-scripts start -p 3001",
+    "build:staging": "env-cmd -f .env.stage npm run build",
     "build": "react-scripts build --history-api-fallback",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -44,6 +46,11 @@
   },
   "browserslist": {
     "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "stage": [
       ">0.2%",
       "not dead",
       "not op_mini all"
