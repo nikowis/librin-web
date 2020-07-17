@@ -14,6 +14,7 @@
 
   .MuiButton-containedPrimary {
     background-color: $primary;
+
     &:hover {
       background-color: $primary-shadow;
     }
@@ -42,6 +43,7 @@ button.MuiButton-outlined {
   margin-bottom: 8px;
   display: flex;
   align-items: center;
+
   .MuiAvatar-root {
     margin: 0 16px;
   }
@@ -51,6 +53,7 @@ button.MuiButton-outlined {
   display: flex;
   padding: 8px;
   align-items: center;
+
   .MuiAvatar-root {
     margin: 0 16px;
   }
@@ -85,11 +88,30 @@ button.MuiButton-outlined {
 
 .action-buttons-bar {
   margin-top: 16px;
-  padding:8px 0;
+  padding: 8px 0;
+
   button {
-    margin: 8px; 
+    margin: 8px;
   }
+
   a {
     display: block;
   }
+}
+
+.categories-wrapper {
+  margin: auto;
+
+  .MuiListItemIcon-root {
+    min-width: 10px;
+  }
+
+  .MuiListItem-root {
+    padding: 0 8px 0 4px;
+
+    .MuiTypography-root {
+      font-size: 14px;
+    }
+  }
+
 }

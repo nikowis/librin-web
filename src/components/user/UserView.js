@@ -18,7 +18,6 @@ import OffersGrid from "../offer/OffersGrid";
 import PaginationComponent from "../PaginationComponent";
 import { objectEquals } from "../../common/object-helper";
 import { USER_VIEW } from "../../redux/offersReducer";
-import { filterMatchesUrl } from "../../common/filter-helper";
 
 function UserView(props) {
   const [loading, setLoading] = React.useState(false);
@@ -28,7 +27,6 @@ function UserView(props) {
     location,
     username,
     history,
-    currentPage,
     totalPages,
     myOffers,
     currentFilter,

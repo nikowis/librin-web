@@ -11,6 +11,9 @@ import { connect } from "react-redux";
 import { CHANGE_OFFERS_FILTER } from "../../redux/actions";
 import { MAIN_VIEW } from "../../redux/offersReducer";
 import Api from "../../common/api-communication";
+import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import ListItemIcon from "@material-ui/core/ListItemIcon";
 
 function OffersFilterComponent(props) {
   const { t } = useTranslation();
@@ -58,6 +61,9 @@ function OffersFilterComponent(props) {
     return OfferCategory.map((cat) => {
       return (
         <ListItem button selected={newFilter.category === cat.name} key={cat.name} onClick={() => changeFilter("category", cat.name)}>
+          <ListItemIcon>
+            <ArrowRightIcon fontSize={'small'}/>
+          </ListItemIcon>
           <ListItemText primary={t("offer.category." + cat.name)} />
         </ListItem>
       );
@@ -65,7 +71,7 @@ function OffersFilterComponent(props) {
   };
 
   return (
-    <Paper elevation={PAPER_ELEVATION} square>
+    <Paper elevation={PAPER_ELEVATION} square className={'categories-wrapper'}>
       <List component="nav" subheader={t("offer.category.filter")}>
         {categoryRows()}
       </List>
