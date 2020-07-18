@@ -102,15 +102,27 @@ button.MuiButton-outlined {
 .categories-wrapper {
   margin: auto;
 
-  .MuiListItemIcon-root {
-    min-width: 10px;
+  .category-header {
+    &.MuiListItem-root {
+      padding: 0 16px;
+
+      .MuiTypography-root {
+        font-size: 16px;
+      }
+    }
   }
 
-  .MuiListItem-root {
-    padding: 0 8px 0 4px;
+  .category-rows {
+    .MuiListItemIcon-root {
+      min-width: 10px;
+    }
 
-    .MuiTypography-root {
-      font-size: 14px;
+    .MuiListItem-root {
+      padding: 0 8px 0 4px;
+
+      .MuiTypography-root {
+        font-size: 14px;
+      }
     }
   }
 
