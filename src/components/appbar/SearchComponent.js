@@ -73,8 +73,8 @@ function SearchComponent(props) {
     const handleSubmit = (event) => {
         const value = search;
         if (currentFilter[category] !== value) {
-            const urlSearchParams = new URLSearchParams();
-            if(value) {
+            const urlSearchParams = new URLSearchParams(history.location.search);
+            if (value) {
                 urlSearchParams.set(category, value);
             } else {
                 urlSearchParams.delete(category);
@@ -94,7 +94,10 @@ function SearchComponent(props) {
                 className={"search-select"}
                 value={category}
                 onChange={handleChangeSelect}
-                MenuProps={{disableScrollLock: true, className: smallScreen ? 'search-category-select-menu' : 'search-category-select-menu-second-row'}}
+                MenuProps={{
+                    disableScrollLock: true,
+                    className: smallScreen ? 'search-category-select-menu-second-row' : 'search-category-select-menu'
+                }}
             >
                 <MenuItem value={TITLE}>{t('offer.title')}</MenuItem>
                 <MenuItem value={AUTHOR}>{t('offer.author')}</MenuItem>

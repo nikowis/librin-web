@@ -58,9 +58,11 @@ function OffersFilterComponent(props) {
 
     const changeFilter = (filterField, value) => {
         if (currentFilter[filterField] !== value) {
-            const urlSearchParams = new URLSearchParams();
+            const urlSearchParams = new URLSearchParams(history.location.search);
             if(value) {
                 urlSearchParams.set(filterField, value);
+            } else {
+                urlSearchParams.delete(filterField);
             }
             urlSearchParams.set("page", 1);
             push({
