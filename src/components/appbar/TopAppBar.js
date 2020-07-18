@@ -42,7 +42,7 @@ function TopAppBar(props) {
                     <div id='top-menu-middle'>
                         {
                             smallScreen ? null :
-                                <SearchComponent selectMenuClassName="search-category-select-menu"/>
+                                <SearchComponent/>
                         }
                     </div>
                     <div className="top-menu-right">
@@ -105,7 +105,7 @@ function TopAppBar(props) {
             {
                 smallScreen ?
                     <div className="top-menu-second-row">
-                        <SearchComponent selectMenuClassName="search-category-select-menu-second-row"/>
+                        <SearchComponent/>
                     </div> : null
             }
         </>

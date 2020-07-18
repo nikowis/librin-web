@@ -24,7 +24,7 @@ import ClearIcon from '@material-ui/icons/Clear';
 function OffersFilterComponent(props) {
     const {t} = useTranslation();
     const {location, history, currentFilter, newFilter, dispatch} = props;
-    const {replace} = history;
+    const {push} = history;
     const {search, pathname} = location;
     const smallScreen = /xs|sm/.test(props.width);
     const [open, setOpen] = React.useState(!smallScreen);
@@ -63,7 +63,7 @@ function OffersFilterComponent(props) {
                 urlSearchParams.set(filterField, value);
             }
             urlSearchParams.set("page", 1);
-            replace({
+            push({
                 pathname: pathname,
                 search: "?" + urlSearchParams.toString(),
             });
