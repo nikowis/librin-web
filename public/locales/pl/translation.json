@@ -57,6 +57,7 @@
     "category" : {
       "label": "Kategoria",
       "filter" : "Kategorie",
+      "clear": "Wyczyść filtr",
       "BIOGRAPHIES_REPORTS_FACT": "Biografie, reportaże, literatura faktu",
       "JOURNALS_MAGAZINES": "Czasopisma i magazyny",
       "FOR_CHILDREN": "Dla dzieci",

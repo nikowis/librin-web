@@ -18,14 +18,16 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import withWidth from "@material-ui/core/withWidth/withWidth";
 import FilterListIcon from '@material-ui/icons/FilterList';
+import Badge from "@material-ui/core/Badge";
+import ClearIcon from '@material-ui/icons/Clear';
 
 function OffersFilterComponent(props) {
     const {t} = useTranslation();
     const {location, history, currentFilter, newFilter, dispatch} = props;
     const {replace} = history;
     const {search, pathname} = location;
-    const [open, setOpen] = React.useState(false);
     const smallScreen = /xs|sm/.test(props.width);
+    const [open, setOpen] = React.useState(!smallScreen);
 
     const handleCollapse = () => {
         setOpen(!open);
@@ -57,14 +59,16 @@ function OffersFilterComponent(props) {
     const changeFilter = (filterField, value) => {
         if (currentFilter[filterField] !== value) {
             const urlSearchParams = new URLSearchParams();
-            urlSearchParams.set(filterField, value);
+            if(value) {
+                urlSearchParams.set(filterField, value);
+            }
             urlSearchParams.set("page", 1);
             replace({
                 pathname: pathname,
                 search: "?" + urlSearchParams.toString(),
             });
         }
-        handleCollapse();
+        setOpen(!smallScreen);
     };
 
     const categoryRows = () => {
@@ -81,32 +85,33 @@ function OffersFilterComponent(props) {
         });
     };
 
-    const listHeader = () => {
-        return smallScreen ?
-            (
-                <List component="nav">
-                    <ListItem button onClick={handleCollapse} className={'category-header'}>
-                        <ListItemIcon>
-                            <FilterListIcon />
-                        </ListItemIcon>
-                        <ListItemText primary={t("offer.category.filter")}/>
-                        {open ? <ExpandLess/> : <ExpandMore/>}
-                    </ListItem>
-                    <Collapse in={open} timeout="auto" unmountOnExit>
-                        <List component="nav" className={'category-rows'} disablePadding>
-                            {categoryRows()}
-                        </List>
-                    </Collapse>
-                </List>
-            )
-            : (<List component="nav" className={'category-rows'} subheader={t("offer.category.filter")}>
-                {categoryRows()}
-            </List>);
-    };
-
     return (
         <Paper elevation={PAPER_ELEVATION} square className={'categories-wrapper'}>
-            {listHeader()}
+            <List component="nav">
+                <ListItem button onClick={handleCollapse} className={'category-header'}>
+                    <ListItemIcon>
+                        <Badge variant={"dot"} badgeContent={newFilter.category ? 1 : 0} color="primary">
+                            <FilterListIcon fontSize={'small'}/>
+                        </Badge>
+                    </ListItemIcon>
+                    <ListItemText primary={t("offer.category.filter")}/>
+                    {open ? <ExpandLess/> : <ExpandMore/>}
+                </ListItem>
+                <Collapse in={open} timeout="auto" unmountOnExit>
+                    <List component="nav" className={'category-rows'} disablePadding>
+                        {newFilter.category ? (
+                            <ListItem button key={'clear'} className={'category-clear'}
+                                      onClick={() => changeFilter("category", null)}>
+                                <ListItemIcon>
+                                    <ClearIcon fontSize={'small'}/>
+                                </ListItemIcon>
+                                <ListItemText primary={t("offer.category.clear")}/>
+                            </ListItem>
+                        ) : null}
+                        {categoryRows()}
+                    </List>
+                </Collapse>
+            </List>
         </Paper>
     );
 }

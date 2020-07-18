@@ -55,7 +55,7 @@ function PaginationComponent({
 }
 
 PaginationComponent.propTypes = {
-  totalPages: PropTypes.number.isRequired
+  totalPages: PropTypes.number
 };
 
 export default withRouter(PaginationComponent);
