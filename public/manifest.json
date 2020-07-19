@@ -3,9 +3,9 @@
   "name": "Librin",
   "icons": [
     {
-      "src": "icon.png",
+      "src": "icon.svg",
       "sizes": "300x300",
-      "type": "image/png"
+      "type": "image/svg"
     }
   ],
   "start_url": ".",

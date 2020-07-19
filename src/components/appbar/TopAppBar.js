@@ -3,7 +3,6 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
 import SearchComponent from "./SearchComponent";
 import withWidth from '@material-ui/core/withWidth';
 import TopMenu from "./TopMenu";
@@ -11,7 +10,7 @@ import IconButton from "@material-ui/core/IconButton";
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import AddIcon from '@material-ui/icons/Add';
 import MailIcon from '@material-ui/icons/Mail';
-import {CREATE_OFFER, LOGIN, MESSAGES, OFFERS, PROFILE, REGISTER} from "../../common/paths";
+import {CREATE_OFFER, LOGIN, MESSAGES, PROFILE, REGISTER} from "../../common/paths";
 import Button from "@material-ui/core/Button";
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import {useTranslation} from "react-i18next";
@@ -35,14 +34,12 @@ function TopAppBar(props) {
             <div className="top-menu">
                 <Toolbar>
                     <div id="top-menu-left">
-                        <Typography variant="h5" onClick={() => redirect(OFFERS)}>
-                            {t('brand')}
-                        </Typography>
+                        <img className={'brand-logo'} src={process.env.PUBLIC_URL + '/logo/vector/default-monochrome.svg'} alt={'Librin'}/>
                     </div>
                     <div id='top-menu-middle'>
                         {
                             smallScreen ? null :
-                                <SearchComponent selectMenuClassName="search-category-select-menu"/>
+                                <SearchComponent/>
                         }
                     </div>
                     <div className="top-menu-right">
@@ -105,7 +102,7 @@ function TopAppBar(props) {
             {
                 smallScreen ?
                     <div className="top-menu-second-row">
-                        <SearchComponent selectMenuClassName="search-category-select-menu-second-row"/>
+                        <SearchComponent/>
                     </div> : null
             }
         </>

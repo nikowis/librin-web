@@ -90,7 +90,7 @@ export const createOfferSchema = Yup.object().shape({
         .min(1)
         .required(),
     description: Yup.string()
-        .max(512),
+        .max(512).nullable(),
     price: Yup.string()
         .required()
         .matches(moneyRegex),
@@ -117,7 +117,7 @@ export const editOfferSchema = Yup.object().shape({
         .min(1)
         .required(),
     description: Yup.string()
-        .max(512),
+        .max(512).nullable(),
     price: Yup.string()
         .required()
         .matches(moneyRegex),

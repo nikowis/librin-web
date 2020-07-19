@@ -15,14 +15,30 @@ export class OfferStatus {
     static DELETED = 'DELETED';
 }
 
-export const OfferCategory = [
-    {name: 'FANTASY'},
-    {name: 'HISTORY'},
-    {name: 'COMIC_BOOK'},
-    {name: 'CRIMINAL'},
-    {name: 'SCI_FI'},
-    {name: 'OTHER'}
-]
+export const OfferCategory= [
+    {name: 'BIOGRAPHIES_REPORTS_FACT'},
+    {name: 'JOURNALS_MAGAZINES'},
+    {name: 'FOR_CHILDREN'},
+    {name: 'FOR_YOUTH'},
+    {name: 'FANTASY_SCIFI_HORROR'},
+    {name: 'HISTORICAL'},
+    {name: 'COMIC_BOOK_MANGA'},
+    {name: 'CRIME_SENSATION_THRILLER'},
+    {name: 'POPULAR_SCIENCE'},
+    {name: 'FOREIGN_LANGUAGE'},
+    {name: 'COOKING_DIETS'},
+    {name: 'NOVEL'},
+    {name: 'ROMANCE_EROTIC'},
+    {name: 'SCHOOL_AND_ACADEMICAL'},
+    {name: 'BELLES_LETTRES'},
+    {name: 'SPECIALIST_LITERATURE'},
+    {name: 'ART'},
+    {name: 'GUIDEBOOKS_PERSONAL_GROWTH'},
+    {name: 'TOURISM_TRAVEL_SPORT_LEISURE'},
+    {name: 'OTHER'},
+];
+
+
 
 export const OfferCondition = [
     {value: 5, name: 'NEW'},
@@ -30,4 +46,4 @@ export const OfferCondition = [
     {value: 3, name: 'GOOD'},
     {value: 2, name: 'USED'},
     {value: 1, name: 'DESTROYED'}
-]
+];

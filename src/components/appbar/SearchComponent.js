@@ -3,14 +3,15 @@ import SearchIcon from '@material-ui/icons/Search';
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import {withRouter} from "react-router-dom";
-import {OFFERS} from "../../common/paths";
 import IconButton from "@material-ui/core/IconButton";
 import {useTranslation} from "react-i18next";
 import {connect} from "react-redux";
-import {CLEAR_OFFERS} from "../../redux/actions";
+import {CHANGE_OFFERS_FILTER} from "../../redux/actions";
 import Api from "../../common/api-communication";
 import InputBase from "@material-ui/core/InputBase";
 import * as PropTypes from "prop-types";
+import withWidth from "@material-ui/core/withWidth/withWidth";
+import {MAIN_VIEW} from "../../redux/offersReducer";
 
 function SearchComponent(props) {
 
@@ -19,12 +20,13 @@ function SearchComponent(props) {
 
     const [category, setCategory] = React.useState(TITLE);
     const [search, setSearch] = React.useState('');
-
+    const smallScreen = /xs|sm/.test(props.width);
     const {t} = useTranslation();
-    const {history, location, dispatch} = props;
+    const {history, location, dispatch, currentFilter, newFilter} = props;
 
-    const titleQuery = Api.getURLParam(location.search, TITLE);
-    const authorQuery = Api.getURLParam(location.search, AUTHOR);
+    const searchQuery = location.search;
+    const titleQuery = Api.getURLParam(searchQuery, TITLE);
+    const authorQuery = Api.getURLParam(searchQuery, AUTHOR);
     useEffect(() => {
         if (titleQuery) {
             setCategory(TITLE);
@@ -39,6 +41,27 @@ function SearchComponent(props) {
 
     }, [titleQuery, authorQuery]);
 
+    useEffect(() => {
+        const titleQuery = Api.getURLParam(searchQuery, TITLE);
+        const authorQuery = Api.getURLParam(searchQuery, AUTHOR);
+        let filterChanged = false;
+        let changeFilter = {...newFilter};
+
+        if (newFilter[TITLE] !== titleQuery || newFilter[AUTHOR] !== authorQuery) {
+            changeFilter[TITLE] = titleQuery;
+            changeFilter[AUTHOR] = authorQuery;
+            filterChanged = true;
+        }
+
+        if (filterChanged) {
+            dispatch({
+                type: CHANGE_OFFERS_FILTER,
+                view: MAIN_VIEW,
+                payload: {...changeFilter},
+            });
+        }
+    }, [dispatch, newFilter, searchQuery]);
+
     const handleChangeSelect = (event) => {
         setCategory(event.target.value);
     };
@@ -48,12 +71,19 @@ function SearchComponent(props) {
     };
 
     const handleSubmit = (event) => {
-        dispatch({type: CLEAR_OFFERS});
-        if (search) {
-            history.push(OFFERS + '?' + new URLSearchParams({[category]: search}).toString());
-        } else {
-            history.push(OFFERS);
+        const value = search;
+        if (currentFilter[category] !== value) {
+            const urlSearchParams = new URLSearchParams(history.location.search);
+            if (value) {
+                urlSearchParams.set(category, value);
+            } else {
+                urlSearchParams.delete(category);
+            }
+            urlSearchParams.set("page", 1);
+            urlSearchParams.delete(category === TITLE ? AUTHOR : TITLE);
+            history.push(history.location.pathname + "?" + urlSearchParams.toString());
         }
+
         event.preventDefault()
     };
 
@@ -64,10 +94,13 @@ function SearchComponent(props) {
                 className={"search-select"}
                 value={category}
                 onChange={handleChangeSelect}
-                MenuProps={{disableScrollLock: true, className: props.selectMenuClassName}}
+                MenuProps={{
+                    disableScrollLock: true,
+                    className: smallScreen ? 'search-category-select-menu-second-row' : 'search-category-select-menu'
+                }}
             >
-                <MenuItem value={TITLE}>Tytuł</MenuItem>
-                <MenuItem value={AUTHOR}>Autor</MenuItem>
+                <MenuItem value={TITLE}>{t('offer.title')}</MenuItem>
+                <MenuItem value={AUTHOR}>{t('offer.author')}</MenuItem>
             </Select>
             <InputBase
                 className={"search-text-input"}
@@ -84,7 +117,11 @@ function SearchComponent(props) {
 }
 
 SearchComponent.propTypes = {
-    selectMenuClassName: PropTypes.string.isRequired
+    currentFilter: PropTypes.object.isRequired,
+    newFilter: PropTypes.object.isRequired,
 };
 
-export default connect(state => ({}))(withRouter(SearchComponent));
+export default connect(state => ({
+    currentFilter: state.offers.mainView.currentFilter,
+    newFilter: state.offers.mainView.newFilter,
+}))(withRouter(withWidth()(SearchComponent)));
