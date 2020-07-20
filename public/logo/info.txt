@@ -10,5 +10,5 @@ font author site: http://dotcolon.net/
 icon designer: Olivier Guin
 icon designer link: /olivierguin
         
-{"bg":"transparent","icon-gradient-0":"#422F75","icon-gradient-1":"#C0B3EC","font":"#000000","slogan":"#141414"}
+{"bg":"transparent","icon-gradient-0":"#3C1143","icon-gradient-1":"#C25178","font":"#000000","slogan":"#141414"}
       
