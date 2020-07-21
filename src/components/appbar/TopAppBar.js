@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import {withRouter} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import Toolbar from "@material-ui/core/Toolbar";
 import SearchComponent from "./SearchComponent";
 import withWidth from '@material-ui/core/withWidth';
@@ -10,9 +10,8 @@ import IconButton from "@material-ui/core/IconButton";
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import AddIcon from '@material-ui/icons/Add';
 import MailIcon from '@material-ui/icons/Mail';
-import {CREATE_OFFER, LOGIN, MESSAGES, PROFILE, REGISTER} from "../../common/paths";
+import {CREATE_OFFER, MESSAGES, PROFILE, ROOT} from "../../common/paths";
 import Button from "@material-ui/core/Button";
-import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import {useTranslation} from "react-i18next";
 import TopDrawer from "./TopDrawer";
 import Badge from "@material-ui/core/Badge";
@@ -34,7 +33,9 @@ function TopAppBar(props) {
             <div className="top-menu">
                 <Toolbar>
                     <div id="top-menu-left">
-                        <img className={'brand-logo'} src={process.env.PUBLIC_URL + '/logo/vector/default-monochrome.svg'} alt={'Librin'}/>
+                        <Link to={ROOT}>
+                            <img className={'brand-logo'} src={process.env.PUBLIC_URL + '/logo/vector/default-monochrome.svg'} alt={'Librin'}/>
+                        </Link>
                     </div>
                     <div id='top-menu-middle'>
                         {
@@ -74,22 +75,14 @@ function TopAppBar(props) {
                                         <AccountCircle/>
                                     </IconButton> : null
                                 }
-
-
                             </> : null
                         }
                         {!props.authenticated ?
                             <>
-                                <Button size={"small"} variant="outlined" onClick={() => redirect(LOGIN)}
-                                        color="inherit" startIcon={<AccountCircle/>}>
-                                    {t('login.page')}
+                                <Button size={"small"} variant="outlined" onClick={() => redirect(CREATE_OFFER)}
+                                        color="inherit" startIcon={<AddIcon/>}>
+                                    {t('offer.createPage')}
                                 </Button>
-                                {!verySmallScreen ?
-                                    <Button size={"small"} variant="outlined" onClick={() => redirect(REGISTER)}
-                                            color="inherit" startIcon={<VpnKeyIcon/>}>
-                                        {t('register.page')}
-                                    </Button> : null
-                                }
                             </> : null
                         }
                         {verySmallScreen ? <TopDrawer authenticated={props.authenticated}/>

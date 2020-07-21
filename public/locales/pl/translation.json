@@ -139,9 +139,10 @@
       "wrongExtension": "Niedopuszczalne rozszerzenie pliku"
     }
   },
+  "landingBanner" : "Kupuj, wymieniaj i sprzedawaj książki, nowe i używane!",
   "login": {
     "page": "Logowanie",
-    "submit": "Zaloguj"
+    "submit": "Zaloguj się"
   },
   "register": {
     "page": "Rejestracja",

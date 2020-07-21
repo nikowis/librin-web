@@ -18,7 +18,7 @@ function OffersGrid(props) {
     };
 
     return (
-        <Grid container spacing={1}>
+        <Grid container spacing={1} className={'offer-grid'}>
             {offerRows()}
         </Grid>
     );
