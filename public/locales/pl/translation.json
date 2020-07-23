@@ -31,7 +31,7 @@
       "generatePasswordTokenLink": "Nie pamiętasz hasła?",
       "generatePasswordSuccess": "Link do zmiany hasła został wysłany na {{email}} ",
       "generatePasswordTokenSubmit": "Wyślij",
-      "change": "Zmień hasło",
+      "change": "Zmiana hasła",
       "changeSuccess": "Hasło zostało zmnienione",
       "changeSubmit": "Zmień"
     },
@@ -149,7 +149,8 @@
     "submit": "Zarejestruj się"
   },
   "profile": {
-    "page": "Profil"
+    "page": "Profil",
+    "title": "Mój profil"
   },
   "messages": {
     "page": "Wiadomości",

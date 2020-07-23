@@ -10,6 +10,7 @@ import { PAPER_ELEVATION } from '../../common/app-constants';
 import { translate } from "../../common/i18n-helper";
 import { GENERATE_PASSWORD_RESET, OFFERS, REGISTER } from "../../common/paths";
 import { loginSchema } from "../../common/validation-schemas";
+import TitleComponent from "../TitleComponent";
 
 function LoginView(props) {
 
@@ -28,6 +29,7 @@ function LoginView(props) {
 
     return (
         <>
+            <TitleComponent content={t('login.page')}/>
         <Paper elevation={PAPER_ELEVATION} square className={'form-container'}>
             <Formik validationSchema={loginSchema}
                     onSubmit={handleSubmit}

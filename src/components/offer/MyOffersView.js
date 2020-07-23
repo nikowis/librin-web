@@ -10,6 +10,7 @@ import PaginationComponent from "../PaginationComponent";
 import { useTranslation } from "react-i18next";
 import { objectEquals } from "../../common/object-helper";
 import { filterMatchesUrl } from "../../common/filter-helper";
+import TitleComponent from "../TitleComponent";
 
 function MyOffersView(props) {
   const { t } = useTranslation();
@@ -53,6 +54,7 @@ function MyOffersView(props) {
 
   return (
     <>
+      <TitleComponent content={t('offer.myoffersPage')}/>
       {objectEquals(currentFilter, newFilter) ? (
         offers && offers.length > 0 ? (
           <>
@@ -60,6 +62,7 @@ function MyOffersView(props) {
               myOffers={true}
               offers={offers}
               offerLinkBase={MY_OFFERS}
+
             />
           </>
         ) : (
