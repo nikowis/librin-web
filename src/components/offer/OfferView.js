@@ -78,6 +78,11 @@ function OfferView(props) {
           )}
         </Grid>
         <Grid item xs={12} sm={8} md={4}>
+          <Card elevation={PAPER_ELEVATION} square className={"user-details"}>
+            <Link to={USERS + "/" + owner.id} className={"link-no-styles"}>
+              <UserBannerComponent username={owner.username} />
+            </Link>
+          </Card>
           <Card
             elevation={PAPER_ELEVATION}
             square
@@ -127,11 +132,7 @@ function OfferView(props) {
               <WarningStrip text={t("offer.status.inactiveWarn")} />
             )}
           </Card>
-          <Card elevation={PAPER_ELEVATION} square className={"user-details"}>
-            <Link to={USERS + "/" + owner.id} className={"link-no-styles"}>
-              <UserBannerComponent username={owner.username} />
-            </Link>
-          </Card>
+
         </Grid>
       </Grid>
     );
@@ -139,11 +140,7 @@ function OfferView(props) {
 
   return (
     <>
-      {wrongOfferIsLoaded ? (
-        <Card>
-          <LoaderComponent />
-        </Card>
-      ) : (
+      {wrongOfferIsLoaded ? <LoaderComponent/> : (
         getView()
       )}
     </>

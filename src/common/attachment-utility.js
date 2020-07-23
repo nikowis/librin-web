@@ -54,8 +54,11 @@ export function base64ToFile(base64, filename) {
 }
 
 export function initializeAttachmentFromBase64(attachment) {
-    const file = base64ToFile(attachment.content, attachment.name);
-    return {name: attachment.name, content: attachment.content, url: URL.createObjectURL(file)}
+    if(attachment.content) {
+        const file = base64ToFile(attachment.content, attachment.name);
+        return {name: attachment.name, content: attachment.content, url: URL.createObjectURL(file)}
+    }
+    return {name: attachment.name, content: attachment.content, url: null}
 }
 
 export function compressFile(file) {
