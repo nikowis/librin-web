@@ -23,6 +23,7 @@ $topMenuHeight: 50px;
     padding-right: 32px;
 
     .brand-logo {
+      padding-left: 4px;
       width: 130px;
     }
   }
@@ -31,6 +32,7 @@ $topMenuHeight: 50px;
     flex-grow: 1;
 
     .top-menu-search {
+      margin: auto;
       max-width: 60%;
     }
   }

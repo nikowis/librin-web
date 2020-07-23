@@ -29,7 +29,7 @@
       "label": "Hasło",
       "repeat": "Powtórz hasło",
       "generatePasswordTokenLink": "Nie pamiętasz hasła?",
-      "generatePasswordSuccess": "Link do zmiany hasła został wysłany na {{email}}",
+      "generatePasswordSuccess": "Link do zmiany hasła został wysłany na {{email}} ",
       "generatePasswordTokenSubmit": "Wyślij",
       "change": "Zmień hasło",
       "changeSuccess": "Hasło zostało zmnienione",
@@ -139,7 +139,7 @@
       "wrongExtension": "Niedopuszczalne rozszerzenie pliku"
     }
   },
-  "landingBanner" : "Kupuj, wymieniaj i sprzedawaj książki, nowe i używane!",
+  "landingBanner" : "Kupuj, wymieniaj i sprzedawaj książki!",
   "login": {
     "page": "Logowanie",
     "submit": "Zaloguj się"

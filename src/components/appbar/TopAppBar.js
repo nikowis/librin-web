@@ -79,10 +79,20 @@ function TopAppBar(props) {
                         }
                         {!props.authenticated ?
                             <>
-                                <Button size={"small"} variant="outlined" onClick={() => redirect(CREATE_OFFER)}
-                                        color="inherit" startIcon={<AddIcon/>}>
-                                    {t('offer.createPage')}
-                                </Button>
+                                {!verySmallScreen ?
+                                    <>
+                                        <Button size={"small"} variant="outlined" onClick={() => redirect(CREATE_OFFER)}
+                                                color="inherit" startIcon={<AddIcon/>}>
+                                            {t('offer.createPage')}
+                                        </Button>
+                                    </> :
+                                    <IconButton
+                                        onClick={() => redirect(CREATE_OFFER)}
+                                        color={"inherit"}
+                                    >
+                                        <AddIcon/>
+                                    </IconButton>
+                                }
                             </> : null
                         }
                         {verySmallScreen ? <TopDrawer authenticated={props.authenticated}/>

@@ -36,11 +36,13 @@
       align-items: center;
       text-align: center;
       h2 {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         font-weight: 500;
       }
       .MuiButton-outlined {
         color: $primary;
+        font-size: 15px;
+        margin: 0 4px
       }
     }
 
