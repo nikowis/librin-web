@@ -15,6 +15,12 @@ export class OfferStatus {
     static DELETED = 'DELETED';
 }
 
+export class UserStatus {
+    static ACTIVE = 'ACTIVE';
+    static BLOCKED = 'BLOCKED';
+    static DELETED = 'DELETED';
+}
+
 export const OfferCategory= [
     {name: 'BIOGRAPHIES_REPORTS_FACT'},
     {name: 'JOURNALS_MAGAZINES'},

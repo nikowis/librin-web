@@ -24,7 +24,7 @@ import MyOffersTableView from "./offer/MyOffersView";
 import CreateOfferView from "./offer/CreateOfferView";
 import EditOfferView from "./offer/EditOfferView";
 import OfferView from "./offer/OfferView";
-import MessagesView from "./messages/MessagesView";
+import ConversationView from "./messages/ConversationView";
 import OffersView from "./offer/OffersView";
 import ConfirmEmailView from "./user/ConfirmEmailView";
 import GeneratePasswordResetView from "./user/GeneratePasswordResetView";
@@ -61,7 +61,7 @@ function ViewRoutes() {
                 <MyOffersTableView/>
             </AuthenticatedRoute>
             <AuthenticatedRoute path={MESSAGES_CONVERSATION}>
-                <MessagesView/>
+                <ConversationView/>
             </AuthenticatedRoute>
             <AuthenticatedRoute path={MESSAGES}>
                 <ConversationsView/>

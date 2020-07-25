@@ -8,6 +8,7 @@ import Api from "../../common/api-communication";
 import { PAPER_ELEVATION } from '../../common/app-constants';
 import LoaderComponent from "../LoaderComponent";
 import MaxWidthContainer from '../MaxWidthContainer';
+import TitleComponent from "../TitleComponent";
 
 
 function ConfirmEmailView(props) {
@@ -30,6 +31,7 @@ function ConfirmEmailView(props) {
 
     return (
         <MaxWidthContainer size={'xs'}>
+            <TitleComponent content={t('user.confirmEmailPage')}/>
             <Paper elevation={PAPER_ELEVATION} square>
                 {infoText ?
                     <>

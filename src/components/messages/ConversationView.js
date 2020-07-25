@@ -84,9 +84,7 @@ function ConversationView(props) {
                 {
                     !wrongConvLoaded && currentConversation.id ?
                         <>
-                            <Link to={USERS + '/' + recipient.id} className={'link-no-styles'}>
-                                <UserBannerComponent username={recipient.username}/>
-                            </Link>
+                            <UserBannerComponent id={recipient.id} status={recipient.status} username={recipient.username} withLink/>
                             <Divider variant="fullWidth"/>
                             <Link to={OFFERS + '/' + currentConversation.offer.id}
                                   className={'link-no-styles'}>

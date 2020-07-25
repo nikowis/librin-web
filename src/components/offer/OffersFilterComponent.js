@@ -26,8 +26,8 @@ function OffersFilterComponent(props) {
     const {location, history, currentFilter, newFilter, dispatch} = props;
     const {push} = history;
     const {search, pathname} = location;
-    const smallScreen = /xs|sm/.test(props.width);
-    const [open, setOpen] = React.useState(!smallScreen);
+    const verySmallScreen = /xs/.test(props.width);
+    const [open, setOpen] = React.useState(!verySmallScreen);
 
     const handleCollapse = () => {
         setOpen(!open);
@@ -70,7 +70,7 @@ function OffersFilterComponent(props) {
                 search: "?" + urlSearchParams.toString(),
             });
         }
-        setOpen(!smallScreen);
+        setOpen(!verySmallScreen);
     };
 
     const categoryRows = () => {

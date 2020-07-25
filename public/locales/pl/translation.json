@@ -38,7 +38,8 @@
     "deleteAccount": "Usuń konto",
     "deleteAccountHeader": "Usuwanie konta",
     "deleteAccountWarning": "Konto zostanie usunięte nieodwracalnie",
-    "registerLink": "Zarejestruj się"
+    "registerLink": "Zarejestruj się",
+    "confirmEmailPage" : "Weryfikacja adresu email"
   },
   "photo": {
     "upload": "Dodaj zdjęcie",
