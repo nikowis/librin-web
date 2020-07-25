@@ -1,21 +1,21 @@
-import React, { useEffect } from "react";
+import React, {useEffect} from "react";
 import Api from "./../../common/api-communication";
-import { Link, useParams, withRouter } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import { connect } from "react-redux";
+import {useParams, withRouter} from "react-router-dom";
+import {useTranslation} from "react-i18next";
+import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import LoaderComponent from "../LoaderComponent";
 import Card from "@material-ui/core/Card/Card";
-import { CLEAR_CURRENT_OFFER } from "../../redux/actions";
-import { LOGIN, MESSAGES, OFFERS, USERS } from "../../common/paths";
+import {CLEAR_CURRENT_OFFER} from "../../redux/actions";
+import {LOGIN, MESSAGES, OFFERS} from "../../common/paths";
 import CardActions from "@material-ui/core/CardActions/CardActions";
 import Button from "@material-ui/core/Button";
-import { OfferStatus, PAPER_ELEVATION } from "../../common/app-constants";
+import {OfferStatus, PAPER_ELEVATION} from "../../common/app-constants";
 import WarningStrip from "./../WarningStrip";
 import EmptyPhotoPreviewComponent from "../EmptyPhotoPreviewComponent";
 import UserBannerComponent from "../user/UserBannerComponent";
 import OfferPhotosComponent from "./OfferPhotosComponent";
-import { Grid } from "@material-ui/core";
+import {Grid} from "@material-ui/core";
 
 function OfferView(props) {
   const [loading, setLoading] = React.useState(false);

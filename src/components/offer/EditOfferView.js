@@ -4,13 +4,15 @@ import {useParams, withRouter} from 'react-router-dom';
 import {useTranslation} from "react-i18next";
 import {connect} from "react-redux";
 import {CLEAR_CURRENT_MYOFFER, HIDE_NOTIFICATION, OFFER_UPDATED, SHOW_NOTIFICATION} from "../../redux/actions";
-import {NOTIFICATION_DURATION} from "../../common/app-constants";
+import {NOTIFICATION_DURATION, OfferStatus, PAPER_ELEVATION} from "../../common/app-constants";
 import PropTypes from "prop-types";
 import LoaderComponent from "../LoaderComponent";
-import {MY_OFFERS} from "../../common/paths";
+import {MY_OFFERS, OFFERS} from "../../common/paths";
 import EditOfferComponent from "./EditOfferComponent";
 import Paper from "@material-ui/core/Paper/Paper";
 import TitleComponent from "../TitleComponent";
+import Button from "@material-ui/core/Button";
+import Chip from "@material-ui/core/Chip";
 
 function EditOfferView(props) {
 
@@ -44,6 +46,43 @@ function EditOfferView(props) {
     }).finally(() => actions.setSubmitting(false));
   };
 
+  const handleRemoveOffer = () => {
+    dispatch(Api.removeOffer(offer.id));
+    history.replace(MY_OFFERS);
+  };
+
+  const handleActivateOffer = () => {
+    dispatch(Api.activateOffer(offer.id));
+  };
+
+  const handleDeactivateOffer = () => {
+    dispatch(Api.deactivateOffer(offer.id));
+  };
+
+  const status = offer.status ? offer.status.toLowerCase() : '';
+
+  const actionButtons =
+      <Paper elevation={PAPER_ELEVATION} square className={'action-buttons-bar form-container'}>
+        <div>
+          <Chip label={t('offer.status.' + status)} className={'status-info-' + status}/>
+        </div>
+        {offer.status === OfferStatus.ACTIVE ?
+            <Button size={"small"} variant="contained" color="primary"
+                    onClick={() => handleDeactivateOffer()}>
+              {t('offer.status.deactivateOffer')}
+            </Button> : null}
+        {offer.status === OfferStatus.INACTIVE ?
+            <Button size={"small"} variant="contained" color="primary"
+                    onClick={() => handleActivateOffer()}>
+              {t('offer.status.activateOffer')}
+            </Button> : null}
+        {offer.status === OfferStatus.ACTIVE || offer.status === OfferStatus.INACTIVE ?
+            <Button size={"small"} variant="contained" color="secondary"
+                    onClick={() => handleRemoveOffer()}>
+              {t('offer.status.deleteOffer')}
+            </Button> : null}
+      </Paper>;
+
   const getView = () => {
     return (
         <>
@@ -51,6 +90,7 @@ function EditOfferView(props) {
           <Paper className={'form-container'}>
             <EditOfferComponent offer={offer} handleSubmit={handleSubmit}/>
           </Paper>
+          {actionButtons}
         </>
     );
   };

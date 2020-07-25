@@ -75,6 +75,7 @@ const myOffersReducer = (state = initialState, action) => {
         currentFilter: Object.assign({}, state.newFilter),
       };
     case EDIT_OFFER:
+    case EDIT_OFFER + FULFILLED:
     case FETCH_MY_OFFER + FULFILLED:
       let processedPayload = processOffer(payload);
 

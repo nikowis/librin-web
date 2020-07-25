@@ -8,13 +8,13 @@ import LoaderComponent from "../LoaderComponent";
 import Divider from "@material-ui/core/Divider";
 import MaxWidthContainer from "../MaxWidthContainer";
 import UserBannerComponent from "../user/UserBannerComponent";
-import {MESSAGES, OFFERS, USERS} from "../../common/paths";
+import {MESSAGES, OFFERS} from "../../common/paths";
 import {READ_CONVERSATION} from "../../redux/actions";
 import ConversationOfferActions from "./ConversationOfferActions";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import OfferStatusInfoBanner from "../offer/OfferStatusInfoBanner";
-import { Paper } from '@material-ui/core';
+import {Paper} from '@material-ui/core';
 import {PAPER_ELEVATION} from './../../common/app-constants'
 
 function ConversationView(props) {

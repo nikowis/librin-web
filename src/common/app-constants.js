@@ -10,6 +10,7 @@ export const DESC_SORT = 'desc';
 export const ASC_SORT = 'asc';
 
 export class OfferStatus {
+    static INACTIVE = 'INACTIVE';
     static ACTIVE = 'ACTIVE';
     static SOLD = 'SOLD';
     static DELETED = 'DELETED';

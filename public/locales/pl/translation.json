@@ -48,12 +48,17 @@
   "offer": {
     "status": {
       "active": "Aktywna",
+      "inactive": "Ukryta",
       "sold": "Sprzedana",
+      "deleted": "Usunięta",
       "inactiveWarn": "Oferta sprzedana lub usunięta",
       "soldToMe": "Gratulacje! Kupiłeś tę książkę",
       "youDeleted": "Usunąłeś tą ofertę",
       "youSold": "Sprzedałeś tę książkę",
-      "youSoldToThisUser": "Sprzedałeś tę książkę temu użytkownikowi"
+      "youSoldToThisUser": "Sprzedałeś tę książkę temu użytkownikowi",
+      "deactivateOffer" : "Ukryj ofertę",
+      "activateOffer" : "Aktywuj ofertę",
+      "deleteOffer" : "Usuń ofertę"
     },
     "category" : {
       "label": "Kategoria",

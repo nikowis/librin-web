@@ -1,4 +1,5 @@
 import {
+  ACTIVATE_SUFFIX,
   API_CHANGE_PASSWORD,
   API_CONFIRM_EMAIL,
   API_GENERATE_PASSWORD_CHANGE,
@@ -12,6 +13,7 @@ import {
   API_REGISTER,
   API_USERS,
   COOKIES_POLICY,
+  DEACTIVATE_SUFFIX,
   PRIVACY_POLICY,
   SOLD_SUFFIX,
   TERMS_AND_CONDITIONS,
@@ -20,6 +22,7 @@ import HttpUtility from "./http-utility";
 import {
   CREATE_CONVERSATION,
   DELETE_OFFER,
+  EDIT_OFFER,
   EMAIL_CONFIRM,
   FETCH_ME,
   FETCH_MY_OFFER,
@@ -34,14 +37,9 @@ import {
   SEND_MESSAGE,
   UPDATE_USER,
 } from "../redux/actions";
-import {
-  CREATED_AT_SORT,
-  DEFAULT_PAGE_SIZE,
-  DESC_SORT,
-  UPDATED_AT_SORT,
-} from "./app-constants";
-import { CHANGE_PASSWORD_BASE, CONFIRM_EMAIL_BASE } from "./paths";
-import { cleanFields } from "./object-helper";
+import {CREATED_AT_SORT, DEFAULT_PAGE_SIZE, DESC_SORT, UPDATED_AT_SORT,} from "./app-constants";
+import {CHANGE_PASSWORD_BASE, CONFIRM_EMAIL_BASE} from "./paths";
+import {cleanFields} from "./object-helper";
 
 class Api {
   API_CLIENT_BASIC_OAUTH_HEADER = "Basic d2ViQ2xpZW50OndlYkNsaWVudFNlY3JldA==";
@@ -215,6 +213,26 @@ class Api {
       url: url,
       payload: { customerId },
       action: SELL_OFFER,
+    });
+  }
+
+  activateOffer(offerId) {
+    const url =
+        this.API_URL + API_MY_OFFERS + "/" + offerId + "/" + ACTIVATE_SUFFIX;
+
+    return HttpUtility.put({
+      url: url,
+      action: EDIT_OFFER,
+    });
+  }
+
+  deactivateOffer(offerId) {
+    const url =
+        this.API_URL + API_MY_OFFERS + "/" + offerId + "/" + DEACTIVATE_SUFFIX;
+
+    return HttpUtility.put({
+      url: url,
+      action: EDIT_OFFER,
     });
   }
 
