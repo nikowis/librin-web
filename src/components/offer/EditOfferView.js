@@ -7,7 +7,7 @@ import {CLEAR_CURRENT_MYOFFER, HIDE_NOTIFICATION, OFFER_UPDATED, SHOW_NOTIFICATI
 import {NOTIFICATION_DURATION, OfferStatus, PAPER_ELEVATION} from "../../common/app-constants";
 import PropTypes from "prop-types";
 import LoaderComponent from "../LoaderComponent";
-import {MY_OFFERS, OFFERS} from "../../common/paths";
+import {MY_OFFERS} from "../../common/paths";
 import EditOfferComponent from "./EditOfferComponent";
 import Paper from "@material-ui/core/Paper/Paper";
 import TitleComponent from "../TitleComponent";
@@ -24,9 +24,13 @@ function EditOfferView(props) {
   useEffect(() => {
     if (propId === null || propId.toString() !== id) {
       dispatch({type: CLEAR_CURRENT_MYOFFER});
-      dispatch(Api.getMyOffer(id));
+      dispatch(Api.getMyOffer(id)).then((res) => {
+        if (res.action.payload.status === 400) {
+          history.replace(MY_OFFERS);
+        }
+      });
     }
-  }, [dispatch, id, propId]);
+  }, [dispatch, history, id, propId]);
 
   const handleSubmit = (data, actions) => {
     actions.setSubmitting(true);
@@ -59,7 +63,7 @@ function EditOfferView(props) {
     dispatch(Api.deactivateOffer(offer.id));
   };
 
-  const status = offer.status ? offer.status.toLowerCase() : '';
+  const status = !!(offer && offer.status) ? offer.status.toLowerCase() : '';
 
   const actionButtons =
       <Paper elevation={PAPER_ELEVATION} square className={'action-buttons-bar form-container'}>

@@ -77,6 +77,9 @@ const myOffersReducer = (state = initialState, action) => {
     case EDIT_OFFER:
     case EDIT_OFFER + FULFILLED:
     case FETCH_MY_OFFER + FULFILLED:
+      if(payload.status === 400) {
+        return {...state}
+      }
       let processedPayload = processOffer(payload);
 
       return {
