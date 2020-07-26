@@ -16,12 +16,13 @@ import EmptyPhotoPreviewComponent from "../EmptyPhotoPreviewComponent";
 import UserBannerComponent from "../user/UserBannerComponent";
 import OfferPhotosComponent from "./OfferPhotosComponent";
 import {Grid} from "@material-ui/core";
+import OfferStatusInfoBanner from "./OfferStatusInfoBanner";
 
 function OfferView(props) {
   const [loading, setLoading] = React.useState(false);
-  const { t } = useTranslation();
-  const { dispatch, history } = props;
-  let { id } = useParams();
+  const {t} = useTranslation();
+  const {dispatch, history} = props;
+  let {id} = useParams();
   id = parseInt(id);
   const invalidId = isNaN(id);
   if (invalidId) {
@@ -43,15 +44,15 @@ function OfferView(props) {
   const wrongOfferIsLoaded = !propId || propId !== id;
   useEffect(() => {
     if (!loading && !invalidId && wrongOfferIsLoaded) {
-      dispatch({ type: CLEAR_CURRENT_OFFER });
+      dispatch({type: CLEAR_CURRENT_OFFER});
       setLoading(true);
       dispatch(Api.getOffer(id))
-        .then((res) => {
-          if (res.action.payload.status === 400) {
-            history.replace(OFFERS);
-          }
-        })
-        .then(() => setLoading(false));
+          .then((res) => {
+            if (res.action.payload.status === 400) {
+              history.replace(OFFERS);
+            }
+          })
+          .then(() => setLoading(false));
     }
   }, [dispatch, history, id, wrongOfferIsLoaded, loading, invalidId]);
 
@@ -69,79 +70,79 @@ function OfferView(props) {
 
   const getView = () => {
     return (
-      <Grid container className={"offer-view"} spacing={1} justify={"center"}>
-        <Grid item xs={12} sm={8} md={imagesGridSize}>
-          {attachments && attachments.length > 0 ? (
-            <OfferPhotosComponent photos={attachments} />
-          ) : (
-            <EmptyPhotoPreviewComponent />
-          )}
-        </Grid>
-        <Grid item xs={12} sm={8} md={4}>
-          <Card elevation={PAPER_ELEVATION} square className={"user-details"}>
-            <UserBannerComponent username={owner.username} id={owner.id} status={owner.status} withLink/>
-          </Card>
-          <Card
-            elevation={PAPER_ELEVATION}
-            square
-            className={"offer-card-details"}
-          >
-            <div className={"primary-text"}>
-              <label htmlFor={"price"}>{t("offer.price")}</label>
-              <span id={"price"}>{price + " " + t("currencySymbol")}</span>
-            </div>
-            <div className={"secondary-text"}>
-              <label htmlFor={"title"}>{t("offer.title")}</label>
-              <span id={"title"}>{title}</span>
-            </div>
-            <div className={"other-text"}>
-              <label htmlFor={"author"}>{t("offer.author")}</label>
-              <span id={"author"}>{author}</span>
-            </div>
-            <div className={"other-text"}>
-              <label htmlFor={"description"}>{t("offer.description")}</label>
-              <span id={"description"}>{description}</span>
-            </div>
-            <div className={"other-text"}>
-              <label htmlFor={"category"}>{t("offer.category.label")}</label>
-              <span id={"category"}>{t("offer.category." + category)}</span>
-            </div>
-            <div className={"other-text"}>
-              <label htmlFor={"condition"}>{t("offer.condition.label")}</label>
-              <span id={"condition"}>{t("offer.condition." + condition)}</span>
-            </div>
-            {OfferStatus.ACTIVE === status ? (
-              <CardActions>
-                {ownerId !== props.userId ? (
-                  <Button
-                    size={"small"}
-                    variant="contained"
-                    color="primary"
-                    type="submit"
-                    onClick={() => handleSendMessage()}
-                  >
-                    {t("offer.sendMessage")}
-                  </Button>
-                ) : (
-                  <WarningStrip text={t("offer.owner.myoffer")} />
-                )}
-              </CardActions>
+        <Grid container className={"offer-view"} spacing={1} justify={"center"}>
+          <Grid item xs={12} sm={8} md={imagesGridSize}>
+            {attachments && attachments.length > 0 ? (
+                <OfferPhotosComponent photos={attachments}/>
             ) : (
-              <WarningStrip text={t("offer.status.inactiveWarn")} />
+                <EmptyPhotoPreviewComponent/>
             )}
-          </Card>
+          </Grid>
+          <Grid item xs={12} sm={8} md={4}>
+            <Card elevation={PAPER_ELEVATION} square className={"user-details"}>
+              <UserBannerComponent username={owner.username} id={owner.id} status={owner.status} withLink/>
+            </Card>
+            <Card
+                elevation={PAPER_ELEVATION}
+                square
+                className={"offer-card-details"}
+            >
+              <div className={"primary-text"}>
+                <label htmlFor={"price"}>{t("offer.price")}</label>
+                <span id={"price"}>{price + " " + t("currencySymbol")}</span>
+              </div>
+              <div className={"secondary-text"}>
+                <label htmlFor={"title"}>{t("offer.title")}</label>
+                <span id={"title"}>{title}</span>
+              </div>
+              <div className={"other-text"}>
+                <label htmlFor={"author"}>{t("offer.author")}</label>
+                <span id={"author"}>{author}</span>
+              </div>
+              <div className={"other-text"}>
+                <label htmlFor={"description"}>{t("offer.description")}</label>
+                <span id={"description"}>{description}</span>
+              </div>
+              <div className={"other-text"}>
+                <label htmlFor={"category"}>{t("offer.category.label")}</label>
+                <span id={"category"}>{t("offer.category." + category)}</span>
+              </div>
+              <div className={"other-text"}>
+                <label htmlFor={"condition"}>{t("offer.condition.label")}</label>
+                <span id={"condition"}>{t("offer.condition." + condition)}</span>
+              </div>
+              {OfferStatus.ACTIVE === status ? (
+                  <CardActions>
+                    {ownerId !== props.userId ? (
+                        <Button
+                            size={"small"}
+                            variant="contained"
+                            color="primary"
+                            type="submit"
+                            onClick={() => handleSendMessage()}
+                        >
+                          {t("offer.sendMessage")}
+                        </Button>
+                    ) : (
+                        <WarningStrip text={t("offer.owner.myoffer")}/>
+                    )}
+                  </CardActions>
+              ) : (
+                  <OfferStatusInfoBanner offer={props.currentOffer} userId={props.userId}/>
+              )}
+            </Card>
 
+          </Grid>
         </Grid>
-      </Grid>
     );
   };
 
   return (
-    <>
-      {wrongOfferIsLoaded ? <LoaderComponent/> : (
-        getView()
-      )}
-    </>
+      <>
+        {wrongOfferIsLoaded ? <LoaderComponent/> : (
+            getView()
+        )}
+      </>
   );
 }
 
@@ -160,11 +161,11 @@ OfferView.propTypes = {
     status: PropTypes.string,
     ownerId: PropTypes.number,
     attachments: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        content: PropTypes.string.isRequired,
-        url: PropTypes.string.isRequired,
-      })
+        PropTypes.shape({
+          name: PropTypes.string.isRequired,
+          content: PropTypes.string.isRequired,
+          url: PropTypes.string.isRequired,
+        })
     ),
     owner: PropTypes.shape({
       id: PropTypes.number.isRequired,
