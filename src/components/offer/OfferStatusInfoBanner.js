@@ -26,8 +26,10 @@ function OfferStatusInfoBanner(props) {
     } else {
         if(offer.soldToMe) {
             result = <WarningStrip text={t('offer.status.soldToMe')} type={'success'}/>;
-        } else if(OfferStatus.SOLD === offer.status || OfferStatus.INACTIVE === offer.status) {
+        } else if(OfferStatus.INACTIVE === offer.status) {
             result = <WarningStrip text={t('offer.status.inactiveWarn')}/>;
+        } else if(OfferStatus.SOLD === offer.status) {
+            result = <WarningStrip text={t('offer.status.soldWarn')}/>;
         } else if(OfferStatus.DELETED === offer.status) {
             result = <WarningStrip text={t('offer.status.deletedWarn')}/>
         }

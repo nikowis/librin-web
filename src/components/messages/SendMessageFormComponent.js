@@ -9,7 +9,7 @@ import SendIcon from '@material-ui/icons/Send';
 function SendMessageFormComponent(props) {
 
     const {t} = useTranslation();
-    const {onSendMessage} = props;
+    const {onSendMessage, disabled} = props;
 
     return (
         <>
@@ -30,11 +30,12 @@ function SendMessageFormComponent(props) {
                             name="content"
                             variant="outlined"
                             value={values.content}
+                            disabled={disabled}
                             onChange={handleChange}
                             onClick={() => props.onClick()}
                             margin="none"
                         />
-                        <Button size={"small"} variant="contained" color="primary" type="submit">
+                        <Button size={"small"} disabled={disabled} variant="contained" color="primary" type="submit">
                             <SendIcon fontSize={'small'}/>
                         </Button>
                     </form>

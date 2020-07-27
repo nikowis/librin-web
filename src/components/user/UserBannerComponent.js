@@ -35,7 +35,7 @@ function UserBannerComponent(props) {
       </div></>);
 
   return (
-      withLink ?
+      withLink && status === UserStatus.ACTIVE ?
           <Link to={USERS + '/' + id} className={'link-no-styles'}>
             {divWithContent}
           </Link>

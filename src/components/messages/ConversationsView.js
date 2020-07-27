@@ -73,7 +73,6 @@ function ConversationsView(props) {
                                                onConversationOpen={handleMarkConversationAsRead}/>
                             <Divider variant="fullWidth"/>
                             <div className={'navigation-buttons'}>
-
                                 {prevConversationLoader}
                                 {nextConversationLoader}
                             </div>

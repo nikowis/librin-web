@@ -71,17 +71,17 @@ function EditOfferView(props) {
           <Chip label={t('offer.status.' + status)} className={'status-info-' + status}/>
         </div>
         {offer.status === OfferStatus.ACTIVE ?
-            <Button size={"small"} variant="contained" color="primary"
+            <Button size={"small"} variant="outlined" color="primary"
                     onClick={() => handleDeactivateOffer()}>
               {t('offer.status.deactivateOffer')}
             </Button> : null}
         {offer.status === OfferStatus.INACTIVE ?
-            <Button size={"small"} variant="contained" color="primary"
+            <Button size={"small"} variant="outlined" color="primary"
                     onClick={() => handleActivateOffer()}>
               {t('offer.status.activateOffer')}
             </Button> : null}
         {offer.status === OfferStatus.ACTIVE || offer.status === OfferStatus.INACTIVE ?
-            <Button size={"small"} variant="contained" color="secondary"
+            <Button size={"small"} variant="outlined" color="secondary"
                     onClick={() => handleRemoveOffer()}>
               {t('offer.status.deleteOffer')}
             </Button> : null}

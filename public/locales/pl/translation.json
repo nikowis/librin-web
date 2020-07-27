@@ -20,6 +20,8 @@
     "firstName": "Imię",
     "lastName": "Nazwisko",
     "username": "Nazwa użytkownika",
+    "accountIsDeleted": "Konto użytkownika zostało usunięte",
+    "accountIsBlocked": "Konto użytkownika zostało zablokowane",
     "email": {
       "label": "Email",
       "confirmEmailSuccess": "Email został poprawnie zweryfikowany",
@@ -51,7 +53,8 @@
       "inactive": "Ukryta",
       "sold": "Sprzedana",
       "deleted": "Usunięta",
-      "inactiveWarn": "Oferta sprzedana lub nieaktywna",
+      "soldWarn": "Oferta sprzedana",
+      "inactiveWarn": "Oferta nieaktywna",
       "deletedWarn": "Oferta usunięta",
       "soldToMe": "Gratulacje! Kupiłeś tę książkę",
       "youDeleted": "Usunąłeś tą ofertę",

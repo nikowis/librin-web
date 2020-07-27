@@ -132,7 +132,7 @@ function ProfileView(props) {
           </Formik>
         </Paper>
         <Paper elevation={PAPER_ELEVATION} square className={'action-buttons-bar form-container'}>
-          <Button size={"small"} variant="contained" color="primary" type="submit"
+          <Button size={"small"} variant="outlined" color="primary" type="submit"
                   onClick={() => props.history.push(PROFILE_CHANGE_PASSWORD)}>
             {t('user.password.change')}
           </Button>

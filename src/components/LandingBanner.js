@@ -20,12 +20,10 @@ function LandingBanner(props) {
             {t('landingBanner')}
           </h2>
           <div>
-          <Button size={"small"} variant="outlined" onClick={() => redirect(LOGIN)}
-                  color="inherit">
+          <Button size={"small"} variant="outlined" color="primary" onClick={() => redirect(LOGIN)}>
             {t('login.submit')}
           </Button>
-          <Button size={"small"} variant="outlined" onClick={() => redirect(REGISTER)}
-                  color="inherit">
+          <Button size={"small"} variant="outlined" color="primary" onClick={() => redirect(REGISTER)}>
             {t('register.submit')}
           </Button>
           </div>

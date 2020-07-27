@@ -20,6 +20,15 @@
     }
   }
 
+  .MuiButton-outlinedPrimary {
+    color: $primary;
+    border: 1px solid $primary;
+
+    &:hover {
+      border: 1px solid $primary;
+    }
+  }
+
   .landing-banner {
     margin: 0 8px 8px 8px;
     @media (max-width: 599px) {
@@ -40,7 +49,6 @@
         font-weight: 500;
       }
       .MuiButton-outlined {
-        color: $primary;
         font-size: 15px;
         margin: 4px
       }
