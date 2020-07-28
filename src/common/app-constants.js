@@ -22,7 +22,7 @@ export class UserStatus {
     static DELETED = 'DELETED';
 }
 
-export const OfferCategory= [
+export const OfferCategory = [
     {name: 'BIOGRAPHIES_REPORTS_FACT'},
     {name: 'JOURNALS_MAGAZINES'},
     {name: 'FOR_CHILDREN'},
