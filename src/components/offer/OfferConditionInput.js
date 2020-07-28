@@ -11,6 +11,7 @@ function OfferConditionInput(props) {
 
   const {onChange, error, value, touched, onBlur} = props;
   const {t} = useTranslation();
+  const [hover, setHover] = React.useState(-1);
 
   return (
       <FormControl
@@ -32,8 +33,11 @@ function OfferConditionInput(props) {
             onChange={(event, value) => onChange(convertConditionValueToString(value))}
             onBlur={onBlur}
             emptyIcon={<StarBorderIcon fontSize="inherit"/>}
+            onChangeActive={(event, newHover) => {
+              setHover(newHover);
+            }}
         />
-        <span className={'condition-hint'}>{value ? t('offer.condition.' + value) : null}</span>
+        <span className={'condition-hint'}>{hover > 0 ? t('offer.condition.' + convertConditionValueToString(hover)) : (value ? t('offer.condition.' + value) : null)}</span>
         </div>
         {error && touched ? (
             <FormHelperText error>{translate(error)}</FormHelperText>
