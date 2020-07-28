@@ -22,6 +22,7 @@
     "username": "Nazwa użytkownika",
     "accountIsDeleted": "Konto użytkownika zostało usunięte",
     "accountIsBlocked": "Konto użytkownika zostało zablokowane",
+    "defaultAuthErr": "Błąd autoryzacji",
     "email": {
       "label": "Email",
       "confirmEmailSuccess": "Email został poprawnie zweryfikowany",

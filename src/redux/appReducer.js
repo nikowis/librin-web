@@ -13,6 +13,7 @@ import {
     SERVER_ERROR,
     SHOW_NOTIFICATION
 } from "./actions";
+import i18n from 'i18next';
 
 const initialState = {
     apiError: false,
@@ -37,9 +38,10 @@ const appReducer = (state = initialState, action) => {
                 pendingRequests: state.pendingRequests - 1
             };
         case AUTH_ERROR + FULFILLED:
+
             return {
                 ...state,
-                errorMessage: (action.payload.message ? action.payload.message : action.payload.errors[0].defaultMessage),
+                errorMessage: (action.payload.message ? action.payload.message : ( action.payload.errors && action.payload.errors.length > 0 ? action.payload.errors[0].defaultMessage : i18n.t('user.defaultAuthErr'))),
                 error: action.payload,
                 authError: true
             };
