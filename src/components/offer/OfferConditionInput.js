@@ -24,20 +24,21 @@ function OfferConditionInput(props) {
       >
         <div className={'input-label'}>{translate('offer.condition.label')}</div>
         <div className={"condition-box"}>
-        <Rating
-            id="condition"
-            name="condition"
-            className={"condition-stars"}
-            defaultValue={null}
-            value={convertConditionValueToInt(value)}
-            onChange={(event, value) => onChange(convertConditionValueToString(value))}
-            onBlur={onBlur}
-            emptyIcon={<StarBorderIcon fontSize="inherit"/>}
-            onChangeActive={(event, newHover) => {
-              setHover(newHover);
-            }}
-        />
-        <span className={'condition-hint'}>{hover > 0 ? t('offer.condition.' + convertConditionValueToString(hover)) : (value ? t('offer.condition.' + value) : null)}</span>
+          <Rating
+              id="condition"
+              name="condition"
+              className={"condition-stars"}
+              defaultValue={null}
+              value={convertConditionValueToInt(value)}
+              onChange={(event, value) => onChange(convertConditionValueToString(value))}
+              onBlur={onBlur}
+              emptyIcon={<StarBorderIcon fontSize="inherit"/>}
+              onChangeActive={(event, newHover) => {
+                setHover(newHover);
+              }}
+          />
+          <span
+              className={'condition-hint'}>{hover > 0 ? t('offer.condition.' + convertConditionValueToString(hover)) : (value ? t('offer.condition.' + value) : null)}</span>
         </div>
         {error && touched ? (
             <FormHelperText error>{translate(error)}</FormHelperText>

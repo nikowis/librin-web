@@ -10,13 +10,14 @@ import {CLEAR_CURRENT_OFFER} from "../../redux/actions";
 import {LOGIN, MESSAGES, OFFERS} from "../../common/paths";
 import CardActions from "@material-ui/core/CardActions/CardActions";
 import Button from "@material-ui/core/Button";
-import {OfferStatus, PAPER_ELEVATION} from "../../common/app-constants";
+import {convertConditionValueToInt, OfferStatus, PAPER_ELEVATION} from "../../common/app-constants";
 import WarningStrip from "./../WarningStrip";
 import EmptyPhotoPreviewComponent from "../EmptyPhotoPreviewComponent";
 import UserBannerComponent from "../user/UserBannerComponent";
 import OfferPhotosComponent from "./OfferPhotosComponent";
 import {Grid} from "@material-ui/core";
 import OfferStatusInfoBanner from "./OfferStatusInfoBanner";
+import Rating from "@material-ui/lab/Rating/Rating";
 
 function OfferView(props) {
   const [loading, setLoading] = React.useState(false);
@@ -95,21 +96,31 @@ function OfferView(props) {
                 <label htmlFor={"title"}>{t("offer.title")}</label>
                 <span id={"title"}>{title}</span>
               </div>
-              <div className={"other-text"}>
+              <div className={"secondary-text"}>
                 <label htmlFor={"author"}>{t("offer.author")}</label>
                 <span id={"author"}>{author}</span>
               </div>
-              <div className={"other-text"}>
+              <div className={"secondary-text"}>
                 <label htmlFor={"description"}>{t("offer.description")}</label>
                 <span id={"description"}>{description}</span>
               </div>
-              <div className={"other-text"}>
+              <div className={"secondary-text"}>
                 <label htmlFor={"category"}>{t("offer.category.label")}</label>
                 <span id={"category"}>{t("offer.category." + category)}</span>
               </div>
-              <div className={"other-text"}>
+              <div className={"secondary-text"}>
                 <label htmlFor={"condition"}>{t("offer.condition.label")}</label>
-                <span id={"condition"}>{t("offer.condition." + condition)}</span>
+                <div className={"condition-box"}>
+                  <Rating
+                      id="condition"
+                      name="condition"
+                      className={"condition-stars"}
+                      readOnly
+                      value={convertConditionValueToInt(condition)}
+                  />
+                  <span
+                      className={'condition-hint'}>{condition ? t('offer.condition.' + condition) : null}</span>
+                </div>
               </div>
               {OfferStatus.ACTIVE === status ? (
                   <CardActions>

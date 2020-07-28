@@ -25,21 +25,23 @@
     color: rgba(0, 0, 0, 0.54);
 }
 
-.condition-input {
-  .condition-box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    .condition-stars {
-      width: 50%;
-      padding: 0 8px;
-    }
-    .condition-hint {
-      padding: 0 8px;
-      width: 50%;
-    }
+
+.condition-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .condition-stars {
+    width: 50%;
+    padding: 0 8px;
+    justify-content: flex-end;
+  }
+  .condition-hint {
+    padding: 0 8px;
+    width: 50%;
+    text-align: left;
   }
 }
+
 
 .offer-photos-edit-component {
 
