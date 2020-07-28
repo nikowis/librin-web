@@ -93,11 +93,11 @@
     },
     "condition" : {
       "label": "Stan książki",
-      "NEW": "Nowy",
-      "PERFECT": "Doskonały",
-      "GOOD": "Dobry",
-      "USED": "Zużyty",
-      "DESTROYED": "Zniszczony"
+      "NEW": "Nowa",
+      "PERFECT": "Idealna",
+      "GOOD": "Dobra",
+      "USED": "Używana",
+      "DESTROYED": "Zniszczona"
     },
     "owner": {
       "myoffer": "Ta oferta należy do Ciebie"

@@ -49,7 +49,7 @@ function OfferPhotosEditComponent(props) {
 
     return (
         <>
-            <InputLabel className={'offer-photos-edit-component-label'}>
+            <InputLabel className={'input-label'}>
                 Dodaj do 3 zdjęć
             </InputLabel>
             <div className={'offer-photos-edit-component'}>

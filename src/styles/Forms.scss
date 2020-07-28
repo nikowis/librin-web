@@ -19,10 +19,25 @@
   }
 }
 
-.offer-photos-edit-component-label {
-  &.MuiInputLabel-root {
+.input-label, .input-label.MuiInputLabel-root {
     text-align: left;
     font-size: 16px;
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.condition-input {
+  .condition-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .condition-stars {
+      width: 50%;
+      padding: 0 8px;
+    }
+    .condition-hint {
+      padding: 0 8px;
+      width: 50%;
+    }
   }
 }
 
@@ -52,7 +67,7 @@
   }
 }
 
-.photo-label-error {
+.label-error {
   color: $validationErrorColor;
   font-size: 16px;
 }

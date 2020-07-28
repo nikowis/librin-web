@@ -88,7 +88,7 @@ export const createOfferSchema = Yup.object().shape({
         .required(),
     condition: Yup.string()
         .min(1)
-        .required(),
+        .required().nullable(),
     description: Yup.string()
         .max(512).nullable(),
     price: Yup.string()
@@ -115,7 +115,7 @@ export const editOfferSchema = Yup.object().shape({
         .required(),
     condition: Yup.string()
         .min(1)
-        .required(),
+        .required().nullable(),
     description: Yup.string()
         .max(512).nullable(),
     price: Yup.string()

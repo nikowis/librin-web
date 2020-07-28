@@ -54,3 +54,11 @@ export const OfferCondition = [
     {value: 2, name: 'USED'},
     {value: 1, name: 'DESTROYED'}
 ];
+
+export function convertConditionValueToInt(strValue) {
+    return strValue ? OfferCondition.filter(c => c.name === strValue)[0].value : null;
+}
+
+export function convertConditionValueToString(intValue) {
+    return intValue ? OfferCondition.filter(c => c.value === intValue)[0].name : null;
+}

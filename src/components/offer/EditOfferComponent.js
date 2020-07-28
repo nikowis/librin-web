@@ -1,26 +1,20 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
-import { Formik } from "formik";
-import {
-  createOfferSchema,
-  editOfferSchema,
-} from "../../common/validation-schemas";
-import { TextField, FormControl, FormHelperText } from "@material-ui/core";
+import {useTranslation} from "react-i18next";
+import {Formik} from "formik";
+import {createOfferSchema, editOfferSchema,} from "../../common/validation-schemas";
+import {FormControl, FormHelperText, TextField} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import CurrencyTextField from "@unicef/material-ui-currency-textfield";
-import { translate } from "../../common/i18n-helper";
+import {translate} from "../../common/i18n-helper";
 import PropTypes from "prop-types";
 import OfferPhotosEditComponent from "./OfferPhotosEditComponent";
-import { API_ERROR, CLEAR_API_ERROR } from "../../redux/actions";
-import {
-  API_ERROR_NOTIFICATION_DURATION,
-  OfferCategory,
-  OfferCondition,
-} from "../../common/app-constants";
-import { connect } from "react-redux";
+import {API_ERROR, CLEAR_API_ERROR} from "../../redux/actions";
+import {API_ERROR_NOTIFICATION_DURATION, OfferCategory,} from "../../common/app-constants";
+import {connect} from "react-redux";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
+import OfferConditionInput from "./OfferConditionInput";
 
 function EditOfferComponent(props) {
   const { t } = useTranslation();
@@ -49,7 +43,7 @@ function EditOfferComponent(props) {
         author: offer ? offer.author : "",
         price: offer ? offer.price : "",
         category: offer ? offer.category : "",
-        condition: offer ? offer.condition : "",
+        condition: offer ? offer.condition : null,
         description: offer ? offer.description : "",
         photos: offer && offer.attachments ? offer.attachments : [],
       }}
@@ -71,7 +65,7 @@ function EditOfferComponent(props) {
             handlePhotoError={handlePhotoError}
           />
           {errors.photos && touched.photos ? (
-            <div className={"photo-label-error"}>
+            <div className={"label-error"}>
               {t("validations.photo.required")}
             </div>
           ) : null}
@@ -127,42 +121,19 @@ function EditOfferComponent(props) {
             >
               {
                   OfferCategory.map((category) => {
-                    return <MenuItem value={category.name}>{translate('offer.category.' + category.name)}</MenuItem>;
+                    return <MenuItem key={category.name} value={category.name}>{translate('offer.category.' + category.name)}</MenuItem>;
                   })
               }
             </Select>
             {errors.category && touched.category ? (
-              <FormHelperText>{translate(errors.category)}</FormHelperText>
+              <FormHelperText error>{translate(errors.category)}</FormHelperText>
             ) : null}
           </FormControl>
-          <FormControl
-            variant="outlined"
-            fullWidth
-            size="small"
-            margin="normal"
-            required
-          >
-            <InputLabel id="condition-label">{translate('offer.condition.label')}</InputLabel>
-            <Select
-              labelId="condition-label"
-              id="condition"
-              name="condition"
-              value={values.condition}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              label={translate('offer.condition.label')}
-              fullWidth
-            >
-              {
-                  OfferCondition.map((condition) => {
-                    return <MenuItem value={condition.name}>{translate('offer.condition.' + condition.name)}</MenuItem>;
-                  })
-              }
-            </Select>
-            {errors.condition && touched.condition ? (
-              <FormHelperText>{translate(errors.condition)}</FormHelperText>
-            ) : null}
-          </FormControl>
+
+          <OfferConditionInput value={values.condition} error={errors.condition}
+                               touched={touched.condition}
+                               onChange={(v) => setFieldValue("condition", v)} onBlur={handleBlur}/>
+
           <TextField
             size="small"
             error={errors.description && touched.description}
