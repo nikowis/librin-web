@@ -22,7 +22,7 @@ function OfferConditionInput(props) {
           required
           className={"condition-input"}
       >
-        <div className={'input-label'}>{translate('offer.condition.label')}</div>
+        <div className={'input-label'}>{translate('offer.condition.label') + '*'}</div>
         <div className={"condition-box"}>
           <Rating
               id="condition"

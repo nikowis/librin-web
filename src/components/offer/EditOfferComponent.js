@@ -109,7 +109,7 @@ function EditOfferComponent(props) {
                     setFieldValue('category', (v ? v.name : null));
                   }}
                   size="small"
-                  margin="normal"
+
                   value={values.category ? OfferCategory.filter(oc => oc.name === values.category)[0] : null}
                   getOptionLabel={(option) => option ? t('offer.category.' + option.name) : ''}
                   renderInput={(params) =>
@@ -117,6 +117,7 @@ function EditOfferComponent(props) {
                                  label={translate('offer.category.label')}
                                  variant="outlined"
                                  required
+                                 margin="normal"
                                  helperText={
                                    errors.category && touched.category ? translate(errors.category) : ""
                                  }
