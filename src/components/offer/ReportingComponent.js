@@ -8,6 +8,8 @@ import PropTypes from "prop-types";
 
 function ReportingComponent(props) {
 
+  const {userId, conversationId, offerId} = props;
+
   const {t} = useTranslation();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -34,6 +36,8 @@ function ReportingComponent(props) {
   const open = Boolean(anchorEl);
   const id = open ? 'report-popover' : undefined;
 
+  const buttonCaption = userId ? t('user.report') : (offerId ? t('offer.report') : t('messages.report'));
+
   return (<>
     <ErrorOutlineIcon aria-describedby={id} onClick={handleOpenPopover} fontSize={'small'} className={'report-icon'}/>
     <Popover
@@ -51,16 +55,18 @@ function ReportingComponent(props) {
         }}
     >
       <Button className={'report-button'} onClick={handleClickOpenForm}>
-        {t('user.report')}
+        {buttonCaption}
       </Button>
     </Popover>
-    <ReportingDialog open={formOpen} userId={props.userId} handleClose={handleCloseForm}/>
+    <ReportingDialog open={formOpen} userId={userId} offerId={offerId} conversationId={conversationId} handleClose={handleCloseForm}/>
   </>);
 
 }
 
 ReportingComponent.propTypes = {
   userId: PropTypes.number,
+  conversationId: PropTypes.number,
+  offerId: PropTypes.number,
 };
 
 export default ReportingComponent;

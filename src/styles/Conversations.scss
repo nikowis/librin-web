@@ -161,12 +161,22 @@
     font-size: 12px;
     color: gray;
   }
-
-  .send-message-form {
-    padding: 8px;
+  .send-message-container {
     display: flex;
     justify-content: center;
+    align-items: center;
+
+    .send-message-form {
+      padding: 8px;
+      flex: 1 0 auto;
+    }
+
+    .report-icon {
+      padding-right: 8px;
+    }
+
   }
+
 
   .MuiList-padding {
     padding: 0;

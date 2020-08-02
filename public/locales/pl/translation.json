@@ -133,7 +133,8 @@
     "offersPage": "Oferty",
     "myoffersPage": "Moje oferty",
     "editPageTitle": "Edycja oferty",
-    "createPageTitle": "Sprzedaj książkę"
+    "createPageTitle": "Sprzedaj książkę",
+    "report": "Zgłoś ogłoszenie"
   },
   "gpdr": {
     "cookieAcceptButtonText": "Akceptuję",
@@ -176,7 +177,8 @@
     "submit": "Wyślij",
     "nomessages": "Brak wiadomości",
     "newer": "Nowsze",
-    "older": "Starsze"
+    "older": "Starsze",
+    "report": "Zgłoś konwersację"
   },
   "notification": {
     "registered": "Konto utworzone",

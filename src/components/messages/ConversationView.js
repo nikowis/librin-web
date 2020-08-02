@@ -97,7 +97,7 @@ function ConversationView(props) {
 
                   <Divider variant="fullWidth"/>
                   <SendMessageFormComponent onSendMessage={handleSendMessage} disabled={recipient.status === UserStatus.DELETED}
-                                            onClick={handleMarkConversationAsRead}/>
+                                            onClick={handleMarkConversationAsRead} conversationId={currentConversation.id}/>
                 </> :
                 <LoaderComponent/>
           }

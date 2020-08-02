@@ -20,11 +20,13 @@ import PropTypes from "prop-types";
 function ReportingComponent(props) {
 
   const {t} = useTranslation();
-  const {open, handleClose, userId, dispatch} = props;
+  const {open, handleClose, userId, conversationId, offerId, dispatch} = props;
 
   const handleSubmit = (data, actions) => {
     actions.setSubmitting(true);
     data.userId = userId;
+    data.conversationId = conversationId;
+    data.offerId = offerId;
     Api.report(data).payload.then((response) => {
       if (!response.error) {
         dispatch({type: SHOW_NOTIFICATION, payload: t('reportSuccess')});
@@ -39,6 +41,8 @@ function ReportingComponent(props) {
       }
     }).finally(() => actions.setSubmitting(false));
   };
+
+  const titleCaption = userId ? t('user.report') : (offerId ? t('offer.report') : t('messages.report'));
 
   return (
       <>
@@ -58,7 +62,7 @@ function ReportingComponent(props) {
                 isSubmitting
               }) => (
                 <form onSubmit={handleSubmit}>
-                  <DialogTitle id="form-dialog-title">{t('user.report')}</DialogTitle>
+                  <DialogTitle id="form-dialog-title">{titleCaption}</DialogTitle>
                   <DialogContent>
                     <DialogContentText>
                       {t('user.reportDesc')}
@@ -103,6 +107,8 @@ ReportingComponent.propTypes = {
   open: PropTypes.bool.isRequired,
   handleClose: PropTypes.func.isRequired,
   userId: PropTypes.number,
+  conversationId: PropTypes.number,
+  offerId: PropTypes.number,
 };
 
 export default connect(() => ({

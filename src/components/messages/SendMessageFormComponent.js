@@ -5,14 +5,15 @@ import Button from "@material-ui/core/Button";
 import {useTranslation} from "react-i18next";
 import PropTypes from "prop-types";
 import SendIcon from '@material-ui/icons/Send';
+import ReportingComponent from "../offer/ReportingComponent";
 
 function SendMessageFormComponent(props) {
 
     const {t} = useTranslation();
-    const {onSendMessage, disabled} = props;
+    const {onSendMessage, disabled, conversationId} = props;
 
     return (
-        <>
+        <div className={'send-message-container'}>
             <Formik onSubmit={onSendMessage}
                     initialValues={{
                         content: ''
@@ -38,16 +39,19 @@ function SendMessageFormComponent(props) {
                         <Button size={"small"} disabled={disabled} variant="contained" color="primary" type="submit">
                             <SendIcon fontSize={'small'}/>
                         </Button>
+
                     </form>
                 )}
             </Formik>
-        </>
+          <ReportingComponent conversationId={conversationId}/>
+        </div>
     );
 }
 
 SendMessageFormComponent.propTypes = {
     onSendMessage: PropTypes.func.isRequired,
-    onClick: PropTypes.func.isRequired
+    onClick: PropTypes.func.isRequired,
+    conversationId: PropTypes.number
 };
 
 export default SendMessageFormComponent;
