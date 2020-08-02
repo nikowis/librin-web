@@ -44,7 +44,7 @@ function UserBannerComponent(props) {
             </Link>
             <ReportingComponent userId={id}/>
           </div>
-          : <div className={'user-info-container'}> divWithContent </div>
+          : <div className={'user-info-container'}> {divWithContent} </div>
   );
 }
 

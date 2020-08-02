@@ -18,6 +18,7 @@ import OfferPhotosComponent from "./OfferPhotosComponent";
 import {Grid} from "@material-ui/core";
 import OfferStatusInfoBanner from "./OfferStatusInfoBanner";
 import Rating from "@material-ui/lab/Rating/Rating";
+import ReportingComponent from "./ReportingComponent";
 
 function OfferView(props) {
   const [loading, setLoading] = React.useState(false);
@@ -125,15 +126,18 @@ function OfferView(props) {
               {OfferStatus.ACTIVE === status ? (
                   <CardActions>
                     {ownerId !== props.userId ? (
-                        <Button
-                            size={"small"}
-                            variant="contained"
-                            color="primary"
-                            type="submit"
-                            onClick={() => handleSendMessage()}
-                        >
-                          {t("offer.sendMessage")}
-                        </Button>
+                        <div className={'offer-actions'}>
+                          <Button
+                              size={"small"}
+                              variant="contained"
+                              color="primary"
+                              type="submit"
+                              onClick={() => handleSendMessage()}
+                          >
+                            {t("offer.sendMessage")}
+                          </Button>
+                          <ReportingComponent offerId={id}/>
+                        </div>
                     ) : (
                         <WarningStrip text={t("offer.owner.myoffer")}/>
                     )}
