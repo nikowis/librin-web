@@ -20,7 +20,7 @@ $topMenuHeight: 50px;
   }
 
   #top-menu-left {
-    padding-right: 32px;
+    padding-right: 8px;
 
     .brand-logo {
       padding-left: 4px;
@@ -129,9 +129,10 @@ $topMenuHeight: 50px;
 
 .top-menu-right {
   height: inherit;
+  display: flex;
+  align-items: center;
   .MuiIconButton-root {
-    height: $topMenuHeight;
-    width: $topMenuHeight;
+    padding: 6px;
   }
 
   .MuiBadge-badge {

@@ -96,7 +96,7 @@ function DeleteAccountComponent(props) {
                             </DialogContent>
                             <DialogActions>
                                 <Button size={"small"} onClick={handleClose} color="primary">
-                                    Cancel
+                                    {t('cancel')}
                                 </Button>
                                 <Button size={"small"} onClick={handleSubmit} disabled={isSubmitting} startIcon={<DeleteIcon/>} color="secondary">
                                     {t('user.deleteAccount')}

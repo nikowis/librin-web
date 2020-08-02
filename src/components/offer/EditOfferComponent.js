@@ -143,7 +143,8 @@ function EditOfferComponent(props) {
                   }
                   margin="normal"
                   multiline
-                  rowsMax={3}
+                  rows={2}
+                  rowsMax={4}
                   fullWidth
               />
               <CurrencyTextField

@@ -16,6 +16,9 @@
   "cookiePolicy": "Polityka cookies",
   "search": "Szukaj",
   "menu": "Menu",
+  "cancel": "Anuluj",
+  "report": "Zgłoś",
+  "reportSuccess": "Zgłoszenie wysłane",
   "user": {
     "firstName": "Imię",
     "lastName": "Nazwisko",
@@ -42,7 +45,9 @@
     "deleteAccountHeader": "Usuwanie konta",
     "deleteAccountWarning": "Konto zostanie usunięte nieodwracalnie",
     "registerLink": "Zarejestruj się",
-    "confirmEmailPage" : "Weryfikacja adresu email"
+    "confirmEmailPage" : "Weryfikacja adresu email",
+    "report": "Zgłoś użytkownika",
+    "reportDesc": "Opisz powód zgłoszenia"
   },
   "photo": {
     "upload": "Dodaj zdjęcie",

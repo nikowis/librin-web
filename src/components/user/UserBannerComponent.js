@@ -6,6 +6,8 @@ import {USERS} from "../../common/paths";
 import {useTranslation} from "react-i18next";
 import {UserStatus} from "../../common/app-constants";
 
+import ReportingComponent from "../offer/ReportingComponent";
+
 function UserBannerComponent(props) {
   const {id, username, status, withLink} = props;
 
@@ -36,10 +38,13 @@ function UserBannerComponent(props) {
 
   return (
       withLink && status === UserStatus.ACTIVE ?
-          <Link to={USERS + '/' + id} className={'link-no-styles'}>
-            {divWithContent}
-          </Link>
-          : divWithContent
+          <div className={'user-info-container'}>
+            <Link to={USERS + '/' + id} className={'link-no-styles user-info-banner'}>
+              {divWithContent}
+            </Link>
+            <ReportingComponent userId={id}/>
+          </div>
+          : <div className={'user-info-container'}> divWithContent </div>
   );
 }
 

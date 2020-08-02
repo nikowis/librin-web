@@ -133,3 +133,7 @@ export const deleteAccountSchema = Yup.object().shape({
     password: Yup.string()
         .required()
 });
+
+export const reportSchema = Yup.object().shape({
+    description: Yup.string().max(512).required()
+});

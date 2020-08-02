@@ -10,7 +10,7 @@ import {
   API_OFFERS,
   API_POLICIES,
   API_PROFILE,
-  API_REGISTER,
+  API_REGISTER, API_REPORTS,
   API_USERS,
   COOKIES_POLICY,
   DEACTIVATE_SUFFIX,
@@ -310,6 +310,15 @@ class Api {
     const url = this.API_URL + API_PROFILE;
 
     return HttpUtility.delete({
+      url: url,
+      payload: data,
+    });
+  }
+
+  report(data) {
+    const url = this.API_URL + API_REPORTS;
+
+    return HttpUtility.post({
       url: url,
       payload: data,
     });
