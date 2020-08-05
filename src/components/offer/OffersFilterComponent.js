@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import PropTypes from "prop-types";
 import {Paper} from "@material-ui/core";
-import {OfferCategory, PAPER_ELEVATION} from "../../common/app-constants";
+import {OfferFilterCategory, PAPER_ELEVATION} from "../../common/app-constants";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -74,10 +74,10 @@ function OffersFilterComponent(props) {
     };
 
     const categoryRows = () => {
-        return OfferCategory.map((cat) => {
+        return OfferFilterCategory.map((cat) => {
             return (
-                <ListItem button selected={newFilter.categories === cat.name} key={cat.name}
-                          onClick={() => changeFilter("categories", cat.name)}>
+                <ListItem button selected={newFilter.categories === cat.value} key={cat.name}
+                          onClick={() => changeFilter("categories", cat.value)}>
                     <ListItemIcon>
                         <ArrowRightIcon fontSize={'small'}/>
                     </ListItemIcon>
