@@ -35,11 +35,11 @@ function OffersFilterComponent(props) {
 
     useEffect(() => {
         const pageQuery = Api.getPageParam(search);
-        const categoryQuery = Api.getURLParam(search, 'category');
+        const categoryQuery = Api.getURLParam(search, 'categories');
         let filterChanged = false;
         let changeFilter = {...newFilter};
-        if (newFilter.category !== categoryQuery) {
-            changeFilter.category = categoryQuery;
+        if (newFilter.categories !== categoryQuery) {
+            changeFilter.categories = categoryQuery;
             filterChanged = true;
         }
         if (!isNaN(parseInt(pageQuery)) && newFilter.page !== parseInt(pageQuery)) {
@@ -76,8 +76,8 @@ function OffersFilterComponent(props) {
     const categoryRows = () => {
         return OfferCategory.map((cat) => {
             return (
-                <ListItem button selected={newFilter.category === cat.name} key={cat.name}
-                          onClick={() => changeFilter("category", cat.name)}>
+                <ListItem button selected={newFilter.categories === cat.name} key={cat.name}
+                          onClick={() => changeFilter("categories", cat.name)}>
                     <ListItemIcon>
                         <ArrowRightIcon fontSize={'small'}/>
                     </ListItemIcon>
@@ -92,7 +92,7 @@ function OffersFilterComponent(props) {
             <List component="nav">
                 <ListItem button onClick={handleCollapse} className={'category-header'}>
                     <ListItemIcon>
-                        <Badge variant={"dot"} badgeContent={newFilter.category ? 1 : 0} color="primary">
+                        <Badge variant={"dot"} badgeContent={newFilter.categories ? 1 : 0} color="primary">
                             <FilterListIcon fontSize={'small'}/>
                         </Badge>
                     </ListItemIcon>
@@ -101,9 +101,9 @@ function OffersFilterComponent(props) {
                 </ListItem>
                 <Collapse in={open} timeout="auto" unmountOnExit>
                     <List component="nav" className={'category-rows'} disablePadding>
-                        {newFilter.category ? (
+                        {newFilter.categories ? (
                             <ListItem button key={'clear'} className={'category-clear'}
-                                      onClick={() => changeFilter("category", null)}>
+                                      onClick={() => changeFilter("categories", null)}>
                                 <ListItemIcon>
                                     <ClearIcon fontSize={'small'}/>
                                 </ListItemIcon>
