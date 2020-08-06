@@ -33,7 +33,7 @@ export const OfferFilterCategory = [
     {name: 'CRIME_SENSATION_THRILLER', value: 'CRIME,SENSATION,THRILLER'},
     {name: 'POPULAR_SCIENCE', value: 'POPULAR_SCIENCE'},
     {name: 'FOREIGN_LANGUAGE', value: 'FOREIGN_LANGUAGE'},
-    {name: 'COOKING_DIETS', value: 'COOKING_DIETS'},+
+    {name: 'COOKING_DIETS', value: 'COOKING_DIETS'},
     {name: 'NOVEL', value: 'NOVEL'},
     {name: 'ROMANCE_EROTIC', value: 'ROMANCE,EROTIC'},
     {name: 'SCHOOL_AND_ACADEMICAL', value: 'SCHOOL_BOOKS,ACADEMICAL_BOOKS,LINGUISTIC_BOOKS'},
@@ -76,7 +76,6 @@ export const OfferCategory = [
     {name: 'SPECIALIST_LITERATURE'},
     {name: 'ART'},
     {name: 'GUIDEBOOKS'},
-    {name: 'PERSONAL_GROWTH'},
     {name: 'PERSONAL_GROWTH'},
     {name: 'TOURISM_TRAVEL'},
     {name: 'SPORT_LEISURE'},
