@@ -89,6 +89,7 @@ function OfferView(props) {
                 square
                 className={"offer-card-details"}
             >
+              <ReportingComponent offerId={id}/>
               <div className={"primary-text"}>
                 <label htmlFor={"price"}>{t("offer.price")}</label>
                 <span id={"price"}>{price + " " + t("currencySymbol")}</span>
@@ -136,7 +137,6 @@ function OfferView(props) {
                           >
                             {t("offer.sendMessage")}
                           </Button>
-                          <ReportingComponent offerId={id}/>
                         </div>
                     ) : (
                         <WarningStrip text={t("offer.owner.myoffer")}/>

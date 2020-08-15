@@ -67,6 +67,13 @@
   .offer-card-details {
     margin: auto;
     text-align: left;
+    position: relative;
+
+    .report-icon {
+      position: absolute;
+      right: 8px;
+      top: 8px;
+    }
 
     label {
       display: block;
