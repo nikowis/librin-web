@@ -3,7 +3,8 @@ import {
     FULFILLED,
     GET_ALL_CONVERSATIONS,
     GET_CONVERSATION,
-    READ_CONVERSATION, SELL_OFFER,
+    READ_CONVERSATION,
+    SELL_OFFER,
     SEND_MESSAGE,
     WS_UPDATE_CONVERSATION
 } from "./actions";
@@ -73,8 +74,13 @@ const messagesReducer = (state = initialState, action) => {
             let updatedConversationList = null;
             const updatedConversation = state.content ? state.content.find(conv => conv.id === payload.conversationId) : null;
             if(updatedConversation) {
-                updatedConversation.read = false;
-                updatedConversation.updatedAt = payload.createdAt;
+                if(payload.offerStatus) {
+                    updatedConversation.offer.status = payload.offerStatus;
+                    updatedConversation.offer.soldToMe = payload.soldToMe;
+                } else {
+                    updatedConversation.read = false;
+                    updatedConversation.updatedAt = payload.createdAt;
+                }
                 updatedConversationList = replaceUpdatedConversationInListIfPossible(state.content, updatedConversation);
             } else {
                 mustReload = true;
@@ -82,9 +88,14 @@ const messagesReducer = (state = initialState, action) => {
 
             const currConv = state.currentConversation;
             if(currConv.id === payload.conversationId) {
-                currConv.messages.push(payload);
-                currConv.read = false;
-                currConv.updatedAt = payload.createdAt;
+                if(payload.id) {
+                    currConv.messages.push(payload);
+                    currConv.updatedAt = payload.createdAt;
+                    currConv.read = false;
+                } else if(payload.offerStatus) {
+                    currConv.offer.status = payload.offerStatus;
+                    currConv.offer.soldToMe = payload.soldToMe;
+                }
             }
 
             return {
