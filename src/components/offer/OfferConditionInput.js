@@ -18,7 +18,7 @@ function OfferConditionInput(props) {
           variant="outlined"
           fullWidth
           size="small"
-          margin="normal"
+          margin="dense"
           required
           className={"condition-input"}
       >

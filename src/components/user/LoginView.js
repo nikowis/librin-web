@@ -57,7 +57,7 @@ function LoginView(props) {
                                 value={values.email}
                                 onChange={handleChange}
                                 helperText={(errors.email && touched.email) && translate(errors.email)}
-                                margin="normal"
+                                margin="dense"
                             />
                         </div>
                         <div>
@@ -71,7 +71,7 @@ function LoginView(props) {
                                 value={values.password}
                                 onChange={handleChange}
                                 helperText={(errors.password && touched.password) && translate(errors.password)}
-                                margin="normal"
+                                margin="dense"
                             />
                         </div>
                         <Button size={"small"} variant="contained" color="primary" type="submit" disabled={isSubmitting}>

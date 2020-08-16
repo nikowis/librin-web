@@ -79,7 +79,7 @@ function EditOfferComponent(props) {
                   helperText={
                     errors.title && touched.title ? translate(errors.title) : ""
                   }
-                  margin="normal"
+                  margin="dense"
                   required
                   fullWidth
               />
@@ -95,7 +95,7 @@ function EditOfferComponent(props) {
                   helperText={
                     errors.author && touched.author ? translate(errors.author) : ""
                   }
-                  margin="normal"
+                  margin="dense"
                   required
                   fullWidth
               />
@@ -117,7 +117,7 @@ function EditOfferComponent(props) {
                                  label={translate('offer.category.label')}
                                  variant="outlined"
                                  required
-                                 margin="normal"
+                                 margin="dense"
                                  helperText={
                                    errors.category && touched.category ? translate(errors.category) : ""
                                  }
@@ -141,7 +141,7 @@ function EditOfferComponent(props) {
                   helperText={
                     errors.description && touched.description ? translate(errors.description) : ""
                   }
-                  margin="normal"
+                  margin="dense"
                   multiline
                   rows={2}
                   rowsMax={4}
@@ -167,7 +167,7 @@ function EditOfferComponent(props) {
                   helperText={
                     errors.price && touched.price ? translate(errors.price) : ""
                   }
-                  margin="normal"
+                  margin="dense"
                   required
                   fullWidth
               />

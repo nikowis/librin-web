@@ -61,7 +61,7 @@ function GeneratePasswordResetView(props) {
                                     value={values.email}
                                     onChange={handleChange}
                                     helperText={(errors.email && touched.email) && translate(errors.email)}
-                                    margin="normal"
+                                    margin="dense"
                                 />
                             </div>
                             <Button size={"small"} variant="contained" color="primary" type="submit" disabled={isSubmitting}>

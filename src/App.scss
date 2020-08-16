@@ -13,6 +13,24 @@
   min-height: 100vh;
   font-size: 16px;
 
+  .MuiButton-label {
+    font-size: 14px;
+  }
+
+  .MuiInputLabel-root {
+    font-size: 16px;
+  }
+
+  .MuiInputBase-input {
+    font-size: 16px;
+  }
+
+  .MuiFormControl-fullWidth {
+    max-width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .MuiButton-containedPrimary {
     background-color: $primary;
 

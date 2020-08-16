@@ -39,7 +39,7 @@ function ChangePasswordForm(props) {
                             value={values.password}
                             onChange={handleChange}
                             helperText={(errors.password && touched.password) && translate(errors.password)}
-                            margin="normal"
+                            margin="dense"
                         />
                     </div>
                     <div>
@@ -53,7 +53,7 @@ function ChangePasswordForm(props) {
                             value={values.repeatPassword}
                             onChange={handleChange}
                             helperText={(errors.repeatPassword && touched.repeatPassword) && translate(errors.repeatPassword)}
-                            margin="normal"
+                            margin="dense"
                         />
                     </div>
                     <Button size={"small"} variant="contained" color="primary" type="submit" disabled={isSubmitting}>

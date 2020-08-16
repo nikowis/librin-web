@@ -90,7 +90,8 @@ function RegisterView(props) {
                         value={values.email}
                         onChange={handleChange}
                         helperText={(errors.email && touched.email) && translate(errors.email)}
-                        margin="normal"
+                        margin="dense"
+                        fullWidth
                     />
                   </div>
                   <div>
@@ -103,7 +104,8 @@ function RegisterView(props) {
                         value={values.firstName}
                         onChange={handleChange}
                         helperText={(errors.firstName && touched.firstName) && translate(errors.firstName)}
-                        margin="normal"
+                        margin="dense"
+                        fullWidth
                     />
                   </div>
                   <div>
@@ -116,7 +118,8 @@ function RegisterView(props) {
                         value={values.lastName}
                         onChange={handleChange}
                         helperText={(errors.lastName && touched.lastName) && translate(errors.lastName)}
-                        margin="normal"
+                        margin="dense"
+                        fullWidth
                     />
                   </div>
                   <div>
@@ -129,12 +132,13 @@ function RegisterView(props) {
                         value={values.username}
                         onChange={handleChange}
                         helperText={(errors.username && touched.username) && translate(errors.username)}
-                        margin="normal"
+                        margin="dense"
+                        fullWidth
                     />
                   </div>
                   <div>
                     <FormControl margin="dense" size="small" className={clsx(classes.margin, classes.textField)}
-                                 variant="outlined">
+                                 variant="outlined" fullWidth>
                       <InputLabel htmlFor="outlined-adornment-password">{t('user.password.label')}</InputLabel>
                       <OutlinedInput
                           size="small"

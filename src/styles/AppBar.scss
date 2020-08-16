@@ -142,7 +142,9 @@ $topMenuHeight: 50px;
   }
 
   .MuiButton-outlined {
-    font-size: 12px;
+    .MuiButton-label {
+      font-size: 12px;
+    }
     padding: 3px 5px;
   }
 }

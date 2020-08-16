@@ -32,11 +32,15 @@
   align-items: center;
   .condition-stars {
     width: 50%;
-    padding: 0 8px;
-    justify-content: flex-end;
+    padding-left: 8px;
+    justify-content: center;
+  }
+
+  .MuiRating-root {
+    font-size: 1.4rem;
   }
   .condition-hint {
-    padding: 0 8px;
+    padding-left: 16px;
     width: 50%;
     text-align: left;
   }

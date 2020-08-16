@@ -79,7 +79,7 @@ function ReportingComponent(props) {
                           helperText={
                             errors.description && touched.description ? translate(errors.description) : ""
                           }
-                          margin="normal"
+                          margin="dense"
                           multiline
                           rows={5}
                           rowsMax={5}
