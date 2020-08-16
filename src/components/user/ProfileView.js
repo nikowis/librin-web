@@ -138,10 +138,10 @@ function ProfileView(props) {
           </Button>
           <DeleteAccountComponent/>
         </Paper>
-        </>
-        );
+      </>
+  );
 
-        }
+}
 
 ProfileView.propTypes = {
   id: PropTypes.number,

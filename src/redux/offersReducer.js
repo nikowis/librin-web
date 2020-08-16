@@ -1,25 +1,21 @@
 import {
+  CHANGE_OFFERS_FILTER,
   CLEAR_CURRENT_OFFER,
   CLEAR_OFFERS,
   DELETE_OFFER,
-  FETCH_OFFER,
   FETCH_MAINVIEW_OFFERS,
+  FETCH_OFFER,
   FETCH_USERVIEW_OFFERS,
   FULFILLED,
   OFFER_CREATED,
   OFFER_UPDATED,
-  VIEW_OFFER,
-  CHANGE_OFFERS_FILTER,
-  RESET_OFFERS_FILTER,
   REPLACE_OFFERS_FILTER,
+  RESET_OFFERS_FILTER,
+  VIEW_OFFER,
 } from "./actions";
-import { insertItem, removeItem } from "../common/array-helper";
-import { initializeAttachmentFromBase64 } from "../common/attachment-utility";
-import {
-  CREATED_AT_SORT,
-  DESC_SORT,
-  DEFAULT_PAGE_SIZE,
-} from "../common/app-constants";
+import {insertItem, removeItem} from "../common/array-helper";
+import {initializeAttachmentFromBase64} from "../common/attachment-utility";
+import {CREATED_AT_SORT, DEFAULT_PAGE_SIZE, DESC_SORT,} from "../common/app-constants";
 
 const initialOffersView = {
   content: null,

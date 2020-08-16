@@ -35,6 +35,7 @@
       "label": "Hasło",
       "repeat": "Powtórz hasło",
       "generatePasswordTokenLink": "Nie pamiętasz hasła?",
+      "generatePasswordTokenHint": "Podaj swój adres email",
       "generatePasswordSuccess": "Link do zmiany hasła został wysłany na {{email}} ",
       "generatePasswordTokenSubmit": "Wyślij",
       "change": "Zmiana hasła",
@@ -180,7 +181,9 @@
       "wrongExtension": "Niedopuszczalne rozszerzenie pliku"
     }
   },
-  "landingBanner" : "Kupuj, wymieniaj i sprzedawaj książki!",
+  "landingBanner" : "Kupuj, sprzedawaj i wymieniaj książki!",
+  "headerMetaKeywords" : "Kupno, sprzedaż, książki",
+  "headerMetaDescription" : "Kupuj, sprzedawaj, wymieniaj nowe i używane książki z innimi użytkownikami.",
   "login": {
     "page": "Logowanie",
     "submit": "Zaloguj się"

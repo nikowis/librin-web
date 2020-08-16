@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React, {useEffect} from "react";
 import PropTypes from "prop-types";
 import Pagination from "@material-ui/lab/Pagination";
 import PaginationItem from "@material-ui/lab/PaginationItem";
-import { Link, withRouter } from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import Api from "../common/api-communication";
 
 function PaginationComponent({

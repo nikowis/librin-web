@@ -9,16 +9,12 @@ import {
   OFFER_CREATED,
   OFFER_UPDATED,
   PENDING,
-  RESET_MYOFFERS_FILTER,
   REPLACE_MYOFFERS_FILTER,
+  RESET_MYOFFERS_FILTER,
 } from "./actions";
-import { insertItem, removeItem } from "../common/array-helper";
-import { processOffer, processOffers } from "./offersReducer";
-import {
-  DESC_SORT,
-  DEFAULT_PAGE_SIZE,
-  UPDATED_AT_SORT,
-} from "../common/app-constants";
+import {insertItem, removeItem} from "../common/array-helper";
+import {processOffer, processOffers} from "./offersReducer";
+import {DEFAULT_PAGE_SIZE, DESC_SORT, UPDATED_AT_SORT,} from "../common/app-constants";
 
 const initialState = {
   content: null,

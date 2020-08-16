@@ -19,6 +19,7 @@ import {Grid} from "@material-ui/core";
 import OfferStatusInfoBanner from "./OfferStatusInfoBanner";
 import Rating from "@material-ui/lab/Rating/Rating";
 import ReportingComponent from "./ReportingComponent";
+import Helmet from "react-helmet";
 
 function OfferView(props) {
   const [loading, setLoading] = React.useState(false);
@@ -72,83 +73,89 @@ function OfferView(props) {
 
   const getView = () => {
     return (
-        <Grid container className={"offer-view"} spacing={1} justify={"center"}>
-          <Grid item xs={12} sm={8} md={imagesGridSize}>
-            {attachments && attachments.length > 0 ? (
-                <OfferPhotosComponent photos={attachments}/>
-            ) : (
-                <EmptyPhotoPreviewComponent/>
-            )}
-          </Grid>
-          <Grid item xs={12} sm={8} md={4}>
-            <Card elevation={PAPER_ELEVATION} square className={"user-details"}>
-              <UserBannerComponent username={owner.username} id={owner.id} status={owner.status} withLink/>
-            </Card>
-            <Card
-                elevation={PAPER_ELEVATION}
-                square
-                className={"offer-card-details"}
-            >
-              <ReportingComponent offerId={id}/>
-              <div className={"primary-text"}>
-                <label htmlFor={"price"}>{t("offer.price")}</label>
-                <span id={"price"}>{price + " " + t("currencySymbol")}</span>
-              </div>
-              <div className={"secondary-text"}>
-                <label htmlFor={"title"}>{t("offer.title")}</label>
-                <span id={"title"}>{title}</span>
-              </div>
-              <div className={"secondary-text"}>
-                <label htmlFor={"author"}>{t("offer.author")}</label>
-                <span id={"author"}>{author}</span>
-              </div>
-              <div className={"secondary-text"}>
-                <label htmlFor={"description"}>{t("offer.description")}</label>
-                <span id={"description"}>{description}</span>
-              </div>
-              <div className={"secondary-text"}>
-                <label htmlFor={"category"}>{t("offer.category.label")}</label>
-                <span id={"category"}>{t("offer.category." + category)}</span>
-              </div>
-              <div className={"secondary-text"}>
-                <label htmlFor={"condition"}>{t("offer.condition.label")}</label>
-                <div className={"condition-box"}>
-                  <Rating
-                      id="condition"
-                      name="condition"
-                      className={"condition-stars"}
-                      readOnly
-                      value={convertConditionValueToInt(condition)}
-                  />
-                  <span
-                      className={'condition-hint'}>{condition ? t('offer.condition.' + condition) : null}</span>
-                </div>
-              </div>
-              {OfferStatus.ACTIVE === status ? (
-                  <CardActions>
-                    {ownerId !== props.userId ? (
-                        <div className={'offer-actions'}>
-                          <Button
-                              size={"small"}
-                              variant="contained"
-                              color="primary"
-                              type="submit"
-                              onClick={() => handleSendMessage()}
-                          >
-                            {t("offer.sendMessage")}
-                          </Button>
-                        </div>
-                    ) : (
-                        <WarningStrip text={t("offer.owner.myoffer")}/>
-                    )}
-                  </CardActions>
+        <>
+          <Helmet>
+            <title>{title + ' - ' + t('brand')}</title>
+            <meta name="robots" content="index, nofollow"/>
+          </Helmet>
+          <Grid container className={"offer-view"} spacing={1} justify={"center"}>
+            <Grid item xs={12} sm={8} md={imagesGridSize}>
+              {attachments && attachments.length > 0 ? (
+                  <OfferPhotosComponent photos={attachments}/>
               ) : (
-                  <OfferStatusInfoBanner offer={props.currentOffer} userId={props.userId}/>
+                  <EmptyPhotoPreviewComponent/>
               )}
-            </Card>
+            </Grid>
+            <Grid item xs={12} sm={8} md={4}>
+              <Card elevation={PAPER_ELEVATION} square className={"user-details"}>
+                <UserBannerComponent username={owner.username} id={owner.id} status={owner.status} withLink/>
+              </Card>
+              <Card
+                  elevation={PAPER_ELEVATION}
+                  square
+                  className={"offer-card-details"}
+              >
+                <ReportingComponent offerId={id}/>
+                <div className={"primary-text"}>
+                  <label htmlFor={"price"}>{t("offer.price")}</label>
+                  <span id={"price"}>{price + " " + t("currencySymbol")}</span>
+                </div>
+                <div className={"secondary-text"}>
+                  <label htmlFor={"title"}>{t("offer.title")}</label>
+                  <span id={"title"}>{title}</span>
+                </div>
+                <div className={"secondary-text"}>
+                  <label htmlFor={"author"}>{t("offer.author")}</label>
+                  <span id={"author"}>{author}</span>
+                </div>
+                <div className={"secondary-text"}>
+                  <label htmlFor={"description"}>{t("offer.description")}</label>
+                  <span id={"description"}>{description}</span>
+                </div>
+                <div className={"secondary-text"}>
+                  <label htmlFor={"category"}>{t("offer.category.label")}</label>
+                  <span id={"category"}>{t("offer.category." + category)}</span>
+                </div>
+                <div className={"secondary-text"}>
+                  <label htmlFor={"condition"}>{t("offer.condition.label")}</label>
+                  <div className={"condition-box"}>
+                    <Rating
+                        id="condition"
+                        name="condition"
+                        className={"condition-stars"}
+                        readOnly
+                        value={convertConditionValueToInt(condition)}
+                    />
+                    <span
+                        className={'condition-hint'}>{condition ? t('offer.condition.' + condition) : null}</span>
+                  </div>
+                </div>
+                {OfferStatus.ACTIVE === status ? (
+                    <CardActions>
+                      {ownerId !== props.userId ? (
+                          <div className={'offer-actions'}>
+                            <Button
+                                size={"small"}
+                                variant="contained"
+                                color="primary"
+                                type="submit"
+                                onClick={() => handleSendMessage()}
+                            >
+                              {t("offer.sendMessage")}
+                            </Button>
+                          </div>
+                      ) : (
+                          <WarningStrip text={t("offer.owner.myoffer")}/>
+                      )}
+                    </CardActions>
+                ) : (
+                    <OfferStatusInfoBanner offer={props.currentOffer} userId={props.userId}/>
+                )}
+              </Card>
 
+            </Grid>
           </Grid>
-        </Grid>
+        </>
     );
   };
 

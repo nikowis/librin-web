@@ -1,4 +1,4 @@
-import { Grid, Backdrop } from '@material-ui/core';
+import {Backdrop, Grid} from '@material-ui/core';
 import PropTypes from "prop-types";
 import React from 'react';
 

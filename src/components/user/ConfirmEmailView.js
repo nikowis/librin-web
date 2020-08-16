@@ -1,11 +1,11 @@
-import { Paper } from '@material-ui/core';
+import {Paper} from '@material-ui/core';
 import Typography from "@material-ui/core/Typography";
-import React, { useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import { connect } from "react-redux";
-import { useParams, withRouter } from "react-router-dom";
+import React, {useEffect} from 'react';
+import {useTranslation} from 'react-i18next';
+import {connect} from "react-redux";
+import {useParams, withRouter} from "react-router-dom";
 import Api from "../../common/api-communication";
-import { PAPER_ELEVATION } from '../../common/app-constants';
+import {PAPER_ELEVATION} from '../../common/app-constants';
 import LoaderComponent from "../LoaderComponent";
 import MaxWidthContainer from '../MaxWidthContainer';
 import TitleComponent from "../TitleComponent";
