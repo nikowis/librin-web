@@ -49,10 +49,7 @@
   }
 
   .landing-banner {
-    margin: 0 8px 8px 8px;
-    @media (max-width: 599px) {
-      margin: 0 0 8px 0;
-    }
+    margin-bottom: 8px;
     display: flex;
     max-height: 400px;
     .text-col {
@@ -80,11 +77,6 @@
         height: 100%;
       }
     }
-  }
-
-  .offer-grid {
-    padding-left: 8px;
-    padding-right: 8px;
   }
 
   .my-offers-grid {
@@ -222,7 +214,11 @@ button.MuiButton-outlined {
 }
 
 .categories-wrapper {
-  margin: auto auto 8px;
+  margin-bottom: 8px;
+
+  @media (min-width: 600px) {
+    margin-right: 8px;
+  }
 
   .category-header {
     .MuiListItemIcon-root {
