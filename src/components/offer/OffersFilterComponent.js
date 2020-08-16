@@ -35,9 +35,12 @@ function OffersFilterComponent(props) {
 
     useEffect(() => {
         const pageQuery = Api.getPageParam(search);
-        const categoryQuery = Api.getURLParam(search, 'categories');
+        let categoryQuery = Api.getURLParam(search, 'categories');
         let filterChanged = false;
         let changeFilter = {...newFilter};
+        if(categoryQuery) {
+          categoryQuery = categoryQuery.toUpperCase();
+        }
         if (newFilter.categories !== categoryQuery) {
             changeFilter.categories = categoryQuery;
             filterChanged = true;
@@ -60,7 +63,7 @@ function OffersFilterComponent(props) {
         if (currentFilter[filterField] !== value) {
             const urlSearchParams = new URLSearchParams(history.location.search);
             if(value) {
-                urlSearchParams.set(filterField, value);
+                urlSearchParams.set(filterField, value.toLowerCase());
             } else {
                 urlSearchParams.delete(filterField);
             }
