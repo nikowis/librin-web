@@ -1,5 +1,6 @@
 import * as Yup from "yup";
 import {setLocale} from "yup";
+import {InvalidMailDomains} from './../common/invalid-domains';
 
 const specialPolishChars = '\u0104\u0106\u0118\u0141\u0143\u015A\u0179\u017B\u0105\u0107\u0119\u0142\u0144\u015B\u017A\u017C\u00F3\u00D3';
 const lettersRegex = new RegExp('^[a-zA-Z' + specialPolishChars + ']+$');
@@ -23,6 +24,12 @@ setLocale({
 export const registerSchema = Yup.object().shape({
     email: Yup.string()
         .email()
+        .test('email-domain-check', 'validations.incorrectEmailDomain', v => {
+            let invDomains = InvalidMailDomains;
+            let startIdx = v.indexOf('@') + 1;
+            let domain = v.substring(startIdx);
+            return invDomains.indexOf(domain) === -1;
+        })
         .required(),
     firstName: Yup.string()
         .matches(lettersRegex)
