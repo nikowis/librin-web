@@ -5,10 +5,13 @@ import Popover from "@material-ui/core/Popover";
 import Button from "@material-ui/core/Button";
 import ReportingDialog from "./ReportingDialog";
 import PropTypes from "prop-types";
+import {withRouter} from "react-router-dom";
+import {connect} from "react-redux";
+import {LOGIN} from "../../common/paths";
 
 function ReportingComponent(props) {
 
-  const {userId, conversationId, offerId} = props;
+  const {userId, conversationId, offerId, authenticated} = props;
 
   const {t} = useTranslation();
 
@@ -17,7 +20,11 @@ function ReportingComponent(props) {
   const [formOpen, setFormOpen] = React.useState(false);
 
   const handleClickOpenForm = () => {
-    setFormOpen(true);
+    if(authenticated) {
+      setFormOpen(true);
+    } else {
+      props.history.push(LOGIN);
+    }
   };
 
   const handleCloseForm = () => {
@@ -67,6 +74,9 @@ ReportingComponent.propTypes = {
   userId: PropTypes.number,
   conversationId: PropTypes.number,
   offerId: PropTypes.number,
+  authenticated: PropTypes.bool.isRequired,
 };
 
-export default ReportingComponent;
+export default connect((state) => ({
+  authenticated: state.me.authenticated
+}))(withRouter(ReportingComponent));

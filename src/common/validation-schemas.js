@@ -34,14 +34,17 @@ export const registerSchema = Yup.object().shape({
     firstName: Yup.string()
         .matches(lettersRegex)
         .min(2)
+        .max(128)
         .required(),
     lastName: Yup.string()
         .matches(lettersRegex)
         .min(2)
+        .max(128)
         .required(),
     username: Yup.string()
         .matches(usernameRegex)
         .min(2)
+        .max(20)
         .required(),
     password: Yup.string()
         .matches(passwordRegex, 'validations.passwordRegexFormat')
@@ -76,19 +79,23 @@ export const profileSchema = Yup.object().shape({
     firstName: Yup.string()
         .matches(lettersRegex)
         .min(2)
+        .max(128)
         .required(),
     lastName: Yup.string()
         .matches(lettersRegex)
         .min(2)
+        .max(128)
         .required(),
 });
 
 export const createOfferSchema = Yup.object().shape({
     title: Yup.string()
         .min(2)
+        .max(128)
         .required(),
     author: Yup.string()
         .min(2)
+        .max(128)
         .required(),
     category: Yup.string()
         .min(1)
@@ -100,6 +107,7 @@ export const createOfferSchema = Yup.object().shape({
         .max(512).nullable(),
     price: Yup.string()
         .required()
+        .max(999999)
         .matches(moneyRegex),
     photos: Yup.array(
         Yup.object({
@@ -113,9 +121,11 @@ export const createOfferSchema = Yup.object().shape({
 export const editOfferSchema = Yup.object().shape({
     title: Yup.string()
         .min(2)
+        .max(128)
         .required(),
     author: Yup.string()
         .min(2)
+        .max(128)
         .required(),
     category: Yup.string()
         .min(1)
@@ -127,6 +137,7 @@ export const editOfferSchema = Yup.object().shape({
         .max(512).nullable(),
     price: Yup.string()
         .required()
+        .max(999999)
         .matches(moneyRegex),
     photos: Yup.array(
         Yup.object({
@@ -138,6 +149,7 @@ export const editOfferSchema = Yup.object().shape({
 
 export const deleteAccountSchema = Yup.object().shape({
     password: Yup.string()
+        .min(1)
         .required()
 });
 
