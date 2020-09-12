@@ -5,6 +5,7 @@ export const API_USERS = '/users';
 export const API_REGISTER = '/register';
 export const API_OFFERS = '/offers';
 export const API_MY_OFFERS = '/myoffers';
+export const API_BOOKS_AUTOCOMPLETE = '/books';
 export const SOLD_SUFFIX = 'sold';
 export const ACTIVATE_SUFFIX = 'activate';
 export const DEACTIVATE_SUFFIX = 'deactivate';

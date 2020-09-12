@@ -1,5 +1,5 @@
 import {
-  ACTIVATE_SUFFIX,
+  ACTIVATE_SUFFIX, API_BOOKS_AUTOCOMPLETE,
   API_CHANGE_PASSWORD,
   API_CONFIRM_EMAIL,
   API_GENERATE_PASSWORD_CHANGE,
@@ -368,6 +368,18 @@ class Api {
       payload: {
         password,
       },
+    });
+  }
+
+  getAuthorAutocomplete(query) {
+    const url = new URL(this.API_URL + API_BOOKS_AUTOCOMPLETE);
+    const params = {
+      author: query
+    };
+    url.search = new URLSearchParams(params).toString();
+
+    return HttpUtility.get({
+      url: url
     });
   }
 }

@@ -13,6 +13,7 @@ import {API_ERROR_NOTIFICATION_DURATION, OfferCategory,} from "../../common/app-
 import {connect} from "react-redux";
 import OfferConditionInput from "./OfferConditionInput";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import Api from "../../common/api-communication";
 
 function EditOfferComponent(props) {
   const {t} = useTranslation();
@@ -20,6 +21,15 @@ function EditOfferComponent(props) {
 
   const newOffer = !offer;
   let validationSchema = newOffer ? createOfferSchema : editOfferSchema;
+
+  const [authorAutocompleteOptions, setAuthorAutocompleteOptions] = React.useState([]);
+
+  React.useEffect(() => {
+    if (!authorAutocompleteOptions) {
+      setAuthorAutocompleteOptions([]);
+    }
+  }, [authorAutocompleteOptions]);
+
 
   const handlePhotoError = (e) => {
     props.dispatch({
@@ -29,6 +39,14 @@ function EditOfferComponent(props) {
     setTimeout(() => {
       props.dispatch({type: CLEAR_API_ERROR});
     }, API_ERROR_NOTIFICATION_DURATION);
+  };
+
+  const searchAuthorOptions = (v) => {
+    if(v && v.length > 2) {
+      Api.getAuthorAutocomplete(v).payload.then(res => {
+        setAuthorAutocompleteOptions(res.map(obj => obj.author));
+      });
+    }
   };
 
   return (
@@ -83,21 +101,35 @@ function EditOfferComponent(props) {
                   required
                   fullWidth
               />
-              <TextField
-                  size="small"
-                  error={errors.author && touched.author}
-                  label={t("offer.author")}
+
+              <Autocomplete
+                  id="author"
                   name="author"
-                  value={values.author}
-                  variant={"outlined"}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  helperText={
-                    errors.author && touched.author ? translate(errors.author) : ""
-                  }
-                  margin="dense"
-                  required
+                  freeSolo
+                  options={authorAutocompleteOptions}
                   fullWidth
+                  onChange={(e, v) => {
+                    setAuthorAutocompleteOptions([]);
+                    setFieldValue('author', (v));
+                  }}
+                  onInputChange={(e, v) => {
+                    searchAuthorOptions(v);
+                    setFieldValue('author', (v));
+                  }}
+                  size="small"
+                  disableClearable
+                  value={values.author}
+                  renderInput={(params) =>
+                      <TextField {...params}
+                                 label={translate('offer.author')}
+                                 variant="outlined"
+                                 required
+                                 margin="dense"
+                                 helperText={
+                                   errors.author && touched.author ? translate(errors.author) : ""
+                                 }
+                                 error={errors.author && touched.author}
+                      />}
               />
 
               <Autocomplete
