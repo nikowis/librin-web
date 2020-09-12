@@ -1,11 +1,12 @@
 import React from 'react';
-import Login from "./user/LoginView";
+
+import loadable from '@loadable/component'
+import OfferView from "./offer/OfferView";
+import OffersView from "./offer/OffersView";
+import UserView from "./user/UserView";
 import {Route, Switch} from "react-router-dom";
-import Logout from "./Logout";
 import AuthenticatedRoute from "./AuthenticatedRoute";
-import Register from "./user/RegisterView";
-import Profile from "./user/ProfileView";
-import NoMatchingView from "./NoMatchingView";
+
 import {
   CHANGE_PASSWORD,
   CONFIRM_EMAIL,
@@ -25,20 +26,25 @@ import {
   ROOT,
   USER_VIEW
 } from "../common/paths";
-import MyOffersTableView from "./offer/MyOffersView";
-import CreateOfferView from "./offer/CreateOfferView";
-import EditOfferView from "./offer/EditOfferView";
-import OfferView from "./offer/OfferView";
-import ConversationView from "./messages/ConversationView";
-import OffersView from "./offer/OffersView";
-import ConfirmEmailView from "./user/ConfirmEmailView";
-import GeneratePasswordResetView from "./user/GeneratePasswordResetView";
-import ChangePasswordView from "./user/ChangePasswordWithTokenView";
-import ChangProfilePasswordView from "./user/ChangProfilePasswordView";
-import UserView from "./user/UserView";
-import ConversationsView from "./messages/ConversationsView";
 import Helmet from "react-helmet";
 import {useTranslation} from "react-i18next";
+
+
+const Login = loadable(() => import('./user/LoginView'));
+const Logout = loadable(() => import('./Logout'));
+const Register = loadable(() => import('./user/RegisterView'));
+const Profile = loadable(() => import('./user/ProfileView'));
+const MyOffersTableView = loadable(() => import('./offer/MyOffersView'));
+const CreateOfferView = loadable(() => import('./offer/CreateOfferView'));
+const EditOfferView = loadable(() => import('./offer/EditOfferView'));
+const NoMatchingView = loadable(() => import('./NoMatchingView'));
+const ConversationView = loadable(() => import('./messages/ConversationView'));
+const ConfirmEmailView = loadable(() => import('./user/ConfirmEmailView'));
+const GeneratePasswordResetView = loadable(() => import('./user/GeneratePasswordResetView'));
+const ChangePasswordView = loadable(() => import('./user/ChangePasswordWithTokenView'));
+const ChangProfilePasswordView = loadable(() => import('./user/ChangProfilePasswordView'));
+const ConversationsView = loadable(() => import('./messages/ConversationsView'));
+
 
 function ViewRoutes() {
   const {t} = useTranslation();

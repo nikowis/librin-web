@@ -29,7 +29,7 @@ function LandingBanner(props) {
           </div>
         </div>
         <div className={'img-col'}>
-          <img className={'brand-logo'} src={process.env.PUBLIC_URL + '/book-background.jpg'}  alt={' '}/>
+          <img className={'brand-logo'} src={process.env.PUBLIC_URL + '/book-background.jpg'}  alt={'books'}/>
         </div>
 
       </Paper>
