@@ -14,13 +14,15 @@
   bottom: 0px;
   .cookie-banner-text {
     flex: 1 0 300px;
-    margin: 15px;
+    margin: 16px 32px;
   }
   .cookie-banner-button {
     flex: 0 0 auto;
     padding: 5px 10px;
-    margin: 15px;
-
+    margin: 16px;
+    @media (min-width: 600px) {
+      margin: 16px 64px 16px 16px;
+    }
     background-color: white;
     min-width: 64px;
     box-sizing: border-box;
