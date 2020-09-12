@@ -42,6 +42,7 @@ function EditOfferComponent(props) {
   };
 
   const searchAuthorOptions = (v) => {
+    setAuthorAutocompleteOptions([]);
     if(v && v.length > 2) {
       Api.getAuthorAutocomplete(v).payload.then(res => {
         setAuthorAutocompleteOptions(res.map(obj => obj.author));
