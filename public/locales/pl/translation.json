@@ -26,6 +26,9 @@
     "accountIsDeleted": "Konto użytkownika zostało usunięte",
     "accountIsBlocked": "Konto użytkownika zostało zablokowane",
     "defaultAuthErr": "Błąd autoryzacji",
+    "activationEmailMissing": "Potwierdź swój adres email",
+    "generateActivationEmailHint": "Podaj adres email, na który zostanie wysłany link aktywacyjny",
+    "generateActivationEmailSuccess": "Email został wysłany na adres {{email}}",
     "email": {
       "label": "Email",
       "confirmEmailSuccess": "Email został poprawnie zweryfikowany",

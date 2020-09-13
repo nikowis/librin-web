@@ -17,4 +17,5 @@ export const PRIVACY_POLICY = 'PRIVACY_POLICY';
 export const COOKIES_POLICY = 'COOKIES_POLICY';
 export const API_CONFIRM_EMAIL = '/confirmemail';
 export const API_GENERATE_PASSWORD_CHANGE = '/generateresetpswdtoken';
+export const API_GENERATE_ACCOUNT_ACTIVATION_EMAIL = '/generateaccountactivationemail';
 export const API_CHANGE_PASSWORD = '/changepassword';

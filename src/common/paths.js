@@ -15,6 +15,7 @@ export const USER_VIEW = '/users' + ID_VAR_SUFFIX;
 export const OFFER_VIEW = OFFERS + ID_VAR_SUFFIX;
 export const CREATE_OFFER = OFFERS + '/create';
 export const CONFIRM_EMAIL_BASE = '/emailconfirm';
+export const GENERATE_CONFIRM_EMAIL = '/generateemailconfirm';
 export const CONFIRM_EMAIL = CONFIRM_EMAIL_BASE + '/:confirmTokenId';
 export const CHANGE_PASSWORD_BASE = '/changepassword';
 export const CHANGE_PASSWORD = CHANGE_PASSWORD_BASE + '/:resetTokenId';

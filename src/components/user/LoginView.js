@@ -8,7 +8,7 @@ import {Link, Redirect} from "react-router-dom";
 import Api from "../../common/api-communication";
 import {PAPER_ELEVATION} from '../../common/app-constants';
 import {translate} from "../../common/i18n-helper";
-import {GENERATE_PASSWORD_RESET, OFFERS, REGISTER} from "../../common/paths";
+import {GENERATE_CONFIRM_EMAIL, GENERATE_PASSWORD_RESET, OFFERS, REGISTER} from "../../common/paths";
 import {loginSchema} from "../../common/validation-schemas";
 import TitleComponent from "../TitleComponent";
 
@@ -87,6 +87,9 @@ function LoginView(props) {
           </Link>
           <Link to={GENERATE_PASSWORD_RESET}>
             {t('user.password.generatePasswordTokenLink')}
+          </Link>
+          <Link to={GENERATE_CONFIRM_EMAIL}>
+            {t('user.activationEmailMissing')}
           </Link>
         </Paper>
       </>

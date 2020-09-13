@@ -1,7 +1,7 @@
 import {
   ACTIVATE_SUFFIX, API_BOOKS_AUTOCOMPLETE,
   API_CHANGE_PASSWORD,
-  API_CONFIRM_EMAIL,
+  API_CONFIRM_EMAIL, API_GENERATE_ACCOUNT_ACTIVATION_EMAIL,
   API_GENERATE_PASSWORD_CHANGE,
   API_GET_TOKEN,
   API_MESSAGES,
@@ -356,6 +356,24 @@ class Api {
       payload: {
         email,
         changePasswordBaseUrl,
+      },
+    });
+  }
+
+  resendAccountConfirmationEmail(email) {
+    const url = this.API_URL + API_GENERATE_ACCOUNT_ACTIVATION_EMAIL;
+    const prefix =
+        process.env.REACT_APP_BASENAME !== "/"
+            ? process.env.REACT_APP_BASENAME
+            : "";
+    const confirmEmailBaseUrl =
+        window.location.origin + prefix + CONFIRM_EMAIL_BASE;
+
+    return HttpUtility.post({
+      url: url,
+      payload: {
+        email,
+        confirmEmailBaseUrl
       },
     });
   }

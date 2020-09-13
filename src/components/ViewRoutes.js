@@ -11,7 +11,7 @@ import {
   CHANGE_PASSWORD,
   CONFIRM_EMAIL,
   CREATE_OFFER,
-  EDIT_OFFER,
+  EDIT_OFFER, GENERATE_CONFIRM_EMAIL,
   GENERATE_PASSWORD_RESET,
   LOGIN,
   LOGOUT,
@@ -40,6 +40,7 @@ const EditOfferView = loadable(() => import('./offer/EditOfferView'));
 const NoMatchingView = loadable(() => import('./NoMatchingView'));
 const ConversationView = loadable(() => import('./messages/ConversationView'));
 const ConfirmEmailView = loadable(() => import('./user/ConfirmEmailView'));
+const GenerateConfirmEmailView = loadable(() => import('./user/GenerateConfirmEmailView'));
 const GeneratePasswordResetView = loadable(() => import('./user/GeneratePasswordResetView'));
 const ChangePasswordView = loadable(() => import('./user/ChangePasswordWithTokenView'));
 const ChangProfilePasswordView = loadable(() => import('./user/ChangProfilePasswordView'));
@@ -129,6 +130,10 @@ function ViewRoutes() {
         <Route path={CONFIRM_EMAIL}>
           <ConfirmEmailView/>
         </Route>
+        <Route path={GENERATE_CONFIRM_EMAIL}>
+          <GenerateConfirmEmailView/>
+        </Route>
+
         <Route path={ROOT}>
           <Helmet>
             <meta name="robots" content="index, nofollow"/>
