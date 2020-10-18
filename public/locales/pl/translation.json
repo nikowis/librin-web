@@ -54,6 +54,7 @@
     "reportDesc": "Opisz powód zgłoszenia"
   },
   "photo": {
+    "uploadHint": "Dodaj do 3 zdjęć",
     "upload": "Dodaj zdjęcie",
     "delete": "Usuń zdjęcie"
   },

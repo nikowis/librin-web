@@ -99,8 +99,7 @@ const myOffersReducer = (state = initialState, action) => {
       }
       return {
         ...state,
-        content: allOffers,
-        currentOffer: updatedOffer,
+        content: allOffers
       };
     case CLEAR_CURRENT_MYOFFER:
       return {

@@ -55,12 +55,12 @@ export function base64ToFile(base64, filename) {
 
 export function initializeAttachmentUrl(attachment) {
     if (attachment.path) {
-        return {name: attachment.name, path: attachment.path, url: process.env.REACT_APP_CDN_URL + attachment.path}
+        return {url: process.env.REACT_APP_CDN_URL + attachment.path, ...attachment}
     } else if (attachment.content) {
         const file = base64ToFile(attachment.content, attachment.name);
-        return {name: attachment.name, content: attachment.content, url: URL.createObjectURL(file)}
+        return {url: URL.createObjectURL(file), ...attachment}
     }
-    return {name: attachment.name, content: attachment.content, url: null}
+    return {url: null, ...attachment}
 }
 
 export function compressFile(file) {

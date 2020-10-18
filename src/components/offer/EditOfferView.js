@@ -91,7 +91,7 @@ function EditOfferView(props) {
     return (
         <>
           <TitleComponent content={t('offer.editPageTitle')}/>
-          <Paper className={'form-container'}>
+          <Paper elevation={PAPER_ELEVATION} square className={'form-container'}>
             <EditOfferComponent offer={offer} handleSubmit={handleSubmit}/>
           </Paper>
           {actionButtons}
@@ -115,10 +115,6 @@ EditOfferView.propTypes = {
       PropTypes.string,
       PropTypes.number
     ]),
-    attachment: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      url: PropTypes.string.isRequired
-    }),
   }),
 };
 

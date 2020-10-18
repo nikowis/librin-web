@@ -3,9 +3,12 @@ import PropTypes from "prop-types";
 import {compressFile, loadFileToAttachmentObject, validateFile} from "../../common/attachment-utility";
 import OfferSinglePhotoEditComponent from "./OfferSinglePhotoEditComponent";
 import {InputLabel} from "@material-ui/core";
+import {useTranslation} from "react-i18next";
 
 function OfferPhotosEditComponent(props) {
     const {setFieldValue, photos, handlePhotoError} = props;
+
+    const {t} = useTranslation();
 
     const handleUploadFile = (e, idx) => {
         const files = e.target.files;
@@ -50,7 +53,7 @@ function OfferPhotosEditComponent(props) {
     return (
         <>
             <InputLabel className={'input-label'}>
-                Dodaj do 3 zdjęć
+                {t('photo.uploadHint')}
             </InputLabel>
             <div className={'offer-photos-edit-component'}>
                 {photosInputs}

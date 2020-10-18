@@ -112,7 +112,7 @@ export const createOfferSchema = Yup.object().shape({
     photos: Yup.array(
         Yup.object({
             name: Yup.string().required().nullable(),
-            content: Yup.string().required().nullable()
+            url: Yup.string(),
         }).required().nullable()
     ).nullable().min(1)
 });
@@ -142,7 +142,7 @@ export const editOfferSchema = Yup.object().shape({
     photos: Yup.array(
         Yup.object({
             name: Yup.string().required().nullable(),
-            content: Yup.string().required().nullable()
+            url: Yup.string(),
         }).required().nullable()
     ).nullable().min(1)
 });
