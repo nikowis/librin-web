@@ -35,7 +35,7 @@ function OfferCard(props) {
                 </>}
             />
             <Link to={props.link} className={'offer-card-image'}>
-                {offer.attachment ?<img src={offer.attachment.url} alt={"Offer"}/>
+                {offer.photo ?<img src={offer.photo.url} alt={"Offer"}/>
                 : <EmptyPhotoPreviewComponent/>}
             </Link>
         </Card>
@@ -54,9 +54,8 @@ OfferCard.propTypes = {
             ]),
             status: PropTypes.string,
             ownerId: PropTypes.number,
-            attachment: PropTypes.shape({
+            photo: PropTypes.shape({
                 name: PropTypes.string.isRequired,
-                content: PropTypes.string.isRequired,
                 url: PropTypes.string.isRequired
             }),
             owner: PropTypes.shape({

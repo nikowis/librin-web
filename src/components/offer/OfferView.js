@@ -38,7 +38,7 @@ function OfferView(props) {
     price,
     ownerId,
     status,
-    attachments,
+    photos,
     owner,
     description,
     category,
@@ -69,7 +69,7 @@ function OfferView(props) {
     }
   };
 
-  const imagesGridSize = attachments && attachments.length > 1 ? 6 : 4;
+  const imagesGridSize = photos && photos.length > 1 ? 6 : 4;
 
   const getView = () => {
     return (
@@ -80,8 +80,8 @@ function OfferView(props) {
           </Helmet>
           <Grid container className={"offer-view"} spacing={1} justify={"center"}>
             <Grid item xs={12} sm={8} md={imagesGridSize}>
-              {attachments && attachments.length > 0 ? (
-                  <OfferPhotosComponent photos={attachments}/>
+              {photos && photos.length > 0 ? (
+                  <OfferPhotosComponent photos={photos}/>
               ) : (
                   <EmptyPhotoPreviewComponent/>
               )}
@@ -182,11 +182,10 @@ OfferView.propTypes = {
     price: PropTypes.PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     status: PropTypes.string,
     ownerId: PropTypes.number,
-    attachments: PropTypes.arrayOf(
+    photos: PropTypes.arrayOf(
         PropTypes.shape({
           name: PropTypes.string.isRequired,
-          content: PropTypes.string.isRequired,
-          url: PropTypes.string.isRequired,
+          url: PropTypes.string.isRequired
         })
     ),
     owner: PropTypes.shape({

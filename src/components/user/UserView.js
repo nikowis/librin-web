@@ -127,10 +127,9 @@ UserView.propTypes = {
         ]),
         status: PropTypes.string,
         ownerId: PropTypes.number,
-        attachment: PropTypes.shape({
+        photo: PropTypes.shape({
           name: PropTypes.string.isRequired,
-          content: PropTypes.string.isRequired,
-          url: PropTypes.string.isRequired,
+          url: PropTypes.string.isRequired
         }),
       })
   ),

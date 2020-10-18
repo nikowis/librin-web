@@ -53,8 +53,10 @@ export function base64ToFile(base64, filename) {
     return new File([u8arr], filename, {type: mime});
 }
 
-export function initializeAttachmentFromBase64(attachment) {
-    if(attachment.content) {
+export function initializeAttachmentUrl(attachment) {
+    if (attachment.path) {
+        return {name: attachment.name, path: attachment.path, url: process.env.REACT_APP_CDN_URL + attachment.path}
+    } else if (attachment.content) {
         const file = base64ToFile(attachment.content, attachment.name);
         return {name: attachment.name, content: attachment.content, url: URL.createObjectURL(file)}
     }
@@ -97,7 +99,7 @@ async function compressPhoto(photo, jpgQuality, maxBorderSize) {
     // const compressedContentSize = attachmentSizeInB(compressedContent);
 
     photo.content = compressedContent;
-    photo = initializeAttachmentFromBase64(photo);
+    photo = initializeAttachmentUrl(photo);
 
     // console.log('Attachment size (B) after compression: ' + compressedContentSize);
     return photo;

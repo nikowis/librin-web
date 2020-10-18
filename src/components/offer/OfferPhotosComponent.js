@@ -55,7 +55,6 @@ OfferPhotosComponent.propTypes = {
     photos: PropTypes.arrayOf(
         PropTypes.shape({
             name: PropTypes.string.isRequired,
-            content: PropTypes.string.isRequired,
             url: PropTypes.string.isRequired
         }),
     ),

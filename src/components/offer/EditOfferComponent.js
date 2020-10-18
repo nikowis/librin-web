@@ -62,7 +62,7 @@ function EditOfferComponent(props) {
             category: offer ? offer.category : null,
             condition: offer ? offer.condition : null,
             description: offer ? offer.description : "",
-            photos: offer && offer.attachments ? offer.attachments : [],
+            photos: offer && offer.photos ? offer.photos : [],
           }}
       >
         {({
@@ -227,11 +227,10 @@ EditOfferComponent.propTypes = {
     condition: PropTypes.string,
     category: PropTypes.string,
     price: PropTypes.PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    attachments: PropTypes.arrayOf(
+    photos: PropTypes.arrayOf(
         PropTypes.shape({
           name: PropTypes.string.isRequired,
-          content: PropTypes.string.isRequired,
-          url: PropTypes.string.isRequired,
+          url: PropTypes.string.isRequired
         })
     ),
   }),

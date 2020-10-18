@@ -14,7 +14,7 @@ import {
   VIEW_OFFER,
 } from "./actions";
 import {insertItem, removeItem} from "../common/array-helper";
-import {initializeAttachmentFromBase64} from "../common/attachment-utility";
+import {initializeAttachmentUrl} from "../common/attachment-utility";
 import {CREATED_AT_SORT, DEFAULT_PAGE_SIZE, DESC_SORT,} from "../common/app-constants";
 
 const initialOffersView = {
@@ -61,12 +61,12 @@ const initialState = {
 };
 
 export function processOffer(offer) {
-  if (offer.attachment) {
-    offer.attachment = initializeAttachmentFromBase64(offer.attachment);
+  if (offer.photo) {
+    offer.photo = initializeAttachmentUrl(offer.photo);
   }
-  if (offer.attachments && offer.attachments.length > 0) {
-    offer.attachments = offer.attachments.map((att) =>
-      initializeAttachmentFromBase64(att)
+  if (offer.photos && offer.photos.length > 0) {
+    offer.photos = offer.photos.map((att) =>
+      initializeAttachmentUrl(att)
     );
   }
   return offer;

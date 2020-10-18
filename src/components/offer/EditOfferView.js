@@ -117,7 +117,6 @@ EditOfferView.propTypes = {
     ]),
     attachment: PropTypes.shape({
       name: PropTypes.string.isRequired,
-      content: PropTypes.string.isRequired,
       url: PropTypes.string.isRequired
     }),
   }),

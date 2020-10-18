@@ -20,7 +20,7 @@ function OfferSinglePhotoEditComponent(props) {
                 type="file"
             />
             {photo && photo.url ?
-                <div className={'background-img'} style={{backgroundImage: "url(" + photo.url + ")"}}>
+                <div className={'background-img'} style={{backgroundImage: "url(" + photo.url  + ")"}}>
                     <IconButton size={"small"} className={'remove-button'} onClick={() => onRemovePhoto(index)}>
                         <CancelTwoToneIcon fontSize="small"/>
                     </IconButton>
@@ -39,7 +39,6 @@ function OfferSinglePhotoEditComponent(props) {
 OfferSinglePhotoEditComponent.propTypes = {
     photo: PropTypes.shape({
         name: PropTypes.string.isRequired,
-        content: PropTypes.string.isRequired,
         url: PropTypes.string.isRequired
     }),
     onFileUpload: PropTypes.func.isRequired,
