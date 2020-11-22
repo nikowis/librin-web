@@ -75,7 +75,7 @@ export const generateResetPasswordSchema = Yup.object().shape({
 });
 
 
-export const profileSchema = Yup.object().shape({
+export const settingsSchema = Yup.object().shape({
     firstName: Yup.string()
         .matches(lettersRegex)
         .min(2)

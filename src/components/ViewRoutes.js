@@ -20,7 +20,7 @@ import {
   MY_OFFERS,
   OFFER_VIEW,
   OFFERS,
-  PROFILE,
+  SETTINGS,
   PROFILE_CHANGE_PASSWORD,
   REGISTER,
   ROOT,
@@ -33,7 +33,7 @@ import {useTranslation} from "react-i18next";
 const Login = loadable(() => import('./user/LoginView'));
 const Logout = loadable(() => import('./Logout'));
 const Register = loadable(() => import('./user/RegisterView'));
-const Profile = loadable(() => import('./user/ProfileView'));
+const Settings = loadable(() => import('./user/SettingsView'));
 const MyOffersTableView = loadable(() => import('./offer/MyOffersView'));
 const CreateOfferView = loadable(() => import('./offer/CreateOfferView'));
 const EditOfferView = loadable(() => import('./offer/EditOfferView'));
@@ -73,11 +73,11 @@ function ViewRoutes() {
           </Helmet>
           <ChangProfilePasswordView/>
         </AuthenticatedRoute>
-        <AuthenticatedRoute path={PROFILE}>
+        <AuthenticatedRoute path={SETTINGS}>
           <Helmet>
-            <title>{t('profile.title') + ' - ' + t('brand')}</title>
+            <title>{t('settings.title') + ' - ' + t('brand')}</title>
           </Helmet>
-          <Profile/>
+          <Settings/>
         </AuthenticatedRoute>
         <AuthenticatedRoute path={CREATE_OFFER}>
           <Helmet>

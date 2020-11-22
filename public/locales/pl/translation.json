@@ -1,6 +1,6 @@
 {
   "brand": "Librin",
-  "logout": "Wylogowanie",
+  "logout": "Wyloguj się",
   "id": "Id",
   "currencySymbol": "PLN",
   "createdAt": "Data utworzenia",
@@ -196,9 +196,9 @@
     "page": "Rejestracja",
     "submit": "Zarejestruj się"
   },
-  "profile": {
-    "page": "Profil",
-    "title": "Mój profil"
+  "settings": {
+    "page": "Ustawienia",
+    "title": "Moje ustawienia"
   },
   "messages": {
     "page": "Wiadomości",
@@ -212,7 +212,7 @@
   },
   "notification": {
     "registered": "Konto utworzone",
-    "profileUpdated": "Profil zaktualizowany",
+    "settingsUpdated": "Ustawienia zaktualizowane",
     "offerDeleted": "Oferta usunięta",
     "offerCreated": "Oferat stworzona",
     "offerUpdated": "Oferat zaktualizowana",

@@ -10,12 +10,12 @@ import Api from "../../common/api-communication";
 import {NOTIFICATION_DURATION, PAPER_ELEVATION} from "../../common/app-constants";
 import {translate} from "../../common/i18n-helper";
 import {PROFILE_CHANGE_PASSWORD} from "../../common/paths";
-import {profileSchema} from "../../common/validation-schemas";
+import {settingsSchema} from "../../common/validation-schemas";
 import {HIDE_NOTIFICATION, SHOW_NOTIFICATION, UPDATE_USER} from "../../redux/actions";
 import DeleteAccountComponent from "./DeleteAccountComponent";
 import TitleComponent from "../TitleComponent";
 
-function ProfileView(props) {
+function SettingsView(props) {
 
   const {t} = useTranslation();
   const {dispatch, email} = props;
@@ -31,7 +31,7 @@ function ProfileView(props) {
     Api.updateUser(data).payload.then((response) => {
       if (!response.error) {
         props.dispatch({type: UPDATE_USER, payload: response})
-        props.dispatch({type: SHOW_NOTIFICATION, payload: t('notification.profileUpdated')});
+        props.dispatch({type: SHOW_NOTIFICATION, payload: t('notification.settingsUpdated')});
         setTimeout(() => {
           dispatch({type: HIDE_NOTIFICATION})
         }, NOTIFICATION_DURATION);
@@ -45,9 +45,9 @@ function ProfileView(props) {
 
   return (
       <>
-        <TitleComponent content={t('profile.title')}/>
+        <TitleComponent content={t('settings.title')}/>
         <Paper elevation={PAPER_ELEVATION} square className={'form-container'}>
-          <Formik validationSchema={profileSchema} onSubmit={handleSubmit} enableReinitialize={true}
+          <Formik validationSchema={settingsSchema} onSubmit={handleSubmit} enableReinitialize={true}
                   initialValues={{
                     id: props.id,
                     email: props.email,
@@ -143,7 +143,7 @@ function ProfileView(props) {
 
 }
 
-ProfileView.propTypes = {
+SettingsView.propTypes = {
   id: PropTypes.number,
   email: PropTypes.string,
   firstName: PropTypes.string,
@@ -157,4 +157,4 @@ export default connect(state => ({
   firstName: state.me.firstName,
   lastName: state.me.lastName,
   username: state.me.username,
-}))(withRouter(ProfileView));
+}))(withRouter(SettingsView));

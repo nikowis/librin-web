@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import Api from "../../common/api-communication";
 import {PAPER_ELEVATION} from '../../common/app-constants';
-import {PROFILE} from "../../common/paths";
+import {SETTINGS} from "../../common/paths";
 import ChangePasswordForm from "./ChangePasswordForm";
 import TitleComponent from "../TitleComponent";
 
@@ -38,8 +38,8 @@ function ChangProfilePasswordView(props) {
                   {infoText}
                 </div>
                 <Button size={"small"} variant="contained" color="primary" type="submit"
-                        onClick={() => props.history.push(PROFILE)}>
-                  {t('profile.page')}
+                        onClick={() => props.history.push(SETTINGS)}>
+                  {t('settings.page')}
                 </Button>
               </> :
               <ChangePasswordForm onSubmit={handleSubmit}/>
