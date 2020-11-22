@@ -177,7 +177,7 @@
     "min": "Minimalna liczba znaków to {{value}}",
     "max": "Maksymalna liczba znaków to {{value}}",
     "regexp": "Niepoprawny format",
-    "passwordRegexFormat": "Min. 8 znaków, bez spacji, w tym jedna litera i jedna cyfra",
+    "passwordRegexFormat": "Min. 8 znaków",
     "incorrectEmailDomain": "Niepoprawny adres email",
     "photo": {
       "tooBig": "Zdjęcie jest za duże",
