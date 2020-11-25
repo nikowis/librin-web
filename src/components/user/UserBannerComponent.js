@@ -7,9 +7,11 @@ import {useTranslation} from "react-i18next";
 import {UserStatus} from "../../common/app-constants";
 
 import ReportingComponent from "../offer/ReportingComponent";
+import Rating from "@material-ui/lab/Rating/Rating";
 
 function UserBannerComponent(props) {
-  const {id, username, status, withLink} = props;
+  const {user, withLink} = props;
+  const {id, username, status, avgRating, ratingCount} = user;
 
   const {t} = useTranslation();
 
@@ -32,9 +34,29 @@ function UserBannerComponent(props) {
       (status === UserStatus.BLOCKED ? blockedUserContent : deletedUserContent);
 
   const divWithContent =
-      (<><div className={'user-info-banner'}>
-        {content}
-      </div></>);
+      (<>
+        <div className={'user-info-banner'}>
+          {content}
+
+          {avgRating ?
+              <div className={'user-info-rating centeredContainer'}>
+                <Rating
+                    readOnly
+                    size="small"
+                    precision={0.1}
+                    value={avgRating}
+                    onChangeActive={() => {}}
+                />
+                <div className={'user-rating-label'}>
+                  <span className={'user-rating-average'}>{avgRating}/5</span>
+                  <span className={'user-rating-count'}>({ratingCount})</span>
+                </div>
+              </div>
+              : null
+          }
+
+        </div>
+      </>);
 
   return (
       withLink && status === UserStatus.ACTIVE ?
@@ -49,9 +71,13 @@ function UserBannerComponent(props) {
 }
 
 UserBannerComponent.propTypes = {
-  id: PropTypes.number,
-  username: PropTypes.string,
-  status: PropTypes.string.isRequired,
+  user: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    username: PropTypes.string.isRequired,
+    status: PropTypes.string.isRequired,
+    avgRating: PropTypes.number,
+    ratingCount: PropTypes.number,
+  }),
   withLink: PropTypes.bool,
 };
 

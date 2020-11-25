@@ -2,6 +2,7 @@ export const API_GET_TOKEN = '/oauth/token';
 export const API_PROFILE = '/profile';
 export const API_REPORTS = '/reports';
 export const API_USERS = '/users';
+export const API_RATINGS = '/ratings';
 export const API_REGISTER = '/register';
 export const API_OFFERS = '/offers';
 export const API_MY_OFFERS = '/myoffers';

@@ -22,6 +22,8 @@ function UserView(props) {
     offers,
     location,
     username,
+    avgRating,
+    ratingCount,
     status,
     history,
     totalPages,
@@ -90,7 +92,7 @@ function UserView(props) {
                   square
                   className={"user-info-card"}
               >
-                <UserBannerComponent username={username} status={status} id={id}/>
+                <UserBannerComponent user={{id, username, status, avgRating, ratingCount}}/>
               </Paper>
               {objectEquals(currentFilter, newFilter) ? (
                   offers && offers.length > 0 ? (
@@ -116,6 +118,8 @@ UserView.propTypes = {
   id: PropTypes.number,
   username: PropTypes.string,
   status: PropTypes.string,
+  avgRating: PropTypes.number,
+  ratingCount: PropTypes.number,
   offers: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
@@ -143,6 +147,8 @@ export default connect((state) => ({
   id: state.users.currentUser.id,
   username: state.users.currentUser.username,
   status: state.users.currentUser.status,
+  avgRating: state.users.currentUser.avgRating,
+  ratingCount: state.users.currentUser.ratingCount,
   offers: state.offers.userView.content,
   currentPage: state.offers.userView.currentPage,
   totalPages: state.offers.userView.totalPages,

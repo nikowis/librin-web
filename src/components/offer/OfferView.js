@@ -88,7 +88,7 @@ function OfferView(props) {
             </Grid>
             <Grid item xs={12} sm={8} md={4}>
               <Card elevation={PAPER_ELEVATION} square className={"user-details"}>
-                <UserBannerComponent username={owner.username} id={owner.id} status={owner.status} withLink/>
+                <UserBannerComponent user={owner} withLink/>
               </Card>
               <Card
                   elevation={PAPER_ELEVATION}
@@ -191,6 +191,9 @@ OfferView.propTypes = {
     owner: PropTypes.shape({
       id: PropTypes.number.isRequired,
       username: PropTypes.string.isRequired,
+      status: PropTypes.string.isRequired,
+      avgRating: PropTypes.number,
+      ratingCount: PropTypes.number,
     }),
   }),
 };

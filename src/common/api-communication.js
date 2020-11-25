@@ -9,7 +9,7 @@ import {
   API_MY_OFFERS,
   API_OFFERS,
   API_POLICIES,
-  API_PROFILE,
+  API_PROFILE, API_RATINGS,
   API_REGISTER,
   API_REPORTS,
   API_USERS,
@@ -400,6 +400,16 @@ class Api {
       url: url
     });
   }
+
+  createOfferRating(userId, data) {
+    const url = this.API_URL + API_USERS + "/" + userId + API_RATINGS;
+
+    return HttpUtility.post({
+      url: url,
+      payload: data,
+    });
+  }
+
 }
 
 export default Api = new Api();

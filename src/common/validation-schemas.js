@@ -156,3 +156,10 @@ export const deleteAccountSchema = Yup.object().shape({
 export const reportSchema = Yup.object().shape({
     description: Yup.string().max(512).required()
 });
+
+export const createOfferRatingSchema = Yup.object().shape({
+    description: Yup.string().max(512),
+    rating: Yup.number()
+        .min(1)
+        .max(5).required()
+});

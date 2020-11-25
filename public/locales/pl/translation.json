@@ -146,6 +146,10 @@
       "yesText": "",
       "noText": ""
     },
+    "rating": {
+      "label": "Oceń transakcję",
+      "submit" : "Wyślij"
+    },
     "title": "Tytuł",
     "description": "Opis",
     "author": "Autor",
@@ -216,7 +220,8 @@
     "offerDeleted": "Oferta usunięta",
     "offerCreated": "Oferat stworzona",
     "offerUpdated": "Oferat zaktualizowana",
-    "accountDeleted": "Konto usunięte"
+    "accountDeleted": "Konto usunięte",
+    "offerRatingCreated": "Ocena zapisana"
   },
   "consent": {
     "intro": "Tworząc konto akceptuję ",

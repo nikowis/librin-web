@@ -124,6 +124,9 @@ button.MuiButton-outlined {
   flex: 0 0 auto;
   margin: 0 8px;
   color: dimgray;
+  position: absolute;
+  right: 8px;
+
   &.MuiSvgIcon-root {
     font-size: 24px;
   }
@@ -155,19 +158,37 @@ button.MuiButton-outlined {
 }
 
 .user-info-container {
+  position: relative;
   display: flex;
-  padding: 4px 8px;
+  padding: 4px 0px;
   align-items: center;
-
+  .MuiRating-decimal {
+    margin: -2px;
+  }
   .user-info-banner {
     display: flex;
     align-items: center;
     flex: 1 0 auto;
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .MuiAvatar-root {
     margin: 0 8px;
+  }
+}
+
+.user-info-rating {
+  font-size: 14px;
+  margin: 0 4px;
+
+  .user-rating-label {
+    .user-rating-average {
+      font-weight: 500;
+      font-size: 14px;
+    }
+    .user-rating-count {
+      font-size: 10px;
+    }
   }
 }
 

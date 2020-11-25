@@ -16,6 +16,7 @@ import PropTypes from "prop-types";
 import OfferStatusInfoBanner from "../offer/OfferStatusInfoBanner";
 import {Paper} from '@material-ui/core';
 import {PAPER_ELEVATION, UserStatus} from './../../common/app-constants'
+import RateOfferComponent from "../offer/RateOfferComponent";
 
 function ConversationView(props) {
 
@@ -84,8 +85,7 @@ function ConversationView(props) {
           {
             !wrongConvLoaded && currentConversation.id ?
                 <>
-                  <UserBannerComponent id={recipient.id} status={recipient.status} username={recipient.username}
-                                       withLink/>
+                  <UserBannerComponent user={recipient} withLink/>
                   <Divider variant="fullWidth"/>
                   <ConversationOfferPreviewComponent conversation={currentConversation}/>
                   {currentConversation.messages && currentConversation.messages.length > 0 ?
@@ -94,6 +94,7 @@ function ConversationView(props) {
                                          currentConversation={currentConversation}/>
 
                   <OfferStatusInfoBanner offer={offer} userId={userId} otherUserId={recipient.id}/>
+                  <RateOfferComponent offer={offer} userId={recipient.id}/>
 
                   <Divider variant="fullWidth"/>
                   <SendMessageFormComponent onSendMessage={handleSendMessage} disabled={recipient.status === UserStatus.DELETED}
