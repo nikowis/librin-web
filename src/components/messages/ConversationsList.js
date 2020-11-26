@@ -25,10 +25,10 @@ function ConversationsList(props) {
           <Link to={MESSAGES + '/' + conv.id} key={conv.id} className={"link-no-styles"}
                 onClick={() => props.onConversationOpen(conv)}>
             <ListItem className={conv.read ? null : 'conversation-unread'} button>
-              <div className={'conversation-datetime'}>
+              <div className={'list-datetime'}>
                 {formatDateToString(conv.updatedAt, true, true)}
               </div>
-              <div className={'conversation-item'}>
+              <div className={'list-item'}>
                 <ListItemAvatar>
                   {accountDeleted ? <Avatar>{'?'}</Avatar> :
                       <Avatar>{recipientUsername.substring(0, 1).toUpperCase()}</Avatar>}

@@ -2,7 +2,7 @@ import React from 'react';
 import Avatar from "@material-ui/core/Avatar";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
-import {USERS} from "../../common/paths";
+import {RATINGS, USERS} from "../../common/paths";
 import {useTranslation} from "react-i18next";
 import {UserStatus} from "../../common/app-constants";
 
@@ -37,23 +37,23 @@ function UserBannerComponent(props) {
       (<>
         <div className={'user-info-banner'}>
           {content}
-
-          {avgRating ?
-              <div className={'user-info-rating centeredContainer'}>
-                <Rating
-                    readOnly
-                    size="small"
-                    precision={0.1}
-                    value={avgRating}
-                    onChangeActive={() => {}}
-                />
-                <div className={'user-rating-label'}>
-                  <span className={'user-rating-average'}>{avgRating}/5</span>
-                  <span className={'user-rating-count'}>({ratingCount})</span>
-                </div>
-              </div>
-              : null
-          }
+          <Link to={USERS + '/' + id + RATINGS} className={'link-no-styles'}>
+            <div className={'user-info-rating centeredContainer'}>
+              <Rating
+                  readOnly
+                  size="small"
+                  precision={0.1}
+                  value={avgRating}
+              />
+              {avgRating ?
+                  <div className={'user-rating-label'}>
+                    <span className={'user-rating-average'}>{avgRating.toFixed(1)}/5</span>
+                    <span className={'user-rating-count'}> ({ratingCount})</span>
+                  </div>
+                  : null
+              }
+            </div>
+          </Link>
 
         </div>
       </>);

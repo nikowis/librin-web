@@ -104,7 +104,7 @@ function UserView(props) {
                         />
                       </>
                   ) : (
-                      t("noElementsFound")
+                      t("noOffersFound")
                   )
               ) : null}
               <PaginationComponent totalPages={totalPages}/>

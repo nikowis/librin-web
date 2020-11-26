@@ -24,16 +24,16 @@ import {
   PROFILE_CHANGE_PASSWORD,
   REGISTER,
   ROOT,
-  USER_VIEW
+  USER_VIEW, RATINGS_VIEW
 } from "../common/paths";
 import Helmet from "react-helmet";
 import {useTranslation} from "react-i18next";
-
 
 const Login = loadable(() => import('./user/LoginView'));
 const Logout = loadable(() => import('./Logout'));
 const Register = loadable(() => import('./user/RegisterView'));
 const Settings = loadable(() => import('./user/SettingsView'));
+const RatingsView = loadable(() => import('./user/RatingsView'));
 const MyOffersTableView = loadable(() => import('./offer/MyOffersView'));
 const CreateOfferView = loadable(() => import('./offer/CreateOfferView'));
 const EditOfferView = loadable(() => import('./offer/EditOfferView'));
@@ -109,6 +109,9 @@ function ViewRoutes() {
           </Helmet>
           <ConversationsView/>
         </AuthenticatedRoute>
+        <Route path={RATINGS_VIEW}>
+          <RatingsView/>
+        </Route>
         <Route path={USER_VIEW}>
           <UserView/>
         </Route>

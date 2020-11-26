@@ -66,7 +66,7 @@ function MyOffersView(props) {
             />
           </>
         ) : (
-          t("noElementsFound")
+          t("noOffersFound")
         )
       ) : null}
       <PaginationComponent totalPages={totalPages} />

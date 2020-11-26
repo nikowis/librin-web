@@ -148,7 +148,8 @@
     },
     "rating": {
       "label": "Oceń transakcję",
-      "submit" : "Wyślij"
+      "submit" : "Wyślij",
+      "listTitle" : "Oceny użytkownika"
     },
     "title": "Tytuł",
     "description": "Opis",

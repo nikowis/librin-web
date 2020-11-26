@@ -31,7 +31,7 @@ import {
   FETCH_OFFER,
   FETCH_USER,
   GET_ALL_CONVERSATIONS,
-  GET_CONVERSATION,
+  GET_CONVERSATION, GET_RATINGS,
   GET_TOKEN_ACTION,
   REGISTER_ACTION,
   SELL_OFFER,
@@ -407,6 +407,26 @@ class Api {
     return HttpUtility.post({
       url: url,
       payload: data,
+    });
+  }
+
+  getRatings(userId, page) {
+    const params = {
+      size: DEFAULT_PAGE_SIZE,
+      sort: UPDATED_AT_SORT + "," + DESC_SORT,
+      page,
+    };
+
+    if (!page || page < 0) {
+      params.page = 0;
+    }
+
+    const url = new URL(this.API_URL + API_USERS + "/" + userId + API_RATINGS );
+    url.search = new URLSearchParams(params).toString();
+
+    return HttpUtility.get({
+      url: url,
+      action: GET_RATINGS,
     });
   }
 

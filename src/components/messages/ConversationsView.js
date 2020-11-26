@@ -65,7 +65,7 @@ function ConversationsView(props) {
 
   return (
       <MaxWidthContainer size={'sm'}>
-        <Paper elevation={PAPER_ELEVATION} square className={'conversations-view'}>
+        <Paper elevation={PAPER_ELEVATION} square className={'list-paging-navigation'}>
           {
             conversations && !mustReload ?
                 <List subheader={<ListSubheader>{t('messages.conversationsList')}</ListSubheader>}>
