@@ -79,5 +79,5 @@ App.propTypes = {
 export default connect(state => ({
   authenticated: state.me.authenticated,
   pendingRequests: state.app.pendingRequests,
-  mustReloadMessages: state.messages.mustReload,
+  mustReloadMessages: state.conversations.mustReload,
 }))(App);

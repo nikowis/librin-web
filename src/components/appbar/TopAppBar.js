@@ -120,5 +120,5 @@ TopAppBar.propTypes = {
 
 export default connect(state => ({
     authenticated: state.me.authenticated,
-    unreadConversations: state.messages.content ? state.messages.content.filter(conv => conv.read === false).length : 0
+    unreadConversations: state.conversations.content ? state.conversations.content.filter(conv => conv.read === false).length : 0
 }))(withRouter(withWidth()(TopAppBar)));

@@ -73,6 +73,6 @@ ConversationOfferActions.propTypes = {
 
 export default connect(state => ({
     userId: state.me.id,
-    currentConversation: state.messages.currentConversation,
+    currentConversation: state.conversations.currentConversation,
 }))(ConversationOfferActions);
 

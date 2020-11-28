@@ -3,19 +3,24 @@ import PropTypes from "prop-types";
 import ListItem from "@material-ui/core/ListItem";
 import {formatDateToString} from "../../common/date-utility";
 import List from "@material-ui/core/List";
-
+import InfiniteScroll from 'react-infinite-scroller';
+import LoaderComponent from "../LoaderComponent";
 
 function MessagesListComponent(props) {
 
     const messagesEndRef = useRef(null);
+    const [loading, setLoading] = React.useState(false);
+
 
     const {currentConversation, userId} = props;
+    const currentConversationId = currentConversation.id;
     const {messages} = currentConversation;
 
     const scrollToBottom = () => {
         messagesEndRef.current.scrollIntoView();
     };
-    useEffect(scrollToBottom, [currentConversation]);
+
+    useEffect(scrollToBottom, [currentConversationId]);
 
     const messageRows = () => {
         return messages.map((msg) => {
@@ -35,18 +40,38 @@ function MessagesListComponent(props) {
 
     return (
         <List className={'messages-list'}>
+          {loading ? <LoaderComponent/> : null}
+          <InfiniteScroll
+              pageStart={0}
+              loadMore={(page) => {
+                if(!loading) {
+                  setLoading(true);
+                  props.loadMessages(page).then(() => {
+                    setLoading(false);
+                  });
+                }
+              }}
+              hasMore={!loading && !props.currentConversation.lastPage}
+              initialLoad={false}
+              isReverse={true}
+              threshold={100}
+              useWindow={false}
+          >
             {messageRows()}
             <div ref={messagesEndRef} />
+          </InfiniteScroll>
         </List>
     );
 }
 
 MessagesListComponent.propTypes = {
+    loadMessages: PropTypes.func.isRequired,
     userId: PropTypes.number,
     currentConversation:
         PropTypes.shape({
             id: PropTypes.number,
             messages: PropTypes.array,
+            lastPage: PropTypes.bool,
             offer: PropTypes.shape({
                 id: PropTypes.number,
                 title: PropTypes.string,

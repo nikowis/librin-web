@@ -47,9 +47,19 @@ function ConversationView(props) {
         if (res.action.payload.status === 400) {
           history.replace(CONVERSATIONS);
         }
+      }).then(res => {
+        return dispatch(Api.getMessages(convId));
+      }).then(res => {
+        if (res.action.payload.status === 400) {
+          history.replace(CONVERSATIONS);
+        }
       }).then(() => setLoading(false));
     }
   }, [dispatch, loading, history, convId, wrongConvLoaded, invalidId]);
+
+  const loadMoreMessages = (page) => {
+    return dispatch(Api.getMessages(convId, page));
+  };
 
   const handleSendMessage = (data, actions) => {
     const {dispatch} = props;
@@ -83,14 +93,14 @@ function ConversationView(props) {
 
         <Paper elevation={PAPER_ELEVATION} square className={'single-conversation-view'}>
           {
-            !wrongConvLoaded && currentConversation.id ?
+            !wrongConvLoaded && currentConversation.id && currentConversation.messages ?
                 <>
                   <UserBannerComponent user={recipient} withLink/>
                   <Divider variant="fullWidth"/>
                   <ConversationOfferPreviewComponent conversation={currentConversation}/>
                   {currentConversation.messages && currentConversation.messages.length > 0 ?
                       <Divider variant="middle"/> : null}
-                  <MessagesListComponent userId={userId}
+                  <MessagesListComponent userId={userId} loadMessages={loadMoreMessages}
                                          currentConversation={currentConversation}/>
 
                   <OfferStatusInfoBanner offer={offer} userId={userId} otherUserId={recipient.id}/>
@@ -113,6 +123,7 @@ ConversationView.propTypes = {
       PropTypes.shape({
         id: PropTypes.number,
         read: PropTypes.bool,
+        lastPage: PropTypes.bool,
         messages: PropTypes.array,
         offer: PropTypes.shape({
           id: PropTypes.number,
@@ -137,5 +148,5 @@ ConversationView.propTypes = {
 
 export default connect(state => ({
   userId: state.me.id,
-  currentConversation: state.messages.currentConversation,
+  currentConversation: state.conversations.currentConversation,
 }))(withRouter(ConversationView));

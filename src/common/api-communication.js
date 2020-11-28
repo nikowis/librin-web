@@ -17,7 +17,7 @@ import {
   DEACTIVATE_SUFFIX,
   PRIVACY_POLICY,
   SOLD_SUFFIX,
-  TERMS_AND_CONDITIONS,
+  TERMS_AND_CONDITIONS, API_MESSAGES,
 } from "./endpoints";
 import HttpUtility from "./http-utility";
 import {
@@ -31,14 +31,20 @@ import {
   FETCH_OFFER,
   FETCH_USER,
   GET_ALL_CONVERSATIONS,
-  GET_CONVERSATION, GET_RATINGS,
+  GET_CONVERSATION, GET_CONVERSATION_MESSAGES, GET_RATINGS,
   GET_TOKEN_ACTION,
   REGISTER_ACTION,
   SELL_OFFER,
   SEND_MESSAGE,
   UPDATE_USER,
 } from "../redux/actions";
-import {CREATED_AT_SORT, DEFAULT_PAGE_SIZE, DESC_SORT, UPDATED_AT_SORT,} from "./app-constants";
+import {
+  CREATED_AT_SORT,
+  DEFAULT_MESSAGES_PAGE_SIZE,
+  DEFAULT_PAGE_SIZE,
+  DESC_SORT,
+  UPDATED_AT_SORT,
+} from "./app-constants";
 import {CHANGE_PASSWORD_BASE, CONFIRM_EMAIL_BASE} from "./paths";
 import {cleanFields} from "./object-helper";
 
@@ -430,6 +436,25 @@ class Api {
     });
   }
 
+  getMessages(conversationId, page) {
+    const params = {
+      size: DEFAULT_MESSAGES_PAGE_SIZE,
+      sort: CREATED_AT_SORT + "," + DESC_SORT,
+      page,
+    };
+
+    if (!page || page < 0) {
+      params.page = 0;
+    }
+
+    const url = new URL(this.API_URL + API_CONVERSATIONS + "/" + conversationId + API_MESSAGES);
+    url.search = new URLSearchParams(params).toString();
+
+    return HttpUtility.get({
+      url: url,
+      action: GET_CONVERSATION_MESSAGES,
+    });
+  }
 }
 
 export default Api = new Api();

@@ -94,8 +94,8 @@ ConversationsView.propTypes = {
 
 export default connect(state => ({
   userId: state.me.id,
-  conversations: state.messages.content,
-  currentPage: state.messages.currentPage,
-  totalPages: state.messages.totalPages,
-  mustReload: state.messages.mustReload
+  conversations: state.conversations.content,
+  currentPage: state.conversations.currentPage,
+  totalPages: state.conversations.totalPages,
+  mustReload: state.conversations.mustReload
 }))(withRouter(ConversationsView));
