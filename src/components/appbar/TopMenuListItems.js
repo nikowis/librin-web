@@ -1,5 +1,5 @@
 import React from 'react';
-import {CREATE_OFFER, LOGIN, LOGOUT, MESSAGES, MY_OFFERS, OFFERS, SETTINGS, REGISTER, ROOT} from "../../common/paths";
+import {CREATE_OFFER, LOGIN, LOGOUT, CONVERSATIONS, MY_OFFERS, OFFERS, SETTINGS, REGISTER, ROOT} from "../../common/paths";
 import {useTranslation} from 'react-i18next';
 import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
@@ -37,9 +37,9 @@ function TopMenuListItems(props) {
                              mykey={'register'} icon={<VpnKeyIcon/>} text={t('register.page')}
                              onClick={(e) => redirect(e, REGISTER)}/>
             <TopMenuListItem show={props.authenticated}
-                             selected={currentPathname === MESSAGES || currentPathname.replace(urlIdSuffixRegex, "") === MESSAGES}
+                             selected={currentPathname === CONVERSATIONS || currentPathname.replace(urlIdSuffixRegex, "") === CONVERSATIONS}
                              mykey={'messages'} icon={<MailIcon/>} text={t('messages.page')}
-                             onClick={(e) => redirect(e, MESSAGES)}/>
+                             onClick={(e) => redirect(e, CONVERSATIONS)}/>
             <TopMenuListItem show={props.authenticated} selected={currentPathname === CREATE_OFFER}
                              onClick={(e) => redirect(e, CREATE_OFFER)}
                              mykey={'create'} icon={<AddIcon/>} text={t('offer.createPage')}/>

@@ -15,8 +15,8 @@ import {
   GENERATE_PASSWORD_RESET,
   LOGIN,
   LOGOUT,
-  MESSAGES,
-  MESSAGES_CONVERSATION,
+  CONVERSATIONS,
+  CONVERSATION,
   MY_OFFERS,
   OFFER_VIEW,
   OFFERS,
@@ -97,13 +97,13 @@ function ViewRoutes() {
           </Helmet>
           <MyOffersTableView/>
         </AuthenticatedRoute>
-        <AuthenticatedRoute path={MESSAGES_CONVERSATION}>
+        <AuthenticatedRoute path={CONVERSATION}>
           <Helmet>
             <title>{t('messages.page') + ' - ' + t('brand')}</title>
           </Helmet>
           <ConversationView/>
         </AuthenticatedRoute>
-        <AuthenticatedRoute path={MESSAGES}>
+        <AuthenticatedRoute path={CONVERSATIONS}>
           <Helmet>
             <title>{t('messages.page') + ' - ' + t('brand')}</title>
           </Helmet>

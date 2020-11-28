@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import PropTypes from "prop-types";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText/ListItemText";
-import {MESSAGES} from "../../common/paths";
+import {CONVERSATIONS} from "../../common/paths";
 import Avatar from "@material-ui/core/Avatar";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar/ListItemAvatar";
 import {formatDateToString} from "../../common/date-utility";
@@ -22,7 +22,7 @@ function ConversationsList(props) {
       const recipientUsername = conv.customer.id === userId ? conv.offer.owner.username : conv.customer.username;
       const offerDesc = conv.offer.title + ', ' + conv.offer.author;
       return (
-          <Link to={MESSAGES + '/' + conv.id} key={conv.id} className={"link-no-styles"}
+          <Link to={CONVERSATIONS + '/' + conv.id} key={conv.id} className={"link-no-styles"}
                 onClick={() => props.onConversationOpen(conv)}>
             <ListItem className={conv.read ? null : 'conversation-unread'} button>
               <div className={'list-datetime'}>

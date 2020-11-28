@@ -53,10 +53,8 @@ function RatingsView(props) {
   }, [dispatch, history, id, wrongUserIsLoaded, loading]);
 
   useEffect(() => {
-    if (ratings === null) {
       dispatch(Api.getRatings(id));
-    }
-  }, [dispatch, ratings, id]);
+  }, [dispatch, id]);
 
   const loadNextRatings = () => {
     dispatch(Api.getRatings(id, currentPage));

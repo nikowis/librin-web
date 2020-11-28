@@ -8,7 +8,7 @@ import LoaderComponent from "../LoaderComponent";
 import Divider from "@material-ui/core/Divider";
 import MaxWidthContainer from "../MaxWidthContainer";
 import UserBannerComponent from "../user/UserBannerComponent";
-import {MESSAGES} from "../../common/paths";
+import {CONVERSATIONS} from "../../common/paths";
 import {READ_CONVERSATION} from "../../redux/actions";
 import ConversationOfferActions from "./ConversationOfferActions";
 import {connect} from "react-redux";
@@ -29,7 +29,7 @@ function ConversationView(props) {
   convId = parseInt(convId);
   const invalidId = isNaN(convId);
   if (invalidId) {
-    history.push(MESSAGES);
+    history.push(CONVERSATIONS);
   }
   let recipient = null;
   let isOfferOwner = null;
@@ -45,7 +45,7 @@ function ConversationView(props) {
       setLoading(true);
       dispatch(Api.getConversation(convId)).then(res => {
         if (res.action.payload.status === 400) {
-          history.replace(MESSAGES);
+          history.replace(CONVERSATIONS);
         }
       }).then(() => setLoading(false));
     }

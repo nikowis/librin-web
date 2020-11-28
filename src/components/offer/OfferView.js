@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import LoaderComponent from "../LoaderComponent";
 import Card from "@material-ui/core/Card/Card";
 import {CLEAR_CURRENT_OFFER} from "../../redux/actions";
-import {LOGIN, MESSAGES, OFFERS} from "../../common/paths";
+import {LOGIN, CONVERSATIONS, OFFERS} from "../../common/paths";
 import CardActions from "@material-ui/core/CardActions/CardActions";
 import Button from "@material-ui/core/Button";
 import {convertConditionValueToInt, OfferStatus, PAPER_ELEVATION} from "../../common/app-constants";
@@ -62,7 +62,7 @@ function OfferView(props) {
   const handleSendMessage = () => {
     if (props.authenticated) {
       dispatch(Api.createConversation(id)).then((res) => {
-        history.push(MESSAGES + "/" + res.value.id);
+        history.push(CONVERSATIONS + "/" + res.value.id);
       });
     } else {
       history.push(LOGIN);

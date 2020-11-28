@@ -4,8 +4,8 @@ import {
   API_CONFIRM_EMAIL, API_GENERATE_ACCOUNT_ACTIVATION_EMAIL,
   API_GENERATE_PASSWORD_CHANGE,
   API_GET_TOKEN,
-  API_MESSAGES,
-  API_MESSAGES_READ,
+  API_CONVERSATIONS,
+  API_CONVERSATION_READ,
   API_MY_OFFERS,
   API_OFFERS,
   API_POLICIES,
@@ -238,7 +238,7 @@ class Api {
   }
 
   createConversation(offerId) {
-    const url = this.API_URL + API_MESSAGES;
+    const url = this.API_URL + API_CONVERSATIONS;
 
     return HttpUtility.post({
       url: url,
@@ -258,7 +258,7 @@ class Api {
       params.page = 0;
     }
 
-    const url = new URL(this.API_URL + API_MESSAGES);
+    const url = new URL(this.API_URL + API_CONVERSATIONS);
     url.search = new URLSearchParams(params).toString();
 
     return HttpUtility.get({
@@ -268,7 +268,7 @@ class Api {
   }
 
   getConversation(conversationId) {
-    const url = this.API_URL + API_MESSAGES + "/" + conversationId;
+    const url = this.API_URL + API_CONVERSATIONS + "/" + conversationId;
 
     return HttpUtility.get({
       url: url,
@@ -277,7 +277,7 @@ class Api {
   }
 
   sendMessage(conversationId, content) {
-    const url = this.API_URL + API_MESSAGES + "/" + conversationId;
+    const url = this.API_URL + API_CONVERSATIONS + "/" + conversationId;
 
     return HttpUtility.post({
       url: url,
@@ -288,7 +288,7 @@ class Api {
 
   markConversationAsRead(conversationId) {
     const url =
-      this.API_URL + API_MESSAGES + "/" + conversationId + API_MESSAGES_READ;
+      this.API_URL + API_CONVERSATIONS + "/" + conversationId + API_CONVERSATION_READ;
 
     return HttpUtility.put({
       url: url,
