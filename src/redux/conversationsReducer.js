@@ -79,7 +79,7 @@ const conversationsReducer = (state = initialState, action) => {
       //merge old messages and filter out same messages
       if (state.currentConversation.messages) {
         msgs = msgs.concat(state.currentConversation.messages);
-        // msgs = msgs.filter((v, i, a) => a.findIndex(t => (t.id === v.id)) === i);
+        msgs = msgs.filter((v, i, a) => a.findIndex(t => (t.id === v.id)) === i);
       }
       msgs = msgs.sort(msgComparator);
 
