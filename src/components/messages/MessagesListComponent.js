@@ -8,80 +8,83 @@ import LoaderComponent from "../LoaderComponent";
 
 function MessagesListComponent(props) {
 
-    const messagesEndRef = useRef(null);
-    const [loading, setLoading] = React.useState(false);
+  const messagesEndRef = useRef(null);
+  const [loading, setLoading] = React.useState(false);
 
 
-    const {currentConversation, userId} = props;
-    const currentConversationId = currentConversation.id;
-    const {messages} = currentConversation;
+  const {currentConversation, userId} = props;
+  const {messages} = currentConversation;
 
-    const scrollToBottom = () => {
-        messagesEndRef.current.scrollIntoView();
-    };
+  const scrollToBottom = () => {
+    if (!loading) {
+      messagesEndRef.current.scrollIntoView();
+    }
+  };
 
-    useEffect(scrollToBottom, [currentConversationId]);
+  useEffect(scrollToBottom, [currentConversation]);
 
-    const messageRows = () => {
-        return messages.map((msg) => {
-            const myMsg = msg.createdBy.toString() === userId.toString();
-            return (
-                <ListItem key={msg.id} className={myMsg? 'my-message' : 'notmy-message'}>
-                    <div className={'message-datetime'}>
-                        {formatDateToString(msg.createdAt, true, true)}
-                    </div>
-                    <div className={'message-content'}>
-                        {msg.content}
-                    </div>
-                </ListItem>
-            )
-        });
-    };
+  const messageRows = () => {
+    return messages.map((msg) => {
+      const myMsg = msg.createdBy.toString() === userId.toString();
+      return (
+          <ListItem key={msg.id} className={myMsg ? 'my-message' : 'notmy-message'}>
+            <div className={'message-datetime'}>
+              {formatDateToString(msg.createdAt, true, true)}
+            </div>
+            <div className={'message-content'}>
+              {msg.content}
+            </div>
+          </ListItem>
+      )
+    });
+  };
 
-    return (
-        <List className={'messages-list'}>
-          {loading ? <LoaderComponent size={24}/> : null}
-          <InfiniteScroll
-              pageStart={0}
-              loadMore={(page) => {
-                if(!loading) {
-                  setLoading(true);
-                  props.loadMessages(page).then(() => {
+  return (
+      <List className={'messages-list'}>
+        {loading ? <LoaderComponent size={24}/> : null}
+        <InfiniteScroll
+            pageStart={0}
+            loadMore={(page) => {
+              if (!loading) {
+                setLoading(true);
+                props.loadMessages(page).then(() => {
+                  setTimeout(() => {
                     setLoading(false);
-                  });
-                }
-              }}
-              hasMore={!loading && !props.currentConversation.lastPage}
-              initialLoad={false}
-              isReverse={true}
-              threshold={100}
-              useWindow={false}
-          >
-            {messageRows()}
-            <div ref={messagesEndRef} />
-          </InfiniteScroll>
-        </List>
-    );
+                  }, 300);
+                });
+              }
+            }}
+            hasMore={!loading && !props.currentConversation.lastPage}
+            initialLoad={false}
+            isReverse={true}
+            threshold={100}
+            useWindow={false}
+        >
+          {messageRows()}
+          <div ref={messagesEndRef}/>
+        </InfiniteScroll>
+      </List>
+  );
 }
 
 MessagesListComponent.propTypes = {
-    loadMessages: PropTypes.func.isRequired,
-    userId: PropTypes.number,
-    currentConversation:
-        PropTypes.shape({
-            id: PropTypes.number,
-            messages: PropTypes.array,
-            lastPage: PropTypes.bool,
-            offer: PropTypes.shape({
-                id: PropTypes.number,
-                title: PropTypes.string,
-                author: PropTypes.string,
-                price: PropTypes.string,
-                status: PropTypes.string,
-                ownerId: PropTypes.number,
-            }),
-            createdAt: PropTypes.string
-        })
+  loadMessages: PropTypes.func.isRequired,
+  userId: PropTypes.number,
+  currentConversation:
+      PropTypes.shape({
+        id: PropTypes.number,
+        messages: PropTypes.array,
+        lastPage: PropTypes.bool,
+        offer: PropTypes.shape({
+          id: PropTypes.number,
+          title: PropTypes.string,
+          author: PropTypes.string,
+          price: PropTypes.string,
+          status: PropTypes.string,
+          ownerId: PropTypes.number,
+        }),
+        createdAt: PropTypes.string
+      })
 };
 
 export default MessagesListComponent;
