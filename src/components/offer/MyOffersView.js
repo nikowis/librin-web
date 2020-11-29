@@ -54,7 +54,7 @@ function MyOffersView(props) {
 
   return (
     <>
-      <TitleComponent content={t('offer.myoffersPage')}/>
+      <TitleComponent content={t('user.myProfile')}/>
       {objectEquals(currentFilter, newFilter) ? (
         offers && offers.length > 0 ? (
           <>

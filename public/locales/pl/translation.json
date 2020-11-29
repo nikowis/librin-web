@@ -50,6 +50,7 @@
     "deleteAccountWarning": "Konto zostanie usunięte nieodwracalnie",
     "registerLink": "Zarejestruj się",
     "confirmEmailPage" : "Weryfikacja adresu email",
+    "myProfile": "Mój profil",
     "report": "Zgłoś użytkownika",
     "reportDesc": "Opisz powód zgłoszenia"
   },
@@ -126,7 +127,7 @@
     "condition" : {
       "label": "Stan książki",
       "NEW": "Nowa",
-      "PERFECT": "Idealna",
+      "PERFECT": "Bardzo dobra",
       "GOOD": "Dobra",
       "USED": "Używana",
       "DESTROYED": "Zniszczona"
@@ -163,7 +164,6 @@
     "sell": "Sprzedaj temu użytkownikowi",
     "delete": "Usuń ofertę",
     "offersPage": "Oferty",
-    "myoffersPage": "Moje oferty",
     "editPageTitle": "Edycja oferty",
     "createPageTitle": "Sprzedaj książkę",
     "report": "Zgłoś ofertę"

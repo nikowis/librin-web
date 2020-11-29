@@ -93,7 +93,7 @@ function ViewRoutes() {
         </AuthenticatedRoute>
         <AuthenticatedRoute path={MY_OFFERS}>
           <Helmet>
-            <title>{t('offer.myoffersPage') + ' - ' + t('brand')}</title>
+            <title>{t('user.myProfile') + ' - ' + t('brand')}</title>
           </Helmet>
           <MyOffersTableView/>
         </AuthenticatedRoute>

@@ -45,7 +45,7 @@ function TopMenuListItems(props) {
                              mykey={'create'} icon={<AddIcon/>} text={t('offer.createPage')}/>
             <TopMenuListItem show={props.authenticated} selected={currentPathname === MY_OFFERS}
                              onClick={(e) => redirect(e, MY_OFFERS)}
-                             mykey={'myoffers'} icon={<PersonIcon/>} text={t('offer.myoffersPage')}/>
+                             mykey={'myoffers'} icon={<PersonIcon/>} text={t('user.myProfile')}/>
             <TopMenuListItem show={props.authenticated} selected={currentPathname === SETTINGS}
                              onClick={(e) => redirect(e, SETTINGS)}
                              mykey={'settings'} icon={<SettingsIcon/>} text={t('settings.page')}/>
