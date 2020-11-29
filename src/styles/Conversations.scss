@@ -103,12 +103,14 @@
     align-items: center;
 
     .send-message-form {
-      padding: 8px;
+      padding: 8px 4px 8px 8px;
       flex: 1 0 auto;
     }
 
     .report-icon {
-      padding-right: 8px;
+      position: static;
+      margin: 0 0 0 8px;
+
     }
 
   }
