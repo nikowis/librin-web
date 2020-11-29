@@ -282,5 +282,13 @@ button.MuiButton-outlined {
       }
     }
   }
+}
 
+.loader {
+  margin: 8px;
+
+  .MuiCircularProgress-root {
+    margin: 0 8px;
+    color: $primary;
+  }
 }

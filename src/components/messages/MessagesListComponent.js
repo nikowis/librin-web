@@ -40,7 +40,7 @@ function MessagesListComponent(props) {
 
     return (
         <List className={'messages-list'}>
-          {loading ? <LoaderComponent/> : null}
+          {loading ? <LoaderComponent size={24}/> : null}
           <InfiniteScroll
               pageStart={0}
               loadMore={(page) => {
