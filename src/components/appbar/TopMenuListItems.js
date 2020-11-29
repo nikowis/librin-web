@@ -38,7 +38,7 @@ function TopMenuListItems(props) {
                              onClick={(e) => redirect(e, REGISTER)}/>
             <TopMenuListItem show={props.authenticated}
                              selected={currentPathname === CONVERSATIONS || currentPathname.replace(urlIdSuffixRegex, "") === CONVERSATIONS}
-                             mykey={'conversations'} icon={<MailIcon/>} text={t('conversations.page')}
+                             mykey={'conversations'} icon={<MailIcon/>} text={t('messages.page')}
                              onClick={(e) => redirect(e, CONVERSATIONS)}/>
             <TopMenuListItem show={props.authenticated} selected={currentPathname === CREATE_OFFER}
                              onClick={(e) => redirect(e, CREATE_OFFER)}

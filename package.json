@@ -42,6 +42,7 @@
     "build:development": "env-cmd -f .env.development npm run build",
     "build:devdocker": "env-cmd -f .env.devdocker npm run build",
     "build:stage": "env-cmd -f .env.stage npm run build",
+    "build:prod": "env-cmd -f .env.prod npm run build",
     "build": "react-scripts build --history-api-fallback",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
