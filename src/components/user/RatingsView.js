@@ -89,7 +89,7 @@ function RatingsView(props) {
       const author = rating.author;
       const accountDeleted = author.status === UserStatus.DELETED;
       return (
-          <ListItem>
+          <ListItem key={rating.id}>
             <div className={'list-datetime'}>
               {formatDateToString(rating.createdAt, true, true)}
             </div>
@@ -120,7 +120,7 @@ function RatingsView(props) {
       <MaxWidthContainer size={'sm'}>
         <Paper elevation={PAPER_ELEVATION} square className={'list-paging-navigation'}>
           {ratings ?
-              <List subheader={<ListSubheader>{t('offer.rating.listTitle') + ' ' + username}</ListSubheader>}>
+              <List subheader={<ListSubheader disableSticky>{t('offer.rating.listTitle') + ' ' + username}</ListSubheader>}>
                 {ratingRows()}
                 <Divider variant="fullWidth"/>
                 <div className={'navigation-buttons'}>

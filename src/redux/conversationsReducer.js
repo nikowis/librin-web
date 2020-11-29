@@ -1,5 +1,4 @@
 import {
-  CREATE_CONVERSATION,
   FULFILLED,
   GET_ALL_CONVERSATIONS,
   GET_CONVERSATION,
@@ -176,7 +175,6 @@ const conversationsReducer = (state = initialState, action) => {
         }
       };
     }
-    case CREATE_CONVERSATION + FULFILLED:
     case SELL_OFFER + FULFILLED:
       return initialState;
     default:

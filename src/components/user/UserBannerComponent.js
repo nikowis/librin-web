@@ -33,28 +33,33 @@ function UserBannerComponent(props) {
   const content = status === UserStatus.ACTIVE ? activeUserContent :
       (status === UserStatus.BLOCKED ? blockedUserContent : deletedUserContent);
 
+  const ratingContent = (
+      <div className={'user-info-rating centeredContainer'}>
+        <Rating
+            readOnly
+            size="small"
+            precision={0.1}
+            value={avgRating}
+        />
+        {avgRating ?
+            <div className={'user-rating-label'}>
+              <span className={'user-rating-average'}>{avgRating.toFixed(1)}/5</span>
+              <span className={'user-rating-count'}> ({ratingCount})</span>
+            </div>
+            : null
+        }
+      </div>
+  );
+
   const divWithContent =
       (<>
         <div className={'user-info-banner'}>
           {content}
-          <Link to={USERS + '/' + id + RATINGS} className={'link-no-styles'}>
-            <div className={'user-info-rating centeredContainer'}>
-              <Rating
-                  readOnly
-                  size="small"
-                  precision={0.1}
-                  value={avgRating}
-              />
-              {avgRating ?
-                  <div className={'user-rating-label'}>
-                    <span className={'user-rating-average'}>{avgRating.toFixed(1)}/5</span>
-                    <span className={'user-rating-count'}> ({ratingCount})</span>
-                  </div>
-                  : null
-              }
-            </div>
-          </Link>
-
+          {withLink ? ratingContent :
+              <Link to={USERS + '/' + id + RATINGS} className={'link-no-styles'}>
+                {ratingContent}
+              </Link>
+          }
         </div>
       </>);
 

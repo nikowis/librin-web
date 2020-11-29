@@ -68,7 +68,7 @@ function ConversationsView(props) {
         <Paper elevation={PAPER_ELEVATION} square className={'list-paging-navigation'}>
           {
             conversations && !mustReload ?
-                <List subheader={<ListSubheader>{t('messages.conversationsList')}</ListSubheader>}>
+                <List subheader={<ListSubheader disableSticky>{t('messages.conversationsList')}</ListSubheader>}>
                   <ConversationsList userId={userId} conversations={conversations}
                                      onConversationOpen={handleMarkConversationAsRead}/>
                   <Divider variant="fullWidth"/>
