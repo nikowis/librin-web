@@ -59,9 +59,13 @@ function OfferView(props) {
     }
   }, [dispatch, history, id, wrongOfferIsLoaded, loading, invalidId]);
 
+  const [sendingMessage, setSendingMessage] = React.useState(false);
+
   const handleSendMessage = () => {
-    if (props.authenticated) {
+    if (props.authenticated && !sendingMessage) {
+      setSendingMessage(true);
       dispatch(Api.createConversation(id)).then((res) => {
+        setSendingMessage(false);
         history.push(CONVERSATIONS + "/" + res.value.id);
       });
     } else {
