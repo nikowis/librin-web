@@ -17,9 +17,9 @@ import {
   DEACTIVATE_SUFFIX,
   PRIVACY_POLICY,
   SOLD_SUFFIX,
-  TERMS_AND_CONDITIONS, API_MESSAGES,
-} from "./endpoints";
-import HttpUtility from "./http-utility";
+  TERMS_AND_CONDITIONS, API_MESSAGES, API_CITIES_AUTOCOMPLETE, API_PREFERENCES,
+} from "common/endpoints";
+import HttpUtility from "common/http-utility";
 import {
   CREATE_CONVERSATION,
   DELETE_OFFER,
@@ -37,16 +37,16 @@ import {
   SELL_OFFER,
   SEND_MESSAGE,
   UPDATE_USER,
-} from "../redux/actions";
+} from "redux/actions";
 import {
   CREATED_AT_SORT,
   DEFAULT_MESSAGES_PAGE_SIZE,
   DEFAULT_PAGE_SIZE,
   DESC_SORT,
   UPDATED_AT_SORT,
-} from "./app-constants";
-import {CHANGE_PASSWORD_BASE, CONFIRM_EMAIL_BASE} from "./paths";
-import {cleanFields} from "./object-helper";
+} from "common/app-constants";
+import {CHANGE_PASSWORD_BASE, CONFIRM_EMAIL_BASE} from "common/paths";
+import {cleanFields} from "common/object-helper";
 
 class Api {
   API_CLIENT_BASIC_OAUTH_HEADER = "Basic d2ViQ2xpZW50OndlYkNsaWVudFNlY3JldA==";
@@ -130,6 +130,17 @@ class Api {
 
   updateUser(data) {
     const url = this.API_URL + API_PROFILE;
+    return HttpUtility.put({
+      url: url,
+      payload: {
+        ...data,
+      },
+      action: UPDATE_USER,
+    });
+  }
+
+  updateUserPreferences(data) {
+    const url = this.API_URL + API_PROFILE + API_PREFERENCES;
     return HttpUtility.put({
       url: url,
       payload: {
@@ -399,6 +410,18 @@ class Api {
     const url = new URL(this.API_URL + API_BOOKS_AUTOCOMPLETE);
     const params = {
       author: query
+    };
+    url.search = new URLSearchParams(params).toString();
+
+    return HttpUtility.get({
+      url: url
+    });
+  }
+
+  getCityAutocomplete(query) {
+    const url = new URL(this.API_URL + API_CITIES_AUTOCOMPLETE);
+    const params = {
+      query: query
     };
     url.search = new URLSearchParams(params).toString();
 

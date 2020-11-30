@@ -75,7 +75,7 @@ export const generateResetPasswordSchema = Yup.object().shape({
 });
 
 
-export const settingsSchema = Yup.object().shape({
+export const personalDataSchema = Yup.object().shape({
     firstName: Yup.string()
         .matches(nameRegex)
         .min(2)
@@ -87,6 +87,20 @@ export const settingsSchema = Yup.object().shape({
         .max(128)
         .required(),
 });
+
+export const preferencesSchema = Yup.object().shape({
+    exchange: Yup.bool(),
+    shipment: Yup.bool(),
+    selfPickup: Yup.bool(),
+    selfPickupCity: Yup.object({
+        id: Yup.number().required(),
+    }).nullable()
+        .when("selfPickup", {
+            is: true,
+            then: Yup.object().required()
+        }),
+});
+
 
 export const createOfferSchema = Yup.object().shape({
     title: Yup.string()

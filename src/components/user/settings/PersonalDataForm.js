@@ -2,36 +2,27 @@ import {Paper, TextField} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import {Formik} from 'formik';
 import PropTypes from "prop-types";
-import React, {useEffect} from 'react';
+import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
-import Api from "../../common/api-communication";
-import {NOTIFICATION_DURATION, PAPER_ELEVATION} from "../../common/app-constants";
-import {translate} from "../../common/i18n-helper";
-import {PROFILE_CHANGE_PASSWORD} from "../../common/paths";
-import {settingsSchema} from "../../common/validation-schemas";
-import {HIDE_NOTIFICATION, SHOW_NOTIFICATION, UPDATE_USER} from "../../redux/actions";
-import DeleteAccountComponent from "./DeleteAccountComponent";
-import TitleComponent from "../TitleComponent";
+import Api from "common/api-communication";
+import {NOTIFICATION_DURATION, PAPER_ELEVATION} from "common/app-constants";
+import {translate} from "common/i18n-helper";
+import {personalDataSchema} from "common/validation-schemas";
+import {HIDE_NOTIFICATION, SHOW_NOTIFICATION, UPDATE_USER} from "redux/actions";
 
-function SettingsView(props) {
+function PersonalDataForm(props) {
 
   const {t} = useTranslation();
-  const {dispatch, email} = props;
-
-  useEffect(() => {
-    if (email === null) {
-      dispatch(Api.getMe());
-    }
-  }, [dispatch, email]);
+  const {dispatch} = props;
 
   const handleSubmit = (data, actions) => {
     actions.setSubmitting(true);
     Api.updateUser(data).payload.then((response) => {
       if (!response.error) {
-        props.dispatch({type: UPDATE_USER, payload: response})
-        props.dispatch({type: SHOW_NOTIFICATION, payload: t('notification.settingsUpdated')});
+        props.dispatch({type: UPDATE_USER, payload: response});
+        props.dispatch({type: SHOW_NOTIFICATION, payload: t('notification.personalDataUpdated')});
         setTimeout(() => {
           dispatch({type: HIDE_NOTIFICATION})
         }, NOTIFICATION_DURATION);
@@ -45,9 +36,10 @@ function SettingsView(props) {
 
   return (
       <>
-        <TitleComponent content={t('settings.title')}/>
         <Paper elevation={PAPER_ELEVATION} square className={'form-container'}>
-          <Formik validationSchema={settingsSchema} onSubmit={handleSubmit} enableReinitialize={true}
+          <h3>{t('settings.personalDataForm')}</h3>
+
+          <Formik validationSchema={personalDataSchema} onSubmit={handleSubmit} enableReinitialize={true}
                   initialValues={{
                     id: props.id,
                     email: props.email,
@@ -131,19 +123,12 @@ function SettingsView(props) {
             )}
           </Formik>
         </Paper>
-        <Paper elevation={PAPER_ELEVATION} square className={'action-buttons-bar form-container'}>
-          <Button size={"small"} variant="outlined" color="primary" type="submit"
-                  onClick={() => props.history.push(PROFILE_CHANGE_PASSWORD)}>
-            {t('user.password.change')}
-          </Button>
-          <DeleteAccountComponent/>
-        </Paper>
       </>
   );
 
 }
 
-SettingsView.propTypes = {
+PersonalDataForm.propTypes = {
   id: PropTypes.number,
   email: PropTypes.string,
   firstName: PropTypes.string,
@@ -157,4 +142,4 @@ export default connect(state => ({
   firstName: state.me.firstName,
   lastName: state.me.lastName,
   username: state.me.username,
-}))(withRouter(SettingsView));
+}))(withRouter(PersonalDataForm));

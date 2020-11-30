@@ -123,7 +123,7 @@ $topMenuHeight: 50px;
     background-color: $secondary;
     padding-left: 8px;
     padding-right: 8px;
-    font-size: 16px;
+    font-size: $defaultFontSize;
   }
 }
 
@@ -163,7 +163,7 @@ $topMenuHeight: 50px;
   }
 
   .MuiTypography-root {
-    font-size: 16px;
+    font-size: $defaultFontSize;
   }
   .MuiListItemIcon-root {
     min-width: 36px;

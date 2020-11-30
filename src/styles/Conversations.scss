@@ -46,7 +46,7 @@
       }
 
       .MuiTypography-colorTextSecondary {
-        font-size: 16px;
+        font-size: $defaultFontSize;
       }
     }
 
@@ -67,7 +67,7 @@
     border: 1px solid lightgray;
     padding: 4px 8px;
     width: fit-content;
-    font-size: 16px;
+    font-size: $defaultFontSize;
   }
 
   .notmy-message {

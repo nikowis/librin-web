@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import {convertConditionValueToInt, convertConditionValueToString} from "../../common/app-constants";
+import {convertConditionValueToInt, convertConditionValueToString} from "common/app-constants";
 import {useTranslation} from "react-i18next";
 import Rating from '@material-ui/lab/Rating';
-import {translate} from "../../common/i18n-helper";
+import {translate} from "common/i18n-helper";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 import {FormControl, FormHelperText} from "@material-ui/core";
 
-function OfferConditionInput(props) {
+function BookConditionInput(props) {
 
   const {onChange, error, value, touched, onBlur} = props;
   const {t} = useTranslation();
@@ -48,7 +48,7 @@ function OfferConditionInput(props) {
 
 }
 
-OfferConditionInput.propTypes = {
+BookConditionInput.propTypes = {
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func,
   value: PropTypes.string,
@@ -56,4 +56,4 @@ OfferConditionInput.propTypes = {
   error: PropTypes.string
 };
 
-export default OfferConditionInput;
+export default BookConditionInput;

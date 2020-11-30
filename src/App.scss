@@ -12,24 +12,14 @@
   text-align: center;
   background-color: $secondary;
   min-height: 100vh;
-  font-size: 16px;
+  font-size: $defaultFontSize;
 
   .MuiButton-label {
     font-size: 14px;
   }
 
-  .MuiInputLabel-root {
-    font-size: 16px;
-  }
-
   .MuiInputBase-input {
-    font-size: 16px;
-  }
-
-  .MuiFormControl-fullWidth {
-    max-width: 250px;
-    margin-left: auto;
-    margin-right: auto;
+    font-size: $defaultFontSize;
   }
 
   .MuiButton-containedPrimary {
@@ -134,7 +124,7 @@ button.MuiButton-outlined {
 }
 
 .report-button .MuiButton-label {
-  font-size: 16px;
+  font-size: $defaultFontSize;
 }
 
 .report-dialog {
@@ -148,7 +138,7 @@ button.MuiButton-outlined {
      }
    }
    .MuiDialogContent-root {
-     font-size: 16px;
+     font-size: $defaultFontSize;
      padding: 0 16px;
    }
 
@@ -170,7 +160,7 @@ button.MuiButton-outlined {
     display: flex;
     align-items: center;
     flex: 1 0 auto;
-    font-size: 16px;
+    font-size: $defaultFontSize;
   }
 
   .MuiAvatar-root {
@@ -278,7 +268,7 @@ button.MuiButton-outlined {
       padding: 0 8px 0 4px;
 
       .MuiTypography-root {
-        font-size: 16px;
+        font-size: $defaultFontSize;
       }
     }
   }

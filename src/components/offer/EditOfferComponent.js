@@ -1,19 +1,19 @@
 import React from "react";
 import {useTranslation} from "react-i18next";
 import {Formik} from "formik";
-import {createOfferSchema, editOfferSchema,} from "../../common/validation-schemas";
+import {createOfferSchema, editOfferSchema,} from "common/validation-schemas";
 import {TextField} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import CurrencyTextField from "@unicef/material-ui-currency-textfield";
-import {translate} from "../../common/i18n-helper";
+import {translate} from "common/i18n-helper";
 import PropTypes from "prop-types";
-import OfferPhotosEditComponent from "./OfferPhotosEditComponent";
-import {API_ERROR, CLEAR_API_ERROR} from "../../redux/actions";
-import {API_ERROR_NOTIFICATION_DURATION, OfferCategory,} from "../../common/app-constants";
+import OfferPhotosEditComponent from "components/offer/OfferPhotosEditComponent";
+import {API_ERROR, CLEAR_API_ERROR} from "redux/actions";
+import {API_ERROR_NOTIFICATION_DURATION,} from "common/app-constants";
 import {connect} from "react-redux";
-import OfferConditionInput from "./OfferConditionInput";
-import Autocomplete from "@material-ui/lab/Autocomplete";
-import Api from "../../common/api-communication";
+import BookConditionInput from "components/input/BookConditionInput";
+import BookCategoryInput from "components/input/BookCategoryInput";
+import BookAuthorInput from "components/input/BookAuthorInput";
 
 function EditOfferComponent(props) {
   const {t} = useTranslation();
@@ -21,14 +21,6 @@ function EditOfferComponent(props) {
 
   const newOffer = !offer;
   let validationSchema = newOffer ? createOfferSchema : editOfferSchema;
-
-  const [authorAutocompleteOptions, setAuthorAutocompleteOptions] = React.useState([]);
-
-  React.useEffect(() => {
-    if (!authorAutocompleteOptions) {
-      setAuthorAutocompleteOptions([]);
-    }
-  }, [authorAutocompleteOptions]);
 
 
   const handlePhotoError = (e) => {
@@ -39,15 +31,6 @@ function EditOfferComponent(props) {
     setTimeout(() => {
       props.dispatch({type: CLEAR_API_ERROR});
     }, API_ERROR_NOTIFICATION_DURATION);
-  };
-
-  const searchAuthorOptions = (v) => {
-    setAuthorAutocompleteOptions([]);
-    if(v && v.length > 2) {
-      Api.getAuthorAutocomplete(v).payload.then(res => {
-        setAuthorAutocompleteOptions(res.map(obj => obj.author));
-      });
-    }
   };
 
   return (
@@ -103,64 +86,17 @@ function EditOfferComponent(props) {
                   fullWidth
               />
 
-              <Autocomplete
-                  id="author"
-                  name="author"
-                  freeSolo
-                  options={authorAutocompleteOptions}
-                  fullWidth
-                  onChange={(e, v) => {
-                    setAuthorAutocompleteOptions([]);
-                    setFieldValue('author', (v));
-                  }}
-                  onInputChange={(e, v) => {
-                    searchAuthorOptions(v);
-                    setFieldValue('author', (v));
-                  }}
-                  size="small"
-                  disableClearable
-                  value={values.author}
-                  renderInput={(params) =>
-                      <TextField {...params}
-                                 label={translate('offer.author')}
-                                 variant="outlined"
-                                 required
-                                 margin="dense"
-                                 helperText={
-                                   errors.author && touched.author ? translate(errors.author) : ""
-                                 }
-                                 error={errors.author && touched.author}
-                      />}
-              />
+              <BookAuthorInput value={values.author} error={errors.author}
+                                 touched={touched.author}
+                                 onChange={(v) => setFieldValue('author', (v))}/>
 
-              <Autocomplete
-                  id="category"
-                  name="category"
-                  options={OfferCategory}
-                  fullWidth
-                  onChange={(e, v) => {
-                    setFieldValue('category', (v ? v.name : null));
-                  }}
-                  size="small"
-                  noOptionsText={''}
-                  value={values.category ? OfferCategory.filter(oc => oc.name === values.category)[0] : null}
-                  getOptionLabel={(option) => option ? t('offer.category.' + option.name) : ''}
-                  renderInput={(params) =>
-                      <TextField {...params}
-                                 label={translate('offer.category.label')}
-                                 variant="outlined"
-                                 required
-                                 margin="dense"
-                                 helperText={
-                                   errors.category && touched.category ? translate(errors.category) : ""
-                                 }
-                                 error={errors.category && touched.category}
-                      />}
-              />
+              <BookCategoryInput value={values.category} error={errors.category}
+                                 touched={touched.category}
+                                 onChange={(v) => setFieldValue('category', (v ? v.name : null))}/>
 
-              <OfferConditionInput value={values.condition} error={errors.condition}
-                                   touched={touched.condition}
-                                   onChange={(v) => setFieldValue("condition", v)} onBlur={handleBlur}/>
+              <BookConditionInput value={values.condition} error={errors.condition}
+                                  touched={touched.condition}
+                                  onChange={(v) => setFieldValue("condition", v)} onBlur={handleBlur}/>
 
               <TextField
                   size="small"

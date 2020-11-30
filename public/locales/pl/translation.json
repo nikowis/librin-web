@@ -23,6 +23,11 @@
     "firstName": "Imię",
     "lastName": "Nazwisko",
     "username": "Nazwa użytkownika",
+    "exchange": "Wymiana",
+    "shipment": "Wysyłka",
+    "selfPickup": "Odbiór osobisty",
+    "selfPickupCity": "Miasto",
+    "selfPickupCityNoOptions": "Wpisz miasto",
     "accountIsDeleted": "Konto użytkownika zostało usunięte",
     "accountIsBlocked": "Konto użytkownika zostało zablokowane",
     "defaultAuthErr": "Błąd autoryzacji",
@@ -203,7 +208,9 @@
   },
   "settings": {
     "page": "Ustawienia",
-    "title": "Moje ustawienia"
+    "title": "Moje ustawienia",
+    "preferencesForm": "Preferencje",
+    "personalDataForm": "Dane osobowe"
   },
   "messages": {
     "page": "Wiadomości",
@@ -217,7 +224,8 @@
   },
   "notification": {
     "registered": "Konto utworzone",
-    "settingsUpdated": "Ustawienia zaktualizowane",
+    "personalDataUpdated": "Dane osobowe zaktualizowane",
+    "preferencesUpdated": "Preferencje zaktualizowane",
     "offerDeleted": "Oferta usunięta",
     "offerCreated": "Oferat stworzona",
     "offerUpdated": "Oferat zaktualizowana",

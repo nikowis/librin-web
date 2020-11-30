@@ -32,7 +32,7 @@ import {useTranslation} from "react-i18next";
 const Login = loadable(() => import('./user/LoginView'));
 const Logout = loadable(() => import('./Logout'));
 const Register = loadable(() => import('./user/RegisterView'));
-const Settings = loadable(() => import('./user/SettingsView'));
+const Settings = loadable(() => import('./user/settings/SettingsView'));
 const RatingsView = loadable(() => import('./user/RatingsView'));
 const MyOffersTableView = loadable(() => import('./offer/MyOffersView'));
 const CreateOfferView = loadable(() => import('./offer/CreateOfferView'));

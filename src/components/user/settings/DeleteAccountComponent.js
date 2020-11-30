@@ -4,10 +4,10 @@ import Button from "@material-ui/core/Button";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import DeleteIcon from '@material-ui/icons/Delete';
-import Api from "../../common/api-communication";
-import {HIDE_NOTIFICATION, LOGOUT_ACTION, SHOW_NOTIFICATION} from "../../redux/actions";
-import {NOTIFICATION_DURATION} from "../../common/app-constants";
-import {LOGIN} from "../../common/paths";
+import Api from "../../../common/api-communication";
+import {HIDE_NOTIFICATION, LOGOUT_ACTION, SHOW_NOTIFICATION} from "../../../redux/actions";
+import {NOTIFICATION_DURATION} from "../../../common/app-constants";
+import {LOGIN} from "../../../common/paths";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -15,8 +15,8 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import TextField from "@material-ui/core/TextField";
 import DialogActions from "@material-ui/core/DialogActions";
 import {Formik} from "formik";
-import {deleteAccountSchema} from "../../common/validation-schemas";
-import {translate} from "../../common/i18n-helper";
+import {deleteAccountSchema} from "../../../common/validation-schemas";
+import {translate} from "../../../common/i18n-helper";
 
 function DeleteAccountComponent(props) {
 

@@ -6,6 +6,10 @@ const initialState = {
     firstName: null,
     lastName: null,
     username: null,
+    exchange: null,
+    shipment: null,
+    selfPickup: null,
+    selfPickupCity: null,
     authenticated: false,
     lang: 'pl',
     authToken: null
