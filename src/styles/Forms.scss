@@ -114,6 +114,10 @@
     font-size: $defaultFontSize;
   }
 
+  .MuiFormControl-fullWidth {
+    display: block;
+  }
+
   .MuiFormControl-fullWidth, .MuiFormControlLabel-root, .MuiFormHelperText-root {
     max-width: $inputMaxWidth;
     margin-left: auto;
