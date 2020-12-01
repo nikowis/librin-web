@@ -1,6 +1,6 @@
 import {Paper} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
-import {Formik} from 'formik';
+import {useFormik} from 'formik';
 import PropTypes from "prop-types";
 import React from 'react';
 import {useTranslation} from 'react-i18next';
@@ -34,43 +34,44 @@ function PersonalDataForm(props) {
     }).finally(() => actions.setSubmitting(false));
   };
 
+  const formik = useFormik({
+    initialValues: {
+      id: props.id,
+      email: props.email,
+      firstName: props.firstName,
+      lastName: props.lastName,
+      username: props.username,
+    },
+    onSubmit: handleSubmit,
+    validationSchema: personalDataSchema,
+    enableReinitialize: true
+  });
+
+  const {touched, values, errors, handleChange, isSubmitting} = formik;
+
   return (
       <>
         <Paper elevation={PAPER_ELEVATION} square className={'form-container'}>
           <h3>{t('settings.personalDataForm')}</h3>
 
-          <Formik validationSchema={personalDataSchema} onSubmit={handleSubmit} enableReinitialize={true}
-                  initialValues={{
-                    id: props.id,
-                    email: props.email,
-                    firstName: props.firstName,
-                    lastName: props.lastName,
-                    username: props.username,
-                  }}
-          >
-            {({
-                values, errors, touched, handleChange, handleSubmit, isSubmitting
-              }) => (
-                <form onSubmit={handleSubmit}>
-                  <TextFieldInput onChange={handleChange} error={errors.email} value={values.email} disabled
-                                  touched={touched.email} name={'email'} label={t('email')}/>
+          <form onSubmit={formik.handleSubmit}>
+            <TextFieldInput onChange={handleChange} error={errors.email} value={values.email} disabled
+                            touched={touched.email} name={'email'} label={t('email')}/>
 
-                  <TextFieldInput onChange={handleChange} error={errors.username} value={values.username} disabled
-                                  touched={touched.username} name={'username'} label={t('user.username')}/>
+            <TextFieldInput onChange={handleChange} error={errors.username} value={values.username} disabled
+                            touched={touched.username} name={'username'} label={t('user.username')}/>
 
-                  <TextFieldInput onChange={handleChange} error={errors.firstName} value={values.firstName}
-                                  touched={touched.firstName} name={'firstName'} label={t('user.firstName')}/>
+            <TextFieldInput onChange={handleChange} error={errors.firstName} value={values.firstName}
+                            touched={touched.firstName} name={'firstName'} label={t('user.firstName')}/>
 
-                  <TextFieldInput onChange={handleChange} error={errors.lastName} value={values.lastName}
-                                  touched={touched.lastName} name={'lastName'} label={t('user.lastName')}/>
+            <TextFieldInput onChange={handleChange} error={errors.lastName} value={values.lastName}
+                            touched={touched.lastName} name={'lastName'} label={t('user.lastName')}/>
 
-                  <Button size={"small"} variant="contained" color="primary" type="submit" disabled={isSubmitting}>
-                    {t('submit')}
-                  </Button>
-                </form>
-            )}
+            <Button size={"small"} variant="contained" color="primary" type="submit" disabled={isSubmitting}>
+              {t('submit')}
+            </Button>
+          </form>
 
-          </Formik>
         </Paper>
       </>
   );
