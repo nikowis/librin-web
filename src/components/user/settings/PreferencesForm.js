@@ -138,7 +138,7 @@ PreferencesForm.propTypes = {
   exchange: PropTypes.bool,
   shipment: PropTypes.bool,
   selfPickup: PropTypes.bool,
-  selfPickupCity: PropTypes.string,
+  selfPickupCity: PropTypes.object,
 };
 
 export default connect(state => ({

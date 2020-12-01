@@ -12,6 +12,7 @@ function CityInput(props) {
 
   const [cityOptions, setCityOptions] = React.useState([]);
   const [isLoadingOpts, setIsLoadingOpts] = React.useState(false);
+  const [typingTimeout, setTypingTimeout] = React.useState(0);
 
   const {t} = useTranslation();
 
@@ -22,10 +23,19 @@ function CityInput(props) {
   }, [cityOptions]);
 
 
+  const searchCityOptionsWithTypingTimeout = (v) => {
+    setIsLoadingOpts(true);
+    if(typingTimeout) {
+      clearTimeout(typingTimeout)
+    }
+    setTypingTimeout(setTimeout(() => {
+      searchCityOptions(v);
+    }, 300))
+  };
+
   const searchCityOptions = (v) => {
     setCityOptions([]);
     if (v && v.length > 1) {
-      setIsLoadingOpts(true);
       Api.getCityAutocomplete(v).payload.then(res => {
         setCityOptions(res);
         setIsLoadingOpts(false);
@@ -44,10 +54,12 @@ function CityInput(props) {
             setCityOptions([]);
             onChange(v);
           }}
-          getOptionSelected={(option, value) => option.id === value.id}
+          getOptionSelected={(option, value) => {
+            return option.id === value.id}
+          }
           getOptionLabel={(option) => option.displayName}
           onInputChange={(e, v) => {
-            searchCityOptions(v);
+            searchCityOptionsWithTypingTimeout(v);
           }}
           size="small"
           value={value}
@@ -71,8 +83,7 @@ function CityInput(props) {
 CityInput.propTypes = {
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func,
-  value: PropTypes.string.isRequired,
-  touched: PropTypes.bool,
+  value: PropTypes.object,
   error: PropTypes.string,
   required: PropTypes.bool
 };
