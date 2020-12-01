@@ -84,7 +84,10 @@ CityInput.propTypes = {
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func,
   value: PropTypes.object,
-  error: PropTypes.string,
+  error: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object
+  ]),
   required: PropTypes.bool
 };
 

@@ -1,6 +1,6 @@
 import {FormHelperText, Paper} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
-import {Formik} from 'formik';
+import {useFormik} from 'formik';
 import PropTypes from "prop-types";
 import React from 'react';
 import {useTranslation} from 'react-i18next';
@@ -11,9 +11,8 @@ import {NOTIFICATION_DURATION, PAPER_ELEVATION} from "common/app-constants";
 import {translate} from "common/i18n-helper";
 import {preferencesSchema} from "common/validation-schemas";
 import {HIDE_NOTIFICATION, SHOW_NOTIFICATION, UPDATE_USER} from "redux/actions";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import CityInput from "components/input/CityInput";
+import CheckboxInput from "components/input/CheckboxInput";
 
 function PreferencesForm(props) {
 
@@ -37,97 +36,54 @@ function PreferencesForm(props) {
     }).finally(() => actions.setSubmitting(false));
   };
 
+  const formik = useFormik({
+    initialValues: {
+      exchange: exchange ? exchange : false,
+      shipment: shipment ? shipment : false,
+      selfPickup: selfPickup ? selfPickup : false,
+      selfPickupCity: selfPickupCity
+    },
+    onSubmit: handleSubmit,
+    validationSchema: preferencesSchema,
+    enableReinitialize: true
+  });
+
+  const {values, errors, touched, handleChange, isSubmitting, setFieldValue} = formik;
+
   return (
       <>
         <Paper elevation={PAPER_ELEVATION} square className={'form-container'}>
           <h3>{t('settings.preferencesForm')}</h3>
 
-          <Formik validationSchema={preferencesSchema} onSubmit={handleSubmit} enableReinitialize={true}
-                  initialValues={{
-                    exchange: exchange ? exchange : false,
-                    shipment: shipment ? shipment : false,
-                    selfPickup: selfPickup ? selfPickup : false,
-                    selfPickupCity: selfPickupCity
-                  }}
-          >
-            {({
-                values,
-                errors,
-                touched,
-                handleChange,
-                handleSubmit,
-                isSubmitting,
-                setFieldValue
-              }) => (
-                <form onSubmit={handleSubmit}>
+          <form onSubmit={formik.handleSubmit}>
 
-                  <FormControlLabel
-                      control={
-                        <Checkbox
-                            size={'small'}
-                            checked={values.exchange}
-                            onChange={handleChange}
-                            id="exchange"
-                            name="exchange"
-                            margin="dense"
-                            error={errors.exchange && touched.exchange}
-                        />
-                      }
-                      label={t('user.exchange')}
-                  />
-                  {errors.exchange && touched.exchange ? (
-                      <FormHelperText error>{translate(errors.exchange)}</FormHelperText>
-                  ) : null}
+            <CheckboxInput onChange={handleChange} error={errors.exchange} checked={values.exchange}
+                           touched={touched.exchange} name={'exchange'} label={t('user.exchange')}/>
 
-                  <FormControlLabel
-                      control={
-                        <Checkbox
-                            size={'small'}
-                            checked={values.shipment}
-                            onChange={handleChange}
-                            id="shipment"
-                            name="shipment"
-                            margin="dense"
-                            error={errors.shipment && touched.shipment}
-                        />
-                      }
-                      label={t('user.shipment')}
-                  />
+            <CheckboxInput onChange={handleChange} error={errors.shipment} checked={values.shipment}
+                           touched={touched.shipment} name={'shipment'} label={t('user.shipment')} hideErrorText/>
 
-                  <FormControlLabel
-                      control={
-                        <Checkbox
-                            size={'small'}
-                            checked={values.selfPickup}
-                            onChange={handleChange}
-                            id="selfPickup"
-                            name="selfPickup"
-                            margin="dense"
-                            error={errors.selfPickup && touched.selfPickup}
-                        />
-                      }
-                      label={t('user.selfPickup')}
-                  />
+            <CheckboxInput onChange={handleChange} error={errors.selfPickup} checked={values.selfPickup}
+                           touched={touched.selfPickup} name={'selfPickup'} label={t('user.selfPickup')} hideErrorText/>
 
-                  {values.selfPickup ?
-                      <CityInput value={values.selfPickupCity} error={errors.selfPickupCity}
-                                       touched={touched.selfPickupCity}
-                                       onChange={(v) => {
-                                         setFieldValue('selfPickupCity', v);
-                                       }}
-                                 // required={true}
-                      />
-                      : null}
+            {values.selfPickup ?
+                <CityInput value={values.selfPickupCity} error={errors.selfPickupCity}
+                           touched={touched.selfPickupCity}
+                           onChange={(v) => {
+                             setFieldValue('selfPickupCity', v);
+                           }}
+                />
+                : null
+            }
 
-                  {errors.shipment && touched.shipment ? (
-                      <FormHelperText error>{translate(errors.shipment)}</FormHelperText>
-                  ) : null}
-                  <Button size={"small"} variant="contained" color="primary" type="submit" disabled={isSubmitting}>
-                    {t('submit')}
-                  </Button>
-                </form>
-            )}
-          </Formik>
+            {errors.shipment && touched.shipment ? (
+                <FormHelperText error>{translate(errors.shipment)}</FormHelperText>
+            ) : null}
+            <Button size={"small"} variant="contained" color="primary" type="submit" disabled={isSubmitting}>
+              {t('submit')}
+            </Button>
+          </form>
+
         </Paper>
       </>
   );
