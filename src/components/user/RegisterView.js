@@ -1,4 +1,4 @@
-import {Paper, TextField} from "@material-ui/core";
+import {Paper} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import FormControl from "@material-ui/core/FormControl";
 import FormHelperText from "@material-ui/core/FormHelperText";
@@ -10,20 +10,22 @@ import {makeStyles} from "@material-ui/core/styles";
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import clsx from "clsx";
-import {Formik} from 'formik';
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
+import {useFormik} from 'formik';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
-import {connect} from "react-redux";
-import {Redirect, withRouter} from "react-router-dom";
-import Api from "../../common/api-communication";
-import {NOTIFICATION_DURATION, PAPER_ELEVATION} from "../../common/app-constants";
-import {translate} from "../../common/i18n-helper";
-import {LOGIN, OFFERS} from "../../common/paths";
-import {registerSchema} from "../../common/validation-schemas";
-import {HIDE_NOTIFICATION, SHOW_NOTIFICATION} from "../../redux/actions";
-import RegisterConsentComponent from "./RegisterConsentComponent";
-import TitleComponent from "../TitleComponent";
+import {Redirect} from "react-router-dom";
+import Api from "common/api-communication";
+import {NOTIFICATION_DURATION, PAPER_ELEVATION} from "common/app-constants";
+import {translate} from "common/i18n-helper";
+import {LOGIN, OFFERS} from "common/paths";
+import {registerSchema} from "common/validation-schemas";
+import {HIDE_NOTIFICATION, SHOW_NOTIFICATION} from "redux/actions";
+import RegisterConsentComponent from "components/user/RegisterConsentComponent";
+import TitleComponent from "components/TitleComponent";
+import TextFieldInput from "components/input/TextFieldInput";
 
 const useStyles = makeStyles(theme => ({
   margin: {
@@ -54,6 +56,20 @@ function RegisterView(props) {
     }).finally(() => actions.setSubmitting(false));
   };
 
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      firstName: '',
+      lastName: '',
+      username: '',
+      password: ''
+    },
+    onSubmit: handleSubmit,
+    validationSchema: registerSchema,
+  });
+
+  const {touched, values, errors, handleChange, isSubmitting} = formik;
+
   if (props.authenticated) {
     return <Redirect to={OFFERS} push={true}/>
   }
@@ -62,116 +78,56 @@ function RegisterView(props) {
       <>
         <TitleComponent content={t('register.page')}/>
         <Paper elevation={PAPER_ELEVATION} square className={'form-container'}>
-          <Formik validationSchema={registerSchema} onSubmit={handleSubmit}
-                  initialValues={{
-                    email: '',
-                    firstName: '',
-                    lastName: '',
-                    username: '',
-                    password: ''
-                  }}
-          >
-            {({
-                values,
-                errors,
-                touched,
-                handleChange,
-                handleSubmit,
-                isSubmitting
-              }) => (
-                <form onSubmit={handleSubmit}>
-                  <div>
-                    <TextField
-                        size="small"
-                        error={errors.email && touched.email}
-                        label={t('user.email.label')}
-                        name="email"
-                        variant="outlined"
-                        value={values.email}
-                        onChange={handleChange}
-                        helperText={(errors.email && touched.email) && translate(errors.email)}
-                        margin="dense"
-                        fullWidth
-                    />
-                  </div>
-                  <div>
-                    <TextField
-                        size="small"
-                        error={errors.firstName && touched.firstName}
-                        label={t('user.firstName')}
-                        name="firstName"
-                        variant="outlined"
-                        value={values.firstName}
-                        onChange={handleChange}
-                        helperText={(errors.firstName && touched.firstName) && translate(errors.firstName)}
-                        margin="dense"
-                        fullWidth
-                    />
-                  </div>
-                  <div>
-                    <TextField
-                        size="small"
-                        error={errors.lastName && touched.lastName}
-                        label={t('user.lastName')}
-                        name="lastName"
-                        variant="outlined"
-                        value={values.lastName}
-                        onChange={handleChange}
-                        helperText={(errors.lastName && touched.lastName) && translate(errors.lastName)}
-                        margin="dense"
-                        fullWidth
-                    />
-                  </div>
-                  <div>
-                    <TextField
-                        size="small"
-                        error={errors.username && touched.username}
-                        label={t('user.username')}
-                        name="username"
-                        variant="outlined"
-                        value={values.username}
-                        onChange={handleChange}
-                        helperText={(errors.username && touched.username) && translate(errors.username)}
-                        margin="dense"
-                        fullWidth
-                    />
-                  </div>
-                  <div>
-                    <FormControl margin="dense" size="small" className={clsx(classes.margin, classes.textField)}
-                                 variant="outlined" fullWidth>
-                      <InputLabel htmlFor="outlined-adornment-password">{t('user.password.label')}</InputLabel>
-                      <OutlinedInput
-                          size="small"
-                          id="outlined-adornment-password"
-                          error={errors.password && touched.password}
-                          name="password"
-                          type={passwordVisible ? 'text' : 'password'}
-                          value={values.password}
-                          onChange={handleChange}
-                          labelWidth={70}
-                          endAdornment={
-                            <InputAdornment position="end">
-                              <IconButton
-                                  aria-label="toggle password visibility"
-                                  onClick={() => setPasswordVisible(!passwordVisible)}
-                              >
-                                {passwordVisible ? <Visibility/> : <VisibilityOff/>}
-                              </IconButton>
-                            </InputAdornment>
-                          }
-                      />
-                      <FormHelperText id="outlined-weight-helper-text" error={errors.password && touched.password}>
-                        {(errors.password && touched.password) && translate(errors.password)}
-                      </FormHelperText>
-                    </FormControl>
-                  </div>
-                  <RegisterConsentComponent/>
-                  <Button size={"small"} variant="contained" color="primary" type="submit" disabled={isSubmitting}>
-                    {t('register.submit')}
-                  </Button>
-                </form>
-            )}
-          </Formik>
+
+          <form onSubmit={formik.handleSubmit}>
+
+            <TextFieldInput onChange={handleChange} error={errors.email} value={values.email}
+                            touched={touched.email} name={'email'} label={t('user.email.label')}/>
+
+            <TextFieldInput onChange={handleChange} error={errors.firstName} value={values.firstName}
+                            touched={touched.firstName} name={'firstName'} label={t('user.firstName')}/>
+
+            <TextFieldInput onChange={handleChange} error={errors.lastName} value={values.lastName}
+                            touched={touched.lastName} name={'lastName'} label={t('user.lastName')}/>
+
+            <TextFieldInput onChange={handleChange} error={errors.username} value={values.username}
+                            touched={touched.username} name={'username'} label={t('user.username')}/>
+
+            <div>
+              <FormControl margin="dense" size="small" className={clsx(classes.margin, classes.textField)}
+                           variant="outlined" fullWidth>
+                <InputLabel htmlFor="outlined-adornment-password">{t('user.password.label')}</InputLabel>
+                <OutlinedInput
+                    size="small"
+                    id="outlined-adornment-password"
+                    error={errors.password && touched.password}
+                    name="password"
+                    type={passwordVisible ? 'text' : 'password'}
+                    value={values.password}
+                    onChange={handleChange}
+                    labelWidth={70}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={() => setPasswordVisible(!passwordVisible)}
+                        >
+                          {passwordVisible ? <Visibility/> : <VisibilityOff/>}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                />
+                <FormHelperText id="outlined-weight-helper-text" error={errors.password && touched.password}>
+                  {(errors.password && touched.password) && translate(errors.password)}
+                </FormHelperText>
+              </FormControl>
+            </div>
+            <RegisterConsentComponent/>
+            <Button size={"small"} variant="contained" color="primary" type="submit" disabled={isSubmitting}>
+              {t('register.submit')}
+            </Button>
+          </form>
+
         </Paper>
       </>
   );
