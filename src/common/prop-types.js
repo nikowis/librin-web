@@ -13,10 +13,6 @@ export const photoPropType = PropTypes.shape({
     url: PropTypes.string.isRequired
 });
 
-export const photosArrPropType = PropTypes.arrayOf(
-    photoPropType
-);
-
 export const cityPropType = PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,
@@ -37,7 +33,7 @@ export const offerPropType = PropTypes.shape({
     soldToMe: PropTypes.bool,
     buyerId: PropTypes.number,
     owner: userPropType,
-    photos: photosArrPropType,
+    photos: PropTypes.arrayOf(photoPropType),
     exchange: PropTypes.bool,
     shipment: PropTypes.bool,
     selfPickup: PropTypes.bool,

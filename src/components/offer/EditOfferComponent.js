@@ -50,8 +50,7 @@ function EditOfferComponent(props) {
       selfPickupCity: offer && offer.selfPickupCity ? offer.selfPickupCity : props.selfPickupCity
     },
     onSubmit: props.handleSubmit,
-    validationSchema: validationSchema,
-    enableReinitialize: true
+    validationSchema: validationSchema
   });
 
   const {touched, values, errors, handleChange, setFieldValue, handleBlur, isSubmitting} = formik;
@@ -61,7 +60,9 @@ function EditOfferComponent(props) {
       <form onSubmit={formik.handleSubmit}>
         <OfferPhotosEditComponent
             photos={values.photos}
-            setFieldValue={setFieldValue}
+            onChange={(v) => {
+              setFieldValue("photos", v, false);
+            }}
             handlePhotoError={handlePhotoError}
         />
         {errors.photos && touched.photos ? (

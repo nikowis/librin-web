@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import {compressFile, loadFileToAttachmentObject, validateFile} from "../../common/attachment-utility";
-import OfferSinglePhotoEditComponent from "./OfferSinglePhotoEditComponent";
+import {compressFile, loadFileToAttachmentObject, validateFile} from "common/attachment-utility";
+import OfferSinglePhotoEditComponent from "components/offer/OfferSinglePhotoEditComponent";
 import {InputLabel} from "@material-ui/core";
 import {useTranslation} from "react-i18next";
 import {photoPropType} from "common/prop-types";
 
 function OfferPhotosEditComponent(props) {
-    const {setFieldValue, photos, handlePhotoError} = props;
+    const {onChange, photos, handlePhotoError} = props;
 
     const {t} = useTranslation();
 
@@ -24,7 +24,7 @@ function OfferPhotosEditComponent(props) {
                 })
                 .then(file => {
                     photos[idx] = file;
-                    setFieldValue("photos", photos);
+                    onChange(photos);
                 }).catch(e => {
                     handlePhotoError(e);
                 }
@@ -34,7 +34,7 @@ function OfferPhotosEditComponent(props) {
 
     const handleRemovePhoto = (idx) => {
         photos.splice(idx, 1);
-        setFieldValue("photos", photos);
+        onChange(photos);
     };
 
     const photosInputs = photos ? photos.map((photo, idx) => {
@@ -65,7 +65,7 @@ function OfferPhotosEditComponent(props) {
 
 OfferPhotosEditComponent.propTypes = {
     photos: PropTypes.arrayOf(photoPropType),
-    setFieldValue: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
     handlePhotoError: PropTypes.func.isRequired,
 };
 
