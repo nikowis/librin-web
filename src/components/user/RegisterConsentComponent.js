@@ -1,7 +1,7 @@
 import React from 'react';
 import {useTranslation} from "react-i18next";
-import TermsAndConditionsLink from "./TermsAndConditionsLink";
-import PrivacyPolicyLink from "./PrivacyPolicyLink";
+import TermsAndConditionsLink from "components/user/TermsAndConditionsLink";
+import PrivacyPolicyLink from "components/user/PrivacyPolicyLink";
 
 function RegisterConsentComponent() {
 

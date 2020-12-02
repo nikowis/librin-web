@@ -1,9 +1,9 @@
 import React from 'react';
 
 import loadable from '@loadable/component'
-import OfferView from "components/offer/OfferView";
-import OffersView from "components/offer/OffersView";
-import UserView from "components/user/UserView";
+import OfferView from "components/offer/view/OfferView";
+import OffersView from "components/offer/view/OffersView";
+import UserView from "components/user/view/UserView";
 import {Route, Switch} from "react-router-dom";
 import AuthenticatedRoute from "components/AuthenticatedRoute";
 
@@ -31,22 +31,22 @@ import {
 import Helmet from "react-helmet";
 import {useTranslation} from "react-i18next";
 
-const Login = loadable(() => import('components/user/LoginView'));
+const Login = loadable(() => import('components/user/view/LoginView'));
 const Logout = loadable(() => import('components/Logout'));
-const Register = loadable(() => import('components/user/RegisterView'));
-const Settings = loadable(() => import('components/user/settings/SettingsView'));
-const RatingsView = loadable(() => import('components/user/RatingsView'));
-const MyOffersTableView = loadable(() => import('components/offer/MyOffersView'));
-const CreateOfferView = loadable(() => import('components/offer/CreateOfferView'));
-const EditOfferView = loadable(() => import('components/offer/EditOfferView'));
+const Register = loadable(() => import('components/user/view/RegisterView'));
+const Settings = loadable(() => import('components/user/view/SettingsView'));
+const RatingsView = loadable(() => import('components/user/view/RatingsView'));
+const MyOffersTableView = loadable(() => import('components/offer/view/MyOffersView'));
+const CreateOfferView = loadable(() => import('components/offer/view/CreateOfferView'));
+const EditOfferView = loadable(() => import('components/offer/view/EditOfferView'));
 const NoMatchingView = loadable(() => import('components/NoMatchingView'));
-const ConversationView = loadable(() => import('components/messages/ConversationView'));
-const ConfirmEmailView = loadable(() => import('components/user/ConfirmEmailView'));
-const GenerateConfirmEmailView = loadable(() => import('components/user/GenerateConfirmEmailView'));
-const GeneratePasswordResetView = loadable(() => import('components/user/GeneratePasswordResetView'));
-const ChangePasswordView = loadable(() => import('components/user/ChangePasswordWithTokenView'));
-const ChangProfilePasswordView = loadable(() => import('components/user/ChangProfilePasswordView'));
-const ConversationsView = loadable(() => import('components/messages/ConversationsView'));
+const SingleConversationView = loadable(() => import('components/messages/view/SingleConversationView'));
+const ConfirmEmailView = loadable(() => import('components/user/view/ConfirmEmailView'));
+const GenerateConfirmEmailView = loadable(() => import('components/user/view/GenerateConfirmEmailView'));
+const GeneratePasswordResetView = loadable(() => import('components/user/view/GeneratePasswordResetView'));
+const ChangePasswordView = loadable(() => import('components/user/view/ChangePasswordWithTokenView'));
+const ChangProfilePasswordView = loadable(() => import('components/user/view/ChangProfilePasswordView'));
+const ConversationsView = loadable(() => import('components/messages/view/ConversationsView'));
 
 
 function ViewRoutes() {
@@ -103,7 +103,7 @@ function ViewRoutes() {
           <Helmet>
             <title>{t('messages.page') + ' - ' + t('brand')}</title>
           </Helmet>
-          <ConversationView/>
+          <SingleConversationView/>
         </AuthenticatedRoute>
         <AuthenticatedRoute path={CONVERSATIONS}>
           <Helmet>

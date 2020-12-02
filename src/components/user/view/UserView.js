@@ -3,17 +3,17 @@ import PropTypes from "prop-types";
 import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import {useParams, withRouter} from "react-router-dom";
-import Api from "../../common/api-communication";
-import {PAPER_ELEVATION} from "../../common/app-constants";
-import {OFFERS} from "../../common/paths";
-import {CLEAR_CURRENT_USER, FETCH_USERVIEW_OFFERS, REPLACE_OFFERS_FILTER,} from "../../redux/actions";
-import LoaderComponent from "../LoaderComponent";
-import UserBannerComponent from "./UserBannerComponent";
+import Api from "common/api-communication";
+import {PAPER_ELEVATION} from "common/app-constants";
+import {OFFERS} from "common/paths";
+import {CLEAR_CURRENT_USER, FETCH_USERVIEW_OFFERS, REPLACE_OFFERS_FILTER,} from "redux/actions";
+import LoaderComponent from "components/LoaderComponent";
+import UserBannerComponent from "components/user/UserBannerComponent";
 import {useTranslation} from "react-i18next";
-import OffersGrid from "../offer/OffersGrid";
-import PaginationComponent from "../PaginationComponent";
-import {objectEquals} from "../../common/object-helper";
-import {USER_VIEW} from "../../redux/offersReducer";
+import OffersGrid from "components/offer/OffersGrid";
+import PaginationComponent from "components/PaginationComponent";
+import {objectEquals} from "common/object-helper";
+import {USER_VIEW} from "redux/offersReducer";
 import {offerPropType} from "common/prop-types";
 
 function UserView(props) {

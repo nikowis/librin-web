@@ -53,7 +53,7 @@ const initialState = {
   [MAIN_VIEW]: initialOffersView,
   [USER_VIEW]: initialOffersView,
   currentOffer: {
-
+    MAIN_VIEW
   },
 };
 

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from "prop-types";
 import {useTranslation} from "react-i18next";
 import {OfferStatus} from "common/app-constants";
-import DialogButton from "components/messages/DialogButton";
+import DialogButton from "components/input/DialogButton";
 import Api from "common/api-communication";
 import {connect} from "react-redux";
 import {conversationPropType} from "common/prop-types";

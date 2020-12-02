@@ -1,4 +1,4 @@
-import {CLEAR_CURRENT_USER, FETCH_USER, FULFILLED, PENDING} from "./actions";
+import {CLEAR_CURRENT_USER, FETCH_USER, FULFILLED, PENDING} from "redux/actions";
 
 const initialState = {
     currentUser: {

@@ -11,10 +11,10 @@ import {
   PENDING,
   REPLACE_MYOFFERS_FILTER,
   RESET_MYOFFERS_FILTER,
-} from "./actions";
-import {insertItem, removeItem} from "../common/array-helper";
-import {initializeOfferPhotos, processOffers} from "./offersReducer";
-import {DEFAULT_PAGE_SIZE, DESC_SORT, UPDATED_AT_SORT,} from "../common/app-constants";
+} from "redux/actions";
+import {insertItem, removeItem} from "common/array-helper";
+import {initializeOfferPhotos, processOffers} from "redux/offersReducer";
+import {DEFAULT_PAGE_SIZE, DESC_SORT, UPDATED_AT_SORT,} from "common/app-constants";
 
 const initialState = {
   content: null,

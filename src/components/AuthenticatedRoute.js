@@ -1,6 +1,6 @@
 import React from 'react';
 import {Redirect, Route} from "react-router-dom";
-import {LOGIN} from "../common/paths";
+import {LOGIN} from "common/paths";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 

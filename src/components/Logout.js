@@ -1,9 +1,9 @@
 import React from 'react';
 import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
-import {ROOT} from "../common/paths";
+import {ROOT} from "common/paths";
 import PropTypes from "prop-types";
-import {LOGOUT_ACTION} from "../redux/actions";
+import {LOGOUT_ACTION} from "redux/actions";
 
 function Logout(props) {
 

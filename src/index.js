@@ -2,16 +2,16 @@ import 'react-app-polyfill/ie11';
 import 'react-app-polyfill/stable';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import SuspenseFallbackComponent from './components/SuspenseFallbackComponent'
-import * as serviceWorker from './serviceWorker';
+import 'index.css';
+import SuspenseFallbackComponent from 'components/SuspenseFallbackComponent'
+import * as serviceWorker from 'serviceWorker';
 import {Provider} from "react-redux";
-import configureStore from './redux/store/configureStore.js';
+import configureStore from 'redux/store/configureStore.js';
 import {BrowserRouter as Router} from "react-router-dom";
 import {PersistGate} from 'redux-persist/integration/react'
-import './i18n';
-import './common/validation-schemas'
-import App from "./App";
+import 'i18n';
+import 'common/validation-schemas'
+import App from "App";
 import WebFont from "webfontloader";
 
 WebFont.load({google: {families: ["Roboto:300,400,500"]}});

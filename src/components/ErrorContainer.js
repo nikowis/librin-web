@@ -3,8 +3,8 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import Alert from '@material-ui/lab/Alert';
 import Snackbar from "@material-ui/core/Snackbar";
-import {store} from "../index";
-import {CLEAR_API_ERROR, CLEAR_AUTH_ERROR} from "../redux/actions";
+import {store} from "index";
+import {CLEAR_API_ERROR, CLEAR_AUTH_ERROR} from "redux/actions";
 
 function ErrorContainer(props) {
 

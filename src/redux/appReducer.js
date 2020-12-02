@@ -12,7 +12,7 @@ import {
   LOGOUT_ACTION,
   SERVER_ERROR,
   SHOW_NOTIFICATION
-} from "./actions";
+} from "redux/actions";
 import i18n from 'i18next';
 
 const initialState = {

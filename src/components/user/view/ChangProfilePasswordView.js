@@ -4,11 +4,11 @@ import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
-import Api from "../../common/api-communication";
-import {PAPER_ELEVATION} from '../../common/app-constants';
-import {SETTINGS} from "../../common/paths";
-import ChangePasswordForm from "./ChangePasswordForm";
-import TitleComponent from "../TitleComponent";
+import Api from "common/api-communication";
+import {PAPER_ELEVATION} from 'common/app-constants';
+import {SETTINGS} from "common/paths";
+import TitleComponent from "components/TitleComponent";
+import ChangePasswordForm from "components/user/ChangePasswordForm";
 
 
 function ChangProfilePasswordView(props) {

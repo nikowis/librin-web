@@ -3,11 +3,11 @@ import {Link} from 'react-router-dom';
 import PropTypes from "prop-types";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText/ListItemText";
-import {CONVERSATIONS} from "../../common/paths";
+import {CONVERSATIONS} from "common/paths";
 import Avatar from "@material-ui/core/Avatar";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar/ListItemAvatar";
-import {formatDateToString} from "../../common/date-utility";
-import {OfferStatus, UserStatus} from "../../common/app-constants";
+import {formatDateToString} from "common/date-utility";
+import {OfferStatus, UserStatus} from "common/app-constants";
 import {useTranslation} from "react-i18next";
 import {conversationPropType} from "common/prop-types";
 

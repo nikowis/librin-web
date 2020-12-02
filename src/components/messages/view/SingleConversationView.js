@@ -1,25 +1,25 @@
 import React, {useEffect} from 'react';
 import {useParams, withRouter} from 'react-router-dom';
-import MessagesListComponent from "./MessagesListComponent";
-import Api from "../../common/api-communication";
-import SendMessageFormComponent from "./SendMessageFormComponent";
-import ConversationOfferPreviewComponent from "./ConversationOfferPreviewComponent";
-import LoaderComponent from "../LoaderComponent";
+import MessagesListComponent from "components/messages/MessagesListComponent";
+import Api from "common/api-communication";
+import SendMessageFormComponent from "components/messages/SendMessageFormComponent";
+import ConversationOfferPreviewComponent from "components/messages/ConversationOfferPreviewComponent";
+import LoaderComponent from "components/LoaderComponent";
 import Divider from "@material-ui/core/Divider";
-import MaxWidthContainer from "../MaxWidthContainer";
-import UserBannerComponent from "../user/UserBannerComponent";
-import {CONVERSATIONS} from "../../common/paths";
-import {READ_CONVERSATION} from "../../redux/actions";
-import ConversationOfferActions from "./ConversationOfferActions";
+import MaxWidthContainer from "components/MaxWidthContainer";
+import UserBannerComponent from "components/user/UserBannerComponent";
+import {CONVERSATIONS} from "common/paths";
+import {READ_CONVERSATION} from "redux/actions";
+import ConversationOfferActions from "components/messages/ConversationOfferActions";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import OfferStatusInfoBanner from "../offer/OfferStatusInfoBanner";
+import OfferStatusInfoBanner from "components/offer/OfferStatusInfoBanner";
 import {Paper} from '@material-ui/core';
-import {PAPER_ELEVATION, UserStatus} from './../../common/app-constants'
-import RateOfferComponent from "../offer/RateOfferComponent";
+import {PAPER_ELEVATION, UserStatus} from 'common/app-constants'
+import RateOfferComponent from "components/offer/RateOfferComponent";
 import {conversationPropType} from "common/prop-types";
 
-function ConversationView(props) {
+function SingleConversationView(props) {
 
   const [loading, setLoading] = React.useState(false);
 
@@ -120,7 +120,7 @@ function ConversationView(props) {
   );
 }
 
-ConversationView.propTypes = {
+SingleConversationView.propTypes = {
   userId: PropTypes.number,
   currentConversation: conversationPropType
 };
@@ -128,4 +128,4 @@ ConversationView.propTypes = {
 export default connect(state => ({
   userId: state.me.id,
   currentConversation: state.conversations.currentConversation,
-}))(withRouter(ConversationView));
+}))(withRouter(SingleConversationView));

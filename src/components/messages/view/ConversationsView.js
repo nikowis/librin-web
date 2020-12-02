@@ -9,12 +9,12 @@ import React, {useEffect} from 'react';
 import {useTranslation} from "react-i18next";
 import {connect} from "react-redux";
 import {withRouter} from 'react-router-dom';
-import Api from "../../common/api-communication";
-import {PAPER_ELEVATION} from '../../common/app-constants';
-import {READ_CONVERSATION} from "../../redux/actions";
-import LoaderComponent from "../LoaderComponent";
-import MaxWidthContainer from "../MaxWidthContainer";
-import ConversationsList from "./ConversationsList";
+import Api from "common/api-communication";
+import {PAPER_ELEVATION} from 'common/app-constants';
+import {READ_CONVERSATION} from "redux/actions";
+import LoaderComponent from "components/LoaderComponent";
+import MaxWidthContainer from "components/MaxWidthContainer";
+import ConversationsList from "components/messages/ConversationsList";
 
 function ConversationsView(props) {
 

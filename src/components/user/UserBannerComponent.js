@@ -2,11 +2,11 @@ import React from 'react';
 import Avatar from "@material-ui/core/Avatar";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
-import {RATINGS, USERS} from "../../common/paths";
+import {RATINGS, USERS} from "common/paths";
 import {useTranslation} from "react-i18next";
-import {UserStatus} from "../../common/app-constants";
+import {UserStatus} from "common/app-constants";
 
-import ReportingComponent from "../offer/ReportingComponent";
+import ReportingComponent from "components/offer/ReportingComponent";
 import Rating from "@material-ui/lab/Rating/Rating";
 import {userPropType} from "common/prop-types";
 

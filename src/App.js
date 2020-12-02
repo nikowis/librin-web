@@ -1,18 +1,18 @@
 import React, {useEffect} from 'react';
-import './App.scss';
-import TopAppBar from "./components/appbar/TopAppBar";
+import 'App.scss';
+import TopAppBar from "components/appbar/TopAppBar";
 import {connect} from "react-redux";
-import Api from "./common/api-communication";
-import Websocket from "./common/ws-communication";
-import ViewRoutes from "./components/ViewRoutes";
+import Api from "common/api-communication";
+import Websocket from "common/ws-communication";
+import ViewRoutes from "components/ViewRoutes";
 import PropTypes from "prop-types";
-import ErrorContainer from "./components/ErrorContainer";
-import NotificationContainer from "./components/NotificationContainer";
+import ErrorContainer from "components/ErrorContainer";
+import NotificationContainer from "components/NotificationContainer";
 import Container from "@material-ui/core/Container";
 import CookieConsent from "react-cookie-consent";
 import {useTranslation} from "react-i18next";
-import CookiesPolicyLink from "./components/user/CookiesPolicyLink";
-import {WS_UPDATE_CONVERSATION} from "./redux/actions";
+import CookiesPolicyLink from "components/user/CookiesPolicyLink";
+import {WS_UPDATE_CONVERSATION} from "redux/actions";
 import Helmet from "react-helmet";
 
 function App(props) {

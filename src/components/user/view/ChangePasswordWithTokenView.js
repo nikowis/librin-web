@@ -3,10 +3,10 @@ import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {connect} from "react-redux";
 import {useParams, withRouter} from "react-router-dom";
-import Api from "../../common/api-communication";
-import {PAPER_ELEVATION} from '../../common/app-constants';
-import ChangePasswordForm from "./ChangePasswordForm";
-import TitleComponent from "../TitleComponent";
+import Api from "common/api-communication";
+import {PAPER_ELEVATION} from 'common/app-constants';
+import ChangePasswordForm from "components/user/ChangePasswordForm";
+import TitleComponent from "components/TitleComponent";
 
 
 function ChangePasswordWithTokenView(props) {

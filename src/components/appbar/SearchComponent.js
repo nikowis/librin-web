@@ -6,12 +6,12 @@ import {withRouter} from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
 import {useTranslation} from "react-i18next";
 import {connect} from "react-redux";
-import {CHANGE_OFFERS_FILTER} from "../../redux/actions";
-import Api from "../../common/api-communication";
+import {CHANGE_OFFERS_FILTER} from "redux/actions";
+import Api from "common/api-communication";
 import InputBase from "@material-ui/core/InputBase";
 import * as PropTypes from "prop-types";
 import withWidth from "@material-ui/core/withWidth/withWidth";
-import {MAIN_VIEW} from "../../redux/offersReducer";
+import {MAIN_VIEW} from "redux/offersReducer";
 
 function SearchComponent(props) {
 

@@ -7,8 +7,8 @@ import {
   SELL_OFFER,
   SEND_MESSAGE,
   WS_UPDATE_CONVERSATION
-} from "./actions";
-import {insertItem, removeItem} from "../common/array-helper";
+} from "redux/actions";
+import {insertItem, removeItem} from "common/array-helper";
 
 const initialState = {
   content: null,

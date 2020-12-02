@@ -1,6 +1,6 @@
 import React from 'react';
 import {useTranslation} from "react-i18next";
-import Api from "../../common/api-communication";
+import Api from "common/api-communication";
 
 function CookiesPolicyLink() {
 

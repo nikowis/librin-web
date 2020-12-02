@@ -1,5 +1,5 @@
 import {applyMiddleware, createStore} from 'redux'
-import rootReducer from '../rootReducer'
+import rootReducer from 'redux/rootReducer'
 import promise from "redux-promise-middleware";
 import {persistStore} from "redux-persist";
 

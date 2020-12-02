@@ -3,13 +3,15 @@ import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
-import Api from "../../common/api-communication";
-import {PAPER_ELEVATION} from '../../common/app-constants';
-import MaxWidthContainer from '../MaxWidthContainer';
-import TitleComponent from "../TitleComponent";
+import Api from "common/api-communication";
+import {PAPER_ELEVATION} from 'common/app-constants';
+
 import {useFormik} from "formik";
-import {generateResetPasswordSchema} from "../../common/validation-schemas";
+
 import TextFieldInput from "components/input/TextFieldInput";
+import {generateResetPasswordSchema} from "common/validation-schemas";
+import MaxWidthContainer from "components/MaxWidthContainer";
+import TitleComponent from "components/TitleComponent";
 
 
 function GenerateConfirmEmailView() {

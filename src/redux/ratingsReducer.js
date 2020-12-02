@@ -1,4 +1,4 @@
-import {FULFILLED, GET_RATINGS, PENDING} from "./actions";
+import {FULFILLED, GET_RATINGS, PENDING} from "redux/actions";
 
 const initialState = {
     content: null,

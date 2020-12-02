@@ -1,9 +1,9 @@
 import React from 'react';
 import {useTranslation} from "react-i18next";
 import Paper from "@material-ui/core/Paper/Paper";
-import {PAPER_ELEVATION} from "../common/app-constants";
+import {PAPER_ELEVATION} from "common/app-constants";
 import Button from "@material-ui/core/Button";
-import {LOGIN, REGISTER} from "../common/paths";
+import {LOGIN, REGISTER} from "common/paths";
 import {withRouter} from "react-router-dom";
 
 function LandingBanner(props) {

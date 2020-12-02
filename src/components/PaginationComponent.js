@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Pagination from "@material-ui/lab/Pagination";
 import PaginationItem from "@material-ui/lab/PaginationItem";
 import {Link, withRouter} from "react-router-dom";
-import Api from "../common/api-communication";
+import Api from "common/api-communication";
 
 function PaginationComponent({
   currentPage,

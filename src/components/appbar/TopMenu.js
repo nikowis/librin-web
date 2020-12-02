@@ -8,7 +8,7 @@ import Popper from "@material-ui/core/Popper/Popper";
 import Grow from "@material-ui/core/Grow/Grow";
 import Paper from "@material-ui/core/Paper/Paper";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener/ClickAwayListener";
-import TopMenuListItems from "./TopMenuListItems";
+import TopMenuListItems from "components/appbar/TopMenuListItems";
 
 function TopMenu(props) {
 

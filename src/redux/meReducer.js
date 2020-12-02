@@ -1,4 +1,4 @@
-import {AUTH_ERROR, CHANGE_LANG, FETCH_ME, FULFILLED, GET_TOKEN_ACTION, LOGOUT_ACTION, UPDATE_USER} from "./actions";
+import {AUTH_ERROR, CHANGE_LANG, FETCH_ME, FULFILLED, GET_TOKEN_ACTION, LOGOUT_ACTION, UPDATE_USER} from "redux/actions";
 
 const initialState = {
     id: null,

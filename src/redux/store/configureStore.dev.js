@@ -1,7 +1,7 @@
 import {applyMiddleware, createStore} from 'redux'
 import promise from 'redux-promise-middleware';
 import {createLogger} from 'redux-logger'
-import rootReducer from '../rootReducer'
+import rootReducer from 'redux/rootReducer'
 import {composeWithDevTools} from 'redux-devtools-extension';
 import {persistStore} from "redux-persist";
 

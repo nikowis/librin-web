@@ -1,6 +1,6 @@
 import React from 'react';
 import {Redirect} from "react-router-dom";
-import {ROOT} from "../common/paths";
+import {ROOT} from "common/paths";
 
 function NoMatchingView() {
     return (

@@ -2,8 +2,8 @@ import React, {useEffect} from 'react';
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import Snackbar from "@material-ui/core/Snackbar/Snackbar";
-import {store} from "../index";
-import {HIDE_NOTIFICATION} from "../redux/actions";
+import {store} from "index";
+import {HIDE_NOTIFICATION} from "redux/actions";
 import Alert from "@material-ui/lab/Alert/Alert";
 
 function NotificationContainer(props) {

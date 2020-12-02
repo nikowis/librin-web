@@ -1,5 +1,5 @@
 import React from 'react';
-import {CREATE_OFFER, LOGIN, LOGOUT, CONVERSATIONS, MY_OFFERS, OFFERS, SETTINGS, REGISTER, ROOT} from "../../common/paths";
+import {CREATE_OFFER, LOGIN, LOGOUT, CONVERSATIONS, MY_OFFERS, OFFERS, SETTINGS, REGISTER, ROOT} from "common/paths";
 import {useTranslation} from 'react-i18next';
 import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
@@ -9,7 +9,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import SettingsIcon from '@material-ui/icons/Settings';
 import AddIcon from '@material-ui/icons/Add';
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import TopMenuListItem from "./TopMenuListItem";
+import TopMenuListItem from "components/appbar/TopMenuListItem";
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 

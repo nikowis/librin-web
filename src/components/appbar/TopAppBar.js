@@ -10,10 +10,10 @@ import IconButton from "@material-ui/core/IconButton";
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import AddIcon from '@material-ui/icons/Add';
 import MailIcon from '@material-ui/icons/Mail';
-import {CREATE_OFFER, CONVERSATIONS, MY_OFFERS, ROOT} from "../../common/paths";
+import {CREATE_OFFER, CONVERSATIONS, MY_OFFERS, ROOT} from "common/paths";
 import Button from "@material-ui/core/Button";
 import {useTranslation} from "react-i18next";
-import TopDrawer from "./TopDrawer";
+import TopDrawer from "components/appbar/TopDrawer";
 import Badge from "@material-ui/core/Badge";
 
 function TopAppBar(props) {
