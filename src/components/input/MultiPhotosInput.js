@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import {compressFile, loadFileToAttachmentObject, validateFile} from "common/attachment-utility";
-import SinglePhotoForm from "components/offer/SinglePhotoForm";
+import SinglePhotoInput from "components/input/SinglePhotoInput";
 import {InputLabel} from "@material-ui/core";
 import {useTranslation} from "react-i18next";
 import {photoPropType} from "common/prop-types";
 
-function MultiPhotosForm(props) {
+function MultiPhotosInput(props) {
     const {onChange, photos, handlePhotoError} = props;
 
     const {t} = useTranslation();
@@ -39,16 +39,16 @@ function MultiPhotosForm(props) {
 
     const photosInputs = photos ? photos.map((photo, idx) => {
         return (
-            <SinglePhotoForm key={idx} photo={photo} index={idx}
-                             onFileUpload={handleUploadFile}
-                             onRemovePhoto={handleRemovePhoto}
+            <SinglePhotoInput key={idx} photo={photo} index={idx}
+                              onFileUpload={handleUploadFile}
+                              onRemovePhoto={handleRemovePhoto}
             />
         )
     }) : [];
 
     if (photosInputs.length < 3) {
-        photosInputs.push(<SinglePhotoForm key={photosInputs.length} index={photosInputs.length}
-                                           onFileUpload={handleUploadFile} onRemovePhoto={()=>{}}/>);
+        photosInputs.push(<SinglePhotoInput key={photosInputs.length} index={photosInputs.length}
+                                            onFileUpload={handleUploadFile} onRemovePhoto={()=>{}}/>);
     }
 
     return (
@@ -63,10 +63,10 @@ function MultiPhotosForm(props) {
     )
 }
 
-MultiPhotosForm.propTypes = {
+MultiPhotosInput.propTypes = {
     photos: PropTypes.arrayOf(photoPropType),
     onChange: PropTypes.func.isRequired,
     handlePhotoError: PropTypes.func.isRequired,
 };
 
-export default MultiPhotosForm;
+export default MultiPhotosInput;

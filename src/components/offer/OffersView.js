@@ -2,18 +2,18 @@ import React, {useEffect} from "react";
 import {connect} from "react-redux";
 
 import {withRouter} from "react-router-dom";
-import OffersGrid from "./OffersGrid";
-import PaginationComponent from "../PaginationComponent";
+import OffersGrid from "components/offer/OffersGrid";
+import PaginationComponent from "components/PaginationComponent";
 import PropTypes from "prop-types";
-import Api from "../../common/api-communication";
-import {FETCH_MAINVIEW_OFFERS} from "../../redux/actions";
+import Api from "common/api-communication";
+import {FETCH_MAINVIEW_OFFERS} from "redux/actions";
 import {useTranslation} from "react-i18next";
-import {objectEquals} from "../../common/object-helper";
-import {OFFERS} from "../../common/paths";
+import {objectEquals} from "common/object-helper";
+import {OFFERS} from "common/paths";
 import {Grid} from "@material-ui/core";
-import OffersFilterComponent from "./OffersFilterComponent";
-import {filterMatchesUrl} from "../../common/filter-helper";
-import LandingBanner from "../LandingBanner";
+import OffersFilterComponent from "components/offer/OffersFilterComponent";
+import {filterMatchesUrl} from "common/filter-helper";
+import LandingBanner from "components/LandingBanner";
 import {offerPropType} from "common/prop-types";
 
 function OffersView(props) {

@@ -7,7 +7,7 @@ import ReportingDialog from "./ReportingDialog";
 import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
-import {LOGIN} from "../../common/paths";
+import {LOGIN} from "common/paths";
 
 function ReportingComponent(props) {
 

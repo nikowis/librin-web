@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import {OfferStatus} from "../../common/app-constants";
-import WarningStrip from "../WarningStrip";
+import {OfferStatus} from "common/app-constants";
+import WarningStrip from "components/WarningStrip";
 import {useTranslation} from "react-i18next";
 import {offerPropType} from "common/prop-types";
 

@@ -4,7 +4,7 @@ import {useFormik} from "formik";
 import {createOfferSchema, editOfferSchema,} from "common/validation-schemas";
 import Button from "@material-ui/core/Button";
 import PropTypes from "prop-types";
-import MultiPhotosForm from "components/offer/MultiPhotosForm";
+import MultiPhotosInput from "components/input/MultiPhotosInput";
 import {API_ERROR, CLEAR_API_ERROR} from "redux/actions";
 import {API_ERROR_NOTIFICATION_DURATION,} from "common/app-constants";
 import {connect} from "react-redux";
@@ -58,7 +58,7 @@ function OfferForm(props) {
   return (
 
       <form onSubmit={formik.handleSubmit}>
-        <MultiPhotosForm
+        <MultiPhotosInput
             photos={values.photos}
             onChange={(v) => {
               setFieldValue("photos", v, false);

@@ -5,7 +5,7 @@ import IconButton from "@material-ui/core/IconButton";
 import CancelTwoToneIcon from '@material-ui/icons/CancelTwoTone';
 import {photoPropType} from "common/prop-types";
 
-function SinglePhotoForm(props) {
+function SinglePhotoInput(props) {
     const {onFileUpload, photo, index, onRemovePhoto} = props;
 
     const inputId = 'photo' + index;
@@ -37,11 +37,11 @@ function SinglePhotoForm(props) {
     )
 }
 
-SinglePhotoForm.propTypes = {
+SinglePhotoInput.propTypes = {
     photo: photoPropType,
     onFileUpload: PropTypes.func.isRequired,
     onRemovePhoto: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired
 };
 
-export default SinglePhotoForm
+export default SinglePhotoInput

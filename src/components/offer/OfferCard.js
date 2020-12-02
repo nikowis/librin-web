@@ -5,9 +5,9 @@ import CardHeader from "@material-ui/core/CardHeader";
 import Card from "@material-ui/core/Card";
 import Chip from "@material-ui/core/Chip";
 import {Link} from "react-router-dom";
-import EmptyPhotoPreviewComponent from "../EmptyPhotoPreviewComponent";
-import UserInfoChipLink from "./UserInfoChipLink";
-import {PAPER_ELEVATION} from './../../common/app-constants'
+import EmptyPhotoPreviewComponent from "components/EmptyPhotoPreviewComponent";
+import UserInfoChipLink from "components/offer/UserInfoChipLink";
+import {PAPER_ELEVATION} from 'common/app-constants'
 import {offerPropType} from "common/prop-types";
 
 function OfferCard(props) {
