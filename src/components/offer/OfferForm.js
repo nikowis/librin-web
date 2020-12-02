@@ -4,7 +4,7 @@ import {useFormik} from "formik";
 import {createOfferSchema, editOfferSchema,} from "common/validation-schemas";
 import Button from "@material-ui/core/Button";
 import PropTypes from "prop-types";
-import OfferPhotosEditComponent from "components/offer/OfferPhotosEditComponent";
+import MultiPhotosForm from "components/offer/MultiPhotosForm";
 import {API_ERROR, CLEAR_API_ERROR} from "redux/actions";
 import {API_ERROR_NOTIFICATION_DURATION,} from "common/app-constants";
 import {connect} from "react-redux";
@@ -17,7 +17,7 @@ import CurrencyTextFieldInput from "components/input/CurrencyTextFieldInput";
 import CheckboxInput from "components/input/CheckboxInput";
 import CityInput from "components/input/CityInput";
 
-function EditOfferComponent(props) {
+function OfferForm(props) {
   const {t} = useTranslation();
   const {offer} = props;
 
@@ -58,7 +58,7 @@ function EditOfferComponent(props) {
   return (
 
       <form onSubmit={formik.handleSubmit}>
-        <OfferPhotosEditComponent
+        <MultiPhotosForm
             photos={values.photos}
             onChange={(v) => {
               setFieldValue("photos", v, false);
@@ -125,7 +125,7 @@ function EditOfferComponent(props) {
 }
 
 
-EditOfferComponent.propTypes = {
+OfferForm.propTypes = {
   offer: offerPropType,
   handleSubmit: PropTypes.func.isRequired,
   exchange: PropTypes.bool,
@@ -139,4 +139,4 @@ export default connect((state) => ({
   shipment: state.me.shipment,
   selfPickup: state.me.selfPickup,
   selfPickupCity: state.me.selfPickupCity,
-}))(EditOfferComponent);
+}))(OfferForm);

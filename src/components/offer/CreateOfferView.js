@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 import {HIDE_NOTIFICATION, OFFER_CREATED, SHOW_NOTIFICATION} from "../../redux/actions";
 import {MY_OFFERS} from "../../common/paths";
 import {NOTIFICATION_DURATION, PAPER_ELEVATION} from "../../common/app-constants";
-import EditOfferComponent from "./EditOfferComponent";
+import OfferForm from "components/offer/OfferForm";
 import Paper from "@material-ui/core/Paper/Paper";
 import TitleComponent from "../TitleComponent";
 
@@ -37,7 +37,7 @@ function CreateOfferView(props) {
       <>
         <TitleComponent content={t('offer.createPageTitle')}/>
         <Paper square elevation={PAPER_ELEVATION} className={'form-container'}>
-          <EditOfferComponent offer={null} handleSubmit={handleSubmit}/>
+          <OfferForm offer={null} handleSubmit={handleSubmit}/>
         </Paper>
       </>
   );

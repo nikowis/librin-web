@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import {compressFile, loadFileToAttachmentObject, validateFile} from "common/attachment-utility";
-import OfferSinglePhotoEditComponent from "components/offer/OfferSinglePhotoEditComponent";
+import SinglePhotoForm from "components/offer/SinglePhotoForm";
 import {InputLabel} from "@material-ui/core";
 import {useTranslation} from "react-i18next";
 import {photoPropType} from "common/prop-types";
 
-function OfferPhotosEditComponent(props) {
+function MultiPhotosForm(props) {
     const {onChange, photos, handlePhotoError} = props;
 
     const {t} = useTranslation();
@@ -39,16 +39,16 @@ function OfferPhotosEditComponent(props) {
 
     const photosInputs = photos ? photos.map((photo, idx) => {
         return (
-            <OfferSinglePhotoEditComponent key={idx} photo={photo} index={idx}
-                                           onFileUpload={handleUploadFile}
-                                            onRemovePhoto={handleRemovePhoto}
+            <SinglePhotoForm key={idx} photo={photo} index={idx}
+                             onFileUpload={handleUploadFile}
+                             onRemovePhoto={handleRemovePhoto}
             />
         )
     }) : [];
 
     if (photosInputs.length < 3) {
-        photosInputs.push(<OfferSinglePhotoEditComponent key={photosInputs.length} index={photosInputs.length}
-                                                         onFileUpload={handleUploadFile} onRemovePhoto={()=>{}}/>);
+        photosInputs.push(<SinglePhotoForm key={photosInputs.length} index={photosInputs.length}
+                                           onFileUpload={handleUploadFile} onRemovePhoto={()=>{}}/>);
     }
 
     return (
@@ -63,10 +63,10 @@ function OfferPhotosEditComponent(props) {
     )
 }
 
-OfferPhotosEditComponent.propTypes = {
+MultiPhotosForm.propTypes = {
     photos: PropTypes.arrayOf(photoPropType),
     onChange: PropTypes.func.isRequired,
     handlePhotoError: PropTypes.func.isRequired,
 };
 
-export default OfferPhotosEditComponent;
+export default MultiPhotosForm;

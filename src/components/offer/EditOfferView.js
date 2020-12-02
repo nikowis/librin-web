@@ -7,7 +7,7 @@ import {CLEAR_CURRENT_MYOFFER, HIDE_NOTIFICATION, OFFER_UPDATED, SHOW_NOTIFICATI
 import {NOTIFICATION_DURATION, OfferStatus, PAPER_ELEVATION} from "common/app-constants";
 import LoaderComponent from "components/LoaderComponent";
 import {MY_OFFERS} from "common/paths";
-import EditOfferComponent from "components/offer/EditOfferComponent";
+import OfferForm from "components/offer/OfferForm";
 import Paper from "@material-ui/core/Paper/Paper";
 import TitleComponent from "components/TitleComponent";
 import Button from "@material-ui/core/Button";
@@ -92,7 +92,7 @@ function EditOfferView(props) {
         <>
           <TitleComponent content={t('offer.editPageTitle')}/>
           <Paper elevation={PAPER_ELEVATION} square className={'form-container'}>
-            <EditOfferComponent offer={offer} handleSubmit={handleSubmit}/>
+            <OfferForm offer={offer} handleSubmit={handleSubmit}/>
           </Paper>
           {actionButtons}
         </>
