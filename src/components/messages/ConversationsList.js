@@ -9,6 +9,7 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar/ListItemAvatar";
 import {formatDateToString} from "../../common/date-utility";
 import {OfferStatus, UserStatus} from "../../common/app-constants";
 import {useTranslation} from "react-i18next";
+import {conversationPropType} from "common/prop-types";
 
 function ConversationsList(props) {
   const {conversations, userId} = props;
@@ -33,7 +34,7 @@ function ConversationsList(props) {
                   {accountDeleted ? <Avatar>{'?'}</Avatar> :
                       <Avatar>{recipientUsername.substring(0, 1).toUpperCase()}</Avatar>}
                 </ListItemAvatar>
-                <ListItemText primary={accountDeleted ? t('user.accountIsDeleted'): recipientUsername}
+                <ListItemText primary={accountDeleted ? t('user.accountIsDeleted') : recipientUsername}
                               secondary={conv.offer.status !== OfferStatus.DELETED ? offerDesc : t('offer.status.deletedWarn')}/>
               </div>
             </ListItem>
@@ -51,21 +52,7 @@ function ConversationsList(props) {
 
 ConversationsList.propTypes = {
   userId: PropTypes.number,
-  conversations: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number,
-        messages: PropTypes.array,
-        offer: PropTypes.shape({
-          id: PropTypes.number,
-          title: PropTypes.string,
-          author: PropTypes.string,
-          price: PropTypes.string,
-          status: PropTypes.string,
-          ownerId: PropTypes.number,
-        }),
-        createdAt: PropTypes.string
-      }),
-  ),
+  conversations: PropTypes.arrayOf(conversationPropType),
   currentPage: PropTypes.number,
   totalPages: PropTypes.number,
   onConversationOpen: PropTypes.func.isRequired,

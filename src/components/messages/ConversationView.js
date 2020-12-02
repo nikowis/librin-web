@@ -17,6 +17,7 @@ import OfferStatusInfoBanner from "../offer/OfferStatusInfoBanner";
 import {Paper} from '@material-ui/core';
 import {PAPER_ELEVATION, UserStatus} from './../../common/app-constants'
 import RateOfferComponent from "../offer/RateOfferComponent";
+import {conversationPropType} from "common/prop-types";
 
 function ConversationView(props) {
 
@@ -107,8 +108,10 @@ function ConversationView(props) {
                   <RateOfferComponent offer={offer} userId={recipient.id}/>
 
                   <Divider variant="fullWidth"/>
-                  <SendMessageFormComponent onSendMessage={handleSendMessage} disabled={recipient.status === UserStatus.DELETED}
-                                            onClick={handleMarkConversationAsRead} conversationId={currentConversation.id}/>
+                  <SendMessageFormComponent onSendMessage={handleSendMessage}
+                                            disabled={recipient.status === UserStatus.DELETED}
+                                            onClick={handleMarkConversationAsRead}
+                                            conversationId={currentConversation.id}/>
                 </> :
                 <LoaderComponent/>
           }
@@ -119,31 +122,7 @@ function ConversationView(props) {
 
 ConversationView.propTypes = {
   userId: PropTypes.number,
-  currentConversation:
-      PropTypes.shape({
-        id: PropTypes.number,
-        read: PropTypes.bool,
-        lastPage: PropTypes.bool,
-        messages: PropTypes.array,
-        offer: PropTypes.shape({
-          id: PropTypes.number,
-          title: PropTypes.string,
-          author: PropTypes.string,
-          price: PropTypes.string,
-          status: PropTypes.string,
-          ownerId: PropTypes.number,
-          soldToMe: PropTypes.bool,
-          owner: PropTypes.shape({
-            id: PropTypes.number.isRequired,
-            username: PropTypes.string.isRequired,
-          })
-        }),
-        createdAt: PropTypes.string,
-        customer: PropTypes.shape({
-          id: PropTypes.number.isRequired,
-          username: PropTypes.string.isRequired,
-        })
-      }),
+  currentConversation: conversationPropType
 };
 
 export default connect(state => ({

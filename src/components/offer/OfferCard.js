@@ -8,63 +8,45 @@ import {Link} from "react-router-dom";
 import EmptyPhotoPreviewComponent from "../EmptyPhotoPreviewComponent";
 import UserInfoChipLink from "./UserInfoChipLink";
 import {PAPER_ELEVATION} from './../../common/app-constants'
+import {offerPropType} from "common/prop-types";
 
 function OfferCard(props) {
 
-    const {t} = useTranslation();
-    const {offer, myOffer} = props;
-    const {owner} = offer;
+  const {t} = useTranslation();
+  const {offer, myOffer} = props;
+  const {owner} = offer;
 
-    const status = offer.status.toLowerCase();
+  const status = offer.status.toLowerCase();
 
-    return (
-        <Card elevation={PAPER_ELEVATION} square className={'offer-card'}>
-            <CardHeader
-                title={
-                    <div className={'limit-text-lines two-line'}>
-                        {offer.title}
-                    </div>
-                }
-                subheader={<>
-                    <div className={'limit-text-lines'}>{offer.author}</div>
-                    <div className={'limit-text-lines'}>{offer.price + ' ' + t('currencySymbol')}</div>
-                    {myOffer ?
-                        <Chip label={t('offer.status.' + status)} className={'status-info-' + status}/>
-                        : <UserInfoChipLink user={owner}/>
-                    }
-                </>}
-            />
-            <Link to={props.link} className={'offer-card-image'}>
-                {offer.photo ?<img src={offer.photo.url} alt={"Offer"}/>
-                : <EmptyPhotoPreviewComponent/>}
-            </Link>
-        </Card>
-    );
+  return (
+      <Card elevation={PAPER_ELEVATION} square className={'offer-card'}>
+        <CardHeader
+            title={
+              <div className={'limit-text-lines two-line'}>
+                {offer.title}
+              </div>
+            }
+            subheader={<>
+              <div className={'limit-text-lines'}>{offer.author}</div>
+              <div className={'limit-text-lines'}>{offer.price + ' ' + t('currencySymbol')}</div>
+              {myOffer ?
+                  <Chip label={t('offer.status.' + status)} className={'status-info-' + status}/>
+                  : <UserInfoChipLink user={owner}/>
+              }
+            </>}
+        />
+        <Link to={props.link} className={'offer-card-image'}>
+          {offer.photo ? <img src={offer.photo.url} alt={"Offer"}/>
+              : <EmptyPhotoPreviewComponent/>}
+        </Link>
+      </Card>
+  );
 }
 
 OfferCard.propTypes = {
-    offer:
-        PropTypes.shape({
-            id: PropTypes.number.isRequired,
-            title: PropTypes.string.isRequired,
-            author: PropTypes.string.isRequired,
-            price: PropTypes.PropTypes.oneOfType([
-                PropTypes.string,
-                PropTypes.number
-            ]),
-            status: PropTypes.string,
-            ownerId: PropTypes.number,
-            photo: PropTypes.shape({
-                name: PropTypes.string.isRequired,
-                url: PropTypes.string.isRequired
-            }),
-            owner: PropTypes.shape({
-                id: PropTypes.number.isRequired,
-                username: PropTypes.string.isRequired,
-            })
-        }),
-    link: PropTypes.string.isRequired,
-    myOffer: PropTypes.bool
+  offer: offerPropType,
+  link: PropTypes.string.isRequired,
+  myOffer: PropTypes.bool
 };
 
 export default OfferCard;

@@ -4,6 +4,7 @@ import {compressFile, loadFileToAttachmentObject, validateFile} from "../../comm
 import OfferSinglePhotoEditComponent from "./OfferSinglePhotoEditComponent";
 import {InputLabel} from "@material-ui/core";
 import {useTranslation} from "react-i18next";
+import {photoPropType} from "common/prop-types";
 
 function OfferPhotosEditComponent(props) {
     const {setFieldValue, photos, handlePhotoError} = props;
@@ -63,12 +64,7 @@ function OfferPhotosEditComponent(props) {
 }
 
 OfferPhotosEditComponent.propTypes = {
-    photos: PropTypes.arrayOf(
-        PropTypes.shape({
-            name: PropTypes.string.isRequired,
-            url: PropTypes.string.isRequired
-        }),
-    ),
+    photos: PropTypes.arrayOf(photoPropType),
     setFieldValue: PropTypes.func.isRequired,
     handlePhotoError: PropTypes.func.isRequired,
 };

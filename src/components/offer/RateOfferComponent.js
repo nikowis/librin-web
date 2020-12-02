@@ -11,6 +11,7 @@ import {HIDE_NOTIFICATION, OFFER_RATING_CREATED, SHOW_NOTIFICATION} from "redux/
 import {NOTIFICATION_DURATION} from "common/app-constants";
 import {connect} from "react-redux";
 import TextFieldInput from "components/input/TextFieldInput";
+import {offerPropType} from "common/prop-types";
 
 function RateOfferComponent(props) {
 
@@ -96,20 +97,7 @@ function RateOfferComponent(props) {
 RateOfferComponent.propTypes = {
   userId: PropTypes.number.isRequired,
   otherUserId: PropTypes.number,
-  offer: PropTypes.shape({
-    id: PropTypes.number,
-    title: PropTypes.string,
-    author: PropTypes.string,
-    price: PropTypes.string,
-    status: PropTypes.string,
-    ownerId: PropTypes.number,
-    soldToMe: PropTypes.bool,
-    buyerId: PropTypes.number,
-    owner: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      username: PropTypes.string.isRequired,
-    })
-  }).isRequired,
+  offer: offerPropType.isRequired,
 };
 
 export default connect(state => ({}))(RateOfferComponent);

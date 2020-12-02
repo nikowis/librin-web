@@ -1,10 +1,11 @@
 import React, {useEffect, useRef} from 'react';
 import PropTypes from "prop-types";
 import ListItem from "@material-ui/core/ListItem";
-import {formatDateToString} from "../../common/date-utility";
+import {formatDateToString} from "common/date-utility";
 import List from "@material-ui/core/List";
 import InfiniteScroll from 'react-infinite-scroller';
-import LoaderComponent from "../LoaderComponent";
+import LoaderComponent from "components/LoaderComponent";
+import {conversationPropType} from "common/prop-types";
 
 function MessagesListComponent(props) {
 
@@ -70,21 +71,7 @@ function MessagesListComponent(props) {
 MessagesListComponent.propTypes = {
   loadMessages: PropTypes.func.isRequired,
   userId: PropTypes.number,
-  currentConversation:
-      PropTypes.shape({
-        id: PropTypes.number,
-        messages: PropTypes.array,
-        lastPage: PropTypes.bool,
-        offer: PropTypes.shape({
-          id: PropTypes.number,
-          title: PropTypes.string,
-          author: PropTypes.string,
-          price: PropTypes.string,
-          status: PropTypes.string,
-          ownerId: PropTypes.number,
-        }),
-        createdAt: PropTypes.string
-      })
+  currentConversation: conversationPropType
 };
 
 export default MessagesListComponent;

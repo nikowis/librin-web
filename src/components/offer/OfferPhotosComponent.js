@@ -1,6 +1,7 @@
 import {Backdrop, Grid} from '@material-ui/core';
 import PropTypes from "prop-types";
 import React from 'react';
+import {photoPropType} from "common/prop-types";
 
 function OfferPhotosComponent(props) {
     const {photos} = props;
@@ -52,12 +53,7 @@ function OfferPhotosComponent(props) {
 }
 
 OfferPhotosComponent.propTypes = {
-    photos: PropTypes.arrayOf(
-        PropTypes.shape({
-            name: PropTypes.string.isRequired,
-            url: PropTypes.string.isRequired
-        }),
-    ),
+    photos: PropTypes.arrayOf(photoPropType),
 };
 
 export default OfferPhotosComponent;

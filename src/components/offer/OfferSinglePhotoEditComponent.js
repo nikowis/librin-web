@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import AddIcon from '@material-ui/icons/Add';
 import IconButton from "@material-ui/core/IconButton";
 import CancelTwoToneIcon from '@material-ui/icons/CancelTwoTone';
+import {photoPropType} from "common/prop-types";
 
 function OfferSinglePhotoEditComponent(props) {
     const {onFileUpload, photo, index, onRemovePhoto} = props;
@@ -37,10 +38,7 @@ function OfferSinglePhotoEditComponent(props) {
 }
 
 OfferSinglePhotoEditComponent.propTypes = {
-    photo: PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        url: PropTypes.string.isRequired
-    }),
+    photo: photoPropType,
     onFileUpload: PropTypes.func.isRequired,
     onRemovePhoto: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired

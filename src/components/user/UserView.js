@@ -14,6 +14,7 @@ import OffersGrid from "../offer/OffersGrid";
 import PaginationComponent from "../PaginationComponent";
 import {objectEquals} from "../../common/object-helper";
 import {USER_VIEW} from "../../redux/offersReducer";
+import {offerPropType} from "common/prop-types";
 
 function UserView(props) {
   const [loading, setLoading] = React.useState(false);
@@ -120,23 +121,7 @@ UserView.propTypes = {
   status: PropTypes.string,
   avgRating: PropTypes.number,
   ratingCount: PropTypes.number,
-  offers: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        title: PropTypes.string.isRequired,
-        author: PropTypes.string.isRequired,
-        price: PropTypes.PropTypes.oneOfType([
-          PropTypes.string,
-          PropTypes.number,
-        ]),
-        status: PropTypes.string,
-        ownerId: PropTypes.number,
-        photo: PropTypes.shape({
-          name: PropTypes.string.isRequired,
-          url: PropTypes.string.isRequired
-        }),
-      })
-  ),
+  offers: PropTypes.arrayOf(offerPropType),
   currentPage: PropTypes.number,
   totalPages: PropTypes.number,
   currentFilter: PropTypes.object.isRequired,

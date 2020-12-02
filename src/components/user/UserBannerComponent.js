@@ -8,6 +8,7 @@ import {UserStatus} from "../../common/app-constants";
 
 import ReportingComponent from "../offer/ReportingComponent";
 import Rating from "@material-ui/lab/Rating/Rating";
+import {userPropType} from "common/prop-types";
 
 function UserBannerComponent(props) {
   const {user, withLink} = props;
@@ -76,13 +77,7 @@ function UserBannerComponent(props) {
 }
 
 UserBannerComponent.propTypes = {
-  user: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    username: PropTypes.string.isRequired,
-    status: PropTypes.string.isRequired,
-    avgRating: PropTypes.number,
-    ratingCount: PropTypes.number,
-  }),
+  user: userPropType,
   withLink: PropTypes.bool,
 };
 

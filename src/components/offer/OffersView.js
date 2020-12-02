@@ -14,6 +14,7 @@ import {Grid} from "@material-ui/core";
 import OffersFilterComponent from "./OffersFilterComponent";
 import {filterMatchesUrl} from "../../common/filter-helper";
 import LandingBanner from "../LandingBanner";
+import {offerPropType} from "common/prop-types";
 
 function OffersView(props) {
   const {t} = useTranslation();
@@ -61,23 +62,7 @@ function OffersView(props) {
 }
 
 OffersView.propTypes = {
-  offers: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        title: PropTypes.string.isRequired,
-        author: PropTypes.string.isRequired,
-        price: PropTypes.PropTypes.oneOfType([
-          PropTypes.string,
-          PropTypes.number,
-        ]),
-        status: PropTypes.string,
-        ownerId: PropTypes.number,
-        photo: PropTypes.shape({
-          name: PropTypes.string.isRequired,
-          url: PropTypes.string.isRequired
-        }),
-      })
-  ),
+  offers: PropTypes.arrayOf(offerPropType),
   totalPages: PropTypes.number,
   myOffers: PropTypes.bool,
   authenticated: PropTypes.bool,

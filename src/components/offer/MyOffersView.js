@@ -11,6 +11,7 @@ import {useTranslation} from "react-i18next";
 import {objectEquals} from "../../common/object-helper";
 import {filterMatchesUrl} from "../../common/filter-helper";
 import TitleComponent from "../TitleComponent";
+import {offerPropType} from "common/prop-types";
 
 function MyOffersView(props) {
   const { t } = useTranslation();
@@ -76,13 +77,7 @@ function MyOffersView(props) {
 
 MyOffersView.propTypes = {
   userId: PropTypes.number.isRequired,
-  offers: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
-      author: PropTypes.string.isRequired,
-    })
-  ),
+  offers: PropTypes.arrayOf(offerPropType),
   totalPages: PropTypes.number,
 };
 

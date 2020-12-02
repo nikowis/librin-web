@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import {OfferStatus} from "../../common/app-constants";
 import WarningStrip from "../WarningStrip";
 import {useTranslation} from "react-i18next";
+import {offerPropType} from "common/prop-types";
 
 function OfferStatusInfoBanner(props) {
 
@@ -42,20 +43,7 @@ function OfferStatusInfoBanner(props) {
 OfferStatusInfoBanner.propTypes = {
     userId: PropTypes.number.isRequired,
     otherUserId: PropTypes.number,
-    offer: PropTypes.shape({
-        id: PropTypes.number,
-        title: PropTypes.string,
-        author: PropTypes.string,
-        price: PropTypes.string,
-        status: PropTypes.string,
-        ownerId: PropTypes.number,
-        soldToMe: PropTypes.bool,
-        buyerId: PropTypes.number,
-        owner: PropTypes.shape({
-            id: PropTypes.number.isRequired,
-            username: PropTypes.string.isRequired,
-        })
-    }).isRequired,
+    offer: offerPropType.isRequired,
 };
 
 export default OfferStatusInfoBanner;

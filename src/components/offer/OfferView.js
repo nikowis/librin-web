@@ -20,6 +20,7 @@ import OfferStatusInfoBanner from "./OfferStatusInfoBanner";
 import Rating from "@material-ui/lab/Rating/Rating";
 import ReportingComponent from "./ReportingComponent";
 import Helmet from "react-helmet";
+import {offerPropType} from "common/prop-types";
 
 function OfferView(props) {
   const [loading, setLoading] = React.useState(false);
@@ -175,31 +176,7 @@ function OfferView(props) {
 OfferView.propTypes = {
   userId: PropTypes.number,
   authenticated: PropTypes.bool.isRequired,
-  currentOffer: PropTypes.shape({
-    apiError: PropTypes.string,
-    id: PropTypes.number,
-    title: PropTypes.string,
-    author: PropTypes.string,
-    category: PropTypes.string,
-    condition: PropTypes.string,
-    description: PropTypes.string,
-    price: PropTypes.PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    status: PropTypes.string,
-    ownerId: PropTypes.number,
-    photos: PropTypes.arrayOf(
-        PropTypes.shape({
-          name: PropTypes.string.isRequired,
-          url: PropTypes.string.isRequired
-        })
-    ),
-    owner: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      username: PropTypes.string.isRequired,
-      status: PropTypes.string.isRequired,
-      avgRating: PropTypes.number,
-      ratingCount: PropTypes.number,
-    }),
-  }),
+  currentOffer: offerPropType,
 };
 
 export default connect((state) => ({

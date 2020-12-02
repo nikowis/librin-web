@@ -1,18 +1,18 @@
 import React, {useEffect} from 'react';
-import Api from "./../../common/api-communication"
+import Api from "common/api-communication"
 import {useParams, withRouter} from 'react-router-dom';
 import {useTranslation} from "react-i18next";
 import {connect} from "react-redux";
-import {CLEAR_CURRENT_MYOFFER, HIDE_NOTIFICATION, OFFER_UPDATED, SHOW_NOTIFICATION} from "../../redux/actions";
-import {NOTIFICATION_DURATION, OfferStatus, PAPER_ELEVATION} from "../../common/app-constants";
-import PropTypes from "prop-types";
-import LoaderComponent from "../LoaderComponent";
-import {MY_OFFERS} from "../../common/paths";
-import EditOfferComponent from "./EditOfferComponent";
+import {CLEAR_CURRENT_MYOFFER, HIDE_NOTIFICATION, OFFER_UPDATED, SHOW_NOTIFICATION} from "redux/actions";
+import {NOTIFICATION_DURATION, OfferStatus, PAPER_ELEVATION} from "common/app-constants";
+import LoaderComponent from "components/LoaderComponent";
+import {MY_OFFERS} from "common/paths";
+import EditOfferComponent from "components/offer/EditOfferComponent";
 import Paper from "@material-ui/core/Paper/Paper";
-import TitleComponent from "../TitleComponent";
+import TitleComponent from "components/TitleComponent";
 import Button from "@material-ui/core/Button";
 import Chip from "@material-ui/core/Chip";
+import {offerPropType} from "common/prop-types";
 
 function EditOfferView(props) {
 
@@ -107,15 +107,7 @@ function EditOfferView(props) {
 }
 
 EditOfferView.propTypes = {
-  offer: PropTypes.shape({
-    id: PropTypes.number,
-    title: PropTypes.string,
-    author: PropTypes.string,
-    price: PropTypes.PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number
-    ]),
-  }),
+  offer: offerPropType,
 };
 
 export default connect(state => ({

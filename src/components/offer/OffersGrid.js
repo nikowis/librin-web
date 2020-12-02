@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
 import OfferCard from "./OfferCard";
+import {offerPropType} from "common/prop-types";
 
 function OffersGrid(props) {
 
@@ -26,23 +27,7 @@ function OffersGrid(props) {
 }
 
 OffersGrid.propTypes = {
-    offers: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.number.isRequired,
-            title: PropTypes.string.isRequired,
-            author: PropTypes.string.isRequired,
-            price: PropTypes.PropTypes.oneOfType([
-                PropTypes.string,
-                PropTypes.number
-            ]),
-            status: PropTypes.string,
-            ownerId: PropTypes.number,
-            photo: PropTypes.shape({
-                name: PropTypes.string.isRequired,
-                url: PropTypes.string.isRequired
-            }),
-        }),
-    ),
+    offers: PropTypes.arrayOf(offerPropType),
     offerLinkBase: PropTypes.string.isRequired,
     myOffers: PropTypes.bool
 };

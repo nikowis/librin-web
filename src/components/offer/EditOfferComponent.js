@@ -14,6 +14,7 @@ import BookConditionInput from "components/input/BookConditionInput";
 import BookCategoryInput from "components/input/BookCategoryInput";
 import BookAuthorInput from "components/input/BookAuthorInput";
 import TextFieldInput from "components/input/TextFieldInput";
+import {offerPropType} from "common/prop-types";
 
 function EditOfferComponent(props) {
   const {t} = useTranslation();
@@ -119,24 +120,10 @@ function EditOfferComponent(props) {
   );
 }
 
+
 EditOfferComponent.propTypes = {
-  offer: PropTypes.shape({
-    id: PropTypes.number,
-    title: PropTypes.string,
-    author: PropTypes.string,
-    condition: PropTypes.string,
-    category: PropTypes.string,
-    price: PropTypes.PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    photos: PropTypes.arrayOf(
-        PropTypes.shape({
-          name: PropTypes.string.isRequired,
-          url: PropTypes.string.isRequired
-        })
-    ),
-  }),
+  offer: offerPropType,
   handleSubmit: PropTypes.func.isRequired,
 };
 
-export default connect((state) => ({
-
-}))(EditOfferComponent);
+export default connect((state) => ({}))(EditOfferComponent);
