@@ -5,6 +5,7 @@ import {TextField} from "@material-ui/core";
 
 TextFieldInput.propTypes = {
   onChange: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   error: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.object
@@ -16,11 +17,14 @@ TextFieldInput.propTypes = {
   type: PropTypes.string,
   disabled: PropTypes.bool,
   required: PropTypes.bool,
+  multiline: PropTypes.bool,
+  rows: PropTypes.number,
+  rowsMax: PropTypes.number,
 };
 
 function TextFieldInput(props) {
 
-  const {onChange, error, value, touched, required, name, label, disabled, type} = props;
+  const {onChange, error, value, touched, required, name, label, disabled, type, onClick} = props;
 
   return (
       <TextField
@@ -35,6 +39,7 @@ function TextFieldInput(props) {
           margin="dense"
           variant={'outlined'}
           fullWidth
+          onClick={onClick}
           required={required}
           disabled={disabled}
       />

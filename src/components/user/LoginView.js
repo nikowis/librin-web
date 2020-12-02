@@ -1,16 +1,16 @@
-import {Button, Paper, TextField} from '@material-ui/core';
-import {Formik} from 'formik';
+import {Button, Paper} from '@material-ui/core';
+import {useFormik} from 'formik';
 import PropTypes from "prop-types";
 import React from 'react';
 import {useTranslation} from "react-i18next";
 import {connect} from "react-redux";
 import {Link, Redirect} from "react-router-dom";
-import Api from "../../common/api-communication";
-import {PAPER_ELEVATION} from '../../common/app-constants';
-import {translate} from "../../common/i18n-helper";
-import {GENERATE_CONFIRM_EMAIL, GENERATE_PASSWORD_RESET, OFFERS, REGISTER} from "../../common/paths";
-import {loginSchema} from "../../common/validation-schemas";
-import TitleComponent from "../TitleComponent";
+import Api from "common/api-communication";
+import {PAPER_ELEVATION} from 'common/app-constants';
+import {GENERATE_CONFIRM_EMAIL, GENERATE_PASSWORD_RESET, OFFERS, REGISTER} from "common/paths";
+import {loginSchema} from "common/validation-schemas";
+import TitleComponent from "components/TitleComponent";
+import TextFieldInput from "components/input/TextFieldInput";
 
 function LoginView(props) {
 
@@ -23,6 +23,17 @@ function LoginView(props) {
         .finally(() => actions.setSubmitting(false));
   };
 
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: ''
+    },
+    onSubmit: handleSubmit,
+    validationSchema: loginSchema,
+  });
+
+  const {touched, values, errors, handleChange, isSubmitting} = formik;
+
   if (props.authenticated) {
     return <Redirect to={OFFERS} push={true}/>
   }
@@ -31,55 +42,18 @@ function LoginView(props) {
       <>
         <TitleComponent content={t('login.page')}/>
         <Paper elevation={PAPER_ELEVATION} square className={'form-container'}>
-          <Formik validationSchema={loginSchema}
-                  onSubmit={handleSubmit}
-                  initialValues={{
-                    email: '',
-                    password: ''
-                  }}
-          >
-            {({
-                values,
-                errors,
-                touched,
-                handleChange,
-                handleSubmit,
-                isSubmitting
-              }) => (
-                <form onSubmit={handleSubmit}>
-                  <div>
-                    <TextField
-                        size="small"
-                        error={errors.email && touched.email}
-                        label={t('user.email.label')}
-                        name="email"
-                        variant="outlined"
-                        value={values.email}
-                        onChange={handleChange}
-                        helperText={(errors.email && touched.email) && translate(errors.email)}
-                        margin="dense"
-                    />
-                  </div>
-                  <div>
-                    <TextField
-                        size="small"
-                        error={errors.password && touched.password}
-                        label={t('user.password.label')}
-                        name="password"
-                        type="password"
-                        variant="outlined"
-                        value={values.password}
-                        onChange={handleChange}
-                        helperText={(errors.password && touched.password) && translate(errors.password)}
-                        margin="dense"
-                    />
-                  </div>
-                  <Button size={"small"} variant="contained" color="primary" type="submit" disabled={isSubmitting}>
-                    {t('login.submit')}
-                  </Button>
-                </form>
-            )}
-          </Formik>
+
+          <form onSubmit={formik.handleSubmit}>
+            <TextFieldInput onChange={handleChange} error={errors.email} value={values.email}
+                            touched={touched.email} name={'email'} label={t('user.email.label')}/>
+
+            <TextFieldInput onChange={handleChange} error={errors.password} value={values.password}
+                            touched={touched.password} name={'password'} type={'password'}
+                            label={t('user.password.label')}/>
+            <Button size={"small"} variant="contained" color="primary" type="submit" disabled={isSubmitting}>
+              {t('login.submit')}
+            </Button>
+          </form>
         </Paper>
         <Paper elevation={PAPER_ELEVATION} square className={'action-buttons-bar form-container'}>
           <Link to={REGISTER}>

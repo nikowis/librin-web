@@ -1,16 +1,15 @@
-import {Button, Paper, TextField} from "@material-ui/core";
-import {Formik} from "formik";
+import {Button, Paper} from "@material-ui/core";
+import {useFormik} from "formik";
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
-import Api from "../../common/api-communication";
-import {PAPER_ELEVATION} from '../../common/app-constants';
-import {translate} from "../../common/i18n-helper";
-import {generateResetPasswordSchema} from "../../common/validation-schemas";
-import MaxWidthContainer from "../MaxWidthContainer";
-import TitleComponent from "../TitleComponent";
-
+import Api from "common/api-communication";
+import {PAPER_ELEVATION} from 'common/app-constants';
+import {generateResetPasswordSchema} from "common/validation-schemas";
+import MaxWidthContainer from "components/MaxWidthContainer";
+import TitleComponent from "components/TitleComponent";
+import TextFieldInput from "components/input/TextFieldInput";
 
 function GeneratePasswordResetView(props) {
 
@@ -27,6 +26,17 @@ function GeneratePasswordResetView(props) {
     }).finally(() => actions.setSubmitting(false));
   };
 
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+    },
+    onSubmit: handleSubmit,
+    validationSchema: generateResetPasswordSchema,
+  });
+
+  const {touched, values, errors, handleChange, isSubmitting} = formik;
+
+
   return (
       <MaxWidthContainer size='xs'>
         <TitleComponent content={t('user.password.generatePasswordTokenLink')}/>
@@ -38,40 +48,14 @@ function GeneratePasswordResetView(props) {
               <div>
                 {t('user.password.generatePasswordSuccess', {'email': emailSentTo})}
               </div> :
-              <Formik validationSchema={generateResetPasswordSchema}
-                      onSubmit={handleSubmit}
-                      initialValues={{
-                        email: '',
-                      }}
-              >
-                {({
-                    values,
-                    errors,
-                    touched,
-                    handleChange,
-                    handleSubmit,
-                    isSubmitting
-                  }) => (
-                    <form onSubmit={handleSubmit}>
-                      <div>
-                        <TextField
-                            size="small"
-                            error={errors.email && touched.email}
-                            label={t('user.email.label')}
-                            name="email"
-                            variant="outlined"
-                            value={values.email}
-                            onChange={handleChange}
-                            helperText={(errors.email && touched.email) && translate(errors.email)}
-                            margin="dense"
-                        />
-                      </div>
-                      <Button size={"small"} variant="contained" color="primary" type="submit" disabled={isSubmitting}>
-                        {t('user.password.generatePasswordTokenSubmit')}
-                      </Button>
-                    </form>
-                )}
-              </Formik>
+              <form onSubmit={formik.handleSubmit}>
+                <TextFieldInput onChange={handleChange} error={errors.email} value={values.email}
+                                touched={touched.email} name={'email'} label={t('user.email.label')}/>
+
+                <Button size={"small"} variant="contained" color="primary" type="submit" disabled={isSubmitting}>
+                  {t('user.password.generatePasswordTokenSubmit')}
+                </Button>
+              </form>
           }
         </Paper>
       </MaxWidthContainer>

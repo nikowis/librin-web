@@ -8,7 +8,7 @@ import {withRouter} from "react-router-dom";
 import Api from "common/api-communication";
 import {PAPER_ELEVATION} from "common/app-constants";
 import {PROFILE_CHANGE_PASSWORD} from "common/paths";
-import DeleteAccountComponent from "components/user/settings/DeleteAccountComponent";
+import DeleteAccountDialog from "components/user/settings/DeleteAccountDialog";
 import TitleComponent from "components/TitleComponent";
 import PreferencesForm from "components/user/settings/PreferencesForm";
 import PersonalDataForm from "components/user/settings/PersonalDataForm";
@@ -43,7 +43,7 @@ function SettingsView(props) {
                   onClick={() => props.history.push(PROFILE_CHANGE_PASSWORD)}>
             {t('user.password.change')}
           </Button>
-          <DeleteAccountComponent/>
+          <DeleteAccountDialog/>
         </Paper>
       </>
   );
