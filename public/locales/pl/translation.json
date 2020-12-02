@@ -26,6 +26,7 @@
     "exchange": "Wymiana",
     "shipment": "Wysyłka",
     "selfPickup": "Odbiór osobisty",
+    "pickupOrShipmentRequired": "Wybierz co najmniej jedną metodę przekazania książek!",
     "selfPickupCity": "Miasto",
     "selfPickupCityNoOptions": "Wpisz miasto",
     "accountIsDeleted": "Konto użytkownika zostało usunięte",

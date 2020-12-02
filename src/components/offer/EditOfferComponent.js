@@ -14,6 +14,8 @@ import BookAuthorInput from "components/input/BookAuthorInput";
 import TextFieldInput from "components/input/TextFieldInput";
 import {offerPropType} from "common/prop-types";
 import CurrencyTextFieldInput from "components/input/CurrencyTextFieldInput";
+import CheckboxInput from "components/input/CheckboxInput";
+import CityInput from "components/input/CityInput";
 
 function EditOfferComponent(props) {
   const {t} = useTranslation();
@@ -42,9 +44,14 @@ function EditOfferComponent(props) {
       condition: offer ? offer.condition : null,
       description: offer ? offer.description : "",
       photos: offer && offer.photos ? offer.photos : [],
+      exchange: offer && offer.exchange ? offer.exchange : props.exchange,
+      shipment: offer && offer.shipment ? offer.shipment : props.shipment,
+      selfPickup: offer && offer.selfPickup ? offer.selfPickup : props.selfPickup,
+      selfPickupCity: offer && offer.selfPickupCity ? offer.selfPickupCity : props.selfPickupCity
     },
     onSubmit: props.handleSubmit,
     validationSchema: validationSchema,
+    enableReinitialize: true
   });
 
   const {touched, values, errors, handleChange, setFieldValue, handleBlur, isSubmitting} = formik;
@@ -87,6 +94,25 @@ function EditOfferComponent(props) {
                                 touched={touched.price} name={'price'} label={t('offer.price')}
                                 currencySymbol={t("currencySymbol")} required={true}
         />
+
+        <CheckboxInput onChange={handleChange} error={errors.exchange} checked={values.exchange}
+                       touched={touched.exchange} name={'exchange'} label={t('user.exchange')}/>
+
+        <CheckboxInput onChange={handleChange} error={errors.shipment} checked={values.shipment}
+                       touched={touched.shipment} name={'shipment'} label={t('user.shipment')} hideErrorText/>
+
+        <CheckboxInput onChange={handleChange} error={errors.selfPickup} checked={values.selfPickup}
+                       touched={touched.selfPickup} name={'selfPickup'} label={t('user.selfPickup')} hideErrorText/>
+
+        {values.selfPickup ?
+            <CityInput value={values.selfPickupCity} error={errors.selfPickupCity}
+                       touched={touched.selfPickupCity}
+                       onChange={(v) => {
+                         setFieldValue('selfPickupCity', v);
+                       }}
+            />
+            : null
+        }
 
         <Button size={"small"} variant="contained" color="primary" type="submit"
                 disabled={isSubmitting}
