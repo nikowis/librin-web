@@ -1,50 +1,52 @@
 import React from 'react';
 
 import loadable from '@loadable/component'
-import OfferView from "./offer/OfferView";
-import OffersView from "./offer/OffersView";
-import UserView from "./user/UserView";
+import OfferView from "components/offer/OfferView";
+import OffersView from "components/offer/OffersView";
+import UserView from "components/user/UserView";
 import {Route, Switch} from "react-router-dom";
-import AuthenticatedRoute from "./AuthenticatedRoute";
+import AuthenticatedRoute from "components/AuthenticatedRoute";
 
 import {
   CHANGE_PASSWORD,
   CONFIRM_EMAIL,
+  CONVERSATION,
+  CONVERSATIONS,
   CREATE_OFFER,
-  EDIT_OFFER, GENERATE_CONFIRM_EMAIL,
+  EDIT_OFFER,
+  GENERATE_CONFIRM_EMAIL,
   GENERATE_PASSWORD_RESET,
   LOGIN,
   LOGOUT,
-  CONVERSATIONS,
-  CONVERSATION,
   MY_OFFERS,
   OFFER_VIEW,
   OFFERS,
-  SETTINGS,
   PROFILE_CHANGE_PASSWORD,
+  RATINGS_VIEW,
   REGISTER,
   ROOT,
-  USER_VIEW, RATINGS_VIEW
-} from "../common/paths";
+  SETTINGS,
+  USER_VIEW
+} from "common/paths";
 import Helmet from "react-helmet";
 import {useTranslation} from "react-i18next";
 
-const Login = loadable(() => import('./user/LoginView'));
-const Logout = loadable(() => import('./Logout'));
-const Register = loadable(() => import('./user/RegisterView'));
-const Settings = loadable(() => import('./user/settings/SettingsView'));
-const RatingsView = loadable(() => import('./user/RatingsView'));
-const MyOffersTableView = loadable(() => import('./offer/MyOffersView'));
-const CreateOfferView = loadable(() => import('./offer/CreateOfferView'));
-const EditOfferView = loadable(() => import('./offer/EditOfferView'));
-const NoMatchingView = loadable(() => import('./NoMatchingView'));
-const ConversationView = loadable(() => import('./messages/ConversationView'));
-const ConfirmEmailView = loadable(() => import('./user/ConfirmEmailView'));
-const GenerateConfirmEmailView = loadable(() => import('./user/GenerateConfirmEmailView'));
-const GeneratePasswordResetView = loadable(() => import('./user/GeneratePasswordResetView'));
-const ChangePasswordView = loadable(() => import('./user/ChangePasswordWithTokenView'));
-const ChangProfilePasswordView = loadable(() => import('./user/ChangProfilePasswordView'));
-const ConversationsView = loadable(() => import('./messages/ConversationsView'));
+const Login = loadable(() => import('components/user/LoginView'));
+const Logout = loadable(() => import('components/Logout'));
+const Register = loadable(() => import('components/user/RegisterView'));
+const Settings = loadable(() => import('components/user/settings/SettingsView'));
+const RatingsView = loadable(() => import('components/user/RatingsView'));
+const MyOffersTableView = loadable(() => import('components/offer/MyOffersView'));
+const CreateOfferView = loadable(() => import('components/offer/CreateOfferView'));
+const EditOfferView = loadable(() => import('components/offer/EditOfferView'));
+const NoMatchingView = loadable(() => import('components/NoMatchingView'));
+const ConversationView = loadable(() => import('components/messages/ConversationView'));
+const ConfirmEmailView = loadable(() => import('components/user/ConfirmEmailView'));
+const GenerateConfirmEmailView = loadable(() => import('components/user/GenerateConfirmEmailView'));
+const GeneratePasswordResetView = loadable(() => import('components/user/GeneratePasswordResetView'));
+const ChangePasswordView = loadable(() => import('components/user/ChangePasswordWithTokenView'));
+const ChangProfilePasswordView = loadable(() => import('components/user/ChangProfilePasswordView'));
+const ConversationsView = loadable(() => import('components/messages/ConversationsView'));
 
 
 function ViewRoutes() {

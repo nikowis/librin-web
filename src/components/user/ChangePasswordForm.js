@@ -1,72 +1,46 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
-import {Formik} from "formik";
+import {useFormik} from "formik";
 import {changePasswordSchema} from "../../common/validation-schemas";
-import {Button, TextField} from "@material-ui/core";
-import {translate} from "../../common/i18n-helper";
+import {Button} from "@material-ui/core";
 import PropTypes from "prop-types";
+import TextFieldInput from "components/input/TextFieldInput";
 
 
 function ChangePasswordForm(props) {
 
-    const {t} = useTranslation();
+  const {t} = useTranslation();
 
-    return (
-        <Formik validationSchema={changePasswordSchema}
-                onSubmit={props.onSubmit}
-                initialValues={{
-                    password: '',
-                    repeatPassword: '',
-                }}
-        >
-            {({
-                  values,
-                  errors,
-                  touched,
-                  handleChange,
-                  handleSubmit,
-                  isSubmitting
-              }) => (
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <TextField
-                            size="small"
-                            error={errors.password && touched.password}
-                            label={t('user.password.label')}
-                            name="password"
-                            type="password"
-                            variant="outlined"
-                            value={values.password}
-                            onChange={handleChange}
-                            helperText={(errors.password && touched.password) && translate(errors.password)}
-                            margin="dense"
-                        />
-                    </div>
-                    <div>
-                        <TextField
-                            size="small"
-                            error={errors.repeatPassword && touched.repeatPassword}
-                            label={t('user.password.repeat')}
-                            name="repeatPassword"
-                            type="password"
-                            variant="outlined"
-                            value={values.repeatPassword}
-                            onChange={handleChange}
-                            helperText={(errors.repeatPassword && touched.repeatPassword) && translate(errors.repeatPassword)}
-                            margin="dense"
-                        />
-                    </div>
-                    <Button size={"small"} variant="contained" color="primary" type="submit" disabled={isSubmitting}>
-                        {t('user.password.changeSubmit')}
-                    </Button>
-                </form>
-            )}
-        </Formik>
-    );
+  const formik = useFormik({
+    initialValues: {
+      password: '',
+      repeatPassword: '',
+    },
+    onSubmit: props.onSubmit,
+    validationSchema: changePasswordSchema,
+  });
+
+  const {touched, values, errors, handleChange, isSubmitting} = formik;
+
+  return (
+      <form onSubmit={formik.handleSubmit}>
+        <TextFieldInput onChange={handleChange} error={errors.password} value={values.password}
+                        touched={touched.password} name={'password'} type={'password'}
+                        label={t('user.password.label')}/>
+
+        <TextFieldInput onChange={handleChange} error={errors.repeatPassword} value={values.repeatPassword}
+                        touched={touched.repeatPassword} name={'repeatPassword'} type={'password'}
+                        label={t('user.password.repeat')}/>
+
+        <Button size={"small"} variant="contained" color="primary" type="submit" disabled={isSubmitting}>
+          {t('user.password.changeSubmit')}
+        </Button>
+      </form>
+  );
 }
 
 ChangePasswordForm.propTypes = {
-    onSubmit: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default ChangePasswordForm;

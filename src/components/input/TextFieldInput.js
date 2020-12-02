@@ -13,13 +13,14 @@ TextFieldInput.propTypes = {
   label: PropTypes.string,
   name: PropTypes.string,
   value: PropTypes.string,
+  type: PropTypes.string,
   disabled: PropTypes.bool,
   required: PropTypes.bool,
 };
 
 function TextFieldInput(props) {
 
-  const {onChange, error, value, touched, required, name, label, disabled} = props;
+  const {onChange, error, value, touched, required, name, label, disabled, type} = props;
 
   return (
       <TextField
@@ -28,6 +29,7 @@ function TextFieldInput(props) {
           label={label}
           name={name}
           value={value}
+          type={type? type : 'text'}
           onChange={onChange}
           helperText={(error && touched) && translate(error)}
           margin="dense"
