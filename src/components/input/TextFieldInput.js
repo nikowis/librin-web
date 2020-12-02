@@ -24,7 +24,7 @@ TextFieldInput.propTypes = {
 
 function TextFieldInput(props) {
 
-  const {onChange, error, value, touched, required, name, label, disabled, type, onClick} = props;
+  const {onChange, error, value, touched, required, name, label, disabled, type, onClick, rows, multiline, rowsMax} = props;
 
   return (
       <TextField
@@ -42,6 +42,9 @@ function TextFieldInput(props) {
           onClick={onClick}
           required={required}
           disabled={disabled}
+          multiline={multiline}
+          rows={rows}
+          rowsMax={rowsMax}
       />
   );
 }

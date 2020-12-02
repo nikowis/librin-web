@@ -3,8 +3,6 @@ import {useTranslation} from "react-i18next";
 import {useFormik} from "formik";
 import {createOfferSchema, editOfferSchema,} from "common/validation-schemas";
 import Button from "@material-ui/core/Button";
-import CurrencyTextField from "@unicef/material-ui-currency-textfield";
-import {translate} from "common/i18n-helper";
 import PropTypes from "prop-types";
 import OfferPhotosEditComponent from "components/offer/OfferPhotosEditComponent";
 import {API_ERROR, CLEAR_API_ERROR} from "redux/actions";
@@ -15,6 +13,7 @@ import BookCategoryInput from "components/input/BookCategoryInput";
 import BookAuthorInput from "components/input/BookAuthorInput";
 import TextFieldInput from "components/input/TextFieldInput";
 import {offerPropType} from "common/prop-types";
+import CurrencyTextFieldInput from "components/input/CurrencyTextFieldInput";
 
 function EditOfferComponent(props) {
   const {t} = useTranslation();
@@ -83,36 +82,14 @@ function EditOfferComponent(props) {
                         touched={touched.description} name={'description'} label={t('offer.description')}
                         multiline rows={2} rowsMax={4}/>
 
-        <CurrencyTextField
-            size="small"
-            error={errors.price && touched.price}
-            label={t("offer.price")}
-            name="price"
-            minimumValue={"0"}
-            variant={"outlined"}
-            value={values.price}
-            currencySymbol={t("currencySymbol")}
-            outputFormat="string"
-            decimalCharacter="."
-            decimalCharacterAlternative=","
-            decimalPlacesShownOnBlur={2}
-            digitGroupSeparator={""}
-            decimalPlaces={2}
-            onChange={(event, value) => setFieldValue("price", value)}
-            onBlur={handleBlur}
-            helperText={
-              errors.price && touched.price ? translate(errors.price) : ""
-            }
-            margin="dense"
-            required
-            fullWidth
+        <CurrencyTextFieldInput onChange={(event, value) => setFieldValue("price", value)} error={errors.price}
+                                value={values.price} onBlur={handleBlur}
+                                touched={touched.price} name={'price'} label={t('offer.price')}
+                                currencySymbol={t("currencySymbol")} required={true}
         />
-        <Button
-            size={"small"}
-            variant="contained"
-            color="primary"
-            type="submit"
-            disabled={isSubmitting}
+
+        <Button size={"small"} variant="contained" color="primary" type="submit"
+                disabled={isSubmitting}
         >
           {newOffer ? t("offer.newSubmit") : t("offer.editSubmit")}
         </Button>
@@ -124,6 +101,15 @@ function EditOfferComponent(props) {
 EditOfferComponent.propTypes = {
   offer: offerPropType,
   handleSubmit: PropTypes.func.isRequired,
+  exchange: PropTypes.bool,
+  shipment: PropTypes.bool,
+  selfPickup: PropTypes.bool,
+  selfPickupCity: PropTypes.object,
 };
 
-export default connect((state) => ({}))(EditOfferComponent);
+export default connect((state) => ({
+  exchange: state.me.exchange,
+  shipment: state.me.shipment,
+  selfPickup: state.me.selfPickup,
+  selfPickupCity: state.me.selfPickupCity,
+}))(EditOfferComponent);
