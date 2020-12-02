@@ -13,7 +13,7 @@ import {
   RESET_MYOFFERS_FILTER,
 } from "./actions";
 import {insertItem, removeItem} from "../common/array-helper";
-import {processOffer, processOffers} from "./offersReducer";
+import {initializeOfferPhotos, processOffers} from "./offersReducer";
 import {DEFAULT_PAGE_SIZE, DESC_SORT, UPDATED_AT_SORT,} from "../common/app-constants";
 
 const initialState = {
@@ -44,10 +44,7 @@ const initialState = {
     size: DEFAULT_PAGE_SIZE,
   },
   currentOffer: {
-    id: 0,
-    title: "",
-    author: "",
-    price: 0,
+
   },
 };
 
@@ -76,7 +73,7 @@ const myOffersReducer = (state = initialState, action) => {
       if(payload.status === 400) {
         return {...state}
       }
-      let processedPayload = processOffer(payload);
+      let processedPayload = initializeOfferPhotos(payload);
 
       return {
         ...state,
@@ -85,7 +82,7 @@ const myOffersReducer = (state = initialState, action) => {
         },
       };
     case OFFER_UPDATED:
-      let updatedOffer = processOffer(payload);
+      let updatedOffer = initializeOfferPhotos(payload);
       let allOffers = state.content;
       const updatedOfferIndex = allOffers
         ? allOffers.findIndex((offer) => offer.id === updatedOffer.id)
@@ -99,14 +96,13 @@ const myOffersReducer = (state = initialState, action) => {
       }
       return {
         ...state,
+        currentOffer: initialState.currentOffer,
         content: allOffers
       };
     case CLEAR_CURRENT_MYOFFER:
       return {
         ...state,
-        currentOffer: {
-          ...initialState.currentOffer,
-        },
+        currentOffer: initialState.currentOffer
       };
     case REPLACE_MYOFFERS_FILTER: {
       validatePageParam(payload);

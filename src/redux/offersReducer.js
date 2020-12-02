@@ -53,14 +53,11 @@ const initialState = {
   [MAIN_VIEW]: initialOffersView,
   [USER_VIEW]: initialOffersView,
   currentOffer: {
-    id: 0,
-    title: "",
-    author: "",
-    price: 0,
+
   },
 };
 
-export function processOffer(offer) {
+export function initializeOfferPhotos(offer) {
   if (offer.photo) {
     offer.photo = initializeAttachmentUrl(offer.photo);
   }
@@ -74,7 +71,7 @@ export function processOffer(offer) {
 
 export function processOffers(content) {
   content.forEach((offer) => {
-    processOffer(offer);
+    initializeOfferPhotos(offer);
   });
   return content;
 }
@@ -113,7 +110,7 @@ const offersReducer = (state = initialState, action) => {
     }
     case VIEW_OFFER:
     case FETCH_OFFER + FULFILLED:
-      let processedPayload = processOffer(payload);
+      let processedPayload = initializeOfferPhotos(payload);
 
       return {
         ...state,
@@ -122,9 +119,10 @@ const offersReducer = (state = initialState, action) => {
         },
       };
     case OFFER_UPDATED: {
-      let updatedOffer = processOffer(payload);
+      let updatedOffer = initializeOfferPhotos(payload);
       return {
         ...state,
+        currentOffer: initialState.currentOffer,
         [MAIN_VIEW]: {
           ...state[MAIN_VIEW],
           content: updateOfferInList(state[MAIN_VIEW].content, updatedOffer),

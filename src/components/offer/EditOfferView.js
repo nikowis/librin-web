@@ -22,7 +22,7 @@ function EditOfferView(props) {
   const propId = offer.id;
 
   useEffect(() => {
-    if (propId === null || propId.toString() !== id) {
+    if (propId === undefined || propId.toString() !== id) {
       dispatch({type: CLEAR_CURRENT_MYOFFER});
       dispatch(Api.getMyOffer(id)).then((res) => {
         if (res.action.payload.status === 400) {
@@ -101,7 +101,7 @@ function EditOfferView(props) {
 
   return (
       <>
-        {offer.title === null || offer.id.toString() !== id ? <LoaderComponent/> : getView()}
+        {offer.title === null || !offer.id || offer.id.toString() !== id ? <LoaderComponent/> : getView()}
       </>
   );
 }

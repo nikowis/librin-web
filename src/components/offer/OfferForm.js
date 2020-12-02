@@ -16,6 +16,8 @@ import {offerPropType} from "common/prop-types";
 import CurrencyTextFieldInput from "components/input/CurrencyTextFieldInput";
 import CheckboxInput from "components/input/CheckboxInput";
 import CityInput from "components/input/CityInput";
+import {FormHelperText} from "@material-ui/core";
+import {translate} from "common/i18n-helper";
 
 function OfferForm(props) {
   const {t} = useTranslation();
@@ -44,10 +46,10 @@ function OfferForm(props) {
       condition: offer ? offer.condition : null,
       description: offer ? offer.description : "",
       photos: offer && offer.photos ? offer.photos : [],
-      exchange: offer && offer.exchange ? offer.exchange : props.exchange,
-      shipment: offer && offer.shipment ? offer.shipment : props.shipment,
-      selfPickup: offer && offer.selfPickup ? offer.selfPickup : props.selfPickup,
-      selfPickupCity: offer && offer.selfPickupCity ? offer.selfPickupCity : props.selfPickupCity
+      exchange: offer ? offer.exchange : props.exchange,
+      shipment: offer ? offer.shipment : props.shipment,
+      selfPickup: offer ? offer.selfPickup : props.selfPickup,
+      selfPickupCity: offer ? offer.selfPickupCity : props.selfPickupCity
     },
     onSubmit: props.handleSubmit,
     validationSchema: validationSchema
@@ -114,6 +116,10 @@ function OfferForm(props) {
             />
             : null
         }
+
+        {errors.shipment && touched.shipment ? (
+            <FormHelperText error>{translate(errors.shipment)}</FormHelperText>
+        ) : null}
 
         <Button size={"small"} variant="contained" color="primary" type="submit"
                 disabled={isSubmitting}

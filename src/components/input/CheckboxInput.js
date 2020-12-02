@@ -37,7 +37,6 @@ function CheckboxInput(props) {
                   disabled={disabled}
                   margin="dense"
                   required={required}
-                  error={error && touched}
               />
             }
             label={label}
