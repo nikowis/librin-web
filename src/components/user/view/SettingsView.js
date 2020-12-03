@@ -27,7 +27,6 @@ function SettingsView(props) {
   return (
       <>
         <TitleComponent content={t('settings.title')}/>
-
         <Grid container justify="center" spacing={1}>
           <Grid item sm={12} md={4}>
             <PreferencesForm/>
@@ -36,8 +35,6 @@ function SettingsView(props) {
             <PersonalDataForm/>
           </Grid>
         </Grid>
-
-
         <Paper elevation={PAPER_ELEVATION} square className={'action-buttons-bar form-container'}>
           <Button size={"small"} variant="outlined" color="primary" type="submit"
                   onClick={() => props.history.push(PROFILE_CHANGE_PASSWORD)}>

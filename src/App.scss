@@ -30,6 +30,10 @@
     }
   }
 
+  .MuiGrid-item {
+    width: 100%;
+  }
+
   .MuiButton-outlinedPrimary {
     color: $primary;
     border: 1px solid $primary;

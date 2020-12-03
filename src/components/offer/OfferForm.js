@@ -15,9 +15,6 @@ import TextFieldInput from "components/input/TextFieldInput";
 import {offerPropType} from "common/prop-types";
 import CurrencyTextFieldInput from "components/input/CurrencyTextFieldInput";
 import CheckboxInput from "components/input/CheckboxInput";
-import CityInput from "components/input/CityInput";
-import {FormHelperText} from "@material-ui/core";
-import {translate} from "common/i18n-helper";
 
 function OfferForm(props) {
   const {t} = useTranslation();
@@ -47,9 +44,6 @@ function OfferForm(props) {
       description: offer ? offer.description : "",
       photos: offer && offer.photos ? offer.photos : [],
       exchange: offer ? offer.exchange : props.exchange,
-      shipment: offer ? offer.shipment : props.shipment,
-      selfPickup: offer ? offer.selfPickup : props.selfPickup,
-      selfPickupCity: offer ? offer.selfPickupCity : props.selfPickupCity
     },
     onSubmit: props.handleSubmit,
     validationSchema: validationSchema
@@ -101,26 +95,6 @@ function OfferForm(props) {
         <CheckboxInput onChange={handleChange} error={errors.exchange} checked={values.exchange}
                        touched={touched.exchange} name={'exchange'} label={t('user.exchange')}/>
 
-        <CheckboxInput onChange={handleChange} error={errors.shipment} checked={values.shipment}
-                       touched={touched.shipment} name={'shipment'} label={t('user.shipment')} hideErrorText/>
-
-        <CheckboxInput onChange={handleChange} error={errors.selfPickup} checked={values.selfPickup}
-                       touched={touched.selfPickup} name={'selfPickup'} label={t('user.selfPickup')} hideErrorText/>
-
-        {values.selfPickup ?
-            <CityInput value={values.selfPickupCity} error={errors.selfPickupCity}
-                       touched={touched.selfPickupCity}
-                       onChange={(v) => {
-                         setFieldValue('selfPickupCity', v);
-                       }}
-            />
-            : null
-        }
-
-        {errors.shipment && touched.shipment ? (
-            <FormHelperText error>{translate(errors.shipment)}</FormHelperText>
-        ) : null}
-
         <Button size={"small"} variant="contained" color="primary" type="submit"
                 disabled={isSubmitting}
         >
@@ -135,14 +109,8 @@ OfferForm.propTypes = {
   offer: offerPropType,
   handleSubmit: PropTypes.func.isRequired,
   exchange: PropTypes.bool,
-  shipment: PropTypes.bool,
-  selfPickup: PropTypes.bool,
-  selfPickupCity: PropTypes.object,
 };
 
 export default connect((state) => ({
   exchange: state.me.exchange,
-  shipment: state.me.shipment,
-  selfPickup: state.me.selfPickup,
-  selfPickupCity: state.me.selfPickupCity,
 }))(OfferForm);

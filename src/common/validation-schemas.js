@@ -140,24 +140,7 @@ export const createOfferSchema = Yup.object().shape({
           }).required().nullable()
       ).nullable().min(1),
       exchange: Yup.bool(),
-      shipment: Yup.bool().when("selfPickup", {
-        is: false,
-        then: Yup.bool().oneOf([true], translate('user.pickupOrShipmentRequired'))
-      }),
-      selfPickup: Yup.bool().when("shipment", {
-        is: false,
-        then: Yup.bool().oneOf([true], translate('user.pickupOrShipmentRequired'))
-      }),
-      selfPickupCity: Yup.object({
-        id: Yup.number().required(),
-      }).nullable()
-          .when("selfPickup", {
-            is: true,
-            then: Yup.object().required()
-          }),
-    },
-    //avoid circular dependency
-    [['shipment', 'selfPickup']]
+    }
 );
 
 
@@ -189,24 +172,7 @@ export const editOfferSchema = Yup.object().shape({
           }).required().nullable()
       ).nullable().min(1),
       exchange: Yup.bool(),
-      shipment: Yup.bool().when("selfPickup", {
-        is: false,
-        then: Yup.bool().oneOf([true], translate('user.pickupOrShipmentRequired'))
-      }),
-      selfPickup: Yup.bool().when("shipment", {
-        is: false,
-        then: Yup.bool().oneOf([true], translate('user.pickupOrShipmentRequired'))
-      }),
-      selfPickupCity: Yup.object({
-        id: Yup.number().required(),
-      }).nullable()
-          .when("selfPickup", {
-            is: true,
-            then: Yup.object().required()
-          }),
     },
-    //avoid circular dependency
-    [['shipment', 'selfPickup']]
 );
 
 export const deleteAccountSchema = Yup.object().shape({
