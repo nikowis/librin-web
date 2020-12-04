@@ -7,7 +7,7 @@ import ConversationOfferPreviewComponent from "components/messages/ConversationO
 import LoaderComponent from "components/LoaderComponent";
 import Divider from "@material-ui/core/Divider";
 import MaxWidthContainer from "components/MaxWidthContainer";
-import UserBannerComponent from "components/user/UserBannerComponent";
+import UserCardComponent from "components/user/UserCardComponent";
 import {CONVERSATIONS} from "common/paths";
 import {READ_CONVERSATION} from "redux/actions";
 import ConversationOfferActions from "components/messages/ConversationOfferActions";
@@ -96,7 +96,7 @@ function SingleConversationView(props) {
           {
             !wrongConvLoaded && currentConversation.id && currentConversation.messages ?
                 <>
-                  <UserBannerComponent user={recipient} withLink/>
+                  <UserCardComponent user={recipient}/>
                   <Divider variant="fullWidth"/>
                   <ConversationOfferPreviewComponent conversation={currentConversation}/>
                   {currentConversation.messages && currentConversation.messages.length > 0 ?

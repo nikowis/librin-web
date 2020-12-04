@@ -13,7 +13,7 @@ import Button from "@material-ui/core/Button";
 import {convertConditionValueToInt, OfferStatus, PAPER_ELEVATION} from "common/app-constants";
 import WarningStrip from "components/WarningStrip";
 import EmptyPhotoPreviewComponent from "components/EmptyPhotoPreviewComponent";
-import UserBannerComponent from "components/user/UserBannerComponent";
+import UserCardComponent from "components/user/UserCardComponent";
 import OfferPhotosComponent from "components/offer/OfferPhotosComponent";
 import {Grid} from "@material-ui/core";
 import OfferStatusInfoBanner from "components/offer/OfferStatusInfoBanner";
@@ -93,7 +93,7 @@ function OfferView(props) {
             </Grid>
             <Grid item xs={12} sm={8} md={4}>
               <Card elevation={PAPER_ELEVATION} square className={"user-details"}>
-                <UserBannerComponent user={owner} withLink/>
+                <UserCardComponent user={owner}/>
               </Card>
               <Card
                   elevation={PAPER_ELEVATION}

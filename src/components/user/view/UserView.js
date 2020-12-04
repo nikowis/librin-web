@@ -8,7 +8,7 @@ import {PAPER_ELEVATION} from "common/app-constants";
 import {OFFERS} from "common/paths";
 import {CLEAR_CURRENT_USER, FETCH_USERVIEW_OFFERS, REPLACE_OFFERS_FILTER,} from "redux/actions";
 import LoaderComponent from "components/LoaderComponent";
-import UserBannerComponent from "components/user/UserBannerComponent";
+import UserCardComponent from "components/user/UserCardComponent";
 import {useTranslation} from "react-i18next";
 import OffersGrid from "components/offer/OffersGrid";
 import PaginationComponent from "components/PaginationComponent";
@@ -93,7 +93,7 @@ function UserView(props) {
                   square
                   className={"user-info-card"}
               >
-                <UserBannerComponent user={{id, username, status, avgRating, ratingCount}}/>
+                <UserCardComponent user={{id, username, status, avgRating, ratingCount}}/>
               </Paper>
               {objectEquals(currentFilter, newFilter) ? (
                   offers && offers.length > 0 ? (
