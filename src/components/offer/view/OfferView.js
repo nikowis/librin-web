@@ -93,7 +93,7 @@ function OfferView(props) {
             </Grid>
             <Grid item xs={12} sm={8} md={4}>
               <Card elevation={PAPER_ELEVATION} square className={"user-details"}>
-                <UserCardComponent user={owner}/>
+                <UserCardComponent user={owner} withLink={true}/>
               </Card>
               <Card
                   elevation={PAPER_ELEVATION}

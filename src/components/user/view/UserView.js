@@ -93,7 +93,7 @@ function UserView(props) {
                   square
                   className={"user-info-card"}
               >
-                <UserCardComponent user={{id, username, status, avgRating, ratingCount}}/>
+                <UserCardComponent user={{id, username, status, avgRating, ratingCount}} withLink={false}/>
               </Paper>
               {objectEquals(currentFilter, newFilter) ? (
                   offers && offers.length > 0 ? (

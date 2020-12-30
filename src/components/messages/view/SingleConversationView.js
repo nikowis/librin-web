@@ -7,7 +7,6 @@ import ConversationOfferPreviewComponent from "components/messages/ConversationO
 import LoaderComponent from "components/LoaderComponent";
 import Divider from "@material-ui/core/Divider";
 import MaxWidthContainer from "components/MaxWidthContainer";
-import UserCardComponent from "components/user/UserCardComponent";
 import {CONVERSATIONS} from "common/paths";
 import {READ_CONVERSATION} from "redux/actions";
 import ConversationOfferActions from "components/messages/ConversationOfferActions";
@@ -18,6 +17,7 @@ import {Paper} from '@material-ui/core';
 import {PAPER_ELEVATION, UserStatus} from 'common/app-constants'
 import RateOfferComponent from "components/offer/RateOfferComponent";
 import {conversationPropType} from "common/prop-types";
+import UserBanner from "components/user/UserBanner";
 
 function SingleConversationView(props) {
 
@@ -96,7 +96,7 @@ function SingleConversationView(props) {
           {
             !wrongConvLoaded && currentConversation.id && currentConversation.messages ?
                 <>
-                  <UserCardComponent user={recipient}/>
+                  <UserBanner user={recipient} withLink={true}/>
                   <Divider variant="fullWidth"/>
                   <ConversationOfferPreviewComponent conversation={currentConversation}/>
                   {currentConversation.messages && currentConversation.messages.length > 0 ?
