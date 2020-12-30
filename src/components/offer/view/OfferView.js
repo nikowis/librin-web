@@ -3,24 +3,18 @@ import Api from "common/api-communication";
 import {useParams, withRouter} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 import {connect} from "react-redux";
-import PropTypes from "prop-types";
 import LoaderComponent from "components/LoaderComponent";
 import Card from "@material-ui/core/Card/Card";
 import {CLEAR_CURRENT_OFFER} from "redux/actions";
-import {LOGIN, CONVERSATIONS, OFFERS} from "common/paths";
-import CardActions from "@material-ui/core/CardActions/CardActions";
-import Button from "@material-ui/core/Button";
-import {convertConditionValueToInt, OfferStatus, PAPER_ELEVATION} from "common/app-constants";
-import WarningStrip from "components/WarningStrip";
+import {OFFERS} from "common/paths";
+import {PAPER_ELEVATION} from "common/app-constants";
 import EmptyPhotoPreviewComponent from "components/EmptyPhotoPreviewComponent";
 import UserCardComponent from "components/user/UserCardComponent";
 import OfferPhotosComponent from "components/offer/OfferPhotosComponent";
 import {Grid} from "@material-ui/core";
-import OfferStatusInfoBanner from "components/offer/OfferStatusInfoBanner";
-import Rating from "@material-ui/lab/Rating/Rating";
-import ReportingComponent from "components/offer/ReportingComponent";
 import Helmet from "react-helmet";
 import {offerPropType} from "common/prop-types";
+import OfferDetails from "components/offer/OfferDetails";
 
 function OfferView(props) {
   const [loading, setLoading] = React.useState(false);
@@ -35,15 +29,8 @@ function OfferView(props) {
   const propId = props.currentOffer.id;
   const {
     title,
-    author,
-    price,
-    ownerId,
-    status,
     photos,
     owner,
-    description,
-    category,
-    condition,
   } = props.currentOffer;
   const wrongOfferIsLoaded = !propId || propId !== id;
   useEffect(() => {
@@ -59,20 +46,6 @@ function OfferView(props) {
           .then(() => setLoading(false));
     }
   }, [dispatch, history, id, wrongOfferIsLoaded, loading, invalidId]);
-
-  const [sendingMessage, setSendingMessage] = React.useState(false);
-
-  const handleSendMessage = () => {
-    if (props.authenticated && !sendingMessage) {
-      setSendingMessage(true);
-      dispatch(Api.createConversation(id)).then((res) => {
-        setSendingMessage(false);
-        history.push(CONVERSATIONS + "/" + res.value.id);
-      });
-    } else {
-      history.push(LOGIN);
-    }
-  };
 
   const imagesGridSize = photos && photos.length > 1 ? 6 : 4;
 
@@ -100,64 +73,8 @@ function OfferView(props) {
                   square
                   className={"offer-card-details"}
               >
-                <ReportingComponent offerId={id}/>
-                <div className={"primary-text"}>
-                  <label htmlFor={"price"}>{t("offer.price")}</label>
-                  <span id={"price"}>{price + " " + t("currencySymbol")}</span>
-                </div>
-                <div className={"secondary-text"}>
-                  <label htmlFor={"title"}>{t("offer.title")}</label>
-                  <span id={"title"}>{title}</span>
-                </div>
-                <div className={"secondary-text"}>
-                  <label htmlFor={"author"}>{t("offer.author")}</label>
-                  <span id={"author"}>{author}</span>
-                </div>
-                <div className={"secondary-text"}>
-                  <label htmlFor={"description"}>{t("offer.description")}</label>
-                  <span id={"description"}>{description}</span>
-                </div>
-                <div className={"secondary-text"}>
-                  <label htmlFor={"category"}>{t("offer.category.label")}</label>
-                  <span id={"category"}>{t("offer.category." + category)}</span>
-                </div>
-                <div className={"secondary-text"}>
-                  <label htmlFor={"condition"}>{t("offer.condition.label")}</label>
-                  <div className={"condition-box"}>
-                    <Rating
-                        id="condition"
-                        name="condition"
-                        className={"condition-stars"}
-                        readOnly
-                        value={convertConditionValueToInt(condition)}
-                    />
-                    <span
-                        className={'condition-hint'}>{condition ? t('offer.condition.' + condition) : null}</span>
-                  </div>
-                </div>
-                {OfferStatus.ACTIVE === status ? (
-                    <CardActions>
-                      {ownerId !== props.userId ? (
-                          <div className={'offer-actions'}>
-                            <Button
-                                size={"small"}
-                                variant="contained"
-                                color="primary"
-                                type="submit"
-                                onClick={() => handleSendMessage()}
-                            >
-                              {t("offer.sendMessage")}
-                            </Button>
-                          </div>
-                      ) : (
-                          <WarningStrip text={t("offer.owner.myoffer")}/>
-                      )}
-                    </CardActions>
-                ) : (
-                    <OfferStatusInfoBanner offer={props.currentOffer} userId={props.userId}/>
-                )}
+                <OfferDetails/>
               </Card>
-
             </Grid>
           </Grid>
         </>
@@ -174,13 +91,9 @@ function OfferView(props) {
 }
 
 OfferView.propTypes = {
-  userId: PropTypes.number,
-  authenticated: PropTypes.bool.isRequired,
   currentOffer: offerPropType,
 };
 
 export default connect((state) => ({
-  authenticated: state.me.authenticated,
-  userId: state.me.id,
   currentOffer: state.offers.currentOffer,
 }))(withRouter(OfferView));
