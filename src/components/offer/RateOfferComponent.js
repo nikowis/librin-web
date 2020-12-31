@@ -52,7 +52,7 @@ function RateOfferComponent(props) {
   return <>{offer.soldToMe ?
 
       <form onSubmit={handleSubmit}>
-        <div className={'centeredContainer'}>
+        <div className={'centered-container'}>
           {savedValue ? null : t('offer.rating.label')}
           <Rating
               id="rating"

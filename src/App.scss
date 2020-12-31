@@ -1,3 +1,4 @@
+@import "styles/Common";
 @import "styles/AppBar";
 @import "styles/Variables";
 @import "styles/OfferCards";
@@ -6,6 +7,9 @@
 @import "styles/CookiesBanner";
 @import "styles/Conversations";
 @import "styles/ListWithPagingNavigation";
+@import "styles/Reporting";
+@import "styles/User";
+@import "styles/Category";
 
 .app {
   font-family: 'Roboto', sans-serif;
@@ -84,13 +88,6 @@
 
 }
 
-.title-component {
-  font-size: 24px;
-  font-weight: 500;
-  margin: 0 auto 4px auto;
-}
-
-
 button.MuiButton-contained {
   margin: 0.2rem;
 }
@@ -101,84 +98,6 @@ button.MuiButton-outlined {
 
 #app-content-container {
   padding: 8px 0px 20px;
-}
-
-.link-no-styles {
-  color: inherit;
-  text-decoration: none;
-}
-
-.report-icon {
-  flex: 0 0 auto;
-  margin: 0 8px;
-  color: dimgray;
-  position: absolute;
-  right: 8px;
-  top: 8px;
-
-  &.MuiSvgIcon-root {
-    font-size: 24px;
-  }
-}
-
-.report-button .MuiButton-label {
-  font-size: $defaultFontSize;
-}
-
-.report-dialog {
-  .MuiDialog-paper {
-    margin: 32px 16px;
-    width: 500px;
-
-    .MuiDialogTitle-root {
-      padding: 8px 16px;
-
-      .MuiTypography-h6 {
-        font-size: 20px;
-      }
-    }
-
-    .MuiDialogContent-root {
-      font-size: $defaultFontSize;
-      padding: 0 16px;
-    }
-
-    .MuiDialogContentText-root {
-      margin: 0;
-    }
-  }
-}
-
-.user-info-card {
-  position: relative;
-  margin-bottom: 8px;
-}
-
-.user-info-banner {
-  padding: 8px;
-  display: flex;
-  position: relative;
-  text-align: left;
-
-  .MuiAvatar-root {
-    margin: 0 8px;
-  }
-}
-
-.user-info-rating {
-  font-size: 14px;
-  margin: 0 4px;
-
-  .user-rating-label {
-    .user-rating-average {
-      font-weight: 500;
-      font-size: 14px;
-    }
-
-    .user-rating-count {
-      font-size: 10px;
-    }
-  }
 }
 
 .warning-strip {
@@ -192,7 +111,6 @@ button.MuiButton-outlined {
     background-color: $success-transparent;
   }
 }
-
 
 .background-img {
   background-color: unset;
@@ -223,57 +141,6 @@ button.MuiButton-outlined {
   }
 }
 
-.categories-wrapper {
-  margin-bottom: 8px;
-
-  @media (min-width: 600px) {
-    margin-right: 8px;
-  }
-
-  .category-header {
-    .MuiListItemIcon-root {
-      min-width: 40px;
-    }
-
-    &.MuiListItem-root {
-      padding: 0 16px;
-
-      .MuiTypography-root {
-        font-size: 18px;
-        font-weight: 500;
-      }
-    }
-  }
-
-  .category-rows {
-    .category-clear.MuiListItem-root {
-      display: flex;
-      justify-content: center;
-      font-size: 18px;
-      text-align: center;
-
-      .MuiListItemText-root {
-        flex: 0 0 auto;
-      }
-
-      .MuiListItemIcon-root {
-        min-width: 30px;
-      }
-    }
-
-    .MuiListItemIcon-root {
-      min-width: 10px;
-    }
-
-    .MuiListItem-root {
-      padding: 0 8px 0 4px;
-
-      .MuiTypography-root {
-        font-size: $defaultFontSize;
-      }
-    }
-  }
-}
 
 .loader {
   margin: 8px;

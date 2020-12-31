@@ -63,7 +63,7 @@ function OfferDetails(props) {
         <TextWithLabel mainClass={"secondary-text"} name={'category'} label={t("offer.category.label")}
                        content={t("offer.category." + category)}/>
 
-        <div className={"secondary-text"}>
+        <div className={"labeled-field secondary-text"}>
           <label htmlFor={"condition"}>{t("offer.condition.label")}</label>
           <div className={"condition-box"}>
             <Rating

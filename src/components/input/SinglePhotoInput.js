@@ -27,7 +27,7 @@ function SinglePhotoInput(props) {
                     </IconButton>
                 </div>
                 : <label htmlFor={inputId}>
-                    <div className={'photo-edit-preview centeredContainer'}>
+                    <div className={'photo-edit-preview centered-container'}>
                         <AddIcon/>
                     </div>
                 </label>

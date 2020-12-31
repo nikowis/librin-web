@@ -7,7 +7,7 @@ import {RATINGS, USERS} from "common/paths";
 function UserRating(props) {
   const {userId, avgRating, ratingCount} = props;
 
-  const userRating = <div className={'user-info-rating centeredContainer'}>
+  const userRating = <div className={'user-info-rating centered-container'}>
     <Rating
         readOnly
         size="small"
