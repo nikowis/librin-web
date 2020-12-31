@@ -1,0 +1,42 @@
+@import "Variables";
+
+.report-icon {
+  flex: 0 0 auto;
+  margin: 0 8px;
+  color: dimgray;
+  position: absolute;
+  right: 8px;
+  top: 8px;
+
+  &.MuiSvgIcon-root {
+    font-size: 24px;
+  }
+}
+
+.report-button .MuiButton-label {
+  font-size: $defaultFontSize;
+}
+
+.report-dialog {
+  .MuiDialog-paper {
+    margin: 32px 16px;
+    width: 500px;
+
+    .MuiDialogTitle-root {
+      padding: 8px 16px;
+
+      .MuiTypography-h6 {
+        font-size: 20px;
+      }
+    }
+
+    .MuiDialogContent-root {
+      font-size: $defaultFontSize;
+      padding: 0 16px;
+    }
+
+    .MuiDialogContentText-root {
+      margin: 0;
+    }
+  }
+}

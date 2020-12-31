@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 function TitleComponent(props) {
 
     return (
-        <h1 className={'title-component'}>
+        <h1 className={'title'}>
             {props.content}
         </h1>
     );

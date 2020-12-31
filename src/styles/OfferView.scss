@@ -66,37 +66,11 @@
 
   .offer-card-details {
     margin: auto;
-    text-align: left;
     position: relative;
-
-    .report-icon {
-      position: absolute;
-      right: 8px;
-      top: 8px;
-    }
-
-    label {
-      display: block;
-      color: gray;
-      font-weight: 400;
-    }
 
     .warning-strip{
       width: 100%;
     }
-
-    .primary-text {
-      font-size:18px;
-      font-weight: 500;
-      padding: 4px 8px;
-    }
-
-    .secondary-text {
-      font-size:18px;
-      font-weight: 400;
-      padding: 4px 8px;
-    }
-
   }
 
   .user-details {

@@ -1,0 +1,54 @@
+@import "Variables";
+
+
+.categories-wrapper {
+  margin-bottom: 8px;
+
+  @media (min-width: 600px) {
+    margin-right: 8px;
+  }
+
+  .category-header {
+    .MuiListItemIcon-root {
+      min-width: 40px;
+    }
+
+    &.MuiListItem-root {
+      padding: 0 16px;
+
+      .MuiTypography-root {
+        font-size: 18px;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .category-rows {
+    .category-clear.MuiListItem-root {
+      display: flex;
+      justify-content: center;
+      font-size: 18px;
+      text-align: center;
+
+      .MuiListItemText-root {
+        flex: 0 0 auto;
+      }
+
+      .MuiListItemIcon-root {
+        min-width: 30px;
+      }
+    }
+
+    .MuiListItemIcon-root {
+      min-width: 10px;
+    }
+
+    .MuiListItem-root {
+      padding: 0 8px 0 4px;
+
+      .MuiTypography-root {
+        font-size: $defaultFontSize;
+      }
+    }
+  }
+}

@@ -11,7 +11,7 @@ import NotificationContainer from "components/NotificationContainer";
 import Container from "@material-ui/core/Container";
 import CookieConsent from "react-cookie-consent";
 import {useTranslation} from "react-i18next";
-import CookiesPolicyLink from "components/user/CookiesPolicyLink";
+import CookiesPolicyLink from "components/policy/CookiesPolicyLink";
 import {WS_UPDATE_CONVERSATION} from "redux/actions";
 import Helmet from "react-helmet";
 

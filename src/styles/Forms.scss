@@ -37,6 +37,10 @@
 
   .MuiRating-root {
     font-size: 1.4rem;
+
+    .MuiSvgIcon-root {
+      padding: 0;
+    }
   }
   .condition-hint {
     padding-left: $defaultFontSize;
@@ -72,16 +76,7 @@
   }
 }
 
-.label-error {
-  color: $validationErrorColor;
-  font-size: $defaultFontSize;
-}
 
-.centeredContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 .form-container {
   max-width: $formMaxWidth;
