@@ -176,7 +176,12 @@ const conversationsReducer = (state = initialState, action) => {
       };
     }
     case SELL_OFFER + FULFILLED:
-      return initialState;
+      return {
+        ...state,
+        currentConversation: {
+          ...initialState.currentConversation
+        }
+      };
     default:
       return state
   }
