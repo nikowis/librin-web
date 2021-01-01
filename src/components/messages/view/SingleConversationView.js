@@ -66,6 +66,7 @@ function SingleConversationView(props) {
     const {dispatch} = props;
     const content = data.content;
     if (!content || /^\s*$/.test(content)) {
+      actions.setSubmitting(false);
       return;
     }
     actions.setSubmitting(true);

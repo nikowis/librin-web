@@ -6,7 +6,6 @@ import PropTypes from "prop-types";
 import SendIcon from '@material-ui/icons/Send';
 import ReportingComponent from "components/offer/ReportingComponent";
 import TextFieldInput from "components/input/TextFieldInput";
-import {loginSchema} from "common/validation-schemas";
 
 function SendMessageFormComponent(props) {
 
@@ -17,11 +16,10 @@ function SendMessageFormComponent(props) {
     initialValues: {
       content: '',
     },
-    onSubmit: onSendMessage,
-    validationSchema: loginSchema,
+    onSubmit: onSendMessage
   });
 
-  const {values, handleChange} = formik;
+  const {values, handleChange, isSubmitting} = formik;
 
   return (
       <div className={'send-message-container'}>
@@ -31,7 +29,7 @@ function SendMessageFormComponent(props) {
           <TextFieldInput onChange={handleChange} value={values.content} onClick={() => props.onClick()}
                           disabled={disabled} name={'content'} label={t('messages.message')}/>
 
-          <Button size={"small"} disabled={disabled} variant="contained" color="primary" type="submit">
+          <Button size={"small"} disabled={disabled || isSubmitting} variant="contained" color="primary" type="submit">
             <SendIcon fontSize={'small'}/>
           </Button>
 
@@ -44,7 +42,8 @@ function SendMessageFormComponent(props) {
 SendMessageFormComponent.propTypes = {
   onSendMessage: PropTypes.func.isRequired,
   onClick: PropTypes.func.isRequired,
-  conversationId: PropTypes.number
+  conversationId: PropTypes.number,
+  disabled: PropTypes.bool
 };
 
 export default SendMessageFormComponent;
